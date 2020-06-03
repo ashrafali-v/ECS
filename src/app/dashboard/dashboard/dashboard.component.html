@@ -1,0 +1,56 @@
+<div id="tabs" #tabs>
+
+    <ul class="nav nav-pills">
+      <li class="nav-item">
+        <a class="nav-link active" href="#bill" [ngClass]="{ 'active':activeTab==='bill'}" (click)="search('bill')"
+           data-toggle="tab">Projected Bill</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#usage" [ngClass]="{ 'active':activeTab==='usage'}" data-toggle="tab"
+           (click)="result('usage')">Recent Day Usage</a>
+      </li>
+    </ul>
+  
+    <div class="tab-content">
+      <div class="tab-pane" id="bill" [ngClass]="{ 'active':activeTab==='bill'}">
+        <div class="container" style="width:30%">
+              <circle-progress
+              [percent]=percent
+              [radius]="80"
+              [outerStrokeWidth]="5"
+              [outerStrokeGradient]="true"
+              [outerStrokeColor]="'#e63333'"
+              [outerStrokeGradientStopColor]="'#5b1494'"
+              [showInnerStroke]="false"
+              [animation]="true"
+              [imageSrc]="'/assets/svg/ProjectedBilBg-Only.svg'"
+              [imageWidth] = 150
+              [imageHeight] = 150
+              [animationDuration]="300"
+              [showImage]="true"
+              [responsive]=true
+              [showZeroOuterStroke]=true
+            ></circle-progress>
+        </div>
+      </div>
+      <div class="tab-pane" id="usage" [ngClass]="{ 'active':activeTab==='usage'}">
+        <ngx-charts-bar-vertical
+            [view]="view"
+            [scheme]="colorScheme"
+            [results]="single"
+            [gradient]="gradient"
+            [xAxis]="showXAxis"
+            [yAxis]="showYAxis"
+            [legend]="showLegend"
+            [showXAxisLabel]="showXAxisLabel"
+            [showYAxisLabel]="showYAxisLabel"
+            [xAxisLabel]="xAxisLabel"
+            [yAxisLabel]="yAxisLabel"
+            [barPadding]=25
+            [roundEdges]=true
+            (select)="onSelect($event)">
+        </ngx-charts-bar-vertical>
+      </div>
+    </div>
+  
+</div>
