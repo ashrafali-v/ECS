@@ -13,7 +13,7 @@
   
     <div class="tab-content">
       <div class="tab-pane" id="bill" [ngClass]="{ 'active':activeTab==='bill'}">
-        <div class="container" style="width:30%">
+        <div class="container" style="width:30%" *ngIf="amount">
               <circle-progress
               [percent]=percent
               [radius]="80"
@@ -32,8 +32,30 @@
               [showZeroOuterStroke]=true
             ></circle-progress>
         </div>
+        <div class="container" style="width:30%" *ngIf="kilowats">
+              <circle-progress
+              [percent]=percent
+              [radius]="80"
+              [outerStrokeWidth]="5"
+              [outerStrokeGradient]="true"
+              [outerStrokeColor]="'#e63333'"
+              [outerStrokeGradientStopColor]="'#5b1494'"
+              [showInnerStroke]="false"
+              [animation]="true"
+              [imageSrc]="'/assets/svg/ProjectedBill.svg'"
+              [imageWidth] = 150
+              [imageHeight] = 150
+              [animationDuration]="300"
+              [showImage]="true"
+              [responsive]=true
+              [showZeroOuterStroke]=true
+            ></circle-progress>
+        </div>
+        <button (click)="switchAction('amount')">Amount</button>
+        <button (click)="switchAction('kilowats')">KW</button>
       </div>
       <div class="tab-pane" id="usage" [ngClass]="{ 'active':activeTab==='usage'}">
+        <div class="container" style="width:30%">
         <ngx-charts-bar-vertical
             [view]="view"
             [scheme]="colorScheme"
@@ -47,9 +69,9 @@
             [xAxisLabel]="xAxisLabel"
             [yAxisLabel]="yAxisLabel"
             [barPadding]=25
-            [roundEdges]=true
-            (select)="onSelect($event)">
+            [roundEdges]=true >
         </ngx-charts-bar-vertical>
+        </div>
       </div>
     </div>
   

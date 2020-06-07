@@ -20,12 +20,13 @@ export class DashboardComponent implements OnInit {
   showXAxis = true;
   showYAxis = true;
   gradient = true;
-  //showLegend = true;
+  showLegend = true;
   showXAxisLabel = true;
   xAxisLabel = 'APRIL';
   showYAxisLabel = true;
   yAxisLabel = 'Amount in $';
-
+  amount:boolean = true;
+  kilowats:boolean = false;
   colorScheme = {
     domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
   };
@@ -47,5 +48,17 @@ export class DashboardComponent implements OnInit {
 
   result(activeTab){
     this.activeTab = activeTab;
+  }
+  switchAction(chart){
+    if(chart == 'amount'){
+      console.log('amount');
+      
+      this.amount = true;
+      this.kilowats = false;
+    }else{
+      console.log('kilowats');
+      this.amount = false;
+      this.kilowats = true;
+    }
   }
 }
