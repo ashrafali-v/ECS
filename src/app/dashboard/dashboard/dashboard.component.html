@@ -53,6 +53,10 @@
         </div>
         <button (click)="switchAction('amount')">AMOUNT</button>
         <button (click)="switchAction('kilowats')">KILOWATTS</button>
+        <div>
+          <progress-bar [progress]="27" [color-degraded]="{'0': '#12e252',  '15': '#f3d504f2', '25': '#f77609'}">
+          </progress-bar>
+        </div>
       </div>
       <div class="tab-pane" id="usage" [ngClass]="{ 'active':activeTab==='usage'}">
         <div class="container" style="width:30%">

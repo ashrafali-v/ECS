@@ -4,6 +4,7 @@ import { DashboardComponent } from './dashboard.component';
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { NgCircleProgressModule } from 'ng-circle-progress';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
+import {ProgressBarModule} from "angular-progress-bar"
 
 @NgModule({
   declarations: [DashboardComponent],
@@ -11,7 +12,8 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
     CommonModule,
     DashboardRoutingModule,
     NgCircleProgressModule,
-    NgxChartsModule
+    NgxChartsModule,
+    ProgressBarModule
   ]
 })
 export class DashboardModule { }
