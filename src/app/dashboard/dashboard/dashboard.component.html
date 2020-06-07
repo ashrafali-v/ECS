@@ -51,26 +51,12 @@
               [showZeroOuterStroke]=true
             ></circle-progress>
         </div>
-        <button (click)="switchAction('amount')">Amount</button>
-        <button (click)="switchAction('kilowats')">KW</button>
+        <button (click)="switchAction('amount')">AMOUNT</button>
+        <button (click)="switchAction('kilowats')">KILOWATTS</button>
       </div>
       <div class="tab-pane" id="usage" [ngClass]="{ 'active':activeTab==='usage'}">
         <div class="container" style="width:30%">
-        <ngx-charts-bar-vertical
-            [view]="view"
-            [scheme]="colorScheme"
-            [results]="single"
-            [gradient]="gradient"
-            [xAxis]="showXAxis"
-            [yAxis]="showYAxis"
-            [legend]="showLegend"
-            [showXAxisLabel]="showXAxisLabel"
-            [showYAxisLabel]="showYAxisLabel"
-            [xAxisLabel]="xAxisLabel"
-            [yAxisLabel]="yAxisLabel"
-            [barPadding]=25
-            [roundEdges]=true >
-        </ngx-charts-bar-vertical>
+          Recent Day usage.
         </div>
       </div>
     </div>
