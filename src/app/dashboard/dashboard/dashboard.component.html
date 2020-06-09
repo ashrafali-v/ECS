@@ -36,11 +36,11 @@
                         [showZeroOuterStroke]=true></circle-progress>
                     <div class="pb-default-rules">
                         <div class="shadow-circle days-31">
-                            <div class="ecs-date month">APR <span>1</span></div>
+                            <div class="ecs-date month">{{month}}<span>1</span></div>
                             <div class="ecs-date date-8">08</div>
                             <div class="ecs-date date-16">16</div>
                             <div class="ecs-date date-24">24</div>
-                            <div class="chart-progress">$10</div>
+                            <div class="chart-progress">{{amountValue | currency}}</div>
                         </div>
 
                     </div>
@@ -53,6 +53,16 @@
 
                 <button (click)="switchAction('amount')">AMOUNT</button>
                 <button (click)="switchAction('kilowats')">KILOWATTS</button>
+                <div>
+                  <div *ngIf="!editStatus">
+                    <span>{{limitValue | currency}}</span>
+                    <button (click)="editLimitValue()">Edit</button>
+                  </div>
+                  <div *ngIf="editStatus">
+                    <input type="number" [(ngModel)]="limitValue" value={{limitValue}}>
+                    <button (click)="resetValue()">Set value</button>
+                  </div>
+                </div>
                 <div>
                     <progress-bar [progress]="27" [color-degraded]="{'0': '#12e252',  '15': '#f3d504f2', '25': '#f77609'}">
                     </progress-bar>
