@@ -1,0 +1,45 @@
+@import '../../../scss/ecs-master';
+.projected-bill-amount {
+    position: relative;
+    padding: $null;
+    width: $full;
+    // padding-top: $default-padding*1.2;
+    .pb-default-rules {
+        width: $full - 20 ;
+        height: $full - 20 ;
+        z-index: 0;
+        @include vh-center();
+        .shadow-circle {
+            background-color: $white;
+            width: $full;
+            height: $full;
+            @include border-radius(50%);
+            // @include box-shadow(1px, 1px, 5px, 3px, rgba($dark, .3), false);
+            background-image: url(../../../assets/svg/ProjectedBilBg-Only.svg);
+            background-repeat: no-repeat;
+            background-position: $default-unit*7 $default-unit;
+            background-size: contain;
+            position: relative;
+            .ecs-date{
+                position: absolute;
+                @include ecs-typo($primary-font-regular, 200, 16px, 37px, $primary-dark-color);
+            }
+            .month{
+                top: 0;
+                @include h-center();
+            }
+            .date-8{
+                right: 0;
+                @include v-center();
+            }
+            .date-16{
+                bottom: 0;
+                @include h-center();
+            }
+            .date-24{
+                left: 0;
+                @include v-center();
+            }
+        }
+    }
+}

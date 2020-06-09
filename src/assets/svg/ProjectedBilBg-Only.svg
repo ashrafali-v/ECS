@@ -103,16 +103,8 @@
         <path id="Path_34" data-name="Path 34" class="cls-3" d="M429.5,144.11l-2.079-10.05c-.346.067-.692.138-1.038.208l2.079,10.046C428.8,144.244,429.151,144.177,429.5,144.11Z" transform="translate(-321.407 -131.568)"/>
       </g>
       
-      <g id="day-count" transform="translate(-75.333 -139.333)">
-        <text id="APR1" class="cls-4" transform="translate(191 420)"><tspan x="0" y="0">APR1</tspan></text>
-        <text id="_8" data-name="8" class="cls-4" transform="translate(64 274)"><tspan x="0" y="0">8</tspan></text>
-        <text id="_16" data-name="16" class="cls-4" transform="translate(200 134)"><tspan x="0" y="0">16</tspan></text>
-        <text id="_24" data-name="24" class="cls-4" transform="translate(344 272)"><tspan x="0" y="0">24</tspan></text>
-        <text id="_21" data-name="21" class="cls-5" transform="translate(317 196)"><tspan x="0" y="0">21</tspan></text>
-        <text id="_30" data-name="30" class="cls-4" transform="translate(253 406)"><tspan x="0" y="0">30</tspan></text>
-      </g>
     </g>
-    <text id="_138.00" data-name="$138.00" class="cls-6" transform="translate(207 278)"><tspan x="-43.02" y="0">$138.</tspan><tspan class="cls-7" y="0">00</tspan></text>
+    
     <g id="Ellipse_3" data-name="Ellipse 3" class="cls-8" transform="translate(75 139)">
       <circle class="cls-9" cx="132.5" cy="132.5" r="132.5"/>
       <circle class="cls-10" cx="132.5" cy="132.5" r="129.5"/>

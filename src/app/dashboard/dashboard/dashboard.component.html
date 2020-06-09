@@ -13,7 +13,7 @@
   
     <div class="tab-content">
       <div class="tab-pane" id="bill" [ngClass]="{ 'active':activeTab==='bill'}">
-        <div class="container" style="width:30%" *ngIf="amount">
+        <div class="container projected-bill-amount" *ngIf="amount">
               <circle-progress
               [percent]=percent
               [radius]="80"
@@ -23,14 +23,19 @@
               [outerStrokeGradientStopColor]="'#5b1494'"
               [showInnerStroke]="false"
               [animation]="true"
-              [imageSrc]="'/assets/svg/ProjectedBilBg-Only.svg'"
-              [imageWidth] = 150
-              [imageHeight] = 150
               [animationDuration]="300"
-              [showImage]="true"
               [responsive]=true
               [showZeroOuterStroke]=true
             ></circle-progress>
+            <div class="pb-default-rules">
+                <div class="shadow-circle">
+                    <div class="ecs-date month">APR <span>1</span></div>
+                    <div class="ecs-date date-8">08</div>
+                    <div class="ecs-date date-16">16</div>
+                    <div class="ecs-date date-24">24</div>
+                </div>
+                
+            </div>
         </div>
         <div class="container" style="width:30%" *ngIf="kilowats">
               <circle-progress
@@ -51,6 +56,8 @@
               [showZeroOuterStroke]=true
             ></circle-progress>
         </div>
+        
+
         <button (click)="switchAction('amount')">AMOUNT</button>
         <button (click)="switchAction('kilowats')">KILOWATTS</button>
         <div>
