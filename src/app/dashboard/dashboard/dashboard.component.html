@@ -1,48 +1,70 @@
-<div id="tabs" class="ecs-tabs" #tabs>
+<header>
+    <div class="logo">
+        <img src="../assets/svg/ecs-logo.svg" alt="">
+        <h1>ECS</h1>
+    </div>
+</header>
 
-    <ul class="nav nav-pills">
-        <li class="nav-item">
-            <a class="nav-link active" href="#bill" [ngClass]="{ 'active':activeTab==='bill'}" (click)="search('bill')" data-toggle="tab">Projected Bill</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#usage" [ngClass]="{ 'active':activeTab==='usage'}" data-toggle="tab" (click)="result('usage')">Recent Day Usage</a>
-        </li>
-    </ul>
+<div class="ecs-content-box">
+    <div class="projected-biil-details">
+        <div class="ecs-amount">
+            <h2>$138.<span>00</span></h2>
+            <h4>Predicted Amount</h4>
+        </div>
+        <div class="ecs-kilowatt">
+            <h2>520kWh</h2>
+            <h4>Predicted Amount</h4>
+        </div>
 
-    <div class="tab-content">
-        <div class="tab-pane" id="bill" [ngClass]="{ 'active':activeTab==='bill'}">
-            <div class="container projected-bill-amount" *ngIf="amount">
-                <circle-progress [percent]=percent [radius]="80" [outerStrokeWidth]="5" [outerStrokeGradient]="true" [outerStrokeColor]="'#e63333'" [outerStrokeGradientStopColor]="'#5b1494'" [showInnerStroke]="false" [animation]="true" [animationDuration]="300" [responsive]=true
-                    [showZeroOuterStroke]=true></circle-progress>
-                <div class="pb-default-rules">
-                    <div class="shadow-circle days-31">
-                        <div class="ecs-date month">APR <span>1</span></div>
-                        <div class="ecs-date date-8">08</div>
-                        <div class="ecs-date date-16">16</div>
-                        <div class="ecs-date date-24">24</div>
-                        <div class="chart-progress">$10</div>
+    </div>
+
+    <div id="tabs" class="ecs-tabs" #tabs>
+
+        <ul class="nav nav-pills">
+            <li class="nav-item">
+                <a class="nav-link active" href="#bill" [ngClass]="{ 'active':activeTab==='bill'}" (click)="search('bill')" data-toggle="tab">Projected Bill</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#usage" [ngClass]="{ 'active':activeTab==='usage'}" data-toggle="tab" (click)="result('usage')">Recent Day Usage</a>
+            </li>
+        </ul>
+
+        <div class="tab-content">
+            <div class="tab-pane" id="bill" [ngClass]="{ 'active':activeTab==='bill'}">
+                <div class="container projected-bill-amount" *ngIf="amount">
+                    <circle-progress [percent]=percent [radius]="80" [outerStrokeWidth]="5" [outerStrokeGradient]="true" [outerStrokeColor]="'#e63333'" [outerStrokeGradientStopColor]="'#5b1494'" [showInnerStroke]="false" [animation]="true" [animationDuration]="300" [responsive]=true
+                        [showZeroOuterStroke]=true></circle-progress>
+                    <div class="pb-default-rules">
+                        <div class="shadow-circle days-31">
+                            <div class="ecs-date month">APR <span>1</span></div>
+                            <div class="ecs-date date-8">08</div>
+                            <div class="ecs-date date-16">16</div>
+                            <div class="ecs-date date-24">24</div>
+                            <div class="chart-progress">$10</div>
+                        </div>
+
                     </div>
+                </div>
+                <div class="container" style="width:30%" *ngIf="kilowats">
+                    <circle-progress [percent]=percent [radius]="80" [outerStrokeWidth]="5" [outerStrokeGradient]="true" [outerStrokeColor]="'#e63333'" [outerStrokeGradientStopColor]="'#5b1494'" [showInnerStroke]="false" [animation]="true" [imageSrc]="'/assets/svg/ProjectedBill.svg'"
+                        [imageWidth]=1 50 [imageHeight]=1 50 [animationDuration]="300" [showImage]="true" [responsive]=true [showZeroOuterStroke]=true></circle-progress>
+                </div>
 
+
+                <button (click)="switchAction('amount')">AMOUNT</button>
+                <button (click)="switchAction('kilowats')">KILOWATTS</button>
+                <div>
+                    <progress-bar [progress]="27" [color-degraded]="{'0': '#12e252',  '15': '#f3d504f2', '25': '#f77609'}">
+                    </progress-bar>
                 </div>
             </div>
-            <div class="container" style="width:30%" *ngIf="kilowats">
-                <circle-progress [percent]=percent [radius]="80" [outerStrokeWidth]="5" [outerStrokeGradient]="true" [outerStrokeColor]="'#e63333'" [outerStrokeGradientStopColor]="'#5b1494'" [showInnerStroke]="false" [animation]="true" [imageSrc]="'/assets/svg/ProjectedBill.svg'"
-                    [imageWidth]=1 50 [imageHeight]=1 50 [animationDuration]="300" [showImage]="true" [responsive]=true [showZeroOuterStroke]=true></circle-progress>
-            </div>
-
-
-            <button (click)="switchAction('amount')">AMOUNT</button>
-            <button (click)="switchAction('kilowats')">KILOWATTS</button>
-            <div>
-                <progress-bar [progress]="27" [color-degraded]="{'0': '#12e252',  '15': '#f3d504f2', '25': '#f77609'}">
-                </progress-bar>
+            <div class="tab-pane" id="usage" [ngClass]="{ 'active':activeTab==='usage'}">
+                <div class="container" style="width:30%">
+                    Recent Day usage.
+                </div>
             </div>
         </div>
-        <div class="tab-pane" id="usage" [ngClass]="{ 'active':activeTab==='usage'}">
-            <div class="container" style="width:30%">
-                Recent Day usage.
-            </div>
-        </div>
+
     </div>
 
 </div>
