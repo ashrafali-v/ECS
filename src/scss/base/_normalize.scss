@@ -1,0 +1,27 @@
+body {
+    // display: table;
+    // width: $full;
+    margin: $null;
+    padding: $null;
+    overflow-x: hidden;
+}
+
+* {
+    padding: $null;
+    margin: $null;
+    &:focus {
+        outline: none;
+    }
+}
+
+.header {
+    @include device(lg) {
+        height: inherit;
+    }
+}
+
+ul,li{
+    list-style: none;
+    padding: $null;
+    margin: $null;
+}
