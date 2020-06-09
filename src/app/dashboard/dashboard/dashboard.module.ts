@@ -5,6 +5,7 @@ import { DashboardRoutingModule } from './dashboard-routing.module';
 import { NgCircleProgressModule } from 'ng-circle-progress';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import {ProgressBarModule} from "angular-progress-bar"
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [DashboardComponent],
@@ -13,7 +14,8 @@ import {ProgressBarModule} from "angular-progress-bar"
     DashboardRoutingModule,
     NgCircleProgressModule,
     NgxChartsModule,
-    ProgressBarModule
+    ProgressBarModule,
+    FormsModule
   ]
 })
 export class DashboardModule { }

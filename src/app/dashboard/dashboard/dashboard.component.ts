@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { single } from '../../data';
+import {NgForm} from '@angular/forms';
 
 @Component({
   selector: 'app-dashboard',
@@ -28,9 +29,11 @@ export class DashboardComponent implements OnInit {
   amount:boolean = true;
   kilowats:boolean = false;
   amountValue:number;
+  limitValue:number;
   kilowatsValue:number;
   month:any;
   daysInCurrentMonth:number=30;
+  editStatus:boolean = false;
   colorScheme = {
     domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
   };
@@ -48,6 +51,7 @@ export class DashboardComponent implements OnInit {
     let currentMonth = day.getMonth();
     let curreYear = day.getFullYear();
     this.amountValue = 128;
+    this.limitValue = 180;
     this.daysInCurrentMonth = this.daysInMonth(currentMonth+1, curreYear);
     this.percent = ( currentDay / wholeDay) * 100;
   }
@@ -73,4 +77,13 @@ export class DashboardComponent implements OnInit {
   daysInMonth (month, year) {
     return new Date(year, month, 0).getDate();
   }
+  resetValue(){
+    this.editStatus = false;
+  }
+  editLimitValue(){
+    this.editStatus = true;
+  }
+
+
+  
 }

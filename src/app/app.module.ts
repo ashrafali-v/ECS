@@ -8,6 +8,7 @@ import { NgCircleProgressModule } from 'ng-circle-progress';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { ProgressBarModule } from "angular-progress-bar"
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { ProgressBarModule } from "angular-progress-bar"
     NgCircleProgressModule.forRoot(),
     NgxChartsModule,
     BrowserAnimationsModule,
-    ProgressBarModule
+    ProgressBarModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
