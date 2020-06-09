@@ -51,22 +51,45 @@
                 </div>
 
 
-                <button (click)="switchAction('amount')">AMOUNT</button>
-                <button (click)="switchAction('kilowats')">KILOWATTS</button>
-                <div>
-                  <div *ngIf="!editStatus">
-                    <span>{{limitValue | currency}}</span>
-                    <button (click)="editLimitValue()">Edit</button>
-                  </div>
-                  <div *ngIf="editStatus">
-                    <input type="number" [(ngModel)]="limitValue" value={{limitValue}}>
-                    <button (click)="resetValue()">Set value</button>
-                  </div>
+                <!-- <button (click)="switchAction('amount')">AMOUNT</button>
+                <button (click)="switchAction('kilowats')">KILOWATTS</button> -->
+
+                <div class="ecs-toggle-switch">
+                    <span class="selector">Amount</span>
+                    <label class="switch">
+                      <input type="checkbox">
+                      <span class="slider"></span>
+                  </label>
+                    <span class="selector">Kilowatts</span>
                 </div>
-                <div>
-                    <progress-bar [progress]="27" [color-degraded]="{'0': '#12e252',  '15': '#f3d504f2', '25': '#f77609'}">
-                    </progress-bar>
+
+
+                <div class="ecs-usage-alert">
+                    <div class="progress-data">
+                        <h2>Usage Alert</h2>
+                        <div class="edit-values">
+                            <div *ngIf="!editStatus">
+                                <span>{{limitValue | currency}}</span>
+                                <button (click)="editLimitValue()">Edit</button>
+                            </div>
+                            <div *ngIf="editStatus">
+                                <input type="text" [(ngModel)]="limitValue" value={{limitValue}}>
+                                <button (click)="resetValue()">Set value</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="progress-chart">
+                        <progress-bar [progress]="20" [color-degraded]="{'0': '#12e252',  '15': '#f3d504f2', '25': '#f77609'}">
+                        </progress-bar>
+                        <div class="usage-month">
+                            <span>APR 1</span>
+                            <span>31</span>
+                        </div>
+                    </div>
                 </div>
+
+
+
             </div>
             <div class="tab-pane" id="usage" [ngClass]="{ 'active':activeTab==='usage'}">
                 <div class="container" style="width:30%">
