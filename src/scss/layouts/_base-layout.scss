@@ -1,0 +1,6 @@
+.ecs-content-box {
+    @include flexbox();
+    @include flex(1 0 auto);
+    @include flex-direction(column);
+    // @include justify-content(flex-start);
+}
