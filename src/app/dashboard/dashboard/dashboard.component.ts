@@ -27,21 +27,30 @@ export class DashboardComponent implements OnInit {
   yAxisLabel = 'Amount in $';
   amount:boolean = true;
   kilowats:boolean = false;
+  amountValue:number;
+  kilowatsValue:number;
+  month:any;
+  daysInCurrentMonth:number=30;
   colorScheme = {
     domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
   };
-
+  monthNames = ["Jan", "Feb", "March", "April", "May", "June",
+  "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+];
   constructor() {
     Object.assign(this, { single })
    }
   ngOnInit() {
-    var wholeDay = 32;
-    var d = new Date();
-    var currentDay = d.getDate();
-    this.percent = ( 30 / wholeDay) * 100;
-    console.log(this.percent);
+    const wholeDay = 32;
+    var day = new Date();
+    this.month = this.monthNames[day.getMonth()];
+    let currentDay = day.getDate();
+    let currentMonth = day.getMonth();
+    let curreYear = day.getFullYear();
+    this.amountValue = 128;
+    this.daysInCurrentMonth = this.daysInMonth(currentMonth+1, curreYear);
+    this.percent = ( currentDay / wholeDay) * 100;
   }
-
   search(activeTab){
     this.activeTab = activeTab;
   }
@@ -60,5 +69,8 @@ export class DashboardComponent implements OnInit {
       this.amount = false;
       this.kilowats = true;
     }
+  }
+  daysInMonth (month, year) {
+    return new Date(year, month, 0).getDate();
   }
 }
