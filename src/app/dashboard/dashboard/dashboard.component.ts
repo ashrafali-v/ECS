@@ -38,7 +38,7 @@ export class DashboardComponent implements OnInit {
     var wholeDay = 32;
     var d = new Date();
     var currentDay = d.getDate();
-    this.percent = ( 8 / wholeDay) * 100;
+    this.percent = ( 30 / wholeDay) * 100;
     console.log(this.percent);
   }
 
