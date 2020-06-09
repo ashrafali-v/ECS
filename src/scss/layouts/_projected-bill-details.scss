@@ -1,0 +1,38 @@
+.projected-biil-details {
+    float: right;
+    max-width: $full/2;
+    @include flexbox();
+    @include flex(0 0 $full/2);
+    @include flex-direction(row);
+    @include justify-content(space-between);
+    margin-left: auto;
+    padding: $default-padding*1.5 $null;
+    .ecs-amount {
+        margin-right: $default-margin*2;
+        @include align-self(flex-end);
+        h2 {
+            @include ecs-typo($primary-font-regular, 700, 27px, 32px, $primary-dark-color);
+            vertical-align: bottom;
+            span {
+                @include ecs-typo($primary-font-regular, 700, 21px, 32px, $primary-dark-color);
+            }
+        }
+        h4 {
+            @include ecs-typo($primary-font-regular, 200, 12px, 14px, $primary-dark-color);
+        }
+    }
+    .ecs-kilowatt {
+        margin-right: $default-margin*2;
+        @include align-self(flex-end);
+        h2 {
+            @include ecs-typo($primary-font-regular, 700, 16px, 32px, rgba($primary-dark-color, .5));
+            vertical-align: bottom;
+            span {
+                @include ecs-typo($primary-font-regular, 700, 16px, 32px, rgba($primary-dark-color, .5));
+            }
+        }
+        h4 {
+            @include ecs-typo($primary-font-regular, 200, 12px, 14px, rgba($primary-dark-color, .5));
+        }
+    }
+}

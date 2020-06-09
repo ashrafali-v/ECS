@@ -5,15 +5,13 @@
  */
 
 @charset "UTF-8";
-
 // mixins scss
 @import 'utilities/utilities-dir';
-
 // vendor scss
 @import 'vendor/vendor-dir';
-
 // base scss
 @import 'base/base-dir';
-
-// base scss
+// ecs-components scss
+@import 'ecs-components/components-dir';
+// layouts scss
 @import 'layouts/layout-dir';

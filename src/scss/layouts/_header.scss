@@ -1,0 +1,22 @@
+header {
+    width: $full;
+    position: fixed;
+    top: $null;
+    left: $null;
+    .logo {
+        background-color: $primary-color;
+        padding: $default-padding*1.5;
+        padding-right: $default-padding*3.5;
+        padding-bottom: $default-padding*2.5;
+        display: table;
+        @include border-radius-tl-tr-br-bl(0, 0, 50px, 0);
+        img {
+            display: inline-block;
+        }
+        h1 {
+            @include ecs-typo($primary-font-regular, 700, 18px, 37px, $white);
+            display: inline-block;
+            margin-left: $default-margin;
+        }
+    }
+}
