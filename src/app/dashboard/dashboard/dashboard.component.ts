@@ -51,6 +51,7 @@ export class DashboardComponent implements OnInit {
     let currentMonth = day.getMonth();
     let curreYear = day.getFullYear();
     this.amountValue = 128;
+    this.kilowatsValue = 145;
     this.limitValue = 180;
     this.daysInCurrentMonth = this.daysInMonth(currentMonth+1, curreYear);
     this.percent = ( currentDay / wholeDay) * 100;
@@ -83,7 +84,13 @@ export class DashboardComponent implements OnInit {
   editLimitValue(){
     this.editStatus = true;
   }
-
-
-  
+  handleSelected($event) {
+    if ($event.target.checked === true) {
+      this.amount = false;
+      this.kilowats = true;
+    }else{
+      this.amount = true;
+      this.kilowats = false;
+    }
+  }
 }
