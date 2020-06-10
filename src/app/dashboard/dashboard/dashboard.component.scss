@@ -3,12 +3,12 @@
     position: relative;
     padding: $null;
     width: $full;
-    max-width: $default-unit*160;
+    max-width: $default-unit*180;
     margin: $null auto;
     // padding-top: $default-padding*1.2;
     .pb-default-rules {
-        width: $full - 20;
-        height: $full - 20;
+        width: $full - 13;
+        height: $full - 13;
         z-index: 0;
         @include vh-center();
         .shadow-circle {
@@ -18,28 +18,30 @@
             @include border-radius(50%);
             // @include box-shadow(1px, 1px, 5px, 3px, rgba($dark, .3), false);
             background-repeat: no-repeat;
-            background-position: $default-unit*7 $default-unit;
-            background-size: contain;
+            background-position: center;
+            background-size: $full - 5;
             position: relative;
             &.days-31 {
-                background-image: url(../../../assets/svg/ProjectedBilBg-Only.svg);
+                background-image: url(../../../assets/svg/projetedbill-bg-31.svg);
             }
             &.days-30 {
-                background-image: url(../../../assets/svg/ProjectedBilBg-Only.svg);
+                background-image: url(../../../assets/svg/projetedbill-bg-30.svg);
             }
             &.days-29 {
-                background-image: url(../../../assets/svg/ProjectedBilBg-Only.svg);
+                background-image: url(../../../assets/svg/projetedbill-bg-29.svg);
             }
             &.days-28 {
-                background-image: url(../../../assets/svg/ProjectedBilBg-Only.svg);
+                background-image: url(../../../assets/svg/projetedbill-bg-28.svg);
             }
             .ecs-date {
                 position: absolute;
                 @include ecs-typo($primary-font-regular, 200, 16px, 37px, $primary-dark-color);
             }
             .month {
-                top: 0;
+                bottom: -$default-unit*15;
                 @include h-center();
+                @include ecs-typo($primary-font-regular, bold, 16px, 37px, $primary-dark-color);
+                text-transform: uppercase;
             }
             .date-8 {
                 right: 0;

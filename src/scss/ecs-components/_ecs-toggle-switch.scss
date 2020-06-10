@@ -1,5 +1,6 @@
 .ecs-toggle-switch {
     margin: $null auto;
+    padding-left: $default-padding*2;
     @include flexbox();
     @include flex(1 0 auto);
     @include flex-direction(row);
