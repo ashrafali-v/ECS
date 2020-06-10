@@ -1,14 +1,13 @@
-import { Component, OnInit } from '@angular/core';
-import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { Component, OnInit,AfterViewInit } from '@angular/core';
 import { single } from '../../data';
-import {NgForm} from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent implements OnInit,AfterViewInit {
   percent:any;
   title = 'test App';
   activeTab = 'bill';
@@ -40,7 +39,7 @@ export class DashboardComponent implements OnInit {
   monthNames = ["Jan", "Feb", "March", "April", "May", "June",
   "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
 ];
-  constructor() {
+  constructor(private toastr: ToastrService) {
     Object.assign(this, { single })
    }
   ngOnInit() {
@@ -51,10 +50,19 @@ export class DashboardComponent implements OnInit {
     let currentMonth = day.getMonth();
     let curreYear = day.getFullYear();
     this.amountValue = 128;
-    this.kilowatsValue = 145;
+    this.kilowatsValue = 185;
     this.limitValue = 180;
     this.daysInCurrentMonth = this.daysInMonth(currentMonth+1, curreYear);
     this.percent = ( currentDay / wholeDay) * 100;
+  }
+  ngAfterViewInit(){
+    this.kilowatsValue = 185;
+    this.limitValue = 180;
+    if(this.kilowatsValue >= this.limitValue){
+      if(!localStorage.exceedLimit){
+        this.toastr.warning('You have exceeded the limit.!', 'Warning');
+      }
+    }
   }
   search(activeTab){
     this.activeTab = activeTab;
@@ -80,6 +88,12 @@ export class DashboardComponent implements OnInit {
   }
   resetValue(){
     this.editStatus = false;
+    console.log(this.kilowatsValue);
+    console.log(this.limitValue);
+    
+    if(this.kilowatsValue < this.limitValue){
+      localStorage.removeItem('exceedLimit');
+    }
   }
   editLimitValue(){
     this.editStatus = true;
