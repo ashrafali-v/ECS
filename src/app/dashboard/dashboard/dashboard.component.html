@@ -7,12 +7,12 @@
 
 <div class="ecs-content-box">
     <div class="projected-biil-details">
-        <div class="ecs-amount">
-            <h2>$138.<span>00</span></h2>
+        <div class="ecs-amount" [ngClass]="(amount==true)?'ecs-amount-active':'ecs-amount-inactive'">
+            <h2>{{amountValue | currency}}</h2>
             <h4>Predicted Amount</h4>
         </div>
-        <div class="ecs-kilowatt">
-            <h2>520kWh</h2>
+        <div class="ecs-kilowatt" [ngClass]="(kilowats==true)?'ecs-kilowatt-active':'ecs-kilowatt-inactive'">
+            <h2>{{kilowatsValue}} Kwh</h2>
             <h4>Predicted Amount</h4>
         </div>
 
@@ -60,7 +60,7 @@
                             <div class="ecs-date date-8">08</div>
                             <div class="ecs-date date-16">16</div>
                             <div class="ecs-date date-24">24</div>
-                            <div class="chart-progress">{{kilowatsValue}} KWH</div>
+                            <div class="chart-progress">{{kilowatsValue}} Kwh</div>
                         </div>
 
                     </div>
@@ -110,7 +110,11 @@
             </div>
             <div class="tab-pane" id="usage" [ngClass]="{ 'active':activeTab==='usage'}">
                 <div class="container" style="width:30%">
-                    Recent Day usage.
+                    <ngx-charts-bar-vertical [view]="view" [scheme]="colorScheme" [results]="single"
+                        [gradient]="gradient" [xAxis]="showXAxis" [yAxis]="showYAxis" [legend]="showLegend"
+                        [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel"
+                        [yAxisLabel]="yAxisLabel" [barPadding]=25 [roundEdges]=true>
+                    </ngx-charts-bar-vertical>
                 </div>
             </div>
         </div>
