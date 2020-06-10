@@ -6,12 +6,12 @@
         @include justify-content(center);
         &.nav-pills {
             .nav-link {
-                padding: $default-padding*2;
+                padding: $null $default-padding*2;
                 background-color: $transition-bg;
                 text-align: center;
-                @include ecs-typo($primary-font-regular, 400, 12px, 37px, $primary-dark-color);
+                @include ecs-typo($primary-font-regular, 400, 12px, 18px, $primary-dark-color);
                 &.active {
-                    @include ecs-typo($primary-font-regular, 700, 16px, 37px, $primary-dark-color);
+                    @include ecs-typo($primary-font-regular, 700, 16px, 20px, $primary-dark-color);
                 }
             }
         }
