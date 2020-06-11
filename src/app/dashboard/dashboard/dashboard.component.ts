@@ -1,5 +1,6 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { single } from '../../data';
+import { multi } from '../../data';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -9,41 +10,51 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class DashboardComponent implements OnInit, AfterViewInit {
   percent: any;
+  percentProgressBarAmount:any;
+  percentProgressBarAmountAlert:any;
+  percentProgressBarkwh:any;
+  percentProgressBarkwhAlert:any;
   title = 'test App';
   activeTab = 'bill';
   single: any[];
   multi: any[];
-
   view: any[] = [400, 300];
-
   // options
   showXAxis = true;
   showYAxis = true;
-  gradient = true;
+  gradient = false;
   showLegend = true;
   showXAxisLabel = true;
-  xAxisLabel = 'APRIL';
+  showDataLabel=true;
+  //xAxisLabel = 'APRIL';
   showYAxisLabel = true;
   yAxisLabel = 'Amount in $';
+
+
   amount: boolean = true;
   kilowats: boolean = false;
   amountValue: number;
-  limitValue: number;
   kilowatsValue: number;
+  limitValue: number;
+  progressbarMaxValueAmount:number;
+  progressbarMaxValueKwh:number;
+  amountAlertValue:number;
+  kwhAlertValue:number;
   month: any;
   day: any;
   daysInCurrentMonth: number = 30;
   editStatus: boolean = false;
   colorScheme = {
-    domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
+    domain: ['#f8bc8a', '#ab8ef0', '#f8bc8a', '#ab8ef0','#f8bc8a']
   };
   monthNames = ["Jan", "Feb", "March", "April", "May", "June",
     "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
   ];
   constructor(private toastr: ToastrService) {
-    Object.assign(this, { single })
   }
   ngOnInit() {
+    this.progressbarMaxValueAmount = 200;
+    this.progressbarMaxValueKwh = 300;
     const wholeDay = 32;
     var day = new Date();
     this.month = this.monthNames[day.getMonth()];
@@ -53,14 +64,20 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     this.day = day.getDate();
     this.amountValue = 128;
     this.kilowatsValue = 185;
-    this.limitValue = 180;
+    this.limitValue = 100;
+    this.kwhAlertValue = 210;
+    this.amountAlertValue = 185;
     this.daysInCurrentMonth = this.daysInMonth(currentMonth + 1, curreYear);
     this.percent = (currentDay / wholeDay) * 100;
+    this.percentProgressBarAmount = (this.amountValue / this.progressbarMaxValueAmount) * 100;
+    console.log(this.percentProgressBarAmount);
+    this.percentProgressBarAmountAlert = (this.amountAlertValue / this.progressbarMaxValueAmount) * 100;
+    this.percentProgressBarAmountAlert = 100 - this.percentProgressBarAmountAlert;
+    console.log(this.percentProgressBarAmountAlert);
+    Object.assign(this, { multi })
   }
   ngAfterViewInit() {
-    this.kilowatsValue = 185;
-    this.limitValue = 180;
-    if (this.kilowatsValue >= this.limitValue) {
+    if (this.amountValue >= this.amountAlertValue) {
       if (!localStorage.exceedLimit) {
         localStorage.setItem('exceedLimit', 'true');
         this.toastr.warning('You have exceeded the limit.!', 'Warning');
@@ -91,10 +108,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   }
   resetValue() {
     this.editStatus = false;
-    console.log(this.kilowatsValue);
-    console.log(this.limitValue);
-
-    if (this.kilowatsValue < this.limitValue) {
+    if (this.amountValue < this.amountAlertValue) {
       localStorage.removeItem('exceedLimit');
     }
   }
