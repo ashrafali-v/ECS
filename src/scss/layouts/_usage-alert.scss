@@ -45,28 +45,47 @@
         @include flex-direction(column);
         @include justify-content(space-between);
         @include align-items(center);
-        progress-bar {
+        .progress-bar {
             width: calc(#{ $full} - 30px);
-        }
-        .progress-outer {
             position: relative;
-            padding: $default-unit/4;
-            border: none;
-            width: $full;
-            margin: $default-margin*2 $null;
-            .progress-inner {
+            background-color: $transition-bg;
+            margin-top: $default-margin*1.5;
+            &::before {
+                content: '';
                 @include v-center();
+                height: $default-unit/2;
+                width: $full;
                 left: $null;
+                background-color: rgba($white, .6);
+                z-index: 9;
+            }
+            .progress-outer {
+                z-index: 99;
+                .progress-inner {
+                    @include ecs-typo($primary-font-regular, 100, 12px, 14px, rgba($white, 1));
+                    text-align: right;
+                    padding: $default-padding/2;
+                    padding-right: $default-padding;
+                    @include border-radius($default-padding*2);
+                }
+                .exceed-bar {
+                    @include v-center();
+                    width: $default-unit/2;
+                    height: $full;
+                    right: $null;
+                    background-color: $secondary-color;
+                }
             }
         }
         .usage-month {
             @include flexbox();
             @include flex(1 0 auto);
             @include flex-direction(row);
-            @include justify-content(space-between);
+            @include justify-content(center);
             width: calc(#{ $full} - 30px);
             span {
                 @include ecs-typo($primary-font-regular, 400, 14px, 37px, rgba($white, 1));
+                text-transform: uppercase;
             }
         }
     }
