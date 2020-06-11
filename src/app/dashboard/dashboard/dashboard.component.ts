@@ -1,6 +1,7 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { single } from '../../data';
-import { multi } from '../../data';
+//import { multiAmount } from '../../data';
+import { multikwh } from '../../data';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -17,7 +18,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   title = 'test App';
   activeTab = 'bill';
   single: any[];
-  multi: any[];
+  multiAmount: any[];
+  multikwh:any[];
   view: any[] = [400, 300];
   // options
   showXAxis = true;
@@ -53,6 +55,57 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   constructor(private toastr: ToastrService) {
   }
   ngOnInit() {
+    var multiAmount = [
+      {
+        "name": "22",
+        "value": 12,
+        "extra": {
+          "code": "de"
+        }
+      },
+      {
+        "name": "23",
+        "value": 7,
+        "extra": {
+          "code": "us"
+        }
+      },
+      {
+        "name": "24",
+        "value": 13,
+        "extra": {
+          "code": "fr"
+        }
+      },
+      {
+        "name": "25",
+        "value": 9,
+        "extra": {
+          "code": "uk"
+        }
+      },
+      {
+        "name": "26",
+        "value": 13,
+        "extra": {
+          "code": "es"
+        }
+      },
+      {
+        "name": "27",
+        "value": 0,
+        "extra": {
+          "code": "it"
+        }
+      },
+      {
+        "name": "28",
+        "value": 0,
+        "extra": {
+          "code": "it"
+        }
+      }
+    ]
     this.progressbarMaxValueAmount = 200;
     this.progressbarMaxValueKwh = 300;
     const wholeDay = 32;
@@ -74,7 +127,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     this.percentProgressBarAmountAlert = (this.amountAlertValue / this.progressbarMaxValueAmount) * 100;
     this.percentProgressBarAmountAlert = 100 - this.percentProgressBarAmountAlert;
     console.log(this.percentProgressBarAmountAlert);
-    Object.assign(this, { multi })
+    Object.assign(this, { multiAmount });
+    Object.assign(this, { multikwh })
   }
   ngAfterViewInit() {
     if (this.amountValue >= this.amountAlertValue) {

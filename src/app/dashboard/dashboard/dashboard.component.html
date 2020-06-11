@@ -113,12 +113,21 @@
 
             </div>
             <div class="tab-pane" id="usage" [ngClass]="{ 'active':activeTab==='usage'}">
-                <div class="container projected-bill-amount" style="width:30%">
-                    <ngx-charts-bar-vertical [view]="view" [scheme]="colorScheme" [results]="multi" [gradient]="gradient" [xAxis]="showXAxis" [yAxis]="showYAxis" [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel"
+                <div class="container projected-bill-amount" *ngIf="amount">
+                    <ngx-charts-bar-vertical [view]="view" [scheme]="colorScheme" [results]="multiAmount" [gradient]="gradient" [xAxis]="showXAxis" [yAxis]="showYAxis" [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel"
                         [yAxisLabel]="yAxisLabel" [barPadding]=40  [roundEdges]=true [yAxisTickFormatting]="percentTickFormatting">
                         <ng-template #tooltipTemplate let-model="model">
                             <h2>Day usage</h2>
                             <h2>${{model.value | json}}</h2>
+                          </ng-template>
+                    </ngx-charts-bar-vertical>
+                </div>
+                <div class="container projected-bill-amount" *ngIf="kilowats">
+                    <ngx-charts-bar-vertical [view]="view" [scheme]="colorScheme" [results]="multikwh" [gradient]="gradient" [xAxis]="showXAxis" [yAxis]="showYAxis" [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel"
+                        [yAxisLabel]="yAxisLabel" [barPadding]=40  [roundEdges]=true [yAxisTickFormatting]="percentTickFormatting">
+                        <ng-template #tooltipTemplate let-model="model">
+                            <h2>Day usage</h2>
+                            <h2>{{model.value | json}}kWh</h2>
                           </ng-template>
                     </ngx-charts-bar-vertical>
                 </div>
