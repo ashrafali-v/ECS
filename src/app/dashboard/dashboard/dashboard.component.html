@@ -63,73 +63,71 @@
 
                 <!-- <button (click)="switchAction('amount')">AMOUNT</button>
                 <button (click)="switchAction('kilowats')">KILOWATTS</button> -->
-
-                <div class="ecs-toggle-switch">
-                    <span class="selector">Amount</span>
-                    <label class="switch">
-                        <input type="checkbox" (change)="handleSelected($event)">
-                        <span class="slider"></span>
-                    </label>
-                    <span class="selector">Kilowatts</span>
-                </div>
-
-
-                <div class="ecs-usage-alert">
-                    <div class="progress-data">
-                        <h2>Usage Alert</h2>
-                        <div class="edit-values">
-                            <div *ngIf="!editStatus">
-                                <span>{{amountAlertValue | currency}}</span>
-                                <button (click)="editLimitValue()">Edit</button>
-                            </div>
-                            <div *ngIf="editStatus">
-                                <input type="text" [(ngModel)]="amountAlertValue" value={{amountAlertValue}}>
-                                <button (click)="resetValue()">Set value</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="progress-chart">
-                        <!-- <progress-bar [progress]="percent" [color-degraded]="{'0': '#12e252',  '15': '#f3d504f2', '25': '#f77609'}">
-                        </progress-bar> -->
-
-                        <div class="progress-bar">
-                            <div class="progress-outer">
-                                <div class="progress-inner" [style.width.%]=percentProgressBarAmount  style="background-image: linear-gradient(to right, rgb(139, 228, 104) , rgb(233, 153, 49));">
-                                    {{percentProgressBarAmount}}%
-                                </div>
-                                <div class="exceed-bar" [style.right.%]=percentProgressBarAmountAlert></div>
-                            </div>
-                        </div>
-
-                        <div class="usage-month">
-                            <!-- <span>{{month}} 1</span> -->
-                            <!-- <span>{{daysInCurrentMonth}}</span> -->
-                            <span>Day {{day}}</span>
-                        </div>
-                    </div>
-                </div>
-
-
-
             </div>
             <div class="tab-pane" id="usage" [ngClass]="{ 'active':activeTab==='usage'}">
                 <div class="container projected-bill-amount" *ngIf="amount">
-                    <ngx-charts-bar-vertical [view]="view" [scheme]="colorScheme" [results]="multiAmount" [gradient]="gradient" [xAxis]="showXAxis" [yAxis]="showYAxis" [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel"
-                        [yAxisLabel]="yAxisLabel" [barPadding]=40  [roundEdges]=true>
+                    <ngx-charts-bar-vertical [view]="view" [scheme]="colorScheme" [results]="multiAmount" [gradient]="gradient" [noBarWhenZero]=true [xAxis]="showXAxis" [yAxis]="showYAxis" [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel"
+                        [yAxisLabel]="yAxisLabel" [xAxisLabel]="xAxisLabel" [barPadding]=35  [roundEdges]=true>
                         <ng-template #tooltipTemplate let-model="model">
                             <h2>Day usage</h2>
                             <h2>${{model.value | json}}</h2>
                           </ng-template>
                     </ngx-charts-bar-vertical>
+                    <span>Best day average {{bestDayAverageAmount | currency}}</span>
                 </div>
                 <div class="container projected-bill-amount" *ngIf="kilowats">
-                    <ngx-charts-bar-vertical [view]="view" [scheme]="colorScheme" [results]="multikwh" [gradient]="gradient" [xAxis]="showXAxis" [yAxis]="showYAxis" [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel"
-                        [yAxisLabel]="yAxisLabel" [barPadding]=40  [roundEdges]=true>
+                    <ngx-charts-bar-vertical [view]="view" [scheme]="colorScheme" [results]="multikwh" [gradient]="gradient" [noBarWhenZero]=true [xAxis]="showXAxis" [yAxis]="showYAxis" [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel"
+                        [yAxisLabel]="yAxisLabelKwh" [xAxisLabel]="xAxisLabel" [barPadding]=35  [roundEdges]=true>
                         <ng-template #tooltipTemplate let-model="model">
                             <h2>Day usage</h2>
                             <h2>{{model.value | json}}kWh</h2>
                           </ng-template>
                     </ngx-charts-bar-vertical>
+                    <span>Best day average {{bestDayAveragekwh}}kWh</span>
+                </div>
+            </div>
+            <div class="ecs-toggle-switch">
+                <span class="selector">Amount</span>
+                <label class="switch">
+                    <input type="checkbox" (change)="handleSelected($event)">
+                    <span class="slider"></span>
+                </label>
+                <span class="selector">Kilowatts</span>
+            </div>
+
+
+            <div class="ecs-usage-alert">
+                <div class="progress-data">
+                    <h2>Usage Alert</h2>
+                    <div class="edit-values">
+                        <div *ngIf="!editStatus">
+                            <span>{{amountAlertValue | currency}}</span>
+                            <button (click)="editLimitValue()">Edit</button>
+                        </div>
+                        <div *ngIf="editStatus">
+                            <input type="text" [(ngModel)]="amountAlertValue" value={{amountAlertValue}}>
+                            <button (click)="resetValue()">Set value</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="progress-chart">
+                    <!-- <progress-bar [progress]="percent" [color-degraded]="{'0': '#12e252',  '15': '#f3d504f2', '25': '#f77609'}">
+                    </progress-bar> -->
+
+                    <div class="progress-bar">
+                        <div class="progress-outer">
+                            <div class="progress-inner" [style.width.%]=percentProgressBarAmount  style="background-image: linear-gradient(to right, rgb(81, 172, 45) , rgb(233, 153, 49));">
+                                {{percentProgressBarAmount}}%
+                            </div>
+                            <div class="exceed-bar" [style.right.%]=percentProgressBarAmountAlert></div>
+                        </div>
+                    </div>
+
+                    <div class="usage-month">
+                        <!-- <span>{{month}} 1</span> -->
+                        <!-- <span>{{daysInCurrentMonth}}</span> -->
+                        <span>Day {{day}}</span>
+                    </div>
                 </div>
             </div>
         </div>

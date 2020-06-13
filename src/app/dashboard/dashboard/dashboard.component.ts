@@ -26,11 +26,13 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   showYAxis = true;
   gradient = false;
   showLegend = true;
-  showXAxisLabel = true;
   showDataLabel=true;
   //xAxisLabel = 'APRIL';
+  showXAxisLabel = true;
   showYAxisLabel = true;
+  xAxisLabel:any;
   yAxisLabel = 'Amount in $';
+  yAxisLabelKwh = 'Usage in kWh';
 
 
   amount: boolean = true;
@@ -46,6 +48,9 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   day: any;
   daysInCurrentMonth: number = 30;
   editStatus: boolean = false;
+  bestDayAverageAmount:number;
+  bestDayAveragekwh:number;
+
   colorScheme = {
     domain: ['#f8bc8a', '#ab8ef0', '#f8bc8a', '#ab8ef0','#f8bc8a']
   };
@@ -111,6 +116,10 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     const wholeDay = 32;
     var day = new Date();
     this.month = this.monthNames[day.getMonth()];
+
+    //recentday usage dats
+    this.xAxisLabel = this.month;
+    //
     let currentDay = day.getDate();
     let currentMonth = day.getMonth();
     let curreYear = day.getFullYear();
@@ -126,6 +135,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     console.log(this.percentProgressBarAmount);
     this.percentProgressBarAmountAlert = (this.amountAlertValue / this.progressbarMaxValueAmount) * 100;
     this.percentProgressBarAmountAlert = 100 - this.percentProgressBarAmountAlert;
+    this.bestDayAverageAmount = 23;
+    this.bestDayAveragekwh = 46;
     console.log(this.percentProgressBarAmountAlert);
     Object.assign(this, { multiAmount });
     Object.assign(this, { multikwh })
