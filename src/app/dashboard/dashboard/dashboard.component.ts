@@ -11,48 +11,45 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class DashboardComponent implements OnInit, AfterViewInit {
   percent: any;
-  percentProgressBarAmount:any;
-  percentProgressBarAmountAlert:any;
-  percentProgressBarkwh:any;
-  percentProgressBarkwhAlert:any;
+  percentProgressBarAmount: any;
+  percentProgressBarAmountAlert: any;
+  percentProgressBarkwh: any;
+  percentProgressBarkwhAlert: any;
   title = 'test App';
   activeTab = 'bill';
   single: any[];
   multiAmount: any[];
-  multikwh:any[];
+  multikwh: any[];
   view: any[] = [400, 300];
   // options
   showXAxis = true;
   showYAxis = true;
   gradient = false;
   showLegend = true;
-  showDataLabel=true;
+  showDataLabel = true;
   //xAxisLabel = 'APRIL';
   showXAxisLabel = true;
   showYAxisLabel = true;
-  xAxisLabel:any;
-  yAxisLabel = 'Amount in $';
-  yAxisLabelKwh = 'Usage in kWh';
-
+  xAxisLabel: any;
 
   amount: boolean = true;
   kilowats: boolean = false;
   amountValue: number;
   kilowatsValue: number;
   limitValue: number;
-  progressbarMaxValueAmount:number;
-  progressbarMaxValueKwh:number;
-  amountAlertValue:number;
-  kwhAlertValue:number;
+  progressbarMaxValueAmount: number;
+  progressbarMaxValueKwh: number;
+  amountAlertValue: number;
+  kwhAlertValue: number;
   month: any;
   day: any;
   daysInCurrentMonth: number = 30;
   editStatus: boolean = false;
-  bestDayAverageAmount:number;
-  bestDayAveragekwh:number;
+  bestDayAverageAmount: number;
+  bestDayAveragekwh: number;
 
   colorScheme = {
-    domain: ['#f8bc8a', '#ab8ef0', '#f8bc8a', '#ab8ef0','#f8bc8a']
+    domain: ['#f8bc8a', '#ab8ef0', '#f8bc8a', '#ab8ef0', '#f8bc8a']
   };
   monthNames = ["Jan", "Feb", "March", "April", "May", "June",
     "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
@@ -138,6 +135,13 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     this.bestDayAverageAmount = 23;
     this.bestDayAveragekwh = 46;
     console.log(this.percentProgressBarAmountAlert);
+    function yAxisTickFormatting(value) {
+      if (this.amount) {
+        return this.currencyTickFormatting(value);
+      } else {
+        return this.kwhTickFormatting(value);
+      }
+    }
     Object.assign(this, { multiAmount });
     Object.assign(this, { multikwh })
   }
@@ -188,5 +192,11 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       this.amount = true;
       this.kilowats = false;
     }
+  }
+  currencyTickFormatting(val: any) {
+    return '$' + val.toLocaleString();
+  }
+  kwhTickFormatting(val: any) {
+    return val.toLocaleString() + ' kWh';
   }
 }
