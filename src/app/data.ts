@@ -17,55 +17,117 @@ export var single = [
     },
     {
         "name": "26",
-        "value": 0
+        "value": 13
     },
     {
         "name": "27",
         "value": 0
-    }
+    },
+    {
+      "name": "27",
+      "value": 0
+  }
   ];
   
-  export var multi = [
+  export var multiAmount = [
     {
-      "name": "Germany",
-      "series": [
-        {
-          "name": "2010",
-          "value": 7300000
-        },
-        {
-          "name": "2011",
-          "value": 8940000
-        }
-      ]
+      "name": "22",
+      "value": 12,
+      "extra": {
+        "code": "de"
+      }
     },
-  
     {
-      "name": "USA",
-      "series": [
-        {
-          "name": "2010",
-          "value": 7870000
-        },
-        {
-          "name": "2011",
-          "value": 8270000
-        }
-      ]
+      "name": "23",
+      "value": 7,
+      "extra": {
+        "code": "us"
+      }
     },
-  
     {
-      "name": "France",
-      "series": [
-        {
-          "name": "2010",
-          "value": 5000002
-        },
-        {
-          "name": "2011",
-          "value": 5800000
-        }
-      ]
+      "name": "24",
+      "value": 13,
+      "extra": {
+        "code": "fr"
+      }
+    },
+    {
+      "name": "25",
+      "value": 9,
+      "extra": {
+        "code": "uk"
+      }
+    },
+    {
+      "name": "26",
+      "value": 13,
+      "extra": {
+        "code": "es"
+      }
+    },
+    {
+      "name": "27",
+      "value": 0,
+      "extra": {
+        "code": "it"
+      }
+    },
+    {
+      "name": "28",
+      "value": 0,
+      "extra": {
+        "code": "it"
+      }
     }
-  ];
-  
+  ]
+  export var multikwh = [
+    {
+      "name": "22",
+      "value": 49,
+      "extra": {
+        "code": "de"
+      }
+    },
+    {
+      "name": "23",
+      "value": 30,
+      "extra": {
+        "code": "us"
+      }
+    },
+    {
+      "name": "24",
+      "value": 56,
+      "extra": {
+        "code": "fr"
+      }
+    },
+    {
+      "name": "25",
+      "value": 38,
+      "extra": {
+        "code": "uk"
+      }
+    },
+    {
+      "name": "26",
+      "value": 42,
+      "extra": {
+        "code": "es"
+      }
+    },
+    {
+      "name": "27",
+      "value": 0,
+      "extra": {
+        "code": "it"
+      }
+    },
+    {
+      "name": "28",
+      "value": 0,
+      "extra": {
+        "code": "it"
+      }
+    }
+  ]
