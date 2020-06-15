@@ -1,3 +1,8 @@
+html,
+body {
+    height: $full;
+}
+
 body {
     // display: table;
     // width: $full;
@@ -20,7 +25,8 @@ body {
     }
 }
 
-ul,li{
+ul,
+li {
     list-style: none;
     padding: $null;
     margin: $null;
