@@ -1,26 +1,48 @@
-.ecs-navigation{
+.ecs-navigation {
     position: fixed;
     bottom: $null;
     width: $full;
-    nav{
-        
-        ul{
+    @include device(lg) {
+        position: initial;
+        width: $full/4;
+        background-color: $primary-dark-color;
+    }
+    nav {
+        ul {
             @include flexbox();
             @include flex(1 0 auto);
             @include flex-direction(row);
             @include justify-content(space-between);
-            li{
-                a{
+            @include device(lg) {
+                @include flex-direction(column);
+                @include justify-content(flex-start);
+            }
+            li {
+                a {
                     padding: $default-padding*2 $default-padding*4;
                     display: block;
                     opacity: .3;
+                    font-size: $null;
+                    @include device(lg) {
+                        @include ecs-typo($primary-font-regular, 700, 18px, 37px, $white);
+                        span {
+                            width: $default-unit*30;
+                            display: inline-block;
+                            vertical-align: middle;
+                            svg {
+                                display: table;
+                                margin: $null auto;
+                                path {
+                                    fill: $white;
+                                }
+                            }
+                        }
+                    }
                 }
-
-                &.active-page{
-                    a{
+                &.active-page {
+                    a {
                         opacity: 1;
                     }
-
                 }
             }
         }

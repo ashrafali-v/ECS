@@ -4,7 +4,11 @@
     padding: $null;
     width: $full;
     max-width: $default-unit*180;
-    margin: $null auto;
+    margin: $full/20 auto;
+    @include device(lg) {
+        max-width: $default-unit*225;
+        margin: $full/20 auto;
+    }
     // padding-top: $default-padding*1.2;
     .pb-default-rules {
         width: $full - 13;
@@ -61,4 +65,29 @@
             }
         }
     }
+}
+
+::ng-deep {
+    .day-usage-bar {
+        max-width: $default-unit*210;
+        .ngx-charts {
+            text {
+                @include ecs-typo($primary-font-regular, 200, 24px, 37px, $primary-dark-color);
+                font-size: 16px !important;
+            }
+        }
+        .ecs-date {
+            @include ecs-typo($primary-font-regular, bold, 16px, 37px, $primary-dark-color);
+            text-align: center;
+        }
+        .ecs-avarage {
+            @include ecs-typo($primary-font-regular, bold, 16px, 37px, $primary-dark-color);
+            text-align: center;
+        }
+    }
+}
+
+.ngx-charts-tooltip-content {
+    @include ecs-typo($primary-font-regular, 200, 12px, 37px, $white);
+    background-color: $primary-dark-color;
 }
