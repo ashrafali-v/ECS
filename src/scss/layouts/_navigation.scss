@@ -24,7 +24,7 @@
                     opacity: .3;
                     font-size: $null;
                     @include device(lg) {
-                        @include ecs-typo($primary-font-regular, 700, 18px, 37px, $white);
+                        @include ecs-typo($primary-font-regular, normal, 18px, 37px, $white);
                         span {
                             width: $default-unit*30;
                             display: inline-block;

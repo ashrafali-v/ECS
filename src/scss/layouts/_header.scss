@@ -3,6 +3,9 @@ header {
     position: fixed;
     top: $null;
     left: $null;
+    @include device(lg) {
+        width: $full/4;
+    }
     .logo {
         background-color: $primary-color;
         padding: $default-padding*1.5;
