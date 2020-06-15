@@ -1,1 +1,70 @@
-<p>daily-usage works!</p>
+<header>
+    <div class="logo">
+        <img src="../assets/svg/ecs-logo.svg" alt="">
+        <h1>ECS</h1>
+    </div>
+</header>
+
+<div class="ecs-content-box">
+    <!-- <div class="projected-biil-details" [ngClass]="(kilowats==true)?'ecs-kilowatt-active':''">
+        <div class="ecs-amount">
+            <h2>{{amountValue | currency}}</h2>
+            <h4>Predicted Amount</h4>
+        </div>
+        <div class="ecs-kilowatt">
+            <h2>{{kilowatsValue}} kWh</h2>
+            <h4>Usage Uinit</h4>
+        </div>
+
+    </div> -->
+
+    <div class="ecs-tabs">
+        <div class="container" *ngIf="amount">
+            <ngx-charts-bar-vertical-stacked
+                [view]="view"
+                [results]="chartDataAmount"
+                [xAxis]="true"
+                [yAxis]="true"
+                [barPadding]=35
+                [customColors]="myColors"
+                [roundDomains]=true
+                [yAxisTickFormatting]="currencyTickFormatting"
+                >
+                <ng-template #tooltipTemplate let-model="model">
+                    <h2 *ngIf="model.value < 10 && model.name == 'usage'">usage</h2>
+                    <h2 *ngIf="model.name == 'exceed average' ">Exceed average by</h2>
+                    <h2 *ngIf="model.name == 'upto average' ">Up to average</h2>
+                    <h2 *ngIf="model.value < 10">${{model.value | json}}</h2>
+                </ng-template>
+        </ngx-charts-bar-vertical-stacked>
+        </div>
+        <div class="container" *ngIf="kilowats">
+            <ngx-charts-bar-vertical-stacked
+                [view]="view"
+                [results]="chartDataKwh"
+                [xAxis]="true"
+                [yAxis]="true"
+                [barPadding]=35
+                [customColors]="myColors"
+                [roundDomains]=true
+                [yAxisTickFormatting]="kwhTickFormatting"
+                >
+                <ng-template #tooltipTemplate let-model="model">
+                    <h2 *ngIf="model.value < 30 && model.name == 'usage'">usage</h2>
+                    <h2 *ngIf="model.name == 'exceed average' ">Exceed average by</h2>
+                    <h2 *ngIf="model.name == 'upto average' ">Up to average</h2>
+                    <h2 *ngIf="model.value < 30">{{model.value | json}}kWh</h2>
+                </ng-template>
+        </ngx-charts-bar-vertical-stacked>
+        </div>
+    </div>
+    <div class="ecs-toggle-switch">
+        <span class="selector">Amount</span>
+        <label class="switch">
+            <input type="checkbox" (change)="handleSelected($event)">
+            <span class="slider"></span>
+        </label>
+        <span class="selector">Kilowatts</span>
+    </div>
+
+</div>

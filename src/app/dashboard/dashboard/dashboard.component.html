@@ -36,7 +36,7 @@
                 <div class="container projected-bill-amount" *ngIf="amount">
                     <circle-progress [percent]=percent [radius]="80" [outerStrokeWidth]="5" [outerStrokeGradient]="true"
                         [outerStrokeColor]="'#e63333'" [outerStrokeGradientStopColor]="'#5b1494'"
-                        [showInnerStroke]="false" [animation]="true" [animationDuration]="300" [responsive]=true
+                        [showInnerStroke]="false" [animation]="true" [animationDuration]="900" [responsive]=true
                         [showZeroOuterStroke]=true></circle-progress>
                     <div class="pb-default-rules">
                         <div class="shadow-circle days-30">
@@ -52,7 +52,7 @@
                 <div class="container  projected-bill-amount" *ngIf="kilowats">
                     <circle-progress [percent]=percent [radius]="80" [outerStrokeWidth]="5" [outerStrokeGradient]="true"
                         [outerStrokeColor]="'#e63333'" [outerStrokeGradientStopColor]="'#5b1494'"
-                        [showInnerStroke]="false" [animation]="true" [animationDuration]="300" [responsive]=true
+                        [showInnerStroke]="false" [animation]="true" [animationDuration]="900" [responsive]=true
                         [showZeroOuterStroke]=true></circle-progress>
                     <div class="pb-default-rules">
                         <div class="shadow-circle days-31">
@@ -75,7 +75,7 @@
                     <ngx-charts-bar-vertical [view]="view" [scheme]="colorScheme" [results]="multiAmount"
                         [gradient]="gradient" [noBarWhenZero]=true [xAxis]="showXAxis" [yAxis]="showYAxis"
                         [showXAxisLabel]="showXAxisLabel" [yAxisTickFormatting]="currencyTickFormatting"
-                        [xAxisLabel]="xAxisLabel" [barPadding]=35 [roundEdges]=true>
+                        [xAxisLabel]="xAxisLabel" [barPadding]=35 [roundDomains]=true [roundEdges]=true>
                         <ng-template #tooltipTemplate let-model="model">
                             <h2>Day usage</h2>
                             <h2>${{model.value | json}}</h2>
@@ -87,7 +87,7 @@
                     <ngx-charts-bar-vertical [view]="view" [scheme]="colorScheme" [results]="multikwh"
                         [gradient]="gradient" [noBarWhenZero]=true [xAxis]="showXAxis" [yAxis]="showYAxis"
                         [showXAxisLabel]="showXAxisLabel" [yAxisTickFormatting]="kwhTickFormatting"
-                        [xAxisLabel]="xAxisLabel" [barPadding]=35 [roundEdges]=true>
+                        [xAxisLabel]="xAxisLabel" [barPadding]=35 [roundDomains]=true [roundEdges]=true>
                         <ng-template #tooltipTemplate let-model="model">
                             <h2>Day usage</h2>
                             <h2>{{model.value | json}}kWh</h2>
