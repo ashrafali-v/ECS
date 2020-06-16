@@ -1,0 +1,54 @@
+@import '../../scss/ecs-master';
+.daily-usage-data {
+    position: relative;
+    padding: $null;
+    width: $full;
+    // max-width: $default-unit*100;
+    margin: $full/30 auto;
+    @include flexbox();
+    @include flex(1 0 auto);
+    @include flex-direction(column);
+    @include device(lg) {
+        max-width: $default-unit*225;
+        margin: $full/40 auto;
+    }
+    .usage-action {
+        @include flexbox();
+        @include flex(1 0 auto);
+        @include flex-direction(row);
+        @include justify-content(center);
+        margin-top: $default-margin;
+        .ecs-btn {
+            @include fill-cta($nutral-light-color, $white);
+            margin: $null $default-margin/3;
+        }
+    }
+}
+
+::ng-deep {
+    .daily-usage-data {
+        max-width: $default-unit*210;
+        .ngx-charts {
+            text {
+                @include ecs-typo($primary-font-regular, 200, 24px, 37px, $primary-dark-color);
+                font-size: 16px !important;
+            }
+        }
+        .ecs-date {
+            @include ecs-typo($primary-font-regular, bold, 16px, 37px, $primary-dark-color);
+            text-align: center;
+        }
+        .ecs-avarage {
+            @include ecs-typo($primary-font-regular, bold, 16px, 37px, $primary-dark-color);
+            text-align: center;
+        }
+    }
+    .ngx-charts-tooltip-content {
+        @include ecs-typo($primary-font-regular, 200, 12px, 18px, $white);
+        background-color: $primary-dark-color;
+        P {
+            margin: 0px;
+            padding: 0px;
+        }
+    }
+}

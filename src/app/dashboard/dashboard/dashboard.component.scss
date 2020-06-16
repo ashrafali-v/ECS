@@ -3,7 +3,7 @@
     position: relative;
     padding: $null;
     width: $full;
-    max-width: $default-unit*100;
+    // max-width: $default-unit*100;
     margin: $full/30 auto;
     @include device(lg) {
         max-width: $default-unit*225;
