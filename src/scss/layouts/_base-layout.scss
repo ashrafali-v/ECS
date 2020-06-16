@@ -7,7 +7,8 @@ app-root {
         @include justify-content(flex-start);
         height: $full;
     }
-    app-dashboard {
+    app-dashboard,
+    app-daily-usage {
         @include flex(0 0 calc(#{$full} - #{$full/4}));
     }
     .ecs-content-box {
