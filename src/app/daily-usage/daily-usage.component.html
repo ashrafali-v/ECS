@@ -22,7 +22,7 @@
         <div class="container" *ngIf="amount">
             <ngx-charts-bar-vertical-stacked
                 [view]="view"
-                [results]="chartDataAmount"
+                [results]="chartDataAmountSection"
                 [xAxis]="true"
                 [yAxis]="true"
                 [barPadding]=35
@@ -57,6 +57,8 @@
                 </ng-template>
         </ngx-charts-bar-vertical-stacked>
         </div>
+        <button type="button" [disabled]="!prevCountStatus" (click)="selectDailyUsageData('prev')">Prev</button>
+        <button type="button" [disabled]="!nextCountStatus" (click)="selectDailyUsageData('next')">Next</button>
     </div>
     <div class="ecs-toggle-switch">
         <span class="selector">Amount</span>

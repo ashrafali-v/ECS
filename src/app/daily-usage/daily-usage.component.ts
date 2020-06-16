@@ -17,10 +17,16 @@ export class DailyUsageComponent implements OnInit {
   view: any[] = [400, 300];
   chartDataAmount: any;
   chartDataKwh:any;
+  chartDataAmountSection:any;
+  nextCount:any = 1;
+  prevCount:any = 1;
+  nextCountStatus:boolean = true;
+  prevCountStatus:boolean = false;
 
   constructor() { }
 
   ngOnInit(): void {
+
       this.chartDataAmount = [
         {
           'name': 21,
@@ -135,8 +141,33 @@ export class DailyUsageComponent implements OnInit {
               'value': 10
             }
           ]
+        },
+        {
+          'name': 31,
+          'series': [
+            {
+              'name': 'usage',
+              'value': 10
+            },
+            {
+              'name': 'exceed average',
+              'value': 5
+            }
+          ]
+        },
+        {
+          'name': 32,
+          'series': [
+            {
+              'name': 'usage',
+              'value': 10
+            },
+            {
+              'name': 'exceed average',
+              'value': 3
+            }
+          ]
         }
-        
       ];
       this.chartDataKwh = [
         {
@@ -255,7 +286,7 @@ export class DailyUsageComponent implements OnInit {
         }
         
       ];
-  
+  this.chartDataAmountSection = this.chartDataAmount.slice(0, 4);
   }
   handleSelected($event) {
     if ($event.target.checked === true) {
@@ -271,6 +302,41 @@ export class DailyUsageComponent implements OnInit {
   }
   kwhTickFormatting(val: any) {
     return val.toLocaleString() + ' kWh';
+  }
+  selectDailyUsageData(key:any){
+    //Next and previuos button handling//
+    if(key=='next'){
+      if(this.nextCount <= 3){
+        /*Enable prev button*/
+        this.prevCountStatus = true;
+        /**/
+        /*Calculating array start and end based on next button click*/
+        let arrayStart = 0 + (this.nextCount) * 4;
+        let arrayEnd = 4 * (this.nextCount+1);
+
+        /*Get the sliced array for display*/
+        this.chartDataAmountSection = this.chartDataAmount.slice(arrayStart, arrayEnd);
+
+        this.nextCount +=1;
+
+        /*Calculating array start and end based on next button click*/
+        if(this.nextCount == 3){
+          this.nextCountStatus = false;
+        }
+        console.log('Next ->'+arrayStart +' '+arrayEnd);
+        
+      }
+    }else{
+      this.nextCount -= 1;
+      this.nextCountStatus = true;
+      let arrayStartPrev = 0 + (this.nextCount - 1) * 4;
+      let arrayEndPrev = 4 * (this.nextCount);
+      this.chartDataAmountSection = this.chartDataAmount.slice(arrayStartPrev, arrayEndPrev);
+      if(arrayStartPrev == 0){
+        this.prevCountStatus = false;
+      }
+      console.log('Next ->'+arrayStartPrev +' '+arrayEndPrev);
+    }
   }
 
 }
