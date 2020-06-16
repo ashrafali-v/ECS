@@ -25,7 +25,7 @@
                 [results]="chartDataAmountSection"
                 [xAxis]="true"
                 [yAxis]="true"
-                [barPadding]=35
+                [barPadding]=30
                 [customColors]="myColors"
                 [roundDomains]=true
                 [yAxisTickFormatting]="currencyTickFormatting"
@@ -41,10 +41,10 @@
         <div class="container" *ngIf="kilowats">
             <ngx-charts-bar-vertical-stacked
                 [view]="view"
-                [results]="chartDataKwh"
+                [results]="chartDataKwhSection"
                 [xAxis]="true"
                 [yAxis]="true"
-                [barPadding]=35
+                [barPadding]=30
                 [customColors]="myColors"
                 [roundDomains]=true
                 [yAxisTickFormatting]="kwhTickFormatting"
