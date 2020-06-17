@@ -1,18 +1,17 @@
 <div class="ecs-content-box">
     <div class="projected-biil-details" [ngClass]="(kilowats==true)?'ecs-kilowatt-active':''">
         <div class="ecs-amount">
-            <h2>{{ amountValue | currency : 'USD' : 'symbol' : '1.0-0' }}<span>.00</span></h2>
+            <h2>$128.<span>00</span></h2>
             <h4>Predicted Amount</h4>
         </div>
         <div class="ecs-kilowatt">
-            <h2>{{kilowatsValue}} kWh</h2>
+            <h2>185 kWh</h2>
             <h4>Usage Uinit</h4>
         </div>
 
     </div>
 
     <div class="daily-usage-data">
-        <h3>Daily Usage</h3>
         <div class="container" *ngIf="amount">
 
             <ngx-charts-bar-vertical-stacked [view]="view" [attr.transform]="customTransform" [results]="chartDataAmountSection" [xAxis]="true" [yAxis]="true" [barPadding]=barPadding [customColors]="myColors" [roundDomains]=true [yAxisTickFormatting]="currencyTickFormatting">
@@ -41,7 +40,6 @@
             <button class="ecs-btn" type="button" [disabled]="!prevCountStatus" (click)="selectDailyUsageData('prev')"><i class="fas fa-chevron-left"></i></button>
             <button class="ecs-btn" type="button" [disabled]="!nextCountStatus" (click)="selectDailyUsageData('next')"><i class="fas fa-chevron-right"></i></button>
         </div>
-        <span>{{month}} {{day}}</span>
     </div>
     <div class="ecs-toggle-switch">
         <span class="selector">Amount</span>

@@ -8,9 +8,9 @@ import { HostListener } from "@angular/core";
 })
 
 export class DailyUsageComponent implements OnInit {
-  webStatus:boolean = false;
-  month:any;
-  day:any;
+  webStatus: boolean = false;
+  month: any;
+  day: any;
   screenHeight: number;
   screenWidth: number;
   amountValue: number;
@@ -22,8 +22,8 @@ export class DailyUsageComponent implements OnInit {
     { name: 'usage', value: '#7033FF' },
     { name: 'exceed average', value: '#F16F3F' }
   ];
-  width:any;
-  barPadding:number = 20;
+  width: any;
+  barPadding: number = 20;
   view: any;
   chartDataAmount: any;
   chartDataKwh: any;
@@ -33,32 +33,32 @@ export class DailyUsageComponent implements OnInit {
   prevCount: any = 1;
   nextCountStatus: boolean = true;
   prevCountStatus: boolean = false;
-  customTransform:any;
+  customTransform: any;
   monthNames = ["Jan", "Feb", "March", "April", "May", "June",
-  "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
-];
-  constructor() { 
+    "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+  ];
+  constructor() {
   }
   @HostListener('window:resize', ['$event'])
   getScreenSize(event?) {
-        this.screenHeight = window.innerHeight;
-        this.screenWidth = window.innerWidth;
-        if(this.screenWidth > 993){
-          this.webStatus = true;
-          this.width = 960;
-          this.barPadding = 20;
-          this.view = [this.width, 300];
-          this.chartDataAmountSection = this.chartDataAmount;
-          this.chartDataKwhSection = this.chartDataKwh;
-        }else{
-          this.webStatus = false;
-          this.width = 480;
-          this.barPadding = 35;
-          this.view = [this.width, 300];
-          this.chartDataAmountSection = this.chartDataAmount.slice(0, 10);
-          this.chartDataKwhSection = this.chartDataKwh.slice(0, 10);
-        }
-        console.log(this.screenHeight, this.screenWidth);
+    this.screenHeight = window.innerHeight;
+    this.screenWidth = window.innerWidth;
+    if (this.screenWidth > 993) {
+      this.webStatus = true;
+      this.width = 960;
+      this.barPadding = 20;
+      this.view = [this.width, 300];
+      this.chartDataAmountSection = this.chartDataAmount;
+      this.chartDataKwhSection = this.chartDataKwh;
+    } else {
+      this.webStatus = false;
+      this.width = 480;
+      this.barPadding = 35;
+      this.view = [this.width, 300];
+      this.chartDataAmountSection = this.chartDataAmount.slice(0, 10);
+      this.chartDataKwhSection = this.chartDataKwh.slice(0, 10);
+    }
+    console.log(this.screenHeight, this.screenWidth);
   }
 
   ngOnInit(): void {
@@ -889,8 +889,8 @@ export class DailyUsageComponent implements OnInit {
         let arrayStart = 0 + (this.nextCount) * 10;
         let arrayEnd = 10 * (this.nextCount + 1);
 
-         /*Calculating array start and end based on next button click*/
-         if (this.nextCount == 2) {
+        /*Calculating array start and end based on next button click*/
+        if (this.nextCount == 2) {
           this.nextCountStatus = false;
           arrayEnd = 31;
         }
