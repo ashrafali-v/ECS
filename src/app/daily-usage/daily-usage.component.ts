@@ -10,9 +10,9 @@ export class DailyUsageComponent implements OnInit {
   amount: boolean = true;
   kilowats: boolean = false;
   myColors: any = [
-    { name: 'upto average', value: '#bfbfbf' },
-    { name: 'usage', value: '#395cc6' },
-    { name: 'exceed average', value: '#fd7e14' }
+    { name: 'upto average', value: 'rgba(48,45,52,.2)' },
+    { name: 'usage', value: '#7033FF' },
+    { name: 'exceed average', value: '#F16F3F' }
   ];
   view: any[] = [400, 300];
   chartDataAmount: any;

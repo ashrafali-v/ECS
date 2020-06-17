@@ -3,11 +3,11 @@
     position: relative;
     padding: $null;
     width: $full;
-    max-width: $default-unit*180;
-    margin: $full/20 auto;
+    // max-width: $default-unit*100;
+    margin: $full/30 auto;
     @include device(lg) {
         max-width: $default-unit*225;
-        margin: $full/20 auto;
+        margin: $full/40 auto;
     }
     // padding-top: $default-padding*1.2;
     .pb-default-rules {
@@ -42,10 +42,13 @@
                 @include ecs-typo($primary-font-regular, 200, 16px, 37px, $primary-dark-color);
             }
             .month {
-                bottom: -$default-unit*15;
+                bottom: -$default-unit*20;
                 @include h-center();
                 @include ecs-typo($primary-font-regular, bold, 16px, 37px, $primary-dark-color);
                 text-transform: uppercase;
+                @include device(lg) {
+                    bottom: -$default-unit*30;
+                }
             }
             .date-8 {
                 right: 0;
