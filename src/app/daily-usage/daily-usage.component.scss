@@ -27,7 +27,7 @@
 
 ::ng-deep {
     .daily-usage-data {
-        max-width: $default-unit*210;
+        max-width: $default-unit*240;
         .ngx-charts {
             text {
                 @include ecs-typo($primary-font-regular, 200, 24px, 37px, $primary-dark-color);
