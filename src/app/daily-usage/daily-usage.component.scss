@@ -9,7 +9,7 @@
     @include flex(1 0 auto);
     @include flex-direction(column);
     @include device(lg) {
-        max-width: $default-unit*225;
+        max-width: $default-unit*480;
         margin: $full/40 auto;
     }
     .usage-action {
