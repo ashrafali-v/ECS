@@ -1,7 +1,7 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
-import { single } from '../../data';
+import { single } from '../data';
 //import { multiAmount } from '../../data';
-import { multikwh } from '../../data';
+import { multikwh } from '../data';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({

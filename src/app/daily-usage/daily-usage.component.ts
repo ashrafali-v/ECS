@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HostListener } from "@angular/core";
 
 @Component({
   selector: 'app-daily-usage',
@@ -7,6 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class DailyUsageComponent implements OnInit {
+  webStatus:boolean = false;
+  month:any;
+  day:any;
+  screenHeight: number;
+  screenWidth: number;
+  amountValue: number;
+  kilowatsValue: number;
   amount: boolean = true;
   kilowats: boolean = false;
   myColors: any = [
@@ -23,10 +31,35 @@ export class DailyUsageComponent implements OnInit {
   prevCount: any = 1;
   nextCountStatus: boolean = true;
   prevCountStatus: boolean = false;
-
-  constructor() { }
+  customTransform:any;
+  monthNames = ["Jan", "Feb", "March", "April", "May", "June",
+  "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+];
+  constructor() { 
+  }
+  @HostListener('window:resize', ['$event'])
+  getScreenSize(event?) {
+        this.screenHeight = window.innerHeight;
+        this.screenWidth = window.innerWidth;
+        if(this.screenWidth > 1200){
+          this.webStatus = true;
+          this.chartDataAmountSection = this.chartDataAmount;
+          this.chartDataKwhSection = this.chartDataKwh;
+        }else{
+          this.webStatus = false;
+          this.chartDataAmountSection = this.chartDataAmount.slice(0, 10);
+          this.chartDataKwhSection = this.chartDataKwh.slice(0, 10);
+        }
+        console.log(this.screenHeight, this.screenWidth);
+  }
 
   ngOnInit(): void {
+    var day = new Date();
+    this.month = this.monthNames[day.getMonth()];
+    this.day = day.getDate();
+    this.customTransform = `translate(-35 , 0)`;
+    this.amountValue = 128;
+    this.kilowatsValue = 185;
 
     this.chartDataAmount = [
       {
@@ -386,6 +419,19 @@ export class DailyUsageComponent implements OnInit {
       },
       {
         'name': 29,
+        'series': [
+          {
+            'name': 'usage',
+            'value': 0
+          },
+          {
+            'name': 'upto average',
+            'value': 10
+          }
+        ]
+      },
+      {
+        'name': 30,
         'series': [
           {
             'name': 'usage',
@@ -808,8 +854,7 @@ export class DailyUsageComponent implements OnInit {
       }
 
     ];
-    this.chartDataAmountSection = this.chartDataAmount.slice(0, 10);
-    this.chartDataKwhSection = this.chartDataKwh.slice(0, 10);
+    this.getScreenSize();
   }
   handleSelected($event) {
     if ($event.target.checked === true) {
@@ -837,15 +882,16 @@ export class DailyUsageComponent implements OnInit {
         let arrayStart = 0 + (this.nextCount) * 10;
         let arrayEnd = 10 * (this.nextCount + 1);
 
+         /*Calculating array start and end based on next button click*/
+         if (this.nextCount == 2) {
+          this.nextCountStatus = false;
+          arrayEnd = 31;
+        }
+
         /*Get the sliced array for display*/
         this.chartDataAmountSection = this.chartDataAmount.slice(arrayStart, arrayEnd);
         this.chartDataKwhSection = this.chartDataKwh.slice(arrayStart, arrayEnd);
         this.nextCount += 1;
-
-        /*Calculating array start and end based on next button click*/
-        if (this.nextCount == 3) {
-          this.nextCountStatus = false;
-        }
         console.log('Next ->' + arrayStart + ' ' + arrayEnd);
 
       }
@@ -862,5 +908,4 @@ export class DailyUsageComponent implements OnInit {
       console.log('Next ->' + arrayStartPrev + ' ' + arrayEndPrev);
     }
   }
-
 }

@@ -1,4 +1,4 @@
-@import '../../../scss/ecs-master';
+@import '../../scss/ecs-master';
 .projected-bill-amount {
     position: relative;
     padding: $null;
@@ -26,16 +26,16 @@
             background-size: $full - 5;
             position: relative;
             &.days-31 {
-                background-image: url(../../../assets/svg/projetedbill-bg-31.svg);
+                background-image: url(../../assets/svg/projetedbill-bg-31.svg);
             }
             &.days-30 {
-                background-image: url(../../../assets/svg/projetedbill-bg-30.svg);
+                background-image: url(../../assets/svg/projetedbill-bg-30.svg);
             }
             &.days-29 {
-                background-image: url(../../../assets/svg/projetedbill-bg-29.svg);
+                background-image: url(../../assets/svg/projetedbill-bg-29.svg);
             }
             &.days-28 {
-                background-image: url(../../../assets/svg/projetedbill-bg-28.svg);
+                background-image: url(../../assets/svg/projetedbill-bg-28.svg);
             }
             .ecs-date {
                 position: absolute;
