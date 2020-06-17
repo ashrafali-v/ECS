@@ -13,6 +13,10 @@
 
     <div class="daily-usage-data">
         <h3>Daily Usage123</h3>
+        <div class="data-guide">
+            <span class="usage-guide">Usage</span>
+            <span class="excess-guide">Excess</span>
+        </div>
         <div class="container" *ngIf="amount">
 
             <ngx-charts-bar-vertical-stacked [view]="view" [attr.transform]="customTransform" [results]="chartDataAmountSection" [xAxis]="true" [yAxis]="true" [barPadding]=barPadding [customColors]="myColors" [roundDomains]=true [yAxisTickFormatting]="currencyTickFormatting">
@@ -37,11 +41,12 @@
                 </ng-template>
             </ngx-charts-bar-vertical-stacked>
         </div>
+        <span class="current-day">{{month}} {{day}}</span>
         <div class="usage-action" *ngIf="!webStatus">
             <button class="ecs-btn" type="button" [disabled]="!prevCountStatus" (click)="selectDailyUsageData('prev')"><i class="fas fa-chevron-left"></i></button>
             <button class="ecs-btn" type="button" [disabled]="!nextCountStatus" (click)="selectDailyUsageData('next')"><i class="fas fa-chevron-right"></i></button>
         </div>
-        <span>{{month}} {{day}}</span>
+
     </div>
     <div class="ecs-toggle-switch">
         <span class="selector">Amount</span>
