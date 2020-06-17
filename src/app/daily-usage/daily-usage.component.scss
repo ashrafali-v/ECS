@@ -9,7 +9,7 @@
     @include flex(1 0 auto);
     @include flex-direction(column);
     @include device(lg) {
-        max-width: $default-unit*225;
+        max-width: $default-unit*480;
         margin: $full/40 auto;
     }
     .usage-action {
@@ -27,7 +27,7 @@
 
 ::ng-deep {
     .daily-usage-data {
-        max-width: $default-unit*210;
+        max-width: $default-unit*240;
         .ngx-charts {
             text {
                 @include ecs-typo($primary-font-regular, 200, 24px, 37px, $primary-dark-color);

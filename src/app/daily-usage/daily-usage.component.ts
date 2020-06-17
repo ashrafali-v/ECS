@@ -22,7 +22,9 @@ export class DailyUsageComponent implements OnInit {
     { name: 'usage', value: '#7033FF' },
     { name: 'exceed average', value: '#F16F3F' }
   ];
-  view: any[] = [400, 300];
+  width:any;
+  barPadding:number = 20;
+  view: any;
   chartDataAmount: any;
   chartDataKwh: any;
   chartDataAmountSection: any;
@@ -41,12 +43,18 @@ export class DailyUsageComponent implements OnInit {
   getScreenSize(event?) {
         this.screenHeight = window.innerHeight;
         this.screenWidth = window.innerWidth;
-        if(this.screenWidth > 1200){
+        if(this.screenWidth > 993){
           this.webStatus = true;
+          this.width = 960;
+          this.barPadding = 20;
+          this.view = [this.width, 300];
           this.chartDataAmountSection = this.chartDataAmount;
           this.chartDataKwhSection = this.chartDataKwh;
         }else{
           this.webStatus = false;
+          this.width = 480;
+          this.barPadding = 35;
+          this.view = [this.width, 300];
           this.chartDataAmountSection = this.chartDataAmount.slice(0, 10);
           this.chartDataKwhSection = this.chartDataKwh.slice(0, 10);
         }
@@ -60,7 +68,6 @@ export class DailyUsageComponent implements OnInit {
     this.customTransform = `translate(-35 , 0)`;
     this.amountValue = 128;
     this.kilowatsValue = 185;
-
     this.chartDataAmount = [
       {
         'name': 1,
