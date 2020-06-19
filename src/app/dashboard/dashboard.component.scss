@@ -10,6 +10,9 @@
         margin: $full/40 auto;
     }
     // padding-top: $default-padding*1.2;
+    ngx-charts-bar-vertical {
+        width: $full;
+    }
     .pb-default-rules {
         width: $full - 13;
         height: $full - 13;
@@ -86,6 +89,7 @@
         .ecs-avarage {
             @include ecs-typo($primary-font-regular, bold, 16px, 37px, $primary-dark-color);
             text-align: center;
+            width: $full;
         }
     }
 }
