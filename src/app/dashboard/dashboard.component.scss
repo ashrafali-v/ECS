@@ -3,16 +3,19 @@
     position: relative;
     padding: $null;
     width: $full;
-    // max-width: $default-unit*100;
+    max-width: $default-unit*160;
     margin: $full/30 auto;
     @include device(lg) {
         max-width: $default-unit*225;
         margin: $full/40 auto;
+        @include flexbox();
+        @include flex(1 0 auto);
+        @include flex-direction(column);
     }
     // padding-top: $default-padding*1.2;
-    ngx-charts-bar-vertical {
-        width: $full;
-    }
+    // ngx-charts-bar-vertical {
+    //     width: $full;
+    // }
     .pb-default-rules {
         width: $full - 13;
         height: $full - 13;
@@ -74,22 +77,33 @@
 }
 
 ::ng-deep {
-    .day-usage-bar {
-        max-width: $default-unit*210;
-        .ngx-charts {
-            text {
-                @include ecs-typo($primary-font-regular, 200, 24px, 37px, $primary-dark-color);
-                font-size: 16px !important;
+    .projected-bill-amount {
+        &.day-usage-bar {
+            max-width: $default-unit*210;
+            margin: $full/40 auto;
+            @include device(lg) {
+                max-width: $default-unit*280;
             }
-        }
-        .ecs-date {
-            @include ecs-typo($primary-font-regular, bold, 16px, 37px, $primary-dark-color);
-            text-align: center;
-        }
-        .ecs-avarage {
-            @include ecs-typo($primary-font-regular, bold, 16px, 37px, $primary-dark-color);
-            text-align: center;
-            width: $full;
+            ngx-charts-bar-vertical {
+                display: table;
+            }
+            .ngx-charts {
+                text {
+                    @include ecs-typo($primary-font-regular, 200, 24px, 37px, $primary-dark-color);
+                    font-size: 16px !important;
+                }
+            }
+            .ecs-date {
+                @include ecs-typo($primary-font-regular, bold, 16px, 37px, $primary-dark-color);
+                text-align: center;
+                // margin-top: $default-margin;
+                clear: both;
+            }
+            .ecs-avarage {
+                @include ecs-typo($primary-font-regular, bold, 16px, 37px, $primary-dark-color);
+                text-align: center;
+                width: $full;
+            }
         }
     }
 }

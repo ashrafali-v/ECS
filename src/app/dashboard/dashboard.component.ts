@@ -20,7 +20,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   single: any[];
   multiAmount: any[];
   multikwh: any[];
-  view: any[] = [400, 300];
+  view: any[] = [420, 280];
   // options
   showXAxis = true;
   showYAxis = true;
