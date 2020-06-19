@@ -60,52 +60,31 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     var multiAmount = [
       {
         "name": "22",
-        "value": 12,
-        "extra": {
-          "code": "de"
-        }
+        "value": 12
       },
       {
         "name": "23",
-        "value": 7,
-        "extra": {
-          "code": "us"
-        }
+        "value": 7
       },
       {
         "name": "24",
-        "value": 13,
-        "extra": {
-          "code": "fr"
-        }
+        "value": 13
       },
       {
         "name": "25",
-        "value": 9,
-        "extra": {
-          "code": "uk"
-        }
+        "value": 9
       },
       {
         "name": "26",
-        "value": 13,
-        "extra": {
-          "code": "es"
-        }
+        "value": 13
       },
       {
         "name": "27",
-        "value": 0,
-        "extra": {
-          "code": "it"
-        }
+        "value": 0
       },
       {
         "name": "28",
-        "value": 0,
-        "extra": {
-          "code": "it"
-        }
+        "value": 0
       }
     ]
     this.progressbarMaxValueAmount = 200;
