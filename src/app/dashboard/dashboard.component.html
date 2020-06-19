@@ -59,8 +59,7 @@
             </div>
             <div class="tab-pane" id="usage" [ngClass]="{ 'active':activeTab==='usage'}">
                 <div class="container projected-bill-amount day-usage-bar" *ngIf="amount">
-                    <ngx-charts-bar-vertical [view]="view" [scheme]="colorScheme" [roundDomains]=true [results]="multiAmount" [gradient]="gradient" [noBarWhenZero]=true [xAxis]="showXAxis" [yAxis]="showYAxis" [showXAxisLabel]="showXAxisLabel" [yAxisTickFormatting]="currencyTickFormatting"
-                        [xAxisLabel]="xAxisLabel" [barPadding]=35 [roundEdges]=true>
+                    <ngx-charts-bar-vertical [view]="view" [scheme]="colorScheme" [roundDomains]=true [results]="multiAmount" [gradient]="gradient" [noBarWhenZero]=true [xAxis]="showXAxis" [yAxis]="showYAxis"  [yAxisTickFormatting]="currencyTickFormatting" [barPadding]=35 [roundEdges]=true>
                         <ng-template #tooltipTemplate let-model="model">
                             <p class="ecs-tooltip">${{model.value | json}}</p>
                         </ng-template>
@@ -69,8 +68,7 @@
                     <h4 class="ecs-avarage">Best day average {{bestDayAverageAmount | currency}}</h4>
                 </div>
                 <div class="container projected-bill-amount day-usage-bar" *ngIf="kilowats">
-                    <ngx-charts-bar-vertical [view]="view" [scheme]="colorScheme" [roundDomains]=true [results]="multikwh" [gradient]="gradient" [roundDomains]=true [noBarWhenZero]=true [xAxis]="showXAxis" [yAxis]="showYAxis" [showXAxisLabel]="showXAxisLabel" [yAxisTickFormatting]="kwhTickFormatting"
-                        [xAxisLabel]="xAxisLabel" [barPadding]=35 [roundEdges]=true>
+                    <ngx-charts-bar-vertical [view]="view" [scheme]="colorScheme" [roundDomains]=true [results]="multikwh" [gradient]="gradient" [roundDomains]=true [noBarWhenZero]=true [xAxis]="showXAxis" [yAxis]="showYAxis" [yAxisTickFormatting]="kwhTickFormatting" [barPadding]=35 [roundEdges]=true>
                         <ng-template #tooltipTemplate let-model="model">
                             <p class="ecs-tooltip">{{model.value | json}}kWh</p>
                         </ng-template>
