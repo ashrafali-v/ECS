@@ -11,7 +11,7 @@
 
     </div>
 
-    <div id="tabs" class="ecs-tabs" #tabs>
+    <div id="tabs" class="ecs-tabs max-hgt-container" #tabs>
 
         <ul class="nav nav-pills">
             <li class="nav-item">
@@ -59,7 +59,8 @@
             </div>
             <div class="tab-pane" id="usage" [ngClass]="{ 'active':activeTab==='usage'}">
                 <div class="container projected-bill-amount day-usage-bar" *ngIf="amount">
-                    <ngx-charts-bar-vertical [view]="view" [scheme]="colorScheme" [roundDomains]=true [results]="multiAmount" [gradient]="gradient" [noBarWhenZero]=true [xAxis]="showXAxis" [yAxis]="showYAxis"  [yAxisTickFormatting]="currencyTickFormatting" [barPadding]=35 [roundEdges]=true>
+                    <ngx-charts-bar-vertical [view]="view" [scheme]="colorScheme" [roundDomains]=true [results]="multiAmount" [gradient]="gradient" [noBarWhenZero]=true [xAxis]="showXAxis" [yAxis]="showYAxis" [yAxisTickFormatting]="currencyTickFormatting" [barPadding]=35
+                        [roundEdges]=true>
                         <ng-template #tooltipTemplate let-model="model">
                             <p class="ecs-tooltip">${{model.value | json}}</p>
                         </ng-template>
@@ -68,7 +69,8 @@
                     <h4 class="ecs-avarage">Best day average {{bestDayAverageAmount | currency}}</h4>
                 </div>
                 <div class="container projected-bill-amount day-usage-bar" *ngIf="kilowats">
-                    <ngx-charts-bar-vertical [view]="view" [scheme]="colorScheme" [roundDomains]=true [results]="multikwh" [gradient]="gradient" [roundDomains]=true [noBarWhenZero]=true [xAxis]="showXAxis" [yAxis]="showYAxis" [yAxisTickFormatting]="kwhTickFormatting" [barPadding]=35 [roundEdges]=true>
+                    <ngx-charts-bar-vertical [view]="view" [scheme]="colorScheme" [roundDomains]=true [results]="multikwh" [gradient]="gradient" [roundDomains]=true [noBarWhenZero]=true [xAxis]="showXAxis" [yAxis]="showYAxis" [yAxisTickFormatting]="kwhTickFormatting" [barPadding]=35
+                        [roundEdges]=true>
                         <ng-template #tooltipTemplate let-model="model">
                             <p class="ecs-tooltip">{{model.value | json}}kWh</p>
                         </ng-template>
@@ -110,7 +112,7 @@
                             <div class="progress-inner" [style.width.%]=percentProgressBarAmount style="background-image: linear-gradient(to right, rgb(81, 172, 45) , rgb(233, 153, 49));">
                                 {{percentProgressBarAmount}}%
                             </div>
-                            <div class="exceed-bar" [style.right.%]=percentProgressBarAmountAlert></div>
+                            <div class="exceed-bar" [style.right.%]=percentProgressBarAmountAlert><span class="alert-amount">$185.00</span></div>
                         </div>
                     </div>
 

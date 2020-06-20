@@ -16,5 +16,13 @@ app-root {
         @include flex(1 0 auto);
         @include flex-direction(column);
         // @include justify-content(flex-start);
+        .max-hgt-container {
+            max-height: $default-unit*300;
+            overflow-y: auto;
+            @include device(lg) {
+                max-height: inherit;
+                overflow-y: visible;
+            }
+        }
     }
 }

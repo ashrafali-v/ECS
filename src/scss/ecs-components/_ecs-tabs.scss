@@ -4,6 +4,7 @@
         @include flex(1 0 auto);
         @include flex-direction(row);
         @include justify-content(center);
+        @include align-items(flex-end);
         &.nav-pills {
             .nav-link {
                 padding: $null $default-padding*2;
@@ -12,6 +13,30 @@
                 @include ecs-typo($primary-font-regular, 400, 12px, 18px, $primary-dark-color);
                 &.active {
                     @include ecs-typo($primary-font-regular, 700, 16px, 20px, $primary-dark-color);
+                    position: relative;
+                    &::before {
+                        content: '';
+                        display: table;
+                        width: $full/5;
+                        height: $default-unit*2.5;
+                        background-color: $secondary-color;
+                        @include h-center();
+                        top: $full + 10;
+                    }
+                }
+            }
+            .nav-item {
+                &:first-child {
+                    .active {
+                        margin-left: $default-margin*16.5;
+                        transition: margin-left 0.5s ease;
+                    }
+                }
+                &:last-child {
+                    .active {
+                        margin-right: $default-margin*10;
+                        transition: margin-right 0.5s ease;
+                    }
                 }
             }
         }
