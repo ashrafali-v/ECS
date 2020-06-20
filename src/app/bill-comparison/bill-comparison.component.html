@@ -12,7 +12,7 @@
     </div>
     <div class="container" style="width: 960px;">
         <div class="container projected-bill-amount" *ngIf="amount">
-            <ngx-charts-bar-vertical [view]="view"  [roundDomains]=true [scheme]="colorScheme" [results]="multiAmount" [noBarWhenZero]=true [barPadding]=65 [roundEdges]=true>
+            <ngx-charts-bar-vertical [view]="view"  [roundDomains]=true [xAxis]="true"[scheme]="colorScheme" [results]="multiAmount" [noBarWhenZero]=true [barPadding]=65 [roundEdges]=true>
             </ngx-charts-bar-vertical>
         </div>
         <div class="container  projected-bill-amount" *ngIf="kilowats">

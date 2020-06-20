@@ -26,7 +26,7 @@ export class BillComparisonComponent implements OnInit {
       },
       {
         "name": "23",
-        "value": 7
+        "value": 20
       },
       {
         "name": "24",
