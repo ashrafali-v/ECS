@@ -10,14 +10,40 @@
         </div>
 
     </div>
-    <div class="container" style="width: 960px;">
-        <div class="container projected-bill-amount" *ngIf="amount">
-            <ngx-charts-bar-vertical [view]="view"  [roundDomains]=true [xAxis]="true"[scheme]="colorScheme" [results]="multiAmount" [noBarWhenZero]=true [barPadding]=65 [roundEdges]=true>
+    <div class="daily-usage-data" style="width: 960px;">
+        <h3>Bill Comparison</h3>
+        <!-- <div style="display: block;">
+            <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions"
+            [plugins]="barChartPlugins" [legend]="barChartLegend" [chartType]="barChartType">
+        </canvas>
+        </div> -->
+        <div class="container projected-bill-amount dark" *ngIf="amount">
+            <ngx-charts-bar-vertical [view]="view"  [roundDomains]=true [xAxis]="true" [rotateXAxisTicks]=false [scheme]="colorScheme" [showDataLabel]="true" [yAxisTickFormatting]="currencyTickFormatting" [results]="multiAmount" [noBarWhenZero]=true [barPadding]=65 [roundEdges]=true>
+                <ng-template #tooltipTemplate let-model="model">
+                    <div class="ecs-tooltip" style="color: white">${{model.value | json}}</div>
+                </ng-template>
             </ngx-charts-bar-vertical>
         </div>
         <div class="container  projected-bill-amount" *ngIf="kilowats">
-            <ngx-charts-bar-vertical [view]="view"  [roundDomains]=true [scheme]="colorScheme" [results]="multiAmount" [noBarWhenZero]=true [barPadding]=65 [roundEdges]=true>
+            <ngx-charts-bar-vertical [view]="view"  [roundDomains]=true [scheme]="colorScheme" [yAxisTickFormatting]="kwhTickFormatting" [results]="multiAmount" [noBarWhenZero]=true [barPadding]=65 [roundEdges]=true>
             </ngx-charts-bar-vertical>
         </div>
+    </div>
+    <div class="ecs-toggle-switch">
+        <span class="selector">Amount</span>
+        <label class="switch">
+            <input type="checkbox" (change)="handleSelected($event)">
+            <span class="slider"></span>
+        </label>
+        <span class="selector">Kilowatts</span>
+    </div>
+    <div>
+        <h3>Select Month</h3>
+        <div>
+            <button type="button" (click)="getDate()">Edit</button>
+            <ngb-datepicker *ngIf="datePickerStatus" #dp [(ngModel)]="model" (navigate)="date = $event.next" (dateSelect)="selectToday()"></ngb-datepicker>
+        </div>
+        <div></div>
+        <div></div>
     </div>
 </div>

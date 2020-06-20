@@ -10,6 +10,8 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { ProgressBarModule } from "angular-progress-bar"
 import { FormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
+import { ChartsModule } from 'ng2-charts';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import { ToastrModule } from 'ngx-toastr';
     BrowserAnimationsModule,
     ProgressBarModule,
     FormsModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    ChartsModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]

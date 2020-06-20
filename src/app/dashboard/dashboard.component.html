@@ -94,7 +94,7 @@
                     <h2>Usage Alert</h2>
                     <div class="edit-values">
                         <div *ngIf="!editStatus">
-                            <span>{{amountAlertValue | currency}}</span>
+                            <!-- <span>{{amountAlertValue | currency}}</span> -->
                             <button (click)="editLimitValue()">Edit</button>
                         </div>
                         <div *ngIf="editStatus">
@@ -112,7 +112,7 @@
                             <div class="progress-inner" [style.width.%]=percentProgressBarAmount style="background-image: linear-gradient(to right, rgb(81, 172, 45) , rgb(233, 153, 49));">
                                 {{percentProgressBarAmount}}%
                             </div>
-                            <div class="exceed-bar" [style.right.%]=percentProgressBarAmountAlert><span class="alert-amount">$185.00</span></div>
+                            <div class="exceed-bar" [style.right.%]=percentProgressBarAmountAlert><span class="alert-amount">{{ amountAlertValue | currency : 'USD' : 'symbol' : '1.0-0' }}</span></div>
                         </div>
                     </div>
 

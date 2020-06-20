@@ -52,9 +52,9 @@ export class DailyUsageComponent implements OnInit {
       this.chartDataKwhSection = this.chartDataKwh;
     } else {
       this.webStatus = false;
-      this.width = 480;
+      this.width = 410;
       this.barPadding = 35;
-      this.view = [this.width, 300];
+      this.view = [this.width, 280];
       this.chartDataAmountSection = this.chartDataAmount.slice(0, 10);
       this.chartDataKwhSection = this.chartDataKwh.slice(0, 10);
     }
@@ -876,7 +876,7 @@ export class DailyUsageComponent implements OnInit {
     return '$' + val.toLocaleString();
   }
   kwhTickFormatting(val: any) {
-    return val.toLocaleString() + ' kWh';
+    return val.toLocaleString() + 'k';
   }
   selectDailyUsageData(key: any) {
     //Next and previuos button handling//

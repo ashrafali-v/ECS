@@ -3,13 +3,15 @@ import { single } from '../data';
 //import { multiAmount } from '../../data';
 import { multikwh } from '../data';
 import { ToastrService } from 'ngx-toastr';
-
+import { HostListener } from "@angular/core";
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit, AfterViewInit {
+  screenHeight: number;
+  screenWidth: number;
   percent: any;
   percentProgressBarAmount: any;
   percentProgressBarAmountAlert: any;
@@ -20,7 +22,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   single: any[];
   multiAmount: any[];
   multikwh: any[];
-  view: any[] = [420, 280];
+  view: any[];
   // options
   showXAxis = true;
   showYAxis = true;
@@ -56,6 +58,16 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   ];
   constructor(private toastr: ToastrService) {
   }
+  @HostListener('window:resize', ['$event'])
+  getScreenSize(event?) {
+    this.screenHeight = window.innerHeight;
+    this.screenWidth = window.innerWidth;
+    if (this.screenWidth > 993) {
+      this.view = [560,350];
+    } else {
+      this.view = [420,264];
+    }
+  }
   ngOnInit() {
     var multiAmount = [
       {
@@ -87,12 +99,12 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         "value": 0
       }
     ]
+    this.getScreenSize();
     this.progressbarMaxValueAmount = 200;
     this.progressbarMaxValueKwh = 300;
     const wholeDay = 32;
     var day = new Date();
     this.month = this.monthNames[day.getMonth()];
-
     //recentday usage dats
     this.xAxisLabel = this.month;
     //
