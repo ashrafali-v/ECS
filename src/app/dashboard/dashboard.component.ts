@@ -1,4 +1,5 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
+import {CommonAppService} from '../services/common-app.service';
 import { single } from '../data';
 //import { multiAmount } from '../../data';
 import { multikwh } from '../data';
@@ -56,7 +57,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   monthNames = ["Jan", "Feb", "March", "April", "May", "June",
     "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
   ];
-  constructor(private toastr: ToastrService) {
+  constructor(private toastr: ToastrService,private sharedService: CommonAppService) {
   }
   @HostListener('window:resize', ['$event'])
   getScreenSize(event?) {
@@ -69,6 +70,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     }
   }
   ngOnInit() {
+    this.sharedService.nextMessage("amount");
     var multiAmount = [
       {
         "name": "22",
@@ -179,9 +181,11 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     if ($event.target.checked === true) {
       this.amount = false;
       this.kilowats = true;
+      this.sharedService.nextMessage("kilowats");
     } else {
       this.amount = true;
       this.kilowats = false;
+      this.sharedService.nextMessage("amount");
     }
   }
   currencyTickFormatting(val: any) {

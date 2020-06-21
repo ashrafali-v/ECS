@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ChartOptions, ChartType, ChartDataSets } from 'chart.js';
 import { Label } from 'ng2-charts';
 import {NgbDateStruct, NgbCalendar} from '@ng-bootstrap/ng-bootstrap';
+import {CommonAppService} from '../services/common-app.service';
 
 @Component({
   selector: 'app-bill-comparison',
@@ -41,7 +42,7 @@ export class BillComparisonComponent implements OnInit {
   ];
   //Delete
 
-  constructor(private calendar: NgbCalendar) { }
+  constructor(private calendar: NgbCalendar,private sharedService: CommonAppService) { }
 
   ngOnInit(): void {
     //Delete
@@ -61,7 +62,7 @@ export class BillComparisonComponent implements OnInit {
     //Delete
 
     
-
+    this.sharedService.nextMessage("amount");
     let colors:any[];
     this.amountValue = 128;
     this.kilowatsValue = 185;
@@ -95,9 +96,11 @@ export class BillComparisonComponent implements OnInit {
     if ($event.target.checked === true) {
       this.amount = false;
       this.kilowats = true;
+      this.sharedService.nextMessage("kilowats");
     } else {
       this.amount = true;
       this.kilowats = false;
+      this.sharedService.nextMessage("amount");
     }
   }
   currencyTickFormatting(val: any) {

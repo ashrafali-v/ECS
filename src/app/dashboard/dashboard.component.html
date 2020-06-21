@@ -1,16 +1,4 @@
 <div class="ecs-content-box">
-    <div class="projected-biil-details" [ngClass]="(kilowats==true)?'ecs-kilowatt-active':''">
-        <div class="ecs-amount">
-            <h2>{{ amountValue | currency : 'USD' : 'symbol' : '1.0-0' }}<span>.00</span></h2>
-            <h4>Predicted Amount</h4>
-        </div>
-        <div class="ecs-kilowatt">
-            <h2>{{kilowatsValue}} kWh</h2>
-            <h4>Usage Uinit</h4>
-        </div>
-
-    </div>
-
     <div id="tabs" class="ecs-tabs max-hgt-container" #tabs>
 
         <ul class="nav nav-pills">

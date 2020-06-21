@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HostListener } from "@angular/core";
-
+import {CommonAppService} from '../services/common-app.service';
 @Component({
   selector: 'app-daily-usage',
   templateUrl: './daily-usage.component.html',
@@ -8,15 +8,15 @@ import { HostListener } from "@angular/core";
 })
 
 export class DailyUsageComponent implements OnInit {
+  amount: boolean = true;
+  kilowats: boolean = false;
+  amountValue: number;
+  kilowatsValue: number;
   webStatus: boolean = false;
   month: any;
   day: any;
   screenHeight: number;
   screenWidth: number;
-  amountValue: number;
-  kilowatsValue: number;
-  amount: boolean = true;
-  kilowats: boolean = false;
   myColors: any = [
     { name: 'upto average', value: 'rgba(48,45,52,.2)' },
     { name: 'usage', value: '#7033FF' },
@@ -37,7 +37,7 @@ export class DailyUsageComponent implements OnInit {
   monthNames = ["Jan", "Feb", "March", "April", "May", "June",
     "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
   ];
-  constructor() {
+  constructor(private sharedService: CommonAppService) {
   }
   @HostListener('window:resize', ['$event'])
   getScreenSize(event?) {
@@ -52,9 +52,9 @@ export class DailyUsageComponent implements OnInit {
       this.chartDataKwhSection = this.chartDataKwh;
     } else {
       this.webStatus = false;
-      this.width = 410;
-      this.barPadding = 35;
-      this.view = [this.width, 280];
+      this.width = 370;
+      this.barPadding = 28;
+      this.view = [this.width, 180];
       this.chartDataAmountSection = this.chartDataAmount.slice(0, 10);
       this.chartDataKwhSection = this.chartDataKwh.slice(0, 10);
     }
@@ -62,6 +62,7 @@ export class DailyUsageComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.sharedService.nextMessage("amount");
     var day = new Date();
     this.month = this.monthNames[day.getMonth()];
     this.day = day.getDate();
@@ -867,9 +868,11 @@ export class DailyUsageComponent implements OnInit {
     if ($event.target.checked === true) {
       this.amount = false;
       this.kilowats = true;
+      this.sharedService.nextMessage("kilowats");
     } else {
       this.amount = true;
       this.kilowats = false;
+      this.sharedService.nextMessage("amount");
     }
   }
   currencyTickFormatting(val: any) {

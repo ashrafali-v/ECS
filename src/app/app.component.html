@@ -1,9 +1,4 @@
-<header>
-    <div class="logo">
-        <img src="../assets/svg/ecs-logo.svg" alt="">
-        <h1>ECS</h1>
-    </div>
-</header>
+<app-header></app-header>
 <router-outlet></router-outlet>
 <div class="ecs-navigation">
     <nav>
@@ -26,8 +21,8 @@
                       </svg>
                   </span> Bill Comparison</a>
             </li>
-            <li>
-                <a href="http://">
+            <li [routerLinkActive]="['active-page']">
+                <a [routerLink]="['/neighbour-comparison']">
                     <span><svg xmlns="http://www.w3.org/2000/svg" width="44.467" height="36.5" viewBox="0 0 44.467 36.5"><defs><style>.a{fill:#230c57;}</style></defs><g transform="translate(-80.533 -180.836)"><path class="a" d="M12.4,156.233V141.066l9.946-7.162,9.946,7.162v15.167Z" transform="translate(68.133 61.103)"/><path class="a" d="M180.248,282.449V257.685l14.012-11.693,14.012,11.693v24.764Z" transform="translate(-83.271 -65.156)"/></g></svg></span>                    Neighbourhood Comparison</a>
             </li>
         </ul>
