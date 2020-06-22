@@ -6,6 +6,8 @@ const routes: Routes = [
   { path: 'dashboard', loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule) },
   { path: 'daily-usage',loadChildren: () => import('./daily-usage/daily-usage.module').then(m => m.DailyUsageModule)},
   { path: 'bill-comparison',loadChildren: () => import('./bill-comparison/bill-comparison.module').then(m => m.BillComparisonModule)},
+  { path: 'neighbour-comparison',loadChildren: () => import('./neighbour-comparison/neighbour-comparison.module').then(m => m.NeighbourComparisoModule)},
+  
   //{ path: 'settings', loadChildren: () => import('./settings/settings.module').then(m => m.SettingsModule) },
   { path: '',
     redirectTo: '/dashboard',

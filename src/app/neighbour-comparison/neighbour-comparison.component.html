@@ -1,0 +1,44 @@
+<div class="ecs-content-box">
+    <div class="daily-usage-data">
+        <h5>Neighbourhood Comparison</h5>
+        <div class="container projected-bill-amount day-usage-bar" *ngIf="amount">
+            <div>
+                <canvas baseChart width="400" height="200" [datasets]="lineChartData" [labels]="lineChartLabels"
+                    [options]="lineChartOptions" [colors]="lineChartColors" [legend]="lineChartLegend"
+                    [chartType]="lineChartType" [plugins]="lineChartPlugins">
+                </canvas>
+            </div>
+            <ngx-charts-bar-horizontal [view]="view" [roundDomains]=true [scheme]="colorScheme" [results]="multiAmount"
+                [gradient]="false" [noBarWhenZero]=true [xAxis]="false" [yAxis]="true" [barPadding]=45
+                [roundEdges]=true>
+                <ng-template #tooltipTemplate let-model="model">
+                    <p class="ecs-tooltip">{{model.name}} ${{model.value | json}}</p>
+                </ng-template>
+            </ngx-charts-bar-horizontal>
+        </div>
+        <div class="container projected-bill-amount day-usage-bar" *ngIf="kilowats">
+            <div>
+                <canvas baseChart width="400" height="200" [datasets]="lineChartData" [labels]="lineChartLabels"
+                    [options]="lineChartOptions" [colors]="lineChartColors" [legend]="lineChartLegend"
+                    [chartType]="lineChartType" [plugins]="lineChartPlugins">
+                </canvas>
+            </div>
+            <ngx-charts-bar-horizontal [view]="view" [roundDomains]=true [scheme]="colorScheme" [results]="multiKwh"
+                [gradient]="false" [noBarWhenZero]=true [xAxis]="false" [yAxis]="true" [barPadding]=45
+                [roundEdges]=true>
+                <ng-template #tooltipTemplate let-model="model">
+                    <p class="ecs-tooltip">{{model.name}} ${{model.value | json}}</p>
+                </ng-template>
+            </ngx-charts-bar-horizontal>
+        </div>
+    </div>
+    <div class="ecs-toggle-switch">
+        <span class="selector">Amount</span>
+        <label class="switch">
+            <input type="checkbox" (change)="handleSelected($event)">
+            <span class="slider"></span>
+        </label>
+        <span class="selector">Kilowatts</span>
+    </div>
+
+</div>

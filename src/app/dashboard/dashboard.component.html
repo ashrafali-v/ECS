@@ -1,16 +1,4 @@
 <div class="ecs-content-box">
-    <div class="projected-biil-details" [ngClass]="(kilowats==true)?'ecs-kilowatt-active':''">
-        <div class="ecs-amount">
-            <h2>{{ amountValue | currency : 'USD' : 'symbol' : '1.0-0' }}<span>.00</span></h2>
-            <h4>Predicted Amount</h4>
-        </div>
-        <div class="ecs-kilowatt">
-            <h2>{{kilowatsValue}} kWh</h2>
-            <h4>Usage Uinit</h4>
-        </div>
-
-    </div>
-
     <div id="tabs" class="ecs-tabs max-hgt-container" #tabs>
 
         <ul class="nav nav-pills">
@@ -94,7 +82,7 @@
                     <h2>Usage Alert</h2>
                     <div class="edit-values">
                         <div *ngIf="!editStatus">
-                            <span>{{amountAlertValue | currency}}</span>
+                            <!-- <span>{{amountAlertValue | currency}}</span> -->
                             <button (click)="editLimitValue()">Edit</button>
                         </div>
                         <div *ngIf="editStatus">
@@ -112,7 +100,7 @@
                             <div class="progress-inner" [style.width.%]=percentProgressBarAmount style="background-image: linear-gradient(to right, rgb(81, 172, 45) , rgb(233, 153, 49));">
                                 {{percentProgressBarAmount}}%
                             </div>
-                            <div class="exceed-bar" [style.right.%]=percentProgressBarAmountAlert><span class="alert-amount">$185.00</span></div>
+                            <div class="exceed-bar" [style.right.%]=percentProgressBarAmountAlert><span class="alert-amount">{{ amountAlertValue | currency : 'USD' : 'symbol' : '1.0-0' }}</span></div>
                         </div>
                     </div>
 
