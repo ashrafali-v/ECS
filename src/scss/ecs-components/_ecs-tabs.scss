@@ -7,7 +7,7 @@
         @include align-items(flex-end);
         &.nav-pills {
             .nav-link {
-                padding: $null $default-padding*2;
+                padding: $default-padding/2 $default-padding*2;
                 background-color: $transition-bg;
                 text-align: center;
                 @include ecs-typo($primary-font-regular, 400, 12px, 18px, $primary-dark-color);

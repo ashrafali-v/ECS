@@ -1,17 +1,23 @@
 header {
     width: $full;
-    position: fixed;
-    top: $null;
-    left: $null;
+    @include flexbox();
+    @include flex(1 0 auto);
+    @include flex-direction(row);
+    @include justify-content(space-between);
+    // position: fixed;
+    // top: $null;
+    // left: $null;
     @include device(lg) {
-        width: $full/4;
+        // width: $full/4;
+        // position: initial;
     }
     .logo {
         background-color: $primary-color;
         padding: $default-padding*1.5;
         padding-right: $default-padding*3.5;
         padding-bottom: $default-padding*2.5;
-        display: table;
+        max-width: $default-unit*70;
+        // display: table;
         @include border-radius-tl-tr-br-bl(0, 0, 50px, 0);
         img {
             display: inline-block;

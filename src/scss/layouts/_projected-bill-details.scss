@@ -4,7 +4,7 @@
     @include flexbox();
     @include flex(0 0 $full/2);
     @include flex-direction(row);
-    @include justify-content(space-between);
+    @include justify-content(flex-end);
     margin-left: auto;
     padding: $default-padding*1.5 $null;
     &.ecs-kilowatt-active {

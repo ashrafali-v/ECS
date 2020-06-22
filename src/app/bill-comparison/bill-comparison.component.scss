@@ -1,5 +1,56 @@
-
-  .point {
+@import '../../scss/ecs-master';
+.point {
     stroke: orange;
     stroke-width: 1;
-  }
+}
+
+.month-selector {
+    width: $full;
+    background-color: $primary-dark-color;
+    @include flexbox();
+    @include flex-direction(row);
+    @include justify-content(space-between);
+    @include flex-wrap(wrap);
+    margin-top: $default-margin;
+    padding: $default-padding $null;
+    h2 {
+        @include flex(1 0 $full);
+        width: $full;
+        @include ecs-typo($primary-font-regular, bold, 16px, 18px, $white);
+        text-align: center;
+        margin: $default-margin $null;
+    }
+    .month-box {
+        background-color: $primary-color;
+        @include border-radius($default-unit*3);
+        @include flex(0 0 calc(#{$full/2} - 40px));
+        @include flexbox();
+        @include flex-direction(row);
+        @include justify-content(space-between);
+        @include flex-wrap(wrap);
+        padding: $default-padding;
+        margin: $default-margin $default-margin*2;
+        h3 {
+            @include ecs-typo($primary-font-regular, bold, 12px, 18px, $white);
+            @include flex(0 0 calc(#{$full} - 50px));
+            padding: $default-padding $null;
+        }
+        .edit-month {
+            // @include fill-cta($nutral-light-color, rgba($white, .5));
+            padding: $default-padding/3 $default-padding;
+            border: none;
+            background-color: transparent;
+            color: $white;
+            font-size: $default-unit*7;
+        }
+        .month-amount {
+            @include ecs-typo($primary-font-regular, bold, 16px, 18px, $white);
+            text-align: left;
+            @include flex(0 0 $full);
+            padding: $default-padding $null;
+        }
+        &.current-month {
+            @include horizontal-gradient($primary-color, $secondary-color);
+        }
+    }
+}

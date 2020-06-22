@@ -5,11 +5,18 @@ app-root {
     @include device(lg) {
         @include flex-direction(row);
         @include justify-content(flex-start);
-        height: $full;
+        // height: $full;
     }
-    app-dashboard,
-    app-daily-usage {
+    .section-container {
         @include flex(0 0 calc(#{$full} - #{$full/4}));
+        app-header {
+            @include flex(0 0 $full);
+            height: auto;
+        }
+        app-dashboard,
+        app-daily-usage {
+            // @include flex(0 0 calc(#{$full} - #{$full/4}));
+        }
     }
     .ecs-content-box {
         @include flexbox();
@@ -17,7 +24,7 @@ app-root {
         @include flex-direction(column);
         // @include justify-content(flex-start);
         .max-hgt-container {
-            max-height: $default-unit*300;
+            max-height: $default-unit*308;
             overflow-y: auto;
             @include device(lg) {
                 max-height: inherit;
