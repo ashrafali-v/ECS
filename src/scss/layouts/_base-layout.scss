@@ -2,6 +2,7 @@ app-root {
     @include flexbox();
     @include flex(1 0 auto);
     @include flex-direction(column);
+    height: $full;
     @include device(lg) {
         @include flex-direction(row);
         @include justify-content(flex-start);
@@ -9,14 +10,18 @@ app-root {
     }
     .section-container {
         @include flex(0 0 calc(#{$full} - #{$full/4}));
+        display: table;
+        // height: $fullVh;
+        height: calc(#{$fullVh} - #{$default-unit*40});
+        overflow-y: hidden;
         app-header {
             @include flex(0 0 $full);
             height: auto;
         }
-        app-dashboard,
-        app-daily-usage {
-            // @include flex(0 0 calc(#{$full} - #{$full/4}));
-        }
+        // app-dashboard,
+        // app-daily-usage {
+        //     // @include flex(0 0 calc(#{$full} - #{$full/4}));
+        // }
     }
     .ecs-content-box {
         @include flexbox();
@@ -24,8 +29,10 @@ app-root {
         @include flex-direction(column);
         @include justify-content(space-between);
         @include align-items(center);
+        height: calc(#{$fullVh} - #{$default-unit*77.5});
+        overflow-y: auto;
         @include device(lg) {
-            height: calc(#{$full} - #{$default-unit*40});
+            height: calc(#{$fullVh} - #{$default-unit*40});
         }
         .max-hgt-container {
             max-height: $default-unit*308;

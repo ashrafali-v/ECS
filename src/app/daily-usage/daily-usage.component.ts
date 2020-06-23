@@ -52,8 +52,8 @@ export class DailyUsageComponent implements OnInit {
       this.chartDataKwhSection = this.chartDataKwh;
     } else {
       this.webStatus = false;
-      this.width = 420;
-      this.barPadding = 30;
+      this.width = 360;
+      this.barPadding = 25;
       this.view = [this.width, 180];
       this.chartDataAmountSection = this.chartDataAmount.slice(0, 10);
       this.chartDataKwhSection = this.chartDataKwh.slice(0, 10);

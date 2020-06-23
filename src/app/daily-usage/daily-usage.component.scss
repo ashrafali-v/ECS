@@ -105,7 +105,12 @@
         @include justify-content(space-around);
         @include flex-wrap(wrap);
         margin: $null auto;
-        max-width: $default-unit*320;
+        max-width: $default-unit*180;
+        max-width: calc(#{$full} - #{$default-margin});
+        width: $full;
+        @include device(lg) {
+            max-width: $default-unit*320;
+        }
     }
     h2 {
         @include flex(1 0 $full);
@@ -125,8 +130,11 @@
         ul {
             li {
                 position: relative;
-                padding: $default-padding/1.2 $default-padding;
+                padding: $default-padding/1.2 $default-padding/3;
                 margin: $null;
+                @include device(lg) {
+                    padding: $default-padding/1.2 $default-padding;
+                }
                 // width: $full/2;
                 >span {
                     @include v-center();
@@ -140,12 +148,15 @@
                 }
                 &::before {
                     content: '';
-                    width: $default-unit*10;
+                    width: $default-unit*5;
                     height: $default-unit*2;
                     background-color: $nutral-medium-color;
                     display: table;
                     margin: $null auto;
-                    @include border-radius($default-unit)
+                    @include border-radius($default-unit);
+                    @include device(lg) {
+                        width: $default-unit*10;
+                    }
                 }
                 &.hour-finished {
                     >span {

@@ -33,10 +33,11 @@
                 <h3>{{year}} {{currentMonthName}}</h3>
                 <button class="edit-month" type="button">
                     <i class="fas fa-edit"></i>
+                
+                    <form>
+                        <input [(ngModel)]="modelDateFirst" [minDate]="minDate" [maxDate]="maxDate" class="edit-month-input" autocomplete="off" name="date" bsDatepicker [bsConfig]="{dateInputFormat: 'MM/YYYY'}" (onShown)="onOpenCalendar($event)">
+                    </form>
                 </button>
-                <form class="container">
-                    <input [(ngModel)]="modelDateFirst" [minDate]="minDate" [maxDate]="maxDate" class="edit-month" autocomplete="off" name="date" bsDatepicker [bsConfig]="{dateInputFormat: 'MM/YYYY'}" (onShown)="onOpenCalendar($event)">
-                </form>
                 <div class="month-amount">
                     $169.00
                 </div>
@@ -45,10 +46,11 @@
                 <h3>{{selectYearSecond}} {{selectMonthSecondName}}</h3>
                 <button class="edit-month" type="button">
                     <i class="fas fa-edit"></i>
+                
+                    <form>
+                        <input [(ngModel)]="modelDateSecond" [minDate]="minDate" [maxDate]="maxDate" class="edit-month-input" autocomplete="off" name="date" bsDatepicker [bsConfig]="{dateInputFormat: 'MM/YYYY'}" (onShown)="onOpenCalendar($event)">
+                    </form>
                 </button>
-                <form class="container">
-                    <input [(ngModel)]="modelDateSecond" [minDate]="minDate" [maxDate]="maxDate" class="edit-month" autocomplete="off" name="date" bsDatepicker [bsConfig]="{dateInputFormat: 'MM/YYYY'}" (onShown)="onOpenCalendar($event)">
-                </form>
                 <div class="month-amount">
                     $169.00
                 </div>
@@ -57,10 +59,11 @@
                 <h3>{{selectYearFirst}} {{selectMonthFirstName}}</h3>
                 <button class="edit-month" type="button">
                     <i class="fas fa-edit"></i>
+                
+                    <form>
+                        <input [(ngModel)]="modelDateThird" [minDate]="minDate" [maxDate]="maxDate" class="edit-month-input" autocomplete="off" name="date" bsDatepicker [bsConfig]="{dateInputFormat: 'MM/YYYY'}" (onShown)="onOpenCalendar($event)">
+                    </form>
                 </button>
-                <form class="container">
-                    <input [(ngModel)]="modelDateThird" [minDate]="minDate" [maxDate]="maxDate" class="edit-month" autocomplete="off" name="date" bsDatepicker [bsConfig]="{dateInputFormat: 'MM/YYYY'}" (onShown)="onOpenCalendar($event)">
-                </form>
                 <div class="month-amount">
                     $169.00
                 </div>
