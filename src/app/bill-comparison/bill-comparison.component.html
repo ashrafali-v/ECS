@@ -7,7 +7,7 @@
         </canvas>
         </div> -->
         <div class="projected-bill-amount dark" *ngIf="amount">
-            <ngx-charts-bar-vertical [view]="view" [roundDomains]=true [xAxis]="true" [rotateXAxisTicks]=false [scheme]="colorScheme" [showDataLabel]="true" [yAxisTickFormatting]="currencyTickFormatting" [results]="multiAmount" [noBarWhenZero]=true [barPadding]=65
+            <ngx-charts-bar-vertical [view]="view" [roundDomains]=true [xAxis]="true" [rotateXAxisTicks]=false [scheme]="colorScheme" [yAxisTickFormatting]="currencyTickFormatting" [results]="multiAmount" [noBarWhenZero]=true [barPadding]=100
                 [roundEdges]=true>
                 <ng-template #tooltipTemplate let-model="model">
                     <div class="ecs-tooltip" style="color: white">${{model.value | json}}</div>
@@ -15,7 +15,7 @@
             </ngx-charts-bar-vertical>
         </div>
         <div class=" projected-bill-amount" *ngIf="kilowats">
-            <ngx-charts-bar-vertical [view]="view" [roundDomains]=true [scheme]="colorScheme" [yAxisTickFormatting]="kwhTickFormatting" [results]="multiAmount" [noBarWhenZero]=true [barPadding]=65 [roundEdges]=true>
+            <ngx-charts-bar-vertical [view]="view" [roundDomains]=true [scheme]="colorScheme" [yAxisTickFormatting]="kwhTickFormatting" [results]="multiAmount" [noBarWhenZero]=true [barPadding]=100 [roundEdges]=true>
             </ngx-charts-bar-vertical>
         </div>
     </div>
@@ -30,31 +30,37 @@
     <div class="month-selector">
         <h2>Select Month</h2>
         <div class="month-box">
-            <h3>2019 APR</h3>
-            <button class="edit-month" type="button" (click)="getDate()">
+            <h3>{{year}} {{currentMonthName}}</h3>
+            <button class="edit-month" type="button">
                 <i class="fas fa-edit"></i>
             </button>
-            <ngb-datepicker *ngIf="datePickerStatus" #dp [(ngModel)]="model" (navigate)="date = $event.next" (dateSelect)="selectToday()"></ngb-datepicker>
+            <form class="container">
+                <input [(ngModel)]="modelDateFirst" [minDate]="minDate" [maxDate]="maxDate" class="edit-month" autocomplete="off" name="date" bsDatepicker [bsConfig]="{dateInputFormat: 'MM/YYYY'}" (onShown)="onOpenCalendar($event)">
+            </form>
             <div class="month-amount">
                 $169.00
             </div>
         </div>
         <div class="month-box">
-            <h3>2019 APR</h3>
-            <button class="edit-month" type="button" (click)="getDate()">
+            <h3>{{selectYearSecond}} {{selectMonthSecondName}}</h3>
+            <button class="edit-month" type="button">
                 <i class="fas fa-edit"></i>
             </button>
-            <ngb-datepicker *ngIf="datePickerStatus" #dp [(ngModel)]="model" (navigate)="date = $event.next" (dateSelect)="selectToday()"></ngb-datepicker>
+            <form class="container">
+                <input [(ngModel)]="modelDateSecond" [minDate]="minDate" [maxDate]="maxDate" class="edit-month" autocomplete="off" name="date" bsDatepicker [bsConfig]="{dateInputFormat: 'MM/YYYY'}" (onShown)="onOpenCalendar($event)">
+            </form>
             <div class="month-amount">
                 $169.00
             </div>
         </div>
         <div class="month-box">
-            <h3>2019 APR</h3>
-            <button class="edit-month" type="button" (click)="getDate()">
+            <h3>{{selectYearFirst}} {{selectMonthFirstName}}</h3>
+            <button class="edit-month" type="button">
                 <i class="fas fa-edit"></i>
             </button>
-            <ngb-datepicker *ngIf="datePickerStatus" #dp [(ngModel)]="model" (navigate)="date = $event.next" (dateSelect)="selectToday()"></ngb-datepicker>
+            <form class="container">
+                <input [(ngModel)]="modelDateThird" [minDate]="minDate" [maxDate]="maxDate" class="edit-month" autocomplete="off" name="date" bsDatepicker [bsConfig]="{dateInputFormat: 'MM/YYYY'}" (onShown)="onOpenCalendar($event)">
+            </form>
             <div class="month-amount">
                 $169.00
             </div>
