@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HostListener } from "@angular/core";
-import {CommonAppService} from '../services/common-app.service';
+import { CommonAppService } from '../services/common-app.service';
 @Component({
   selector: 'app-daily-usage',
   templateUrl: './daily-usage.component.html',
@@ -52,8 +52,8 @@ export class DailyUsageComponent implements OnInit {
       this.chartDataKwhSection = this.chartDataKwh;
     } else {
       this.webStatus = false;
-      this.width = 370;
-      this.barPadding = 28;
+      this.width = 420;
+      this.barPadding = 30;
       this.view = [this.width, 180];
       this.chartDataAmountSection = this.chartDataAmount.slice(0, 10);
       this.chartDataKwhSection = this.chartDataKwh.slice(0, 10);
