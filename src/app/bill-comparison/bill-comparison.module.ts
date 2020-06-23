@@ -6,6 +6,7 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { ChartsModule } from 'ng2-charts';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
+import { BsDatepickerModule, BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
 
 @NgModule({
   declarations: [BillComparisonComponent],
@@ -15,7 +16,8 @@ import { FormsModule } from '@angular/forms';
     NgxChartsModule,
     ChartsModule,
     NgbModule,
-    FormsModule
+    FormsModule,
+    BsDatepickerModule
   ]
 })
 export class BillComparisonModule { }

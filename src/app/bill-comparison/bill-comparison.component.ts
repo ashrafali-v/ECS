@@ -20,46 +20,63 @@ export class BillComparisonComponent implements OnInit {
   colorScheme: any = { domain: Array };
   datePickerStatus: boolean = false;
   model: NgbDateStruct;
-  date: { year: number, month: number };
-
-  //Delete
-  public barChartOptions: ChartOptions = {
-    responsive: true,
-
-  };
-  public barChartLabels: Label[] = ['2006', '2007', '2008'];
-  public barChartType: ChartType = 'bar';
-  public barChartLegend = true;
-  public barChartPlugins = [];
-  public barChartData: ChartDataSets[] = [{
-    "label": "My First Dataset",
-    "data": Array<any>(),
-    "fill": false,
-    "backgroundColor": Array<any>(),
-    "borderWidth": 1,
-    "barThickness": 6,
-  }
+  modelDateFirst = '';
+  modelDateSecond = '';
+  modelDateThird = '';
+  minDate: Date;
+  maxDate: Date;
+  selectMonthFirst: any;
+  selectMonthSecond: any;
+  selectMonthThird: any;
+  selectYearFirst: any;
+  selectYearSecond: any;
+  selectYearThird: any;
+  year: any;
+  month: any;
+  selectMonthFirstName: any;
+  selectMonthSecondName: any;
+  currentMonthName: any;
+  monthNames = ["dummy","Jan", "Feb", "March", "April", "May", "June",
+    "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
   ];
-  //Delete
 
-  constructor(private calendar: NgbCalendar, private sharedService: CommonAppService) { }
+  constructor(private calendar: NgbCalendar, private sharedService: CommonAppService) { 
+    this.minDate = new Date();
+    this.maxDate = new Date();
+    this.minDate.setDate(this.minDate.getDate() - 365);
+    this.maxDate.setDate(this.maxDate.getDate());
+  }
 
   ngOnInit(): void {
-    //Delete
-    let arr: any[];
-    let backgroundColors: any[];
-    backgroundColors = [
-      "red",
-      "green",
-      "rgba(255, 205, 86, 0.2)"
-    ];
-    arr = [10, 15, 25];
-    this.barChartData.push({
-      data: arr,
-      backgroundColor: backgroundColors
-    })
+    var today = new Date();
+    this.year = today.getFullYear();
+    this.month = today.getMonth() + 1;
+    if (this.month == 1) {
+      this.selectMonthFirst = 11;
+      this.selectMonthSecond = 12;
+      this.selectYearFirst = this.selectYearSecond = this.year - 1;
+    } else if (this.month == 2) {
+      this.selectMonthSecond = this.month - 1;
+      this.selectYearSecond = this.year;
+      this.selectMonthFirst = 12;
+      this.selectYearFirst = this.year - 1;
+    }
+    else {
+      this.selectMonthFirst = this.month - 2;
+      this.selectMonthSecond = this.month - 1;
+      this.selectYearFirst = this.selectYearSecond = this.year;
+    }
 
-    //Delete
+    var data = [{ "month": this.month, "year": this.year },
+    { "month": this.selectMonthSecond, "year": this.selectYearSecond },
+    { "month": this.selectMonthFirst, "year": this.selectYearFirst }];
+    console.log(data);
+
+    this.selectMonthFirstName = this.monthNames[this.selectMonthFirst];
+    this.selectMonthSecondName = this.monthNames[this.selectMonthSecond];
+    this.currentMonthName = this.monthNames[today.getMonth()+1];
+
+    console.log(this.currentMonthName + "--" + this.selectMonthFirstName + "--" + this.selectMonthSecondName);
 
 
     this.sharedService.nextMessage("amount");
@@ -123,6 +140,14 @@ export class BillComparisonComponent implements OnInit {
     //this.model = this.calendar.getToday();
     this.datePickerStatus = false;
     console.log(this.model);
+  }
+  onOpenCalendar(container) {
+    container.monthSelectHandler = (event: any): void => {
+      container._store.dispatch(container._actions.select(event.date));
+      console.log(this.modelDateThird);
+
+    };
+    container.setViewMode('month');
   }
 
 }

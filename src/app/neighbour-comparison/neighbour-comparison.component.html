@@ -33,15 +33,15 @@
         <span class="selector">Kilowatts</span>
     </div> -->
     <div class="status-indicator">
-        <div class="status active">
+        <div class="status" [ngClass]="{'active': amountValue < 120}">
             <div class="figure figure-great"></div>
             <h4>Great</h4>
         </div>
-        <div class="status">
+        <div class="status" [ngClass]="{'active': amountValue > 120 && amountValue < 150}">
             <div class="figure figure-good"></div>
             <h4>Good</h4>
         </div>
-        <div class="status">
+        <div class="status" [ngClass]="{'active': amountValue > 150}">
             <div class="figure figure-negative"></div>
             <h4>Using more than average</h4>
         </div>
