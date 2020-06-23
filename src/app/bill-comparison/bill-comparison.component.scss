@@ -1,56 +1,123 @@
 @import '../../scss/ecs-master';
-.point {
-    stroke: orange;
-    stroke-width: 1;
-}
-
-.month-selector {
-    width: $full;
-    background-color: $primary-dark-color;
-    @include flexbox();
-    @include flex-direction(row);
-    @include justify-content(space-between);
-    @include flex-wrap(wrap);
-    margin-top: $default-margin;
-    padding: $default-padding $null;
-    h2 {
-        @include flex(1 0 $full);
-        width: $full;
-        @include ecs-typo($primary-font-regular, bold, 16px, 18px, $white);
-        text-align: center;
-        margin: $default-margin $null;
-    }
-    .month-box {
-        background-color: $primary-color;
-        @include border-radius($default-unit*3);
-        @include flex(0 0 calc(#{$full/2} - 40px));
-        @include flexbox();
-        @include flex-direction(row);
-        @include justify-content(space-between);
-        @include flex-wrap(wrap);
-        padding: $default-padding;
-        margin: $default-margin $default-margin*2;
+// .point {
+//     stroke: orange;
+//     stroke-width: 1;
+// }
+::ng-deep {
+    .bill-comparison-data {
         h3 {
-            @include ecs-typo($primary-font-regular, bold, 12px, 18px, $white);
-            @include flex(0 0 calc(#{$full} - 50px));
-            padding: $default-padding $null;
+            @include ecs-typo($primary-font-regular, 700, 16px, 20px, $primary-dark-color);
+            text-align: center;
         }
-        .edit-month {
-            // @include fill-cta($nutral-light-color, rgba($white, .5));
-            padding: $default-padding/3 $default-padding;
-            border: none;
-            background-color: transparent;
-            color: $white;
-            font-size: $default-unit*7;
+        .bill-comparison-chart {
+            margin: $null auto;
+            max-width: $default-unit*320;
+            @include device(lg) {
+                margin-top: $default-margin*3;
+            }
+            ngx-charts-bar-vertical {
+                width: $full;
+                margin: $null auto;
+                @include flexbox();
+                @include flex-direction(column);
+                @include justify-content(center);
+                @include flex-wrap(wrap);
+                ngx-charts-chart {
+                    .ngx-charts-outer {
+                        margin: $null auto;
+                        display: flex;
+                    }
+                    .ngx-charts {
+                        text {
+                            @include ecs-typo($primary-font-regular, 200, 24px, 37px, $primary-dark-color);
+                            text-transform: uppercase;
+                            font-size: 16px !important;
+                        }
+                    }
+                }
+            }
         }
-        .month-amount {
+    }
+    .month-selector {
+        width: $full;
+        background-color: $primary-dark-color;
+        margin-top: $default-margin;
+        padding: $default-padding $null;
+        .center-conatainer {
+            @include flexbox();
+            @include flex-direction(row);
+            @include justify-content(space-around);
+            @include flex-wrap(wrap);
+            margin: $null auto;
+            max-width: $default-unit*320;
+        }
+        h2 {
+            @include flex(1 0 $full);
+            width: $full;
             @include ecs-typo($primary-font-regular, bold, 16px, 18px, $white);
-            text-align: left;
-            @include flex(0 0 $full);
-            padding: $default-padding $null;
+            text-align: center;
+            margin: $default-margin $null;
         }
-        &.current-month {
-            @include horizontal-gradient($primary-color, $secondary-color);
+        .month-box {
+            background-color: $primary-color;
+            @include border-radius($default-unit*3);
+            @include flex(0 0 calc(#{$full/2} - 40px));
+            @include flexbox();
+            @include flex-direction(row);
+            @include justify-content(space-between);
+            @include flex-wrap(wrap);
+            padding: $default-padding;
+            margin: $default-margin $default-margin*2;
+            h3 {
+                @include ecs-typo($primary-font-regular, bold, 12px, 18px, $white);
+                @include flex(0 0 calc(#{$full} - 50px));
+                padding: $default-padding $null;
+            }
+            .edit-month {
+                // @include fill-cta($nutral-light-color, rgba($white, .5));
+                padding: $default-padding/3 $default-padding;
+                border: none;
+                background-color: transparent;
+                color: $white;
+                font-size: $default-unit*7;
+            }
+            .month-amount {
+                @include ecs-typo($primary-font-regular, bold, 16px, 18px, $white);
+                text-align: left;
+                @include flex(0 0 $full);
+                padding: $default-padding $null;
+            }
+            &.current-month {
+                @include horizontal-gradient($primary-color, $secondary-color);
+            }
+        }
+    }
+    .ngx-charts-tooltip-content {
+        &.type-tooltip {
+            background-color: $primary-dark-color!important;
+            border: $default-unit solid $primary-dark-color;
+            @include ecs-typo($primary-font-regular, bold, 16px, 18px, $primary-dark-color);
+            @include border-radius($default-padding);
+            // margin-left: -4px;
+            color: $white !important;
+            // position: relative;
+            &::after {
+                content: '';
+                width: $default-unit*4;
+                height: $default-unit*4;
+                background-color: $primary-dark-color;
+                @include h-center();
+                @include rotate(45deg);
+                margin-left: -4px;
+                // border: 7px solid $primary-dark-color;
+                top: calc(#{$full} - 2px);
+            }
+            .tooltip-caret {
+                display: none !important;
+            }
+            .ecs-tooltip {
+                color: $white !important;
+            }
         }
     }
 }

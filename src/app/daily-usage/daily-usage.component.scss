@@ -97,12 +97,16 @@
 .hourly-usage {
     width: $full;
     background-color: $primary-dark-color;
-    @include flexbox();
-    @include flex-direction(row);
-    @include justify-content(space-around);
-    @include flex-wrap(wrap);
     margin-top: $default-margin;
     padding: $default-padding $null;
+    .center-conatainer {
+        @include flexbox();
+        @include flex-direction(row);
+        @include justify-content(space-around);
+        @include flex-wrap(wrap);
+        margin: $null auto;
+        max-width: $default-unit*320;
+    }
     h2 {
         @include flex(1 0 $full);
         width: $full;
