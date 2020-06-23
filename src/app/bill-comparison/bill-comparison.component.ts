@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ChartOptions, ChartType, ChartDataSets } from 'chart.js';
 import { Label } from 'ng2-charts';
-import {NgbDateStruct, NgbCalendar} from '@ng-bootstrap/ng-bootstrap';
-import {CommonAppService} from '../services/common-app.service';
+import { NgbDateStruct, NgbCalendar } from '@ng-bootstrap/ng-bootstrap';
+import { CommonAppService } from '../services/common-app.service';
 
 @Component({
   selector: 'app-bill-comparison',
@@ -14,15 +14,15 @@ export class BillComparisonComponent implements OnInit {
   kilowats: boolean = false;
   amountValue: number;
   kilowatsValue: number;
-  view: any[] = [200, 300];
+  view: any[] = [280, 240];
   multiAmount: any[];
   multikwh: any[];
-  colorScheme:any={domain:Array};
-  datePickerStatus:boolean=false;
+  colorScheme: any = { domain: Array };
+  datePickerStatus: boolean = false;
   model: NgbDateStruct;
-  date: {year: number, month: number};
+  date: { year: number, month: number };
 
-//Delete
+  //Delete
   public barChartOptions: ChartOptions = {
     responsive: true,
 
@@ -31,39 +31,39 @@ export class BillComparisonComponent implements OnInit {
   public barChartType: ChartType = 'bar';
   public barChartLegend = true;
   public barChartPlugins = [];
-  public barChartData: ChartDataSets[] = [{  
-         "label":"My First Dataset",
-         "data":Array<any>(),
-         "fill":false,
-         "backgroundColor":Array<any>(),
-         "borderWidth":1,
-        "barThickness": 6,
-      }
+  public barChartData: ChartDataSets[] = [{
+    "label": "My First Dataset",
+    "data": Array<any>(),
+    "fill": false,
+    "backgroundColor": Array<any>(),
+    "borderWidth": 1,
+    "barThickness": 6,
+  }
   ];
   //Delete
 
-  constructor(private calendar: NgbCalendar,private sharedService: CommonAppService) { }
+  constructor(private calendar: NgbCalendar, private sharedService: CommonAppService) { }
 
   ngOnInit(): void {
     //Delete
-    let arr:any[];
-    let backgroundColors:any[];
-    backgroundColors=[  
+    let arr: any[];
+    let backgroundColors: any[];
+    backgroundColors = [
       "red",
       "green",
       "rgba(255, 205, 86, 0.2)"
     ];
-    arr=[10,15,25];
+    arr = [10, 15, 25];
     this.barChartData.push({
-      data:arr,
-      backgroundColor:backgroundColors
+      data: arr,
+      backgroundColor: backgroundColors
     })
 
     //Delete
 
-    
+
     this.sharedService.nextMessage("amount");
-    let colors:any[];
+    let colors: any[];
     this.amountValue = 128;
     this.kilowatsValue = 185;
     var multiAmount = [
@@ -80,19 +80,19 @@ export class BillComparisonComponent implements OnInit {
         "value": 13
       }
     ];
-    colors=[];
-    multiAmount.forEach((element)=>{
+    colors = [];
+    multiAmount.forEach((element) => {
       console.log(element.value);
-      if(element.value > 18){
+      if (element.value > 18) {
         colors.push("orange");
-      }else{
+      } else {
         colors.push("blue");
       }
     })
     this.colorScheme.domain = colors;
     Object.assign(this, { multiAmount });
   }
-    handleSelected($event) {
+  handleSelected($event) {
     if ($event.target.checked === true) {
       this.amount = false;
       this.kilowats = true;
@@ -116,7 +116,7 @@ export class BillComparisonComponent implements OnInit {
       return this.kwhTickFormatting(value);
     }
   }
-  getDate(){
+  getDate() {
     this.datePickerStatus = true;
   }
   selectToday() {
@@ -124,5 +124,5 @@ export class BillComparisonComponent implements OnInit {
     this.datePickerStatus = false;
     console.log(this.model);
   }
-  
+
 }

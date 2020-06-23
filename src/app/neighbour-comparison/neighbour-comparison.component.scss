@@ -1,0 +1,96 @@
+@import '../../scss/ecs-master';
+::ng-deep {
+    .neighbourhood-data {
+        h3 {
+            @include ecs-typo($primary-font-regular, 700, 16px, 20px, $primary-dark-color);
+            text-align: center;
+        }
+        .neighbourhood-chart {
+            .chartjs-render-monitor {
+                margin: $default-margin*2 $null;
+            }
+            ngx-charts-bar-horizontal {
+                width: $full;
+                margin: $null auto;
+                @include flexbox();
+                @include flex-direction(column);
+                @include justify-content(center);
+                @include flex-wrap(wrap);
+                ngx-charts-chart {
+                    .ngx-charts-outer {
+                        margin: $null auto;
+                        display: flex;
+                    }
+                    .ngx-charts {
+                        text {
+                            @include ecs-typo($primary-font-regular, 200, 24px, 37px, $primary-dark-color);
+                            text-transform: uppercase;
+                            font-size: 16px !important;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .status-indicator {
+        @include flexbox();
+        @include flex(1 0 100%);
+        @include flex-direction(row);
+        @include align-items(center);
+        @include justify-content(space-between);
+        width: calc(#{$full} - #{$default-unit*20});
+        @include device(lg) {
+            max-width: $default-unit*480;
+            margin: $full/40 auto;
+        }
+        .status {
+            @include flex(0 0 $full/3);
+            .figure {
+                width: $default-unit*20;
+                height: $default-unit*20;
+                display: table;
+                background-repeat: no-repeat;
+                background-size: contain;
+                margin: $default-margin auto;
+            }
+            .figure-great {
+                background-image: url(../../assets/svg/great.svg);
+            }
+            .figure-good {
+                background-image: url(../../assets/svg/good.svg);
+            }
+            .figure-negative {
+                background-image: url(../../assets/svg/negative.svg);
+            }
+            h4 {
+                @include ecs-typo($primary-font-regular, bold, 12px, 18px, rgba( $primary-dark-color, .5));
+                text-align: center;
+            }
+            &.active {
+                .figure-great {
+                    background-image: url(../../assets/svg/great-active.svg);
+                }
+                .figure-good {
+                    background-image: url(../../assets/svg/good-active.svg);
+                }
+                .figure-negative {
+                    background-image: url(../../assets/svg/negative-active.svg);
+                }
+                h4 {
+                    @include ecs-typo($primary-font-regular, bold, 12px, 18px, rgba( $primary-color, 1));
+                    text-align: center;
+                    position: relative;
+                    &::after {
+                        content: '';
+                        display: table;
+                        width: $full/5;
+                        height: $default-unit*2.5;
+                        background-color: $primary-color;
+                        @include h-center();
+                        top: $full + 10;
+                    }
+                }
+            }
+        }
+    }
+}

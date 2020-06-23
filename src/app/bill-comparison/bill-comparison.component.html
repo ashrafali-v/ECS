@@ -1,21 +1,20 @@
 <div class="ecs-content-box">
-    <div class="daily-usage-data" style="width: 960px;">
+    <div class="bill-comparison-data">
         <h3>Bill Comparison</h3>
         <!-- <div style="display: block;">
             <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions"
             [plugins]="barChartPlugins" [legend]="barChartLegend" [chartType]="barChartType">
         </canvas>
         </div> -->
-        <div class="projected-bill-amount dark" *ngIf="amount">
-            <ngx-charts-bar-vertical [view]="view" [roundDomains]=true [xAxis]="true" [rotateXAxisTicks]=false [scheme]="colorScheme" [showDataLabel]="true" [yAxisTickFormatting]="currencyTickFormatting" [results]="multiAmount" [noBarWhenZero]=true [barPadding]=65
-                [roundEdges]=true>
+        <div class="bill-comparison-chart" *ngIf="amount">
+            <ngx-charts-bar-vertical [view]="view" [roundDomains]=true [xAxis]="true" [rotateXAxisTicks]=false [scheme]="colorScheme" [yAxisTickFormatting]="currencyTickFormatting" [results]="multiAmount" [noBarWhenZero]=true [barPadding]=100 [roundEdges]=true>
                 <ng-template #tooltipTemplate let-model="model">
                     <div class="ecs-tooltip" style="color: white">${{model.value | json}}</div>
                 </ng-template>
             </ngx-charts-bar-vertical>
         </div>
-        <div class=" projected-bill-amount" *ngIf="kilowats">
-            <ngx-charts-bar-vertical [view]="view" [roundDomains]=true [scheme]="colorScheme" [yAxisTickFormatting]="kwhTickFormatting" [results]="multiAmount" [noBarWhenZero]=true [barPadding]=65 [roundEdges]=true>
+        <div class="bill-comparison-chart" *ngIf="kilowats">
+            <ngx-charts-bar-vertical [view]="view" [roundDomains]=true [scheme]="colorScheme" [yAxisTickFormatting]="kwhTickFormatting" [results]="multiAmount" [noBarWhenZero]=true [barPadding]=100 [roundEdges]=true>
             </ngx-charts-bar-vertical>
         </div>
     </div>
@@ -27,43 +26,46 @@
         </label>
         <span class="selector">Kilowatts</span>
     </div>
-    <div class="month-selector">
-        <h2>Select Month</h2>
-        <div class="month-box">
-            <h3>2019 APR</h3>
-            <button class="edit-month" type="button" (click)="getDate()">
+    <div class="month-selector align-item-bottom">
+        <div class="center-conatainer">
+            <h2>Select Month</h2>
+            <div class="month-box">
+                <h3>2019 APR</h3>
+                <button class="edit-month" type="button" (click)="getDate()">
                 <i class="fas fa-edit"></i>
             </button>
-            <ngb-datepicker *ngIf="datePickerStatus" #dp [(ngModel)]="model" (navigate)="date = $event.next" (dateSelect)="selectToday()"></ngb-datepicker>
-            <div class="month-amount">
-                $169.00
+                <ngb-datepicker *ngIf="datePickerStatus" #dp [(ngModel)]="model" (navigate)="date = $event.next" (dateSelect)="selectToday()"></ngb-datepicker>
+                <div class="month-amount">
+                    $169.00
+                </div>
             </div>
-        </div>
-        <div class="month-box">
-            <h3>2019 APR</h3>
-            <button class="edit-month" type="button" (click)="getDate()">
+            <div class="month-box">
+                <h3>2019 APR</h3>
+                <button class="edit-month" type="button" (click)="getDate()">
                 <i class="fas fa-edit"></i>
             </button>
-            <ngb-datepicker *ngIf="datePickerStatus" #dp [(ngModel)]="model" (navigate)="date = $event.next" (dateSelect)="selectToday()"></ngb-datepicker>
-            <div class="month-amount">
-                $169.00
+                <ngb-datepicker *ngIf="datePickerStatus" #dp [(ngModel)]="model" (navigate)="date = $event.next" (dateSelect)="selectToday()"></ngb-datepicker>
+                <div class="month-amount">
+                    $169.00
+                </div>
             </div>
-        </div>
-        <div class="month-box">
-            <h3>2019 APR</h3>
-            <button class="edit-month" type="button" (click)="getDate()">
+            <div class="month-box">
+                <h3>2019 APR</h3>
+                <button class="edit-month" type="button" (click)="getDate()">
                 <i class="fas fa-edit"></i>
             </button>
-            <ngb-datepicker *ngIf="datePickerStatus" #dp [(ngModel)]="model" (navigate)="date = $event.next" (dateSelect)="selectToday()"></ngb-datepicker>
-            <div class="month-amount">
-                $169.00
+                <ngb-datepicker *ngIf="datePickerStatus" #dp [(ngModel)]="model" (navigate)="date = $event.next" (dateSelect)="selectToday()"></ngb-datepicker>
+                <div class="month-amount">
+                    $169.00
+                </div>
+            </div>
+            <div class="month-box current-month">
+                <h3>2019 APR</h3>
+                <div class="month-amount">
+                    $169.00
+                </div>
             </div>
         </div>
-        <div class="month-box current-month">
-            <h3>2019 APR</h3>
-            <div class="month-amount">
-                $169.00
-            </div>
-        </div>
+
     </div>
 </div>
