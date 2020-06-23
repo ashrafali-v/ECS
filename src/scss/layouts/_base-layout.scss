@@ -22,7 +22,7 @@ app-root {
         @include flexbox();
         @include flex(1 0 auto);
         @include flex-direction(column);
-        @include justify-content(center);
+        @include justify-content(space-between);
         @include align-items(center);
         @include device(lg) {
             height: calc(#{$full} - #{$default-unit*40});
@@ -34,6 +34,9 @@ app-root {
                 max-height: inherit;
                 overflow-y: visible;
             }
+        }
+        .align-item-top {
+            @include align-self(flex-start);
         }
         .align-item-bottom {
             @include align-self(flex-end)

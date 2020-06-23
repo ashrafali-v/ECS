@@ -1,5 +1,5 @@
 <div class="ecs-content-box">
-    <div id="tabs" class="ecs-tabs max-hgt-container" #tabs>
+    <div id="tabs" class="ecs-tabs max-hgt-container align-item-top" #tabs>
 
         <ul class="nav nav-pills">
             <li class="nav-item">
@@ -77,42 +77,45 @@
             </div>
 
 
-            <div class="ecs-usage-alert">
-                <div class="progress-data">
-                    <h2>Usage Alert</h2>
-                    <div class="edit-values">
-                        <div *ngIf="!editStatus">
-                            <!-- <span>{{amountAlertValue | currency}}</span> -->
-                            <button (click)="editLimitValue()">Edit</button>
-                        </div>
-                        <div *ngIf="editStatus">
-                            <input type="text" [(ngModel)]="amountAlertValue" value={{amountAlertValue}}>
-                            <button (click)="resetValue()">Set value</button>
-                        </div>
-                    </div>
+
+        </div>
+
+
+
+    </div>
+    <div class="ecs-usage-alert align-item-bottom">
+        <div class="progress-data">
+            <h2>Usage Alert</h2>
+            <div class="edit-values">
+                <div *ngIf="!editStatus">
+                    <!-- <span>{{amountAlertValue | currency}}</span> -->
+                    <button (click)="editLimitValue()">Edit</button>
                 </div>
-                <div class="progress-chart">
-                    <!-- <progress-bar [progress]="percent" [color-degraded]="{'0': '#12e252',  '15': '#f3d504f2', '25': '#f77609'}">
-                    </progress-bar> -->
-
-                    <div class="progress-bar">
-                        <div class="progress-outer">
-                            <div class="progress-inner" [style.width.%]=percentProgressBarAmount style="background-image: linear-gradient(to right, rgb(81, 172, 45) , rgb(233, 153, 49));">
-                                {{percentProgressBarAmount}}%
-                            </div>
-                            <div class="exceed-bar" [style.right.%]=percentProgressBarAmountAlert><span class="alert-amount">{{ amountAlertValue | currency : 'USD' : 'symbol' : '1.0-0' }}</span></div>
-                        </div>
-                    </div>
-
-                    <div class="usage-month">
-                        <!-- <span>{{month}} 1</span> -->
-                        <!-- <span>{{daysInCurrentMonth}}</span> -->
-                        <span>Day {{day}}</span>
-                    </div>
+                <div *ngIf="editStatus">
+                    <input type="text" [(ngModel)]="amountAlertValue" value={{amountAlertValue}}>
+                    <button (click)="resetValue()">Set value</button>
                 </div>
             </div>
         </div>
+        <div class="progress-chart">
+            <!-- <progress-bar [progress]="percent" [color-degraded]="{'0': '#12e252',  '15': '#f3d504f2', '25': '#f77609'}">
+            </progress-bar> -->
 
+            <div class="progress-bar">
+                <div class="progress-outer">
+                    <div class="progress-inner" [style.width.%]=percentProgressBarAmount style="background-image: linear-gradient(to right, rgb(81, 172, 45) , rgb(233, 153, 49));">
+                        {{percentProgressBarAmount}}%
+                    </div>
+                    <div class="exceed-bar" [style.right.%]=percentProgressBarAmountAlert><span class="alert-amount">{{ amountAlertValue | currency : 'USD' : 'symbol' : '1.0-0' }}</span></div>
+                </div>
+            </div>
+
+            <div class="usage-month">
+                <!-- <span>{{month}} 1</span> -->
+                <!-- <span>{{daysInCurrentMonth}}</span> -->
+                <span>Day {{day}}</span>
+            </div>
+        </div>
     </div>
 
 </div>

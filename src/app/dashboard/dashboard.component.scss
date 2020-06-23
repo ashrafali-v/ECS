@@ -112,3 +112,113 @@
     @include ecs-typo($primary-font-regular, 200, 12px, 37px, $white);
     background-color: $primary-dark-color;
 }
+
+.ecs-usage-alert {
+    background-color: $secondary-color;
+    @include border-radius($default-unit*5);
+    margin: $default-margin*2 $default-margin;
+    width: calc(#{ $full} - 30px);
+    @include device(lg) {
+        // max-height: inherit;
+        // overflow-y: visible;
+        margin-bottom: $null;
+    }
+    .progress-data {
+        @include flexbox();
+        @include flex(1 0 auto);
+        @include flex-direction(row);
+        @include justify-content(space-between);
+        padding: $default-padding/2 $default-padding*1.5;
+        h2 {
+            @include ecs-typo($primary-font-regular, 700, 16px, 37px, $white);
+        }
+        .edit-values {
+            span {
+                @include ecs-typo($primary-font-regular, 700, 18px, 22px, rgba($white, 1));
+                margin-right: $default-margin*2;
+                padding: $default-unit + 1 $null;
+                width: $default-unit*50;
+            }
+            button {
+                background-color: $transition-bg;
+                border: none;
+                @include ecs-typo($primary-font-regular, 100, 12px, 37px, rgba($white, .5));
+                width: $default-unit*30;
+            }
+            input {
+                @include ecs-typo($primary-font-regular, 700, 18px, 27px, rgba($white, 1));
+                text-align: center;
+                background-color: $transition-bg;
+                border: none;
+                border-bottom: thin solid $white;
+                width: $default-unit*50;
+                margin-right: $default-margin*2;
+            }
+        }
+    }
+    .progress-chart {
+        background-color: $primary-dark-color;
+        padding: $default-padding;
+        @include border-radius($default-unit*5);
+        // height: $default-unit*50;
+        @include flexbox();
+        @include flex(1 0 auto);
+        @include flex-direction(column);
+        @include justify-content(space-between);
+        @include align-items(center);
+        .progress-bar {
+            width: calc(#{ $full} - 30px);
+            position: relative;
+            background-color: $transition-bg;
+            margin-top: $default-margin*3;
+            overflow: visible;
+            &::before {
+                content: '';
+                @include v-center();
+                height: $default-unit/2;
+                width: $full;
+                left: $null;
+                background-color: rgba($white, .6);
+                z-index: 9;
+            }
+            .progress-outer {
+                z-index: 99;
+                .progress-inner {
+                    @include ecs-typo($primary-font-regular, 100, 12px, 14px, rgba($white, 1));
+                    text-align: right;
+                    padding: $default-padding/2;
+                    padding-right: $default-padding;
+                    @include border-radius($default-padding*2);
+                }
+                .exceed-bar {
+                    @include v-center();
+                    width: $default-unit;
+                    height: $full;
+                    right: $null;
+                    background-color: $secondary-color;
+                    // position: relative;
+                    .alert-amount {
+                        @include h-center();
+                        @include ecs-typo($primary-font-regular, 700, 14px, 22px, rgba($white, 1));
+                        bottom: $full + 5;
+                        border: 2px solid $secondary-color;
+                        @include border-radius($default-unit*2);
+                        padding: $null $default-padding/3;
+                    }
+                }
+            }
+        }
+        .usage-month {
+            @include flexbox();
+            @include flex(1 0 auto);
+            @include flex-direction(row);
+            @include justify-content(center);
+            width: calc(#{ $full} - 30px);
+            span {
+                @include ecs-typo($primary-font-regular, 400, 14px, 20px, rgba($white, 1));
+                text-transform: uppercase;
+                margin-top: $default-margin/2;
+            }
+        }
+    }
+}
