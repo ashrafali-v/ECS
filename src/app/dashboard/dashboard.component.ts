@@ -1,5 +1,5 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
-import {CommonAppService} from '../services/common-app.service';
+import { CommonAppService } from '../services/common-app.service';
 import { single } from '../data';
 //import { multiAmount } from '../../data';
 import { multikwh } from '../data';
@@ -57,16 +57,16 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   monthNames = ["Jan", "Feb", "March", "April", "May", "June",
     "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
   ];
-  constructor(private toastr: ToastrService,private sharedService: CommonAppService) {
+  constructor(private toastr: ToastrService, private sharedService: CommonAppService) {
   }
   @HostListener('window:resize', ['$event'])
   getScreenSize(event?) {
     this.screenHeight = window.innerHeight;
     this.screenWidth = window.innerWidth;
     if (this.screenWidth > 993) {
-      this.view = [560,350];
+      this.view = [560, 350];
     } else {
-      this.view = [420,264];
+      this.view = [360, 264];
     }
   }
   ngOnInit() {

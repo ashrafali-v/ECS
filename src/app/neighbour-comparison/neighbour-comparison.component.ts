@@ -69,13 +69,13 @@ export class NeighbourComparisonComponent implements OnInit {
   };
   public lineChartColors: Color[] = [
     {
-      borderColor: '#fd7e14'
+      borderColor: '#F16F3F'
     },
     {
-      borderColor: 'black'
+      borderColor: '#230C57'
     },
     {
-      borderColor: 'blue'
+      borderColor: '#7033FF'
     }
   ];
   public lineChartLegend = true;
@@ -86,7 +86,7 @@ export class NeighbourComparisonComponent implements OnInit {
   /*-----------------Bar chart config-----------------------------*/
 
   colorScheme = {
-    domain: ['#fd7e14', 'black', 'blue', 'blue']
+    domain: ['#F16F3F', '#230C57', '#7033FF', '#7033FF']
   };
 
   /*-----------------Bar chart config-----------------------------*/

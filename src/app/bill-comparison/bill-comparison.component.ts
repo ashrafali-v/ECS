@@ -36,11 +36,11 @@ export class BillComparisonComponent implements OnInit {
   selectMonthFirstName: any;
   selectMonthSecondName: any;
   currentMonthName: any;
-  monthNames = ["dummy","Jan", "Feb", "March", "April", "May", "June",
+  monthNames = ["dummy", "Jan", "Feb", "March", "April", "May", "June",
     "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
   ];
 
-  constructor(private calendar: NgbCalendar, private sharedService: CommonAppService) { 
+  constructor(private calendar: NgbCalendar, private sharedService: CommonAppService) {
     this.minDate = new Date();
     this.maxDate = new Date();
     this.minDate.setDate(this.minDate.getDate() - 365);
@@ -74,7 +74,7 @@ export class BillComparisonComponent implements OnInit {
 
     this.selectMonthFirstName = this.monthNames[this.selectMonthFirst];
     this.selectMonthSecondName = this.monthNames[this.selectMonthSecond];
-    this.currentMonthName = this.monthNames[today.getMonth()+1];
+    this.currentMonthName = this.monthNames[today.getMonth() + 1];
 
     console.log(this.currentMonthName + "--" + this.selectMonthFirstName + "--" + this.selectMonthSecondName);
 
@@ -101,9 +101,9 @@ export class BillComparisonComponent implements OnInit {
     multiAmount.forEach((element) => {
       console.log(element.value);
       if (element.value > 18) {
-        colors.push("orange");
+        colors.push("#F16F3F");
       } else {
-        colors.push("blue");
+        colors.push("#7033FF");
       }
     })
     this.colorScheme.domain = colors;

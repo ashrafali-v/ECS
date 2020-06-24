@@ -13,6 +13,13 @@
     transform: $transforms;
 }
 
+@mixin transformImp($transforms) {
+    -webkit-transform: $transforms !important;
+    -moz-transform: $transforms !important;
+    -ms-transform: $transforms !important;
+    transform: $transforms !important;
+}
+
 // Rotate
 @mixin rotate ($deg) {
     @include transform(rotate(#{$deg}deg));
@@ -36,6 +43,10 @@
 // Translate
 @mixin translate ($x, $y) {
     @include transform(translate($x, $y));
+}
+
+@mixin translateImp ($x, $y) {
+    @include transformImp(translate($x, $y));
 }
 
 @mixin translateX ($x) {

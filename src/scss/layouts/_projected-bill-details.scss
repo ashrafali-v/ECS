@@ -1,12 +1,15 @@
 .projected-biil-details {
     float: right;
-    max-width: $full/2;
+    max-width: $full/1.5;
     @include flexbox();
-    @include flex(0 0 $full/2);
+    @include flex(0 0 $full/1.5);
     @include flex-direction(row);
     @include justify-content(flex-end);
     margin-left: auto;
     padding: $default-padding*1.5 $null;
+    @include device(lg) {
+        @include flex(0 0 $full/2);
+    }
     &.ecs-kilowatt-active {
         .ecs-amount {
             @include order(2);

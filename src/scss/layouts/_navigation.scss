@@ -22,12 +22,13 @@
             }
             li {
                 a {
-                    padding: $default-padding*2 $default-padding*4;
+                    padding: $default-padding*2 $default-padding*3;
                     display: block;
                     opacity: .3;
                     font-size: $null;
                     @include device(lg) {
                         @include ecs-typo($primary-font-regular, normal, 18px, 37px, $white);
+                        padding: $default-padding*2;
                         span {
                             width: $default-unit*30;
                             display: inline-block;
