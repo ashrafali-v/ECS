@@ -11,6 +11,7 @@ app-root {
     .section-container {
         @include flex(0 0 calc(#{$full} - #{$full/4}));
         display: table;
+        width: calc(#{$full} - #{$full/4});
         // height: $fullVh;
         height: calc(#{$fullVh} - #{$default-unit*40});
         overflow-y: hidden;
