@@ -3,7 +3,7 @@
         <h3>Neighbourhood Comparison</h3>
         <div class="neighbourhood-chart day-usage-bar" *ngIf="amount">
             <div>
-                <canvas baseChart width="340" height="230" [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptions" [colors]="lineChartColors" [legend]="lineChartLegend" [chartType]="lineChartType" [plugins]="lineChartPlugins">
+                <canvas baseChart width="340" height="230" [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptionsAmount" [colors]="lineChartColors" [legend]="lineChartLegend" [chartType]="lineChartType" [plugins]="lineChartPlugins">
                 </canvas>
             </div>
             <ngx-charts-bar-horizontal [view]="view" [roundDomains]=true [scheme]="colorScheme" [results]="multiAmount" [gradient]="false" [noBarWhenZero]=true [xAxis]="false" [yAxis]="true" [barPadding]=45 [roundEdges]=true>
@@ -14,12 +14,12 @@
         </div>
         <div class="neighbourhood-chart day-usage-bar" *ngIf="kilowats">
             <div>
-                <canvas baseChart width="340" height="230" [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptions" [colors]="lineChartColors" [legend]="lineChartLegend" [chartType]="lineChartType" [plugins]="lineChartPlugins">
+                <canvas baseChart width="340" height="230" [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptionsKwh" [colors]="lineChartColors" [legend]="lineChartLegend" [chartType]="lineChartType" [plugins]="lineChartPlugins">
                 </canvas>
             </div>
             <ngx-charts-bar-horizontal [view]="view" [roundDomains]=true [scheme]="colorScheme" [results]="multiKwh" [gradient]="false" [noBarWhenZero]=true [xAxis]="false" [yAxis]="true" [barPadding]=45 [roundEdges]=true>
                 <ng-template #tooltipTemplate let-model="model">
-                    <p class="ecs-tooltip">{{model.name}} ${{model.value | json}}</p>
+                    <p class="ecs-tooltip">{{model.name}} {{model.value | json}}kWh</p>
                 </ng-template>
             </ngx-charts-bar-horizontal>
         </div>
