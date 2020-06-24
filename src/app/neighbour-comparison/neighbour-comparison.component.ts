@@ -20,7 +20,7 @@ export class NeighbourComparisonComponent implements OnInit {
   /*-----------------Line chart config-----------------------------*/
   public lineChartData: ChartDataSets[];
   public lineChartLabels: Label[];
-  public lineChartOptions: ChartOptions = {
+  public lineChartOptionsAmount: ChartOptions = {
     responsive: true,
     legend: {
       position: 'bottom',
@@ -50,6 +50,53 @@ export class NeighbourComparisonComponent implements OnInit {
           // Include a dollar sign in the ticks
           callback: function (value, index, values) {
             return '$' + value;
+          },
+          fontSize: 16,
+          fontFamily: 'Karla',
+        },
+        gridLines: {
+          display: true,
+          borderDash: [8, 4]
+        }
+      }],
+      xAxes: [{
+        display: false, //this will remove all the x-axis grid lines
+        gridLines: {
+          drawBorder: false,
+        }
+      }]
+    }
+  };
+  public lineChartOptionsKwh: ChartOptions = {
+    responsive: true,
+    legend: {
+      position: 'bottom',
+      display: false,
+      labels: {
+        fontSize: 12,
+        fontFamily: 'Karla',
+        //usePointStyle: true,
+        boxWidth: 30,
+
+      }
+    },
+    animation: {
+      duration: 2000
+    },
+    layout: {
+      padding: {
+        left: 0,
+        right: 0,
+        top: 0,
+        bottom: 0
+      }
+    },
+    scales: {
+      yAxes: [{
+        ticks: {
+          // Include a dollar sign in the ticks
+          callback: function (value, index, values) {
+            return value+'kWh';
           },
           fontSize: 16,
           fontFamily: 'Karla',

@@ -17,7 +17,8 @@ export class BillComparisonComponent implements OnInit {
   view: any[] = [280, 240];
   multiAmount: any[];
   multikwh: any[];
-  colorScheme: any = { domain: Array };
+  colorSchemeAmount: any = { domain: Array };
+  colorSchemeKwh: any = { domain: Array };
   datePickerStatus: boolean = false;
   model: NgbDateStruct;
   modelDateFirst = '';
@@ -80,7 +81,8 @@ export class BillComparisonComponent implements OnInit {
 
 
     this.sharedService.nextMessage("amount");
-    let colors: any[];
+    let colorsAmount: any[];
+    let colorsKwh: any[];
     this.amountValue = 128;
     this.kilowatsValue = 185;
     var multiAmount = [
@@ -90,24 +92,47 @@ export class BillComparisonComponent implements OnInit {
       },
       {
         "name": "2019 March",
-        "value": 20
+        "value": 25
       },
       {
         "name": "2020 APR",
         "value": 13
       }
     ];
-    colors = [];
+    var multikwh = [
+      {
+        "name": "2019 APR",
+        "value": 26
+      },
+      {
+        "name": "2019 March",
+        "value": 30
+      },
+      {
+        "name": "2020 APR",
+        "value": 22
+      }
+    ];
+    colorsAmount = [];
+    colorsKwh =[];
     multiAmount.forEach((element) => {
-      console.log(element.value);
       if (element.value > 18) {
-        colors.push("#F16F3F");
+        colorsAmount.push("#F16F3F");
       } else {
-        colors.push("#7033FF");
+        colorsAmount.push("#7033FF");
       }
     })
-    this.colorScheme.domain = colors;
+    multikwh.forEach((element) => {
+      if (element.value > 25) {
+        colorsKwh.push("#F16F3F");
+      } else {
+        colorsKwh.push("#7033FF");
+      }
+    })
+    this.colorSchemeAmount.domain = colorsAmount;
+    this.colorSchemeKwh.domain = colorsKwh;
     Object.assign(this, { multiAmount });
+    Object.assign(this, { multikwh });
   }
   handleSelected($event) {
     if ($event.target.checked === true) {
