@@ -22,6 +22,11 @@ header {
         img {
             display: inline-block;
         }
+        svg {
+            path {
+                fill: $white;
+            }
+        }
         h1 {
             @include ecs-typo($primary-font-regular, 700, 18px, 37px, $white);
             display: inline-block;
