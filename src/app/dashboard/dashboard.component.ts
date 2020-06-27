@@ -70,6 +70,9 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     }
   }
   ngOnInit() {
+    this.sharedService.getRecentDayUsage().subscribe(data=>{
+      console.log(data);
+    });
     this.sharedService.nextMessage("amount");
     var multiAmount = [
       {
