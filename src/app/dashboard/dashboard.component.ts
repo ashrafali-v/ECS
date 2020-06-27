@@ -50,7 +50,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   editStatus: boolean = false;
   bestDayAverageAmount: number;
   bestDayAveragekwh: number;
-
+  screeDesktopStatus: boolean = true;
   colorScheme = {
     domain: ['#f8bc8a', '#ab8ef0', '#f8bc8a', '#ab8ef0', '#f8bc8a']
   };
@@ -65,12 +65,14 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     this.screenWidth = window.innerWidth;
     if (this.screenWidth > 993) {
       this.view = [560, 350];
+      this.screeDesktopStatus = true;
     } else {
       this.view = [360, 264];
+      this.screeDesktopStatus = false;
     }
   }
   ngOnInit() {
-    this.sharedService.getRecentDayUsage().subscribe(data=>{
+    this.sharedService.getRecentDayUsage().subscribe(data => {
       console.log(data);
     });
     this.sharedService.nextMessage("amount");

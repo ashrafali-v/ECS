@@ -1,4 +1,7 @@
 .ecs-tabs {
+    @include device(lg) {
+        width: calc(#{ $full} - 30px);
+    }
     .nav {
         @include flexbox();
         @include flex(1 0 auto);

@@ -7,14 +7,18 @@ app-root {
         @include flex-direction(row);
         @include justify-content(flex-start);
         height: $full;
+        width: $full;
     }
     .section-container {
         @include flex(0 0 calc(#{$full} - #{$full/4}));
         display: table;
-        width: calc(#{$full} - #{$full/4});
+        width: calc(#{$full});
         // height: $fullVh;
         height: calc(#{$fullVh} - #{$default-unit*40});
         overflow-y: hidden;
+        @include device(lg) {
+            width: calc(#{$full} - #{$full/4});
+        }
         app-header {
             @include flex(0 0 $full);
             height: auto;

@@ -7,7 +7,7 @@
     @include device(lg) {
         position: initial;
         width: $full/4;
-        background-color: $primary-dark-color;
+        background-color: darken($primary-dark-color, 5%);
         // height: $full;
     }
     nav {
@@ -27,8 +27,10 @@
                     opacity: .3;
                     font-size: $null;
                     @include device(lg) {
-                        @include ecs-typo($primary-font-regular, normal, 18px, 37px, $white);
-                        padding: $default-padding*2;
+                        @include ecs-typo($primary-font-regular, normal, 18px, 24px, $white);
+                        padding: $default-padding*2 $null;
+                        padding-left: $default-padding*2;
+                        position: relative;
                         span {
                             width: $default-unit*30;
                             display: inline-block;
@@ -39,6 +41,10 @@
                                 path {
                                     fill: $white;
                                 }
+                            }
+                            +span {
+                                width: inherit;
+                                margin-left: $default-margin;
                             }
                         }
                     }
@@ -52,6 +58,20 @@
                 &.active-page {
                     a {
                         opacity: 1;
+                        @include device(lg) {
+                            background-color: darken($primary-dark-color, 10%);
+                            &::before {
+                                content: '';
+                                width: $default-unit*10;
+                                height: $default-unit*10;
+                                background-color: darken($primary-dark-color, 10%);
+                                display: table;
+                                @include v-center();
+                                top: 40%;
+                                left: -$default-padding;
+                                @include rotate(45deg);
+                            }
+                        }
                     }
                 }
             }

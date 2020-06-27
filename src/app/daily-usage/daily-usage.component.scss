@@ -51,6 +51,7 @@
     .current-day {
         @include ecs-typo($primary-font-regular, 700, 16px, 20px, $primary-dark-color);
         text-align: center;
+        text-transform: uppercase;
     }
     .usage-action {
         @include flexbox();
@@ -130,7 +131,7 @@
         ul {
             li {
                 position: relative;
-                padding: $default-padding/1.2 $default-padding/3;
+                padding: $default-padding*1.2 $default-padding/3;
                 margin: $null;
                 @include device(lg) {
                     padding: $default-padding/1.2 $default-padding;
@@ -138,7 +139,10 @@
                 // width: $full/2;
                 >span {
                     @include v-center();
-                    @include ecs-typo($primary-font-regular, 200, 12px, 18px, $primary-color);
+                    @include ecs-typo($primary-font-regular, 600, 12px, 18px, $primary-color);
+                    padding: $null $default-padding/2.5;
+                    background-color: rgba($white, .1);
+                    @include border-radius($default-padding);
                     &.hour-amount {
                         right: $full;
                     }
@@ -160,7 +164,7 @@
                 }
                 &.hour-finished {
                     >span {
-                        @include ecs-typo($primary-font-regular, 200, 12px, 18px, $primary-color);
+                        @include ecs-typo($primary-font-regular, 400, 12px, 18px, $white);
                     }
                     &::before {
                         background-color: $primary-color;
@@ -168,7 +172,8 @@
                 }
                 &.above-avarage {
                     >span {
-                        @include ecs-typo($primary-font-regular, 200, 12px, 18px, $secondary-color);
+                        @include ecs-typo($primary-font-regular, 600, 12px, 18px, $secondary-color);
+                        background-color: rgba($secondary-color, .2);
                     }
                     &::before {
                         background-color: $secondary-color;
@@ -177,7 +182,7 @@
             }
         }
         h3 {
-            @include ecs-typo($primary-font-regular, bold, 12px, 18px, $primary-color);
+            @include ecs-typo($primary-font-regular, bold, 16px, 18px, rgba($white, 8));
             margin: $default-margin $null;
             text-align: center;
         }

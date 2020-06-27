@@ -6,6 +6,37 @@
             text-align: center;
         }
         .neighbourhood-chart {
+            @include flexbox();
+            @include flex-direction(column);
+            @include justify-content(center);
+            @include flex-wrap(wrap);
+            @include device(lg) {
+                @include flex-direction(column);
+                margin-top: $default-margin*5;
+            }
+            @include device(xl) {
+                @include flex-direction(row);
+                @include flex-wrap(nowrap);
+                margin-top: $default-margin*5;
+            }
+            .neighbourhood-canvas-chart {
+                width: $default-unit*170;
+                @include device(lg) {
+                    width: $default-unit*240;
+                }
+                @include device(xxl) {
+                    width: $default-unit*280;
+                }
+            }
+            .neighbourhood-ngx-chart {
+                width: $default-unit*170;
+                @include device(lg) {
+                    width: $default-unit*240;
+                    @include flexbox();
+                    @include flex-direction(column);
+                    @include justify-content(center);
+                }
+            }
             .chartjs-render-monitor {
                 margin: $default-margin*2 $null;
             }
