@@ -36,7 +36,9 @@ export class BillComparisonComponent implements OnInit {
   month: any;
   selectMonthFirstName: any;
   selectMonthSecondName: any;
+  selectMonthThirdName: any;
   currentMonthName: any;
+  calendarData:any;
   monthNames = ["dummy", "Jan", "Feb", "March", "April", "May", "June",
     "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
   ];
@@ -53,28 +55,39 @@ export class BillComparisonComponent implements OnInit {
     this.year = today.getFullYear();
     this.month = today.getMonth() + 1;
     if (this.month == 1) {
-      this.selectMonthFirst = 11;
-      this.selectMonthSecond = 12;
-      this.selectYearFirst = this.selectYearSecond = this.year - 1;
-    } else if (this.month == 2) {
-      this.selectMonthSecond = this.month - 1;
-      this.selectYearSecond = this.year;
       this.selectMonthFirst = 12;
-      this.selectYearFirst = this.year - 1;
+      this.selectMonthSecond = 11;
+      this.selectMonthThird = 10;
+      this.selectYearFirst = this.selectYearSecond = this.selectYearThird= this.year - 1;
+    } else if (this.month == 2) {
+      this.selectMonthFirst = this.month - 1;
+      this.selectMonthSecond = 12;
+      this.selectMonthThird = 11;
+      this.selectYearFirst = this.year;
+      this.selectYearSecond = this.selectYearThird = this.year - 1;
+    }else if(this.month == 3){
+      this.selectMonthFirst = this.month - 1;
+      this.selectMonthSecond = this.month - 2;
+      this.selectMonthThird = 12;
+      this.selectYearFirst = this.selectYearSecond = this.year;
+      this.selectYearThird = this.year - 1;
     }
     else {
-      this.selectMonthFirst = this.month - 2;
-      this.selectMonthSecond = this.month - 1;
+      this.selectMonthFirst = this.month - 1;
+      this.selectMonthSecond = this.month - 2;
+      this.selectMonthThird = this.month - 3;
       this.selectYearFirst = this.selectYearSecond = this.year;
+      this.selectYearFirst = this.selectYearSecond = this.selectYearThird = this.year;
     }
 
-    var data = [{ "month": this.month, "year": this.year },
+    this.calendarData = [{ "month": this.selectMonthFirst, "year": this.selectYearFirst },
     { "month": this.selectMonthSecond, "year": this.selectYearSecond },
-    { "month": this.selectMonthFirst, "year": this.selectYearFirst }];
-    console.log(data);
+    { "month": this.selectMonthThird, "year": this.selectMonthThird }];
+    console.log(this.calendarData);
 
     this.selectMonthFirstName = this.monthNames[this.selectMonthFirst];
     this.selectMonthSecondName = this.monthNames[this.selectMonthSecond];
+    this.selectMonthThirdName = this.monthNames[this.selectMonthThird];
     this.currentMonthName = this.monthNames[today.getMonth() + 1];
 
     console.log(this.currentMonthName + "--" + this.selectMonthFirstName + "--" + this.selectMonthSecondName);
@@ -166,13 +179,44 @@ export class BillComparisonComponent implements OnInit {
     this.datePickerStatus = false;
     console.log(this.model);
   }
-  onOpenCalendar(container) {
+  onOpenCalendar(container,index) {
     container.monthSelectHandler = (event: any): void => {
       container._store.dispatch(container._actions.select(event.date));
-      console.log(this.modelDateThird);
+      console.log(index);
+      switch(index){
+        case 1:
+          var selectedDate = this.modelDateFirst;
+          var d = new Date(selectedDate);
+          var month = d.getMonth()+1;
+          this.selectYearFirst = d.getFullYear();
+          this.selectMonthFirstName = this.getMonthName(month);
+          var details = { "month": month, "year": this.selectYearFirst }
+          break;
+        case 2:
+          var selectedDate = this.modelDateSecond;
+          var d = new Date(selectedDate);
+          var month = d.getMonth()+1;
+          this.selectYearSecond = d.getFullYear();
+          this.selectMonthSecondName = this.getMonthName(month);
+          var details = { "month": month, "year": this.selectYearSecond }
+          break;
+        case 3:
+          var selectedDate = this.modelDateThird;
+          var d = new Date(selectedDate);
+          var month = d.getMonth()+1;
+          this.selectYearThird = d.getFullYear();
+          this.selectMonthThirdName = this.getMonthName(month);
+          var details = { "month": month, "year": this.selectYearThird }
+          break;
 
+      }
+      console.log(details);
+      
     };
     container.setViewMode('month');
+  }
+  getMonthName(index){
+    return this.monthNames[index];
   }
 
 }
