@@ -1,5 +1,5 @@
 <div class="ecs-content-box">
-    <div id="tabs" class="ecs-tabs" #tabs>
+    <div id="tabs" class="ecs-tabs" #tabs *ngIf="!screeDesktopStatus">
 
         <ul class="nav nav-pills">
             <li class="nav-item">
@@ -67,33 +67,100 @@
                     <h4 class="ecs-avarage">Best day average {{bestDayAveragekwh}}kWh</h4>
                 </div>
             </div>
-            <div class="ecs-toggle-switch">
-                <span class="selector">Amount</span>
-                <label class="switch">
-                    <input type="checkbox" (change)="handleSelected($event)">
-                    <span class="slider"></span>
-                </label>
-                <span class="selector">Kilowatts</span>
-            </div>
-
-
 
         </div>
-
-
-
     </div>
+
+    <div id="tabs" class="ecs-tabs" #tabs *ngIf="screeDesktopStatus">
+
+
+        <div class="desktop-tab-content">
+            <div class="desktop-tab-pane" id="bill">
+                <div class="container projected-bill-amount" *ngIf="amount">
+                    <h3>Projected Bill</h3>
+                    <div class="bill-chart-conatin">
+
+                        <circle-progress [percent]=percent [radius]="80" [outerStrokeWidth]="5" [outerStrokeGradient]="true" [outerStrokeColor]="'#e63333'" [outerStrokeGradientStopColor]="'#5b1494'" [showInnerStroke]="false" [animation]="true" [animationDuration]="900" [responsive]=true
+                            [showZeroOuterStroke]=true></circle-progress>
+                        <div class="pb-default-rules">
+                            <div class="shadow-circle days-30">
+                                <div class="ecs-date month">{{month}}</div>
+                                <!-- <div class="ecs-date date-8">08</div>
+                                <div class="ecs-date date-16">16</div>
+                                <div class="ecs-date date-24">24</div> -->
+                                <div class="chart-progress">{{amountValue | currency}}</div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="container  projected-bill-amount" *ngIf="kilowats">
+
+                    <circle-progress [percent]=percent [radius]="80" [outerStrokeWidth]="5" [outerStrokeGradient]="true" [outerStrokeColor]="'#e63333'" [outerStrokeGradientStopColor]="'#5b1494'" [showInnerStroke]="false" [animation]="true" [animationDuration]="900" [responsive]=true
+                        [showZeroOuterStroke]=true></circle-progress>
+                    <div class="pb-default-rules">
+                        <div class="shadow-circle days-31">
+                            <div class="ecs-date month">{{month}}</div>
+                            <!-- <div class="ecs-date date-8">08</div>
+                            <div class="ecs-date date-16">16</div>
+                            <div class="ecs-date date-24">24</div> -->
+                            <div class="chart-progress">{{kilowatsValue}} kWh</div>
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <!-- <button (click)="switchAction('amount')">AMOUNT</button>
+                <button (click)="switchAction('kilowats')">KILOWATTS</button> -->
+            </div>
+            <div class="desktop-tab-pane" id="usage">
+                <div class="container projected-bill-amount day-usage-bar" *ngIf="amount">
+                    <h3>Recent Day Usage</h3>
+                    <ngx-charts-bar-vertical [view]="view" [scheme]="colorScheme" [roundDomains]=true [results]="multiAmount" [gradient]="gradient" [noBarWhenZero]=true [xAxis]="showXAxis" [yAxis]="showYAxis" [yAxisTickFormatting]="currencyTickFormatting" [barPadding]=35
+                        [roundEdges]=true>
+                        <ng-template #tooltipTemplate let-model="model">
+                            <p class="ecs-tooltip">${{model.value | json}}</p>
+                        </ng-template>
+                    </ngx-charts-bar-vertical>
+                    <div class="ecs-date month">{{month}}</div>
+                    <h4 class="ecs-avarage">Best day average {{bestDayAverageAmount | currency}}</h4>
+                </div>
+                <div class="container projected-bill-amount day-usage-bar" *ngIf="kilowats">
+                    <ngx-charts-bar-vertical [view]="view" [scheme]="colorScheme" [roundDomains]=true [results]="multikwh" [gradient]="gradient" [roundDomains]=true [noBarWhenZero]=true [xAxis]="showXAxis" [yAxis]="showYAxis" [yAxisTickFormatting]="kwhTickFormatting" [barPadding]=35
+                        [roundEdges]=true>
+                        <ng-template #tooltipTemplate let-model="model">
+                            <p class="ecs-tooltip">{{model.value | json}}kWh</p>
+                        </ng-template>
+                    </ngx-charts-bar-vertical>
+                    <div class="ecs-date month">{{month}}</div>
+                    <h4 class="ecs-avarage">Best day average {{bestDayAveragekwh}}kWh</h4>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="ecs-toggle-switch">
+        <span class="selector">Amount</span>
+        <label class="switch">
+            <input type="checkbox" (change)="handleSelected($event)">
+            <span class="slider"></span>
+        </label>
+        <span class="selector">Kilowatts</span>
+    </div>
+
     <div class="ecs-usage-alert align-item-bottom">
         <div class="progress-data">
             <h2>Usage Alert</h2>
             <div class="edit-values">
                 <div *ngIf="!editStatus">
                     <!-- <span>{{amountAlertValue | currency}}</span> -->
-                    <button (click)="editLimitValue()">Edit</button>
+                    <button (click)="editLimitValue()">Set Usage Alert <i class="fas fa-pen"></i></button>
                 </div>
-                <div *ngIf="editStatus">
-                    <input type="text" [(ngModel)]="amountAlertValue" value={{amountAlertValue}}>
-                    <button (click)="resetValue()">Set value</button>
+                <div *ngIf="editStatus" class="setusagealert">
+                    <i class="fas fa-dollar-sign"></i><input type="text" [(ngModel)]="amountAlertValue" value={{amountAlertValue}}>
+                    <button (click)="resetValue()">Save<i class="fas fa-check-circle"></i></button>
                 </div>
             </div>
         </div>

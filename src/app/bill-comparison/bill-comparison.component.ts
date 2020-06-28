@@ -15,6 +15,7 @@ export class BillComparisonComponent implements OnInit {
   amountValue: number;
   kilowatsValue: number;
   view: any[] = [280, 240];
+  //Desktop width  view: any[] = [480, 420];
   multiAmount: any[];
   multikwh: any[];
   colorSchemeAmount: any = { domain: Array };
@@ -38,7 +39,7 @@ export class BillComparisonComponent implements OnInit {
   selectMonthSecondName: any;
   selectMonthThirdName: any;
   currentMonthName: any;
-  calendarData:any;
+  calendarData: any;
   monthNames = ["dummy", "Jan", "Feb", "March", "April", "May", "June",
     "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
   ];
@@ -58,14 +59,14 @@ export class BillComparisonComponent implements OnInit {
       this.selectMonthFirst = 12;
       this.selectMonthSecond = 11;
       this.selectMonthThird = 10;
-      this.selectYearFirst = this.selectYearSecond = this.selectYearThird= this.year - 1;
+      this.selectYearFirst = this.selectYearSecond = this.selectYearThird = this.year - 1;
     } else if (this.month == 2) {
       this.selectMonthFirst = this.month - 1;
       this.selectMonthSecond = 12;
       this.selectMonthThird = 11;
       this.selectYearFirst = this.year;
       this.selectYearSecond = this.selectYearThird = this.year - 1;
-    }else if(this.month == 3){
+    } else if (this.month == 3) {
       this.selectMonthFirst = this.month - 1;
       this.selectMonthSecond = this.month - 2;
       this.selectMonthThird = 12;
@@ -127,7 +128,7 @@ export class BillComparisonComponent implements OnInit {
       }
     ];
     colorsAmount = [];
-    colorsKwh =[];
+    colorsKwh = [];
     multiAmount.forEach((element) => {
       if (element.value > 18) {
         colorsAmount.push("#F16F3F");
@@ -179,15 +180,15 @@ export class BillComparisonComponent implements OnInit {
     this.datePickerStatus = false;
     console.log(this.model);
   }
-  onOpenCalendar(container,index) {
+  onOpenCalendar(container, index) {
     container.monthSelectHandler = (event: any): void => {
       container._store.dispatch(container._actions.select(event.date));
       console.log(index);
-      switch(index){
+      switch (index) {
         case 1:
           var selectedDate = this.modelDateFirst;
           var d = new Date(selectedDate);
-          var month = d.getMonth()+1;
+          var month = d.getMonth() + 1;
           this.selectYearFirst = d.getFullYear();
           this.selectMonthFirstName = this.getMonthName(month);
           var details = { "month": month, "year": this.selectYearFirst }
@@ -195,7 +196,7 @@ export class BillComparisonComponent implements OnInit {
         case 2:
           var selectedDate = this.modelDateSecond;
           var d = new Date(selectedDate);
-          var month = d.getMonth()+1;
+          var month = d.getMonth() + 1;
           this.selectYearSecond = d.getFullYear();
           this.selectMonthSecondName = this.getMonthName(month);
           var details = { "month": month, "year": this.selectYearSecond }
@@ -203,7 +204,7 @@ export class BillComparisonComponent implements OnInit {
         case 3:
           var selectedDate = this.modelDateThird;
           var d = new Date(selectedDate);
-          var month = d.getMonth()+1;
+          var month = d.getMonth() + 1;
           this.selectYearThird = d.getFullYear();
           this.selectMonthThirdName = this.getMonthName(month);
           var details = { "month": month, "year": this.selectYearThird }
@@ -211,11 +212,11 @@ export class BillComparisonComponent implements OnInit {
 
       }
       console.log(details);
-      
+
     };
     container.setViewMode('month');
   }
-  getMonthName(index){
+  getMonthName(index) {
     return this.monthNames[index];
   }
 

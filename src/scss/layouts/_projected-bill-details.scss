@@ -9,6 +9,7 @@
     padding: $default-padding*1.5 $null;
     @include device(lg) {
         @include flex(0 0 $full/2);
+        margin-right: $default-margin*3;
     }
     &.ecs-kilowatt-active {
         .ecs-amount {

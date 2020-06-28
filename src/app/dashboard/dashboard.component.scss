@@ -7,10 +7,14 @@
     margin: $full/30 auto;
     @include device(lg) {
         max-width: $default-unit*225;
+        width: $default-unit*190;
         margin: $full/40 auto;
         @include flexbox();
         @include flex(1 0 auto);
         @include flex-direction(column);
+    }
+    @include device(xl) {
+        margin-right: $default-margin*10;
     }
     // padding-top: $default-padding*1.2;
     // ngx-charts-bar-vertical {
@@ -83,6 +87,7 @@
             margin: $full/40 auto;
             @include device(lg) {
                 max-width: $default-unit*280;
+                width: $full;
             }
             ngx-charts-bar-vertical {
                 display: table;
@@ -96,6 +101,7 @@
             .ecs-date {
                 @include ecs-typo($primary-font-regular, bold, 16px, 37px, $primary-dark-color);
                 text-align: center;
+                text-transform: uppercase;
                 // margin-top: $default-margin;
                 clear: both;
             }
@@ -142,8 +148,11 @@
             button {
                 background-color: $transition-bg;
                 border: none;
-                @include ecs-typo($primary-font-regular, 100, 12px, 37px, rgba($white, .5));
-                width: $default-unit*30;
+                @include ecs-typo($primary-font-regular, 100, 16px, 37px, rgba($white, 1));
+                // width: $default-unit*30;
+                svg {
+                    margin-left: $default-margin/2;
+                }
             }
             input {
                 @include ecs-typo($primary-font-regular, 700, 18px, 27px, rgba($white, 1));
@@ -151,8 +160,18 @@
                 background-color: $transition-bg;
                 border: none;
                 border-bottom: thin solid $white;
-                width: $default-unit*50;
+                width: $default-unit*30;
                 margin-right: $default-margin*2;
+            }
+            .setusagealert {
+                svg {
+                    path {
+                        fill: $white;
+                    }
+                }
+                button {
+                    @include ecs-typo($primary-font-regular, 100, 16px, 37px, rgba($white, 1));
+                }
             }
         }
     }
@@ -219,6 +238,43 @@
                 text-transform: uppercase;
                 margin-top: $default-margin/2;
             }
+        }
+    }
+}
+
+.desktop-tab-content {
+    @include device(lg) {
+        @include flexbox();
+        @include flex(1 0 100%);
+        @include flex-direction(column);
+        @include justify-content(center);
+        width: calc(#{ $full} - 30px);
+    }
+    @include device(xl) {
+        @include flex-direction(row);
+    }
+    .projected-bill-amount {
+        @include device(lg) {
+            h3 {
+                @include ecs-typo($primary-font-regular, bold, 16px, 37px, $primary-dark-color);
+                text-align: center;
+            }
+            .bill-chart-conatin {
+                position: relative;
+            }
+        }
+    }
+}
+
+::ng-deep {
+    .setusagealert {
+        svg {
+            path {
+                fill: $white;
+            }
+        }
+        .ng-pristine {
+            text-align: left !important;
         }
     }
 }
