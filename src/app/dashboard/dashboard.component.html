@@ -117,7 +117,7 @@
             <div class="desktop-tab-pane" id="usage">
                 <div class="container projected-bill-amount day-usage-bar" *ngIf="amount">
                     <h3>Recent Day Usage</h3>
-                    <ngx-charts-bar-vertical [view]="view" [scheme]="colorScheme" [roundDomains]=true [results]="multiAmount" [gradient]="gradient" [noBarWhenZero]=true [xAxis]="showXAxis" [yAxis]="showYAxis" [yAxisTickFormatting]="currencyTickFormatting" [barPadding]=35
+                    <ngx-charts-bar-vertical [view]="view" [scheme]="colorScheme" [roundDomains]=true [results]="multiAmount" [gradient]="gradient" [noBarWhenZero]=true [xAxis]="showXAxis" [yAxis]="showYAxis" [yAxisTickFormatting]="currencyTickFormatting" [barPadding]=barPadding
                         [roundEdges]=true>
                         <ng-template #tooltipTemplate let-model="model">
                             <p class="ecs-tooltip">${{model.value | json}}</p>
@@ -127,7 +127,7 @@
                     <h4 class="ecs-avarage">Best day average {{bestDayAverageAmount | currency}}</h4>
                 </div>
                 <div class="container projected-bill-amount day-usage-bar" *ngIf="kilowats">
-                    <ngx-charts-bar-vertical [view]="view" [scheme]="colorScheme" [roundDomains]=true [results]="multikwh" [gradient]="gradient" [roundDomains]=true [noBarWhenZero]=true [xAxis]="showXAxis" [yAxis]="showYAxis" [yAxisTickFormatting]="kwhTickFormatting" [barPadding]=35
+                    <ngx-charts-bar-vertical [view]="view" [scheme]="colorScheme" [roundDomains]=true [results]="multikwh" [gradient]="gradient" [roundDomains]=true [noBarWhenZero]=true [xAxis]="showXAxis" [yAxis]="showYAxis" [yAxisTickFormatting]="kwhTickFormatting" [barPadding]=barPadding
                         [roundEdges]=true>
                         <ng-template #tooltipTemplate let-model="model">
                             <p class="ecs-tooltip">{{model.value | json}}kWh</p>

@@ -50,6 +50,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   bestDayAverageAmount: number;
   bestDayAveragekwh: number;
   screeDesktopStatus: boolean = true;
+  barPadding: any;
   colorScheme = {
     domain: ['#f8bc8a', '#ab8ef0', '#f8bc8a', '#ab8ef0', '#f8bc8a']
   };
@@ -62,12 +63,18 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   getScreenSize(event?) {
     this.screenHeight = window.innerHeight;
     this.screenWidth = window.innerWidth;
-    if (this.screenWidth > 993) {
-      this.view = [560, 350];
+    if (this.screenWidth > 1367) {
+      this.view = [560, 420];
       this.screeDesktopStatus = true;
+      this.barPadding = 65;
+    } else if (this.screenWidth > 993) {
+      this.view = [380, 240];
+      this.screeDesktopStatus = true;
+      this.barPadding = 35;
     } else {
       this.view = [360, 264];
       this.screeDesktopStatus = false;
+      this.barPadding = 35;
     }
   }
   ngOnInit() {
