@@ -7,7 +7,7 @@
     margin: $full/30 auto;
     @include device(lg) {
         max-width: $default-unit*225;
-        width: $default-unit*190;
+        width: $default-unit*140;
         margin: $full/40 auto;
         @include flexbox();
         @include flex(1 0 auto);
@@ -15,6 +15,7 @@
     }
     @include device(xl) {
         margin-right: $default-margin*10;
+        width: $default-unit*220;
     }
     // padding-top: $default-padding*1.2;
     // ngx-charts-bar-vertical {
@@ -127,7 +128,7 @@
     @include device(lg) {
         // max-height: inherit;
         // overflow-y: visible;
-        margin-bottom: $null;
+        // margin-bottom: $null;
     }
     .progress-data {
         @include flexbox();
@@ -246,7 +247,7 @@
     @include device(lg) {
         @include flexbox();
         @include flex(1 0 100%);
-        @include flex-direction(column);
+        @include flex-direction(row);
         @include justify-content(center);
         width: calc(#{ $full} - 30px);
     }
@@ -261,6 +262,11 @@
             }
             .bill-chart-conatin {
                 position: relative;
+            }
+        }
+        @include device(xl) {
+            h3 {
+                margin-bottom: $default-margin*5;
             }
         }
     }
