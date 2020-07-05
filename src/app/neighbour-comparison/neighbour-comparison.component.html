@@ -16,7 +16,7 @@
         </div>
         <div class="neighbourhood-chart day-usage-bar" *ngIf="kilowats">
             <div class="neighbourhood-canvas-chart">
-                <canvas baseChart height="230" [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptionsKwh" [colors]="lineChartColors" [legend]="lineChartLegend" [chartType]="lineChartType" [plugins]="lineChartPlugins">
+                <canvas baseChart [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptionsKwh" [colors]="lineChartColors" [legend]="lineChartLegend" [chartType]="lineChartType" [plugins]="lineChartPlugins">
                 </canvas>
             </div>
             <div class="neighbourhood-ngx-chart">

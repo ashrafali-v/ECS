@@ -27,7 +27,7 @@ export class CommonAppService {
   public getRecentDayUsage(){
     var url = this.ecsApiEndpoints['RecentDayUsage'];
     return this.httpClient.get(this.serviceBase+url, this.jsonHttpHeader).pipe(
-      map((res) => res)
+      map((res:any) => res)
     )
   }
 }

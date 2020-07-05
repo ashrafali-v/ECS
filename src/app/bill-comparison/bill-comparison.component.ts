@@ -14,7 +14,7 @@ export class BillComparisonComponent implements OnInit {
   kilowats: boolean = false;
   amountValue: number;
   kilowatsValue: number;
-  view: any[] = [280, 240];
+  view: any[] = [480, 420];
   //Desktop width  view: any[] = [480, 420];
   multiAmount: any[];
   multikwh: any[];
@@ -40,6 +40,7 @@ export class BillComparisonComponent implements OnInit {
   selectMonthThirdName: any;
   currentMonthName: any;
   calendarData: any;
+  selectedDatePicker:any;
   monthNames = ["dummy", "Jan", "Feb", "March", "April", "May", "June",
     "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
   ];
@@ -186,6 +187,7 @@ export class BillComparisonComponent implements OnInit {
       console.log(index);
       switch (index) {
         case 1:
+          this.selectedDatePicker = index;
           var selectedDate = this.modelDateFirst;
           var d = new Date(selectedDate);
           var month = d.getMonth() + 1;
@@ -194,6 +196,7 @@ export class BillComparisonComponent implements OnInit {
           var details = { "month": month, "year": this.selectYearFirst }
           break;
         case 2:
+          this.selectedDatePicker = index;
           var selectedDate = this.modelDateSecond;
           var d = new Date(selectedDate);
           var month = d.getMonth() + 1;
@@ -202,6 +205,7 @@ export class BillComparisonComponent implements OnInit {
           var details = { "month": month, "year": this.selectYearSecond }
           break;
         case 3:
+          this.selectedDatePicker = index;
           var selectedDate = this.modelDateThird;
           var d = new Date(selectedDate);
           var month = d.getMonth() + 1;

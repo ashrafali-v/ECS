@@ -41,7 +41,6 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   kilowatsValue: number;
   limitValue: number;
   progressbarMaxValueAmount: number;
-  progressbarMaxValueKwh: number;
   amountAlertValue: number;
   kwhAlertValue: number;
   month: any;
@@ -74,6 +73,13 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     this.sharedService.getRecentDayUsage().subscribe(data => {
       console.log(data);
+      this.amountValue = data.totalUsageAmount;
+      this.kilowatsValue = data.totalUsageKwh;
+      this.limitValue = data.limitAmount;
+      this.kwhAlertValue = 210;
+      this.amountAlertValue = data.alertAmount;
+      this.bestDayAverageAmount = data.bestDayAvgAmount;
+      this.bestDayAveragekwh = data.bestDayAvgKwh;
     });
     this.sharedService.nextMessage("amount");
     var multiAmount = [
@@ -108,7 +114,6 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     ]
     this.getScreenSize();
     this.progressbarMaxValueAmount = 200;
-    this.progressbarMaxValueKwh = 300;
     const wholeDay = 32;
     var day = new Date();
     this.month = this.monthNames[day.getMonth()];
@@ -119,19 +124,12 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     let currentMonth = day.getMonth();
     let curreYear = day.getFullYear();
     this.day = day.getDate();
-    this.amountValue = 128;
-    this.kilowatsValue = 185;
-    this.limitValue = 100;
-    this.kwhAlertValue = 210;
-    this.amountAlertValue = 185;
     this.daysInCurrentMonth = this.daysInMonth(currentMonth + 1, curreYear);
     this.percent = (currentDay / wholeDay) * 100;
     this.percentProgressBarAmount = (this.amountValue / this.progressbarMaxValueAmount) * 100;
     console.log(this.percentProgressBarAmount);
     this.percentProgressBarAmountAlert = (this.amountAlertValue / this.progressbarMaxValueAmount) * 100;
     this.percentProgressBarAmountAlert = 100 - this.percentProgressBarAmountAlert;
-    this.bestDayAverageAmount = 23;
-    this.bestDayAveragekwh = 46;
     console.log(this.percentProgressBarAmountAlert);
     function yAxisTickFormatting(value) {
       if (this.amount) {
