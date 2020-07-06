@@ -43,11 +43,18 @@ export class DailyUsageComponent implements OnInit {
   getScreenSize(event?) {
     this.screenHeight = window.innerHeight;
     this.screenWidth = window.innerWidth;
-    if (this.screenWidth > 993) {
+    if (this.screenWidth > 1400) {
+      this.webStatus = true;
+      this.width = 1024;
+      this.barPadding = 20;
+      this.view = [this.width, 320];
+      this.chartDataAmountSection = this.chartDataAmount;
+      this.chartDataKwhSection = this.chartDataKwh;
+    } else if (this.screenWidth > 993) {
       this.webStatus = true;
       this.width = 960;
       this.barPadding = 20;
-      this.view = [this.width, 300];
+      this.view = [this.width, 180];
       this.chartDataAmountSection = this.chartDataAmount;
       this.chartDataKwhSection = this.chartDataKwh;
     } else {
