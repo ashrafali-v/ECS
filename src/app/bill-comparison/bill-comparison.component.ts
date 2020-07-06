@@ -14,7 +14,7 @@ export class BillComparisonComponent implements OnInit {
   kilowats: boolean = false;
   amountValue: number;
   kilowatsValue: number;
-  view: any[] = [280, 240];
+  view: any[] = [480, 420];
   //Desktop width  view: any[] = [480, 420];
   multiAmount: any[];
   multikwh: any[];
@@ -40,6 +40,7 @@ export class BillComparisonComponent implements OnInit {
   selectMonthThirdName: any;
   currentMonthName: any;
   calendarData: any;
+  selectedDatePicker:any;
   monthNames = ["dummy", "Jan", "Feb", "March", "April", "May", "June",
     "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
   ];
@@ -52,6 +53,23 @@ export class BillComparisonComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.sharedService.getBillComparison().subscribe(data=>{
+      let colorsAmount: any[];
+      let colorsKwh: any[];
+      colorsAmount = [];
+      colorsKwh = [];
+      var multiAmount = data;
+      multiAmount.forEach((element) => {
+        if (element.value > 18) {
+          colorsAmount.push("#F16F3F");
+        } else {
+          colorsAmount.push("#7033FF");
+        }
+      })
+      this.colorSchemeAmount.domain = colorsAmount;
+      this.colorSchemeKwh.domain = colorsKwh;
+      Object.assign(this, { multiAmount });
+    });
     var today = new Date();
     this.year = today.getFullYear();
     this.month = today.getMonth() + 1;
@@ -90,63 +108,8 @@ export class BillComparisonComponent implements OnInit {
     this.selectMonthSecondName = this.monthNames[this.selectMonthSecond];
     this.selectMonthThirdName = this.monthNames[this.selectMonthThird];
     this.currentMonthName = this.monthNames[today.getMonth() + 1];
-
     console.log(this.currentMonthName + "--" + this.selectMonthFirstName + "--" + this.selectMonthSecondName);
-
-
     this.sharedService.nextMessage("amount");
-    let colorsAmount: any[];
-    let colorsKwh: any[];
-    this.amountValue = 128;
-    this.kilowatsValue = 185;
-    var multiAmount = [
-      {
-        "name": "2019 APR",
-        "value": 12
-      },
-      {
-        "name": "2019 March",
-        "value": 25
-      },
-      {
-        "name": "2020 APR",
-        "value": 13
-      }
-    ];
-    var multikwh = [
-      {
-        "name": "2019 APR",
-        "value": 26
-      },
-      {
-        "name": "2019 March",
-        "value": 30
-      },
-      {
-        "name": "2020 APR",
-        "value": 22
-      }
-    ];
-    colorsAmount = [];
-    colorsKwh = [];
-    multiAmount.forEach((element) => {
-      if (element.value > 18) {
-        colorsAmount.push("#F16F3F");
-      } else {
-        colorsAmount.push("#7033FF");
-      }
-    })
-    multikwh.forEach((element) => {
-      if (element.value > 25) {
-        colorsKwh.push("#F16F3F");
-      } else {
-        colorsKwh.push("#7033FF");
-      }
-    })
-    this.colorSchemeAmount.domain = colorsAmount;
-    this.colorSchemeKwh.domain = colorsKwh;
-    Object.assign(this, { multiAmount });
-    Object.assign(this, { multikwh });
   }
   handleSelected($event) {
     if ($event.target.checked === true) {
@@ -186,6 +149,7 @@ export class BillComparisonComponent implements OnInit {
       console.log(index);
       switch (index) {
         case 1:
+          this.selectedDatePicker = index;
           var selectedDate = this.modelDateFirst;
           var d = new Date(selectedDate);
           var month = d.getMonth() + 1;
@@ -194,6 +158,7 @@ export class BillComparisonComponent implements OnInit {
           var details = { "month": month, "year": this.selectYearFirst }
           break;
         case 2:
+          this.selectedDatePicker = index;
           var selectedDate = this.modelDateSecond;
           var d = new Date(selectedDate);
           var month = d.getMonth() + 1;
@@ -202,6 +167,7 @@ export class BillComparisonComponent implements OnInit {
           var details = { "month": month, "year": this.selectYearSecond }
           break;
         case 3:
+          this.selectedDatePicker = index;
           var selectedDate = this.modelDateThird;
           var d = new Date(selectedDate);
           var month = d.getMonth() + 1;
