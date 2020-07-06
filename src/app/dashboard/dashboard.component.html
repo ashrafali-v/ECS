@@ -1,4 +1,7 @@
-<div class="ecs-content-box">
+<div class="ecs-content-box" *ngIf="loader">
+    loading....
+</div>
+<div class="ecs-content-box" *ngIf="!loader">
     <div id="tabs" class="ecs-tabs" #tabs *ngIf="!screeDesktopStatus">
 
         <ul class="nav nav-pills">

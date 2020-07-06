@@ -53,6 +53,23 @@ export class BillComparisonComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.sharedService.getBillComparison().subscribe(data=>{
+      let colorsAmount: any[];
+      let colorsKwh: any[];
+      colorsAmount = [];
+      colorsKwh = [];
+      var multiAmount = data;
+      multiAmount.forEach((element) => {
+        if (element.value > 18) {
+          colorsAmount.push("#F16F3F");
+        } else {
+          colorsAmount.push("#7033FF");
+        }
+      })
+      this.colorSchemeAmount.domain = colorsAmount;
+      this.colorSchemeKwh.domain = colorsKwh;
+      Object.assign(this, { multiAmount });
+    });
     var today = new Date();
     this.year = today.getFullYear();
     this.month = today.getMonth() + 1;
@@ -91,63 +108,8 @@ export class BillComparisonComponent implements OnInit {
     this.selectMonthSecondName = this.monthNames[this.selectMonthSecond];
     this.selectMonthThirdName = this.monthNames[this.selectMonthThird];
     this.currentMonthName = this.monthNames[today.getMonth() + 1];
-
     console.log(this.currentMonthName + "--" + this.selectMonthFirstName + "--" + this.selectMonthSecondName);
-
-
     this.sharedService.nextMessage("amount");
-    let colorsAmount: any[];
-    let colorsKwh: any[];
-    this.amountValue = 128;
-    this.kilowatsValue = 185;
-    var multiAmount = [
-      {
-        "name": "2019 APR",
-        "value": 12
-      },
-      {
-        "name": "2019 March",
-        "value": 25
-      },
-      {
-        "name": "2020 APR",
-        "value": 13
-      }
-    ];
-    var multikwh = [
-      {
-        "name": "2019 APR",
-        "value": 26
-      },
-      {
-        "name": "2019 March",
-        "value": 30
-      },
-      {
-        "name": "2020 APR",
-        "value": 22
-      }
-    ];
-    colorsAmount = [];
-    colorsKwh = [];
-    multiAmount.forEach((element) => {
-      if (element.value > 18) {
-        colorsAmount.push("#F16F3F");
-      } else {
-        colorsAmount.push("#7033FF");
-      }
-    })
-    multikwh.forEach((element) => {
-      if (element.value > 25) {
-        colorsKwh.push("#F16F3F");
-      } else {
-        colorsKwh.push("#7033FF");
-      }
-    })
-    this.colorSchemeAmount.domain = colorsAmount;
-    this.colorSchemeKwh.domain = colorsKwh;
-    Object.assign(this, { multiAmount });
-    Object.assign(this, { multikwh });
   }
   handleSelected($event) {
     if ($event.target.checked === true) {

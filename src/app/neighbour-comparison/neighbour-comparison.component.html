@@ -2,7 +2,7 @@
     <div class="neighbourhood-data">
         <h3>Neighbourhood Comparison</h3>
         <div class="neighbourhood-chart day-usage-bar" *ngIf="amount">
-            <div class="neighbourhood-canvas-chart">
+            <div class="neighbourhood-canvas-chart" *ngIf="lineChartData?.length > 0">
                 <canvas baseChart [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptionsAmount" [colors]="lineChartColors" [legend]="lineChartLegend" [chartType]="lineChartType" [plugins]="lineChartPlugins">
                 </canvas>
             </div>

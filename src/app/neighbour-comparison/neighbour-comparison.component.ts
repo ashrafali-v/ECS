@@ -60,8 +60,9 @@ export class NeighbourComparisonComponent implements OnInit {
         }
       }],
       xAxes: [{
-        display: false, //this will remove all the x-axis grid lines
+        display: true, 
         gridLines: {
+          display: false,//this will remove all the x-axis grid lines
           drawBorder: false,
         }
       }]
@@ -107,8 +108,9 @@ export class NeighbourComparisonComponent implements OnInit {
         }
       }],
       xAxes: [{
-        display: false, //this will remove all the x-axis grid lines
+        display: true,
         gridLines: {
+          display: false,//this will remove all the x-axis grid lines
           drawBorder: false,
         }
       }]
@@ -179,22 +181,32 @@ export class NeighbourComparisonComponent implements OnInit {
         "value": 83
       }
     ]
-    Object.assign(this.multiAmount);
-    Object.assign(this.multiKwh)
     /*-----------------Bar chart config End-----------------------------*/
     this.lineChartData = [];
     this.amountValue = 128;
     this.kilowatsValue = 185;
-    this.lineChartLabels = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'];
-    this.lineChartDataAmount = [{ data: [0, 200, 130, 210, 216, 250, 200], label: 'All Neighbours', fill: false },
-    { data: [0, 75, 125, 190, 200, 115, 130], label: 'Similar Homes', fill: false },
-    { data: [0, 150, 110, 170, 240, 225, 150], label: 'Your Usage', fill: false }];
+    // this.lineChartLabels = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'];
+    // this.lineChartDataAmount = [{ data: [0, 200, 130, 210, 216, 250, 200], label: 'All Neighbours', fill: false },
+    // { data: [0, 75, 125, 190, 200, 115, 130], label: 'Similar Homes', fill: false },
+    // { data: [0, 150, 110, 170, 240, 225, 150], label: 'Your Usage', fill: false }];
 
-    this.lineChartDataKwh = [{ data: [0, 100, 130, 250, 116, 150, 210], label: 'All Neighbours', fill: false },
-    { data: [0, 175, 145, 180, 250, 215, 170], label: 'Similar Homes', fill: false },
-    { data: [0, 130, 210, 170, 200, 225, 150], label: 'Your Usage', fill: false }];
+    // this.lineChartDataKwh = [{ data: [0, 100, 130, 250, 116, 150, 210], label: 'All Neighbours', fill: false },
+    // { data: [0, 175, 145, 180, 250, 215, 170], label: 'Similar Homes', fill: false },
+    // { data: [0, 130, 210, 170, 200, 225, 150], label: 'Your Usage', fill: false }];
 
-    this.lineChartData = this.lineChartDataAmount;
+    this.sharedService.getNeighbourBarchart().subscribe(data=>{
+      this.multiAmount = data.dataAmount;
+      this.multiKwh = data.dataKwh;
+      Object.assign(this.multiAmount);
+      Object.assign(this.multiKwh)
+    });
+    this.sharedService.getNeighbourLinechart().subscribe(data=>{
+      this.lineChartLabels = data.dataLabels;
+      this.lineChartDataAmount = data.dataLineAmount;
+      this.lineChartDataKwh = data.dataLineKwh;
+      this.lineChartData = this.lineChartDataAmount;
+      
+    });
 
   }
   handleSelected($event) {

@@ -42,7 +42,6 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   limitValue: number;
   progressbarMaxValueAmount: number;
   amountAlertValue: number;
-  kwhAlertValue: number;
   month: any;
   day: any;
   daysInCurrentMonth: number = 30;
@@ -51,6 +50,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   bestDayAveragekwh: number;
   screeDesktopStatus: boolean = true;
   barPadding: any;
+  loader:boolean = true;
   colorScheme = {
     domain: ['#f8bc8a', '#ab8ef0', '#f8bc8a', '#ab8ef0', '#f8bc8a']
   };
@@ -79,65 +79,64 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   }
   ngOnInit() {
     this.sharedService.getRecentDayUsage().subscribe(data => {
-      console.log(data);
+      this.loader = false;
       this.amountValue = data.totalUsageAmount;
       this.kilowatsValue = data.totalUsageKwh;
       this.limitValue = data.limitAmount;
-      this.kwhAlertValue = 210;
       this.amountAlertValue = data.alertAmount;
       this.bestDayAverageAmount = data.bestDayAvgAmount;
       this.bestDayAveragekwh = data.bestDayAvgKwh;
+      this.progressbarMaxValueAmount = data.limitAmount;
+          // var multiAmount = [
+    //   {
+    //     "name": "22",
+    //     "value": 12
+    //   },
+    //   {
+    //     "name": "23",
+    //     "value": 7
+    //   },
+    //   {
+    //     "name": "24",
+    //     "value": 13
+    //   },
+    //   {
+    //     "name": "25",
+    //     "value": 9
+    //   },
+    //   {
+    //     "name": "26",
+    //     "value": 13
+    //   },
+    //   {
+    //     "name": "27",
+    //     "value": 0
+    //   },
+    //   {
+    //     "name": "28",
+    //     "value": 0
+    //   }
+    // ]
+      var multiAmount = data.usageAmount;
+      var multikwh = data.usageKwh;
+      const wholeDay = 32;
+      var day = new Date();
+      this.month = this.monthNames[day.getMonth()];
+      this.xAxisLabel = this.month;
+      let currentDay = day.getDate();
+      let currentMonth = day.getMonth();
+      let curreYear = day.getFullYear();
+      this.day = day.getDate();
+      this.daysInCurrentMonth = this.daysInMonth(currentMonth + 1, curreYear);
+      this.percent = (currentDay / wholeDay) * 100;
+      this.percentProgressBarAmount = (this.amountValue / this.progressbarMaxValueAmount) * 100;
+      this.percentProgressBarAmountAlert = (this.amountAlertValue / this.progressbarMaxValueAmount) * 100;
+      this.percentProgressBarAmountAlert = 100 - this.percentProgressBarAmountAlert;
+      Object.assign(this, { multiAmount });
+      Object.assign(this, { multikwh })
     });
     this.sharedService.nextMessage("amount");
-    var multiAmount = [
-      {
-        "name": "22",
-        "value": 12
-      },
-      {
-        "name": "23",
-        "value": 7
-      },
-      {
-        "name": "24",
-        "value": 13
-      },
-      {
-        "name": "25",
-        "value": 9
-      },
-      {
-        "name": "26",
-        "value": 13
-      },
-      {
-        "name": "27",
-        "value": 0
-      },
-      {
-        "name": "28",
-        "value": 0
-      }
-    ]
     this.getScreenSize();
-    this.progressbarMaxValueAmount = 200;
-    const wholeDay = 32;
-    var day = new Date();
-    this.month = this.monthNames[day.getMonth()];
-    //recentday usage dats
-    this.xAxisLabel = this.month;
-    //
-    let currentDay = day.getDate();
-    let currentMonth = day.getMonth();
-    let curreYear = day.getFullYear();
-    this.day = day.getDate();
-    this.daysInCurrentMonth = this.daysInMonth(currentMonth + 1, curreYear);
-    this.percent = (currentDay / wholeDay) * 100;
-    this.percentProgressBarAmount = (this.amountValue / this.progressbarMaxValueAmount) * 100;
-    console.log(this.percentProgressBarAmount);
-    this.percentProgressBarAmountAlert = (this.amountAlertValue / this.progressbarMaxValueAmount) * 100;
-    this.percentProgressBarAmountAlert = 100 - this.percentProgressBarAmountAlert;
-    console.log(this.percentProgressBarAmountAlert);
     function yAxisTickFormatting(value) {
       if (this.amount) {
         return this.currencyTickFormatting(value);
@@ -145,8 +144,6 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         return this.kwhTickFormatting(value);
       }
     }
-    Object.assign(this, { multiAmount });
-    Object.assign(this, { multikwh })
   }
   ngAfterViewInit() {
     if (this.amountValue >= this.amountAlertValue) {
