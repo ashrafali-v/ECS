@@ -58,7 +58,7 @@ export class DailyUsageComponent implements OnInit {
       this.chartDataAmountSection = this.chartDataAmount.slice(0, 10);
       this.chartDataKwhSection = this.chartDataKwh.slice(0, 10);
     }
-    console.log(this.screenHeight, this.screenWidth);
+    // console.log(this.screenHeight, this.screenWidth);
   }
 
   ngOnInit(): void {
