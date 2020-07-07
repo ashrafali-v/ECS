@@ -180,6 +180,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     if (this.amountValue < this.amountAlertValue) {
       localStorage.removeItem('exceedLimit');
     }
+    this.percentProgressBarAmountAlert = (this.amountAlertValue / this.progressbarMaxValueAmount) * 100;
+    this.percentProgressBarAmountAlert = 100 - this.percentProgressBarAmountAlert;
   }
   editLimitValue() {
     this.editStatus = true;
