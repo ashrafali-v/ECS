@@ -43,11 +43,18 @@ export class DailyUsageComponent implements OnInit {
   getScreenSize(event?) {
     this.screenHeight = window.innerHeight;
     this.screenWidth = window.innerWidth;
-    if (this.screenWidth > 993) {
+    if (this.screenWidth > 1400) {
+      this.webStatus = true;
+      this.width = 1024;
+      this.barPadding = 20;
+      this.view = [this.width, 300];
+      this.chartDataAmountSection = this.chartDataAmount;
+      this.chartDataKwhSection = this.chartDataKwh;
+    } else if (this.screenWidth > 993) {
       this.webStatus = true;
       this.width = 960;
       this.barPadding = 20;
-      this.view = [this.width, 300];
+      this.view = [this.width, 180];
       this.chartDataAmountSection = this.chartDataAmount;
       this.chartDataKwhSection = this.chartDataKwh;
     } else {
@@ -58,11 +65,11 @@ export class DailyUsageComponent implements OnInit {
       this.chartDataAmountSection = this.chartDataAmount.slice(0, 10);
       this.chartDataKwhSection = this.chartDataKwh.slice(0, 10);
     }
-    console.log(this.screenHeight, this.screenWidth);
+    // console.log(this.screenHeight, this.screenWidth);
   }
 
   ngOnInit(): void {
-    this.sharedService.getDailyUsage().subscribe(data=>{
+    this.sharedService.getDailyUsage().subscribe(data => {
       console.log(data);
       var day = new Date();
       this.month = this.monthNames[day.getMonth()];
@@ -861,7 +868,7 @@ export class DailyUsageComponent implements OnInit {
             }
           ]
         }
-  
+
       ];
       this.chartDataAmount = data.usageAmount;
       this.chartDataKwh = data.usageKwh;
