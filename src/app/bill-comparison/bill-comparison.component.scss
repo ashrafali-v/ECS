@@ -52,7 +52,7 @@
             max-width: $full;
             width: calc(#{$full} - 40px);
             @include device(lg) {
-                max-width: $default-unit*320;
+                // max-width: $default-unit*320;
             }
         }
         h2 {
@@ -73,6 +73,10 @@
             padding: $default-padding;
             margin: $default-margin $null;
             width: calc(#{$full/2} - 20px);
+            @include device(lg) {
+                width: calc(#{$full/4} - 20px);
+                @include flex(0 1 calc(#{$full/4} - 20px));
+            }
             h3 {
                 @include ecs-typo($primary-font-regular, bold, 12px, 18px, $white);
                 @include flex(0 0 calc(#{$full} - 50px));

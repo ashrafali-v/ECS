@@ -15,6 +15,10 @@
     }
     @include device(xl) {
         margin-right: $default-margin*10;
+        width: $default-unit*170;
+    }
+    @include device(xxl) {
+        margin-right: $default-margin*10;
         width: $default-unit*220;
     }
     // padding-top: $default-padding*1.2;
@@ -250,6 +254,9 @@
         @include flex-direction(row);
         @include justify-content(center);
         width: calc(#{ $full} - 30px);
+        @include device(lg) {
+            @include justify-content(space-around);
+        }
     }
     @include device(xl) {
         @include flex-direction(row);

@@ -50,7 +50,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   bestDayAveragekwh: number;
   screeDesktopStatus: boolean = true;
   barPadding: any;
-  loader:boolean = true;
+  loader: boolean = true;
   colorScheme = {
     domain: ['#f8bc8a', '#ab8ef0', '#f8bc8a', '#ab8ef0', '#f8bc8a']
   };
@@ -63,12 +63,16 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   getScreenSize(event?) {
     this.screenHeight = window.innerHeight;
     this.screenWidth = window.innerWidth;
-    if (this.screenWidth > 1367) {
-      this.view = [560, 420];
+    if (this.screenWidth > 1441) {
+      this.view = [560, 380];
       this.screeDesktopStatus = true;
       this.barPadding = 65;
+    } else if (this.screenWidth > 1368) {
+      this.view = [420, 300];
+      this.screeDesktopStatus = true;
+      this.barPadding = 35;
     } else if (this.screenWidth > 993) {
-      this.view = [380, 240];
+      this.view = [420, 240];
       this.screeDesktopStatus = true;
       this.barPadding = 35;
     } else {
@@ -87,36 +91,36 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       this.bestDayAverageAmount = data.bestDayAvgAmount;
       this.bestDayAveragekwh = data.bestDayAvgKwh;
       this.progressbarMaxValueAmount = data.limitAmount;
-          // var multiAmount = [
-    //   {
-    //     "name": "22",
-    //     "value": 12
-    //   },
-    //   {
-    //     "name": "23",
-    //     "value": 7
-    //   },
-    //   {
-    //     "name": "24",
-    //     "value": 13
-    //   },
-    //   {
-    //     "name": "25",
-    //     "value": 9
-    //   },
-    //   {
-    //     "name": "26",
-    //     "value": 13
-    //   },
-    //   {
-    //     "name": "27",
-    //     "value": 0
-    //   },
-    //   {
-    //     "name": "28",
-    //     "value": 0
-    //   }
-    // ]
+      // var multiAmount = [
+      //   {
+      //     "name": "22",
+      //     "value": 12
+      //   },
+      //   {
+      //     "name": "23",
+      //     "value": 7
+      //   },
+      //   {
+      //     "name": "24",
+      //     "value": 13
+      //   },
+      //   {
+      //     "name": "25",
+      //     "value": 9
+      //   },
+      //   {
+      //     "name": "26",
+      //     "value": 13
+      //   },
+      //   {
+      //     "name": "27",
+      //     "value": 0
+      //   },
+      //   {
+      //     "name": "28",
+      //     "value": 0
+      //   }
+      // ]
       var multiAmount = data.usageAmount;
       var multikwh = data.usageKwh;
       const wholeDay = 32;
