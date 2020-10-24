@@ -6,7 +6,7 @@
 
         <ul class="nav nav-pills">
             <li class="nav-item">
-                <a class="nav-link active" href="#bill" [ngClass]="{ 'active':activeTab==='bill'}" (click)="search('bill')" data-toggle="tab">Projected Bill</a>
+                <a class="nav-link active" href="#bill" [ngClass]="{ 'active':activeTab==='bill'}" (click)="search('bill')" data-toggle="tab">Current Usage</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#usage" [ngClass]="{ 'active':activeTab==='usage'}" data-toggle="tab" (click)="result('usage')">Recent Day Usage</a>
@@ -20,11 +20,11 @@
                         [showZeroOuterStroke]=true></circle-progress>
                     <div class="pb-default-rules">
                         <div class="shadow-circle days-30">
-                            <div class="ecs-date month">{{month}}</div>
+                            <div class="ecs-date month">{{month}} {{year}}</div>
                             <!-- <div class="ecs-date date-8">08</div>
                             <div class="ecs-date date-16">16</div>
                             <div class="ecs-date date-24">24</div> -->
-                            <div class="chart-progress">{{amountValue | currency}}</div>
+                            <div class="chart-progress">{{amountValue | currency}} <h6>As of today</h6></div>
                         </div>
 
                     </div>
@@ -34,7 +34,7 @@
                         [showZeroOuterStroke]=true></circle-progress>
                     <div class="pb-default-rules">
                         <div class="shadow-circle days-31">
-                            <div class="ecs-date month">{{month}}</div>
+                            <div class="ecs-date month">{{month}} {{year}}</div>
                             <!-- <div class="ecs-date date-8">08</div>
                             <div class="ecs-date date-16">16</div>
                             <div class="ecs-date date-24">24</div> -->
@@ -56,7 +56,7 @@
                             <p class="ecs-tooltip">${{model.value | json}}</p>
                         </ng-template>
                     </ngx-charts-bar-vertical>
-                    <div class="ecs-date month">{{month}}</div>
+                    <div class="ecs-date month">{{month}} {{year}}</div>
                     <h4 class="ecs-avarage">Best day average {{bestDayAverageAmount | currency}}</h4>
                 </div>
                 <div class="container projected-bill-amount day-usage-bar" *ngIf="kilowats">
@@ -66,7 +66,7 @@
                             <p class="ecs-tooltip">{{model.value | json}}kWh</p>
                         </ng-template>
                     </ngx-charts-bar-vertical>
-                    <div class="ecs-date month">{{month}}</div>
+                    <div class="ecs-date month">{{month}} {{year}}</div>
                     <h4 class="ecs-avarage">Best day average {{bestDayAveragekwh}}kWh</h4>
                 </div>
             </div>
@@ -80,36 +80,38 @@
         <div class="desktop-tab-content">
             <div class="desktop-tab-pane" id="bill">
                 <div class="container projected-bill-amount" *ngIf="amount">
-                    <h3>Projected Bill</h3>
+                    <h3>Current Usage</h3>
                     <div class="bill-chart-conatin">
 
                         <circle-progress [percent]=percent [radius]="80" [outerStrokeWidth]="5" [outerStrokeGradient]="true" [outerStrokeColor]="'#e63333'" [outerStrokeGradientStopColor]="'#5b1494'" [showInnerStroke]="false" [animation]="true" [animationDuration]="900" [responsive]=true
                             [showZeroOuterStroke]=true></circle-progress>
                         <div class="pb-default-rules">
                             <div class="shadow-circle days-30">
-                                <div class="ecs-date month">{{month}}</div>
+                                <div class="ecs-date month">{{month}} {{year}}</div>
                                 <!-- <div class="ecs-date date-8">08</div>
                                 <div class="ecs-date date-16">16</div>
                                 <div class="ecs-date date-24">24</div> -->
-                                <div class="chart-progress">{{amountValue | currency}}</div>
+                                <div class="chart-progress">{{amountValue | currency}} <h5>As of today</h5></div>
                             </div>
 
                         </div>
                     </div>
                 </div>
                 <div class="container  projected-bill-amount" *ngIf="kilowats">
-
-                    <circle-progress [percent]=percent [radius]="80" [outerStrokeWidth]="5" [outerStrokeGradient]="true" [outerStrokeColor]="'#e63333'" [outerStrokeGradientStopColor]="'#5b1494'" [showInnerStroke]="false" [animation]="true" [animationDuration]="900" [responsive]=true
+                    <h3>Current Usage</h3>
+                    <div class="bill-chart-conatin">
+                        <circle-progress [percent]=percent [radius]="80" [outerStrokeWidth]="5" [outerStrokeGradient]="true" [outerStrokeColor]="'#e63333'" [outerStrokeGradientStopColor]="'#5b1494'" [showInnerStroke]="false" [animation]="true" [animationDuration]="900" [responsive]=true
                         [showZeroOuterStroke]=true></circle-progress>
-                    <div class="pb-default-rules">
-                        <div class="shadow-circle days-31">
-                            <div class="ecs-date month">{{month}}</div>
-                            <!-- <div class="ecs-date date-8">08</div>
-                            <div class="ecs-date date-16">16</div>
-                            <div class="ecs-date date-24">24</div> -->
-                            <div class="chart-progress">{{kilowatsValue}} kWh</div>
-                        </div>
+                        <div class="pb-default-rules">
+                            <div class="shadow-circle days-31">
+                                <div class="ecs-date month">{{month}} {{year}}</div>
+                                <!-- <div class="ecs-date date-8">08</div>
+                                <div class="ecs-date date-16">16</div>
+                                <div class="ecs-date date-24">24</div> -->
+                                <div class="chart-progress">{{kilowatsValue}} kWh</div>
+                            </div>
 
+                        </div>
                     </div>
                 </div>
 
@@ -126,17 +128,18 @@
                             <p class="ecs-tooltip">${{model.value | json}}</p>
                         </ng-template>
                     </ngx-charts-bar-vertical>
-                    <div class="ecs-date month">{{month}}</div>
+                    <div class="ecs-date month">{{month}} {{year}}</div>
                     <h4 class="ecs-avarage">Best day average {{bestDayAverageAmount | currency}}</h4>
                 </div>
                 <div class="container projected-bill-amount day-usage-bar" *ngIf="kilowats">
+                    <h3>Recent Day Usage</h3>
                     <ngx-charts-bar-vertical [view]="view" [scheme]="colorScheme" [roundDomains]=true [results]="multikwh" [gradient]="gradient" [roundDomains]=true [noBarWhenZero]=true [xAxis]="showXAxis" [yAxis]="showYAxis" [yAxisTickFormatting]="kwhTickFormatting" [barPadding]=barPadding
                         [roundEdges]=true>
                         <ng-template #tooltipTemplate let-model="model">
                             <p class="ecs-tooltip">{{model.value | json}}kWh</p>
                         </ng-template>
                     </ngx-charts-bar-vertical>
-                    <div class="ecs-date month">{{month}}</div>
+                    <div class="ecs-date month">{{month}} {{year}}</div>
                     <h4 class="ecs-avarage">Best day average {{bestDayAveragekwh}}kWh</h4>
                 </div>
             </div>
@@ -178,8 +181,9 @@
                     </div>
                     <div class="exceed-bar" [style.right.%]=percentProgressBarAmountAlert><span class="alert-amount">{{ amountAlertValue | currency : 'USD' : 'symbol' : '1.0-0' }}</span></div>
                 </div>
+                <span>{{limitValue}}</span>
             </div>
-
+            
             <div class="usage-month">
                 <!-- <span>{{month}} 1</span> -->
                 <!-- <span>{{daysInCurrentMonth}}</span> -->

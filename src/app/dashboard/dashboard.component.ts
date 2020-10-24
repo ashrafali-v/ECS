@@ -44,6 +44,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   amountAlertValue: number;
   month: any;
   day: any;
+  year:any;
   daysInCurrentMonth: number = 30;
   editStatus: boolean = false;
   bestDayAverageAmount: number;
@@ -54,8 +55,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   colorScheme = {
     domain: ['#f8bc8a', '#ab8ef0', '#f8bc8a', '#ab8ef0', '#f8bc8a']
   };
-  monthNames = ["Jan", "Feb", "March", "April", "May", "June",
-    "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+  monthNames = ["January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December"
   ];
   constructor(private toastr: ToastrService, private sharedService: CommonAppService) {
   }
@@ -126,6 +127,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       const wholeDay = 32;
       var day = new Date();
       this.month = this.monthNames[day.getMonth()];
+      this.year = day.getFullYear();
       this.xAxisLabel = this.month;
       let currentDay = day.getDate();
       let currentMonth = day.getMonth();
@@ -184,6 +186,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     if (this.amountValue < this.amountAlertValue) {
       localStorage.removeItem('exceedLimit');
     }
+    this.percentProgressBarAmountAlert = (this.amountAlertValue / this.progressbarMaxValueAmount) * 100;
+    this.percentProgressBarAmountAlert = 100 - this.percentProgressBarAmountAlert;
   }
   editLimitValue() {
     this.editStatus = true;

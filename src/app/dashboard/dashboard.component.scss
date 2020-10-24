@@ -60,7 +60,7 @@
                 bottom: -$default-unit*20;
                 @include h-center();
                 @include ecs-typo($primary-font-regular, bold, 16px, 37px, $primary-dark-color);
-                text-transform: uppercase;
+                //text-transform: uppercase;
                 @include device(lg) {
                     bottom: -$default-unit*30;
                 }
@@ -106,7 +106,7 @@
             .ecs-date {
                 @include ecs-typo($primary-font-regular, bold, 16px, 37px, $primary-dark-color);
                 text-align: center;
-                text-transform: uppercase;
+                //text-transform: uppercase;
                 // margin-top: $default-margin;
                 clear: both;
             }

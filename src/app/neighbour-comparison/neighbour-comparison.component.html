@@ -1,48 +1,106 @@
 <div class="ecs-content-box">
-    <div class="neighbourhood-data">
-        <h3>Neighbourhood Comparison</h3>
-        <div class="neighbourhood-chart day-usage-bar" *ngIf="amount">
-            <div class="neighbourhood-canvas-chart" *ngIf="lineChartData?.length > 0">
-                <canvas baseChart [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptionsAmount" [colors]="lineChartColors" [legend]="lineChartLegend" [chartType]="lineChartType" [plugins]="lineChartPlugins">
-                </canvas>
+    <!-- <ngx-charts-pie-chart
+      [view]="[400, 300]"
+      [scheme]="{domain: ['#5AA454', '#A10A28', '#C7B42C']}"
+      [results]="series"
+      [legend]="true"
+      [labels]="true"
+      [doughnut]="true"
+      [legendPosition] = "'bottom'"
+      [legendTitle]="''"
+      [labelFormatting]="pieChartLabel.bind(this, series)">
+    </ngx-charts-pie-chart> -->
+    <nav>
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+          <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Last Six Months</a>
+          <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Current Month</a>
+        </div>
+      </nav>
+      <div class="tab-content" id="nav-tabContent">
+        <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+            <div class="neighbourhood-data">
+                <h3>Neighbourhood Comparison</h3>
+                <div class="neighbourhood-chart day-usage-bar" *ngIf="amount">
+                    <div class="neighbourhood-canvas-chart" *ngIf="lineChartData?.length > 0">
+                        <canvas baseChart [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptionsAmount" [colors]="lineChartColors" [legend]="lineChartLegend" [chartType]="lineChartType" [plugins]="lineChartPlugins">
+                        </canvas>
+                    </div>
+                    <div class="neighbourhood-ngx-chart">
+                        <ngx-charts-bar-horizontal [view]="view" [roundDomains]=true [scheme]="colorScheme" [results]="multiAmount" [gradient]="false" [noBarWhenZero]=true [xAxis]="false" [yAxis]="true" [barPadding]=30 [roundEdges]=true>
+                            <ng-template #tooltipTemplate let-model="model">
+                                <p class="ecs-tooltip">{{model.name}} ${{model.value | json}}</p>
+                            </ng-template>
+                        </ngx-charts-bar-horizontal>
+                    </div>
+                </div>
+                <div class="neighbourhood-chart day-usage-bar" *ngIf="kilowats">
+                    <div class="neighbourhood-canvas-chart">
+                        <canvas baseChart [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptionsKwh" [colors]="lineChartColors" [legend]="lineChartLegend" [chartType]="lineChartType" [plugins]="lineChartPlugins">
+                        </canvas>
+                    </div>
+                    <div class="neighbourhood-ngx-chart">
+                        <ngx-charts-bar-horizontal [view]="view" [roundDomains]=true [scheme]="colorScheme" [results]="multiKwh" [gradient]="false" [noBarWhenZero]=true [xAxis]="false" [yAxis]="true" [barPadding]=30 [roundEdges]=true>
+                            <ng-template #tooltipTemplate let-model="model">
+                                <p class="ecs-tooltip">{{model.name}} {{model.value | json}}kWh</p>
+                            </ng-template>
+                        </ngx-charts-bar-horizontal>
+                    </div>
+                </div>
             </div>
-            <div class="neighbourhood-ngx-chart">
-                <ngx-charts-bar-horizontal [view]="view" [roundDomains]=true [scheme]="colorScheme" [results]="multiAmount" [gradient]="false" [noBarWhenZero]=true [xAxis]="false" [yAxis]="true" [barPadding]=30 [roundEdges]=true>
-                    <ng-template #tooltipTemplate let-model="model">
-                        <p class="ecs-tooltip">{{model.name}} ${{model.value | json}}</p>
-                    </ng-template>
-                </ngx-charts-bar-horizontal>
+        
+            <div class="status-indicator">
+                <div class="status" [ngClass]="{'active': amountValue < 120}">
+                    <div class="figure figure-great"></div>
+                    <h4>Great</h4>
+                </div>
+                <div class="status" [ngClass]="{'active': amountValue > 120 && amountValue < 150}">
+                    <div class="figure figure-good"></div>
+                    <h4>Good</h4>
+                </div>
+                <div class="status" [ngClass]="{'active': amountValue > 150}">
+                    <div class="figure figure-negative"></div>
+                    <h4>Using more than average</h4>
+                </div>
             </div>
         </div>
-        <div class="neighbourhood-chart day-usage-bar" *ngIf="kilowats">
-            <div class="neighbourhood-canvas-chart">
-                <canvas baseChart [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptionsKwh" [colors]="lineChartColors" [legend]="lineChartLegend" [chartType]="lineChartType" [plugins]="lineChartPlugins">
-                </canvas>
+        <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+            <div class="neighbourhood-data">
+                <h3>Neighbourhood Comparison</h3>
+                <div class="neighbourhood-chart day-usage-bar" *ngIf="amount">
+                    <div class="neighbourhood-ngx-chart">
+                        <ngx-charts-bar-horizontal [view]="view" [roundDomains]=true [scheme]="colorScheme" [results]="multiAmountCurrent" [gradient]="false" [noBarWhenZero]=true [xAxis]="false" [yAxis]="true" [barPadding]=30 [roundEdges]=true>
+                            <ng-template #tooltipTemplate let-model="model">
+                                <p class="ecs-tooltip">{{model.name}} ${{model.value | json}}</p>
+                            </ng-template>
+                        </ngx-charts-bar-horizontal>
+                    </div>
+                </div>
+                <div class="neighbourhood-chart day-usage-bar" *ngIf="kilowats">
+                    <div class="neighbourhood-ngx-chart">
+                        <ngx-charts-bar-horizontal [view]="view" [roundDomains]=true [scheme]="colorScheme" [results]="multiKWHCurrent" [gradient]="false" [noBarWhenZero]=true [xAxis]="false" [yAxis]="true" [barPadding]=30 [roundEdges]=true>
+                            <ng-template #tooltipTemplate let-model="model">
+                                <p class="ecs-tooltip">{{model.name}} {{model.value | json}}kWh</p>
+                            </ng-template>
+                        </ngx-charts-bar-horizontal>
+                    </div>
+                </div>
+                <div class="status-indicator">
+                    <div class="status" [ngClass]="{'active': amountValue < 120}">
+                        <div class="figure figure-great"></div>
+                        <h4>Great</h4>
+                    </div>
+                    <div class="status" [ngClass]="{'active': amountValue > 120 && amountValue < 150}">
+                        <div class="figure figure-good"></div>
+                        <h4>Good</h4>
+                    </div>
+                    <div class="status" [ngClass]="{'active': amountValue > 150}">
+                        <div class="figure figure-negative"></div>
+                        <h4>Using more than average</h4>
+                    </div>
+                </div>
             </div>
-            <div class="neighbourhood-ngx-chart">
-                <ngx-charts-bar-horizontal [view]="view" [roundDomains]=true [scheme]="colorScheme" [results]="multiKwh" [gradient]="false" [noBarWhenZero]=true [xAxis]="false" [yAxis]="true" [barPadding]=30 [roundEdges]=true>
-                    <ng-template #tooltipTemplate let-model="model">
-                        <p class="ecs-tooltip">{{model.name}} {{model.value | json}}kWh</p>
-                    </ng-template>
-                </ngx-charts-bar-horizontal>
-            </div>
         </div>
-    </div>
-
-    <div class="status-indicator">
-        <div class="status" [ngClass]="{'active': amountValue < 120}">
-            <div class="figure figure-great"></div>
-            <h4>Great</h4>
-        </div>
-        <div class="status" [ngClass]="{'active': amountValue > 120 && amountValue < 150}">
-            <div class="figure figure-good"></div>
-            <h4>Good</h4>
-        </div>
-        <div class="status" [ngClass]="{'active': amountValue > 150}">
-            <div class="figure figure-negative"></div>
-            <h4>Using more than average</h4>
-        </div>
-    </div>
+      </div>
     <div class="ecs-toggle-switch">
         <span class="selector">Amount</span>
         <label class="switch">

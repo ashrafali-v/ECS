@@ -51,7 +51,7 @@
     .current-day {
         @include ecs-typo($primary-font-regular, 700, 16px, 20px, $primary-dark-color);
         text-align: center;
-        text-transform: uppercase;
+        //text-transform: uppercase;
     }
     .usage-action {
         @include flexbox();
