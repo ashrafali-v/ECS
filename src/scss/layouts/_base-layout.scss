@@ -17,7 +17,7 @@ app-root {
         height: calc(#{$fullVh} - #{$default-unit*40});
         overflow-y: hidden;
         @include device(lg) {
-            width: calc(#{$full} - #{$full/4});
+            width: calc(#{$full} - #{$full/3});
         }
         app-header {
             @include flex(0 0 $full);
