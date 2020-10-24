@@ -34,8 +34,8 @@ export class DailyUsageComponent implements OnInit {
   nextCountStatus: boolean = true;
   prevCountStatus: boolean = false;
   customTransform: any;
-  monthNames = ["Jan", "Feb", "March", "April", "May", "June",
-    "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+  monthNames = ["January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December"
   ];
   constructor(private sharedService: CommonAppService) {
   }

@@ -53,23 +53,6 @@ export class BillComparisonComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.sharedService.getBillComparison().subscribe(data=>{
-      let colorsAmount: any[];
-      let colorsKwh: any[];
-      colorsAmount = [];
-      colorsKwh = [];
-      var multiAmount = data;
-      multiAmount.forEach((element) => {
-        if (element.value > 18) {
-          colorsAmount.push("#F16F3F");
-        } else {
-          colorsAmount.push("#7033FF");
-        }
-      })
-      this.colorSchemeAmount.domain = colorsAmount;
-      this.colorSchemeKwh.domain = colorsKwh;
-      Object.assign(this, { multiAmount });
-    });
     var today = new Date();
     this.year = today.getFullYear();
     this.month = today.getMonth() + 1;
@@ -101,9 +84,9 @@ export class BillComparisonComponent implements OnInit {
 
     this.calendarData = [{ "month": this.selectMonthFirst, "year": this.selectYearFirst },
     { "month": this.selectMonthSecond, "year": this.selectYearSecond },
-    { "month": this.selectMonthThird, "year": this.selectMonthThird }];
+    { "month": this.selectMonthThird, "year": this.selectYearThird }];
     console.log(this.calendarData);
-
+    this.getBillComparisonData(this.calendarData);
     this.selectMonthFirstName = this.monthNames[this.selectMonthFirst];
     this.selectMonthSecondName = this.monthNames[this.selectMonthSecond];
     this.selectMonthThirdName = this.monthNames[this.selectMonthThird];
@@ -156,6 +139,8 @@ export class BillComparisonComponent implements OnInit {
           this.selectYearFirst = d.getFullYear();
           this.selectMonthFirstName = this.getMonthName(month);
           var details = { "month": month, "year": this.selectYearFirst }
+          console.log("first");
+          this.calendarData.splice(0,1,details);
           break;
         case 2:
           this.selectedDatePicker = index;
@@ -165,6 +150,8 @@ export class BillComparisonComponent implements OnInit {
           this.selectYearSecond = d.getFullYear();
           this.selectMonthSecondName = this.getMonthName(month);
           var details = { "month": month, "year": this.selectYearSecond }
+          console.log("sec");
+          this.calendarData.splice(1,1,details);
           break;
         case 3:
           this.selectedDatePicker = index;
@@ -174,16 +161,36 @@ export class BillComparisonComponent implements OnInit {
           this.selectYearThird = d.getFullYear();
           this.selectMonthThirdName = this.getMonthName(month);
           var details = { "month": month, "year": this.selectYearThird }
+          this.calendarData.splice(2,1,details);
           break;
 
       }
-      console.log(details);
-
+      console.log(this.calendarData);
+      this.getBillComparisonData(this.calendarData);   
     };
     container.setViewMode('month');
   }
   getMonthName(index) {
     return this.monthNames[index];
+  }
+  getBillComparisonData(data){
+    this.sharedService.getBillComparison(data).subscribe(data=>{
+      let colorsAmount: any[];
+      let colorsKwh: any[];
+      colorsAmount = [];
+      colorsKwh = [];
+      var multiAmount = data;
+      multiAmount.forEach((element) => {
+        if (element.value > 18) {
+          colorsAmount.push("#F16F3F");
+        } else {
+          colorsAmount.push("#7033FF");
+        }
+      })
+      this.colorSchemeAmount.domain = colorsAmount;
+      this.colorSchemeKwh.domain = colorsKwh;
+      Object.assign(this, { multiAmount });
+    });
   }
 
 }

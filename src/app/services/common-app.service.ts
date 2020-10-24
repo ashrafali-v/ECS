@@ -40,13 +40,8 @@ export class CommonAppService {
       map((res:any) => res)
     )
   }
-  public getBillComparison(){
+  public getBillComparison(data:any){
     var url = this.ecsApiEndpoints['BillComparison'];
-    var data = [   
-      { "month": 5, "year": 2020 },
-      { "month": 4, "year": 2020 },
-      { "month": 3, "year": 2020 }
-  ];
     return this.httpClient.post(this.serviceBase+url,data,this.jsonHttpHeader).pipe(
       map((res:any) => res)
     )

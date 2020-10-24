@@ -14,6 +14,8 @@ export class NeighbourComparisonComponent implements OnInit {
   kilowatsValue: number;
   multiAmount: any[];
   multiKwh: any[];
+  multiAmountCurrent:any[];
+  multiKWHCurrent:any[];
   lineChartDataAmount: any[];
   lineChartDataKwh: any[];
   view: any[];
@@ -139,45 +141,65 @@ export class NeighbourComparisonComponent implements OnInit {
   };
 
   /*-----------------Bar chart config-----------------------------*/
+
+  /*------------Dummy-------------*/
+  series = [
+    {
+      "name": "Retired",
+      "value": 20,
+      "label": "20%"
+    },
+    {
+      "name": "Employed",
+      "value": 70,
+      "label": "70%"
+    },
+    {
+      "name": "Unemployed",
+      "value": 10,
+      "label": "10%"
+    }
+  ];
+
+  pieChartLabel(series: any[], name: string): string {
+      const item = series.filter(data => data.name === name);
+      if (item.length > 0) {
+          return item[0].label;
+      }
+      return name;
+  }
+  /*-------------------------*/
   constructor(private sharedService: CommonAppService) { }
 
   ngOnInit(): void {
     this.sharedService.nextMessage("amount");
     /*-----------------Bar chart config-----------------------------*/
     this.view = [320, 200];
-    this.multiAmount = [
+    this.multiAmountCurrent = [
       {
-        "name": "All Neighbours",
-        "value": 215
-      },
-      {
-        "name": "Similar Homes",
+        "name": "Efficient Neighbours",
         "value": 180
       },
       {
-        "name": "Your Usage",
+        "name": "All Neighbours",
         "value": 198
       },
       {
-        "name": "Your Current Month",
+        "name": "You",
         "value": 63
       }
     ]
-    this.multiKwh = [
+    this.multiKWHCurrent = [
       {
-        "name": "All Neighbours",
-        "value": 205
-      },
-      {
-        "name": "Similar Homes",
+        "name": "Efficient Neighbours",
         "value": 160
       },
       {
-        "name": "Your Usage",
+        "name": "All Neighbours",
         "value": 188
       },
       {
-        "name": "Your Current Month",
+        "name": "You",
         "value": 83
       }
     ]
