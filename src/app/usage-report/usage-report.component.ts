@@ -12,32 +12,34 @@ export class UsageReportComponent implements OnInit {
   screenHeight: number;
   screenWidth: number;
   colorValues:any = [];
+  devices:any = [];
+  colors:any = [];
   view: any[];
   totalValue:any = 210;
     /*------------Donut Chart-------------*/
     series = [
       {
         "name": "Computer",
-        "value": 20,
+        "value": 130,
       },
       {
         "name": "Washer & Dryer",
-        "value": 70,
+        "value": 90,
       },
       {
         "name": "Dishwasher",
-        "value": 10,
+        "value": 340,
       },
       {
         "name": "Lighting",
-        "value": 30,
+        "value": 120,
       },
       {
         "name": "Electric oven",
-        "value": 90,
+        "value": 60,
       },{
         "name": "Cooling",
-        "value": 45,
+        "value": 560,
       }
     ];
      colorScheme = {
@@ -56,6 +58,32 @@ export class UsageReportComponent implements OnInit {
     } 
   }
   ngOnInit(): void {
+    this.devices = [
+      {
+        "name": "Computer",
+        "value": 130,
+      },
+      {
+        "name": "Washer & Dryer",
+        "value": 90,
+      },
+      {
+        "name": "Dishwasher",
+        "value": 340,
+      },
+      {
+        "name": "Lighting",
+        "value": 120,
+      },
+      {
+        "name": "Electric oven",
+        "value": 60,
+      },{
+        "name": "Cooling",
+        "value": 560,
+      }
+    ];
+    this.colors = ['#7033FF', '#d43abc', '#f43579','#fec367','#68d29d','#507df7'];
   }
   percentageFormatting(c) {
     return Math.round(c);

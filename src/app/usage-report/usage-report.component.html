@@ -10,8 +10,8 @@
                 [legendPosition] = "'bottom'"
                 [legendTitle]="''">
                 <ng-template #tooltipTemplate let-model="model">
-                    <p class="ecs-tooltip">{{model.name}}</p><br>
-                    <p>{{model.value/totalValue}} %</p>
+                    <p class="ecs-tooltip">{{model.name}}</p>
+                    <p>${{model.value}}</p>
                 </ng-template>
         </ngx-charts-pie-chart>
     </div>
@@ -23,7 +23,7 @@
                 <div class="month-amount">
                     <h3>Computer</h3>
                     <P>Average cost per housaId</P>
-                    <h3>$160 PER YEAR</h3>
+                    <h3>$130 PER YEAR</h3>
                 </div>
             </div>
             <div class="month-box" style="border-color:#d43abc">
@@ -31,7 +31,7 @@
                 <div class="month-amount">
                     <h3>Washer & Dryer</h3>
                     <P>Average cost per housaId</P>
-                    <h3>$160 PER YEAR</h3>
+                    <h3>$90 PER YEAR</h3>
                 </div>
             </div>
             <div class="month-box" style="border-color:#f43579">
@@ -39,7 +39,7 @@
                 <div class="month-amount">
                     <h3>Dishwasher</h3>
                     <P>Average cost per housaId</P>
-                    <h3>$160 PER YEAR</h3>
+                    <h3>$340 PER YEAR</h3>
                 </div>
             </div>
             <div class="month-box" style="border-color:#fec367">
@@ -47,7 +47,7 @@
                 <div class="month-amount">
                     <h3>Lighting</h3>
                     <P>Average cost per housaId</P>
-                    <h3>$160 PER YEAR</h3>
+                    <h3>$120 PER YEAR</h3>
                 </div>
             </div>
             <div class="month-box" style="border-color:#68d29d">
@@ -55,7 +55,7 @@
                 <div class="month-amount">
                     <h3>Electric Components</h3>
                     <P>Average cost per housaId</P>
-                    <h3>$160 PER YEAR</h3>
+                    <h3>$60 PER YEAR</h3>
                 </div>
             </div>
             <div class="month-box " style="border-color:#507df7">
@@ -63,7 +63,7 @@
                 <div class="month-amount">
                     <h3>Cooling</h3>
                     <P>Average cost per housaId</P>
-                    <h3>$160 PER YEAR</h3>
+                    <h3>$560 PER YEAR</h3>
                 </div>
             </div>
         </div>
