@@ -181,13 +181,16 @@
                     </div>
                     <div class="exceed-bar" [style.right.%]=percentProgressBarAmountAlert><span class="alert-amount">{{ amountAlertValue | currency : 'USD' : 'symbol' : '1.0-0' }}</span></div>
                 </div>
-                <span>{{limitValue}}</span>
+                
             </div>
             
             <div class="usage-month">
+                <span>0</span>
+                <span>Day {{day}}</span>
+                <span>{{limitValue}}</span>
                 <!-- <span>{{month}} 1</span> -->
                 <!-- <span>{{daysInCurrentMonth}}</span> -->
-                <span>Day {{day}}</span>
+                
             </div>
         </div>
     </div>

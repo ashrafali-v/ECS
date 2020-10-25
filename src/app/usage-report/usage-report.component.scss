@@ -4,7 +4,24 @@
 //     stroke-width: 1;
 // }
 ::ng-deep {
-    .bill-comparison-data {
+    .pie-label{
+        @include ecs-typo($primary-font-regular, 700, 16px, 20px, $primary-dark-color);
+        font-size: 16px !important;
+    }
+    .usage-report{
+        position: relative;
+    padding: $null;
+    width: $full;
+    // max-width: $default-unit*100;
+    margin: $full/30 auto;
+    @include flexbox();
+    @include flex(1 0 auto);
+    @include flex-direction(column);
+    @include align-items(center);
+    @include device(lg) {
+        max-width: $default-unit*480;
+        margin: $full/40 auto;
+    }
         h3 {
             @include ecs-typo($primary-font-regular, 700, 16px, 20px, $primary-dark-color);
             text-align: center;
@@ -63,8 +80,8 @@
             margin: $default-margin $null;
         }
         .month-box {
-            background-color: $primary-color;
-            @include border-radius($default-unit*3);
+            background-color: $white;
+            @include border-radius($default-unit);
             @include flex(0 1 calc(#{$full/2} - 20px));
             @include flexbox();
             @include flex-direction(row);
@@ -73,9 +90,10 @@
             padding: $default-padding;
             margin: $default-margin $null;
             width: calc(#{$full/2} - 20px);
+            border-left: 10px solid transparent;
             @include device(lg) {
-                width: calc(#{$full/4} - 20px);
-                @include flex(0 1 calc(#{$full/4} - 20px));
+                width: calc(#{$full/3} - 20px);
+                @include flex(0 1 calc(#{$full/3} - 20px));
             }
             h3 {
                 @include ecs-typo($primary-font-regular, bold, 12px, 18px, $white);
@@ -103,7 +121,7 @@
                 }
             }
             .month-amount {
-                @include ecs-typo($primary-font-regular, bold, 16px, 18px, $white);
+                @include ecs-typo($primary-font-regular, bold, 16px, 18px, $primary-dark-color);
                 text-align: left;
                 @include flex(0 0 $full);
                 padding: $default-padding $null;

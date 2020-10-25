@@ -4,8 +4,10 @@
     @include flexbox();
     @include flex(0 0 $full/1.5);
     @include flex-direction(row);
+    @include flex-wrap(wrap);
     @include justify-content(flex-end);
     margin-left: auto;
+    margin-right: $default-margin*3;
     padding: $default-padding*1.5 $null;
     @include device(lg) {
         @include flex(0 0 $full/2);
@@ -41,6 +43,10 @@
     .ecs-amount {
         margin-right: $default-margin*2;
         @include align-self(flex-end);
+        @include flex(0 0 $full/3);
+        @include device(lg) {
+            @include flex(0 0 auto);
+        }
         h2 {
             @include ecs-typo($primary-font-regular, 700, 27px, 32px, $primary-dark-color);
             vertical-align: bottom;
@@ -55,6 +61,10 @@
     .ecs-kilowatt {
         margin-right: $default-margin*2;
         @include align-self(flex-end);
+        @include flex(0 0 $full/3);
+        @include device(lg) {
+            @include flex(0 0 auto);
+        }
         h2 {
             @include ecs-typo($primary-font-regular, 700, 16px, 32px, rgba($primary-dark-color, .5));
             vertical-align: bottom;
@@ -64,6 +74,20 @@
         }
         h4 {
             @include ecs-typo($primary-font-regular, 200, 12px, 14px, rgba($primary-dark-color, .5));
+        }
+    }
+
+    .ecs-select{
+        @include flex-basis($full/1.4);
+        margin-top: $default-margin*3;
+        margin-right: auto;
+        @include ecs-typo($primary-font-regular, 700, 16px, 32px, $primary-dark-color);
+        @include order(3);
+        @include device(lg) {
+            @include flex(0 0 auto);
+            @include flex-basis($full/3);
+            margin-top: $null;
+            margin-right: $null;
         }
     }
 }
