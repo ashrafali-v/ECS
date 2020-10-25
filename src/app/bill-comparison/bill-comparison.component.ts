@@ -82,9 +82,11 @@ export class BillComparisonComponent implements OnInit {
       this.selectYearFirst = this.selectYearSecond = this.selectYearThird = this.year;
     }
 
-    this.calendarData = [{ "month": this.selectMonthFirst, "year": this.selectYearFirst },
+    this.calendarData = [{ "month": this.selectMonthThird, "year": this.selectYearThird },
     { "month": this.selectMonthSecond, "year": this.selectYearSecond },
-    { "month": this.selectMonthThird, "year": this.selectYearThird }];
+    { "month": this.selectMonthFirst, "year": this.selectYearFirst },
+    {"month": this.month, "year": this.year }
+    ];
     console.log(this.calendarData);
     this.getBillComparisonData(this.calendarData);
     this.selectMonthFirstName = this.monthNames[this.selectMonthFirst];
@@ -140,7 +142,7 @@ export class BillComparisonComponent implements OnInit {
           this.selectMonthFirstName = this.getMonthName(month);
           var details = { "month": month, "year": this.selectYearFirst }
           console.log("first");
-          this.calendarData.splice(0,1,details);
+          this.calendarData.splice(2,1,details);
           break;
         case 2:
           this.selectedDatePicker = index;
@@ -161,7 +163,7 @@ export class BillComparisonComponent implements OnInit {
           this.selectYearThird = d.getFullYear();
           this.selectMonthThirdName = this.getMonthName(month);
           var details = { "month": month, "year": this.selectYearThird }
-          this.calendarData.splice(2,1,details);
+          this.calendarData.splice(0,1,details);
           break;
 
       }
@@ -191,6 +193,22 @@ export class BillComparisonComponent implements OnInit {
       this.colorSchemeKwh.domain = colorsKwh;
       Object.assign(this, { multiAmount });
     });
+
+    // let colorsAmount: any[];
+    // let colorsKwh: any[];
+    // colorsAmount = [];
+    // colorsKwh = [];
+    // var multiAmount = [{name: "JUL 2020", value: 13},{name: "AUG 2020", value: 9},{month: "SEP 2020", value: 18},{name: "OCT 2020", value: 5}];
+    // multiAmount.forEach((element) => {
+    //   if (element.value > 18) {
+    //     colorsAmount.push("#F16F3F");
+    //   } else {
+    //     colorsAmount.push("#7033FF");
+    //   }
+    // })
+    // this.colorSchemeAmount.domain = colorsAmount;
+    // this.colorSchemeKwh.domain = colorsKwh;
+    // Object.assign(this, { multiAmount });
   }
 
 }
