@@ -4,10 +4,7 @@
         <h1>ECS</h1>
     </div>
     <div class="projected-biil-details" [ngClass]="(kilowats==true)?'ecs-kilowatt-active':''">
-        <select name="chose-method" id="method" class="ecs-select">
-            <option value="1">ENERGY</option>
-            <option value="2">GAS</option>
-        </select>
+        
         <div class="ecs-amount">
             <h2>{{ amountValue | currency : 'USD' : 'symbol' : '1.0-0' }}<span>.00</span></h2>
             <h4>Predicted Amount</h4>
@@ -16,6 +13,10 @@
             <h2>{{kilowatsValue}} kWh</h2>
             <h4>Predicted Usage</h4>
         </div>
+        <select name="chose-method" id="method" class="ecs-select">
+            <option value="1">ENERGY</option>
+            <option value="2">GAS</option>
+        </select>
         
     </div>
 </header>

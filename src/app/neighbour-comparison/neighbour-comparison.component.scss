@@ -5,6 +5,15 @@
             @include ecs-typo($primary-font-regular, 700, 16px, 20px, $primary-dark-color);
             text-align: center;
         }
+        h4 {
+            @include ecs-typo($primary-font-regular, 400, 16px, 20px, $primary-dark-color);
+            text-align: center;
+            margin-top: $default-margin*3;
+            b{
+                font-weight: 700;
+                color: rgba( $secondary-color, 1);
+            }
+        }
         .neighbourhood-chart {
             @include flexbox();
             @include flex-direction(column);
