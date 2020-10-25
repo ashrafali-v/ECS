@@ -86,15 +86,16 @@
         .month-box {
             background-color: $white;
             @include border-radius($default-unit);
-            @include flex(0 1 calc(#{$full/2} - 20px));
+            @include flex(0 1 calc(#{$full} - 20px));
             @include flexbox();
             @include flex-direction(row);
-            @include justify-content(space-between);
+            @include justify-content(flex-start);
             @include flex-wrap(wrap);
             padding: $default-padding;
             margin: $default-margin $null;
-            width: calc(#{$full/2} - 20px);
+            width: calc(#{$full} - 20px);
             border-left: 10px solid transparent;
+            
             @include device(lg) {
                 width: calc(#{$full/3} - 20px);
                 @include flex(0 1 calc(#{$full/3} - 20px));
@@ -104,31 +105,27 @@
                 @include flex(0 0 calc(#{$full} - 50px));
                 padding: $default-padding $null;
             }
-            .edit-month {
-                // @include fill-cta($nutral-light-color, rgba($white, .5));
-                padding: $default-padding/3 $default-padding;
-                border: none;
-                background-color: transparent;
-                color: $white;
-                font-size: $default-unit*7;
-                position: relative;
-                .edit-month-input {
-                    position: absolute;
-                    left: $null;
-                    top: $null;
-                    width: $full;
-                    height: $full;
-                    background-color: transparent;
-                    border: none;
-                    @include ecs-typo($primary-font-regular, bold, 0px, 0px, $white);
-                    cursor: pointer;
+            .glyph-icon{
+                @include flex(0 0 auto);
+                &:before{
+                    font-size: $default-unit*24;
+                    line-height: 2;
                 }
             }
             .month-amount {
-                @include ecs-typo($primary-font-regular, bold, 16px, 18px, $primary-dark-color);
-                text-align: left;
-                @include flex(0 0 $full);
-                padding: $default-padding $null;
+                @include flex(0 0 auto);
+                padding: $null;
+                margin-left: $default-margin*2;
+                h3 {
+                    @include ecs-typo($primary-font-regular, bold, 16px, 18px, $primary-dark-color);
+                    text-align: left;
+                    text-transform: uppercase;
+                }
+                p {
+                    @include ecs-typo($primary-font-regular, normal, 16px, 18px, $primary-dark-color);
+                    text-align: left;
+                    
+                }
             }
             &.current-month {
                 @include horizontal-gradient($primary-color, $secondary-color);

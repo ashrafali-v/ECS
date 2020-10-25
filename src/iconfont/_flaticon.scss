@@ -1,0 +1,239 @@
+    /*
+    Flaticon icon font: Flaticon
+    Creation date: 15/02/2017 10:13
+    */
+
+    @font-face {
+  font-family: "Flaticon";
+  src: url("Flaticon.eot");
+  src: url("Flaticon.eot?#iefix") format("embedded-opentype"),
+       url("Flaticon.woff") format("woff"),
+       url("Flaticon.ttf") format("truetype");
+      //  url("Flaticon.svg#Flaticon") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  @font-face {
+    font-family: "Flaticon";
+    // src: url("Flaticon.svg#Flaticon") format("svg");
+  }
+}
+
+    .fi:before{
+        display: inline-block;
+  font-family: "Flaticon";
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  line-height: 1;
+  text-decoration: inherit;
+  text-rendering: optimizeLegibility;
+  text-transform: none;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+    }
+
+    .flaticon-air-conditioner:before { content: "\f100"; }
+.flaticon-bath-tub:before { content: "\f101"; }
+.flaticon-bath-tub-1:before { content: "\f102"; }
+.flaticon-bed:before { content: "\f103"; }
+.flaticon-bed-1:before { content: "\f104"; }
+.flaticon-bed-2:before { content: "\f105"; }
+.flaticon-bed-3:before { content: "\f106"; }
+.flaticon-bed-4:before { content: "\f107"; }
+.flaticon-bookshelf:before { content: "\f108"; }
+.flaticon-bookshelf-1:before { content: "\f109"; }
+.flaticon-bookshelf-2:before { content: "\f10a"; }
+.flaticon-bookshelf-3:before { content: "\f10b"; }
+.flaticon-cabinet:before { content: "\f10c"; }
+.flaticon-cabinet-1:before { content: "\f10d"; }
+.flaticon-chair:before { content: "\f10e"; }
+.flaticon-chair-1:before { content: "\f10f"; }
+.flaticon-chair-2:before { content: "\f110"; }
+.flaticon-chair-3:before { content: "\f111"; }
+.flaticon-chair-4:before { content: "\f112"; }
+.flaticon-chest-of-drawers:before { content: "\f113"; }
+.flaticon-chest-of-drawers-1:before { content: "\f114"; }
+.flaticon-chest-of-drawers-2:before { content: "\f115"; }
+.flaticon-chest-of-drawers-3:before { content: "\f116"; }
+.flaticon-chest-of-drawers-4:before { content: "\f117"; }
+.flaticon-chest-of-drawers-5:before { content: "\f118"; }
+.flaticon-chest-of-drawers-6:before { content: "\f119"; }
+.flaticon-chest-of-drawers-7:before { content: "\f11a"; }
+.flaticon-clean:before { content: "\f11b"; }
+.flaticon-closet:before { content: "\f11c"; }
+.flaticon-cooking:before { content: "\f11d"; }
+.flaticon-couch:before { content: "\f11e"; }
+.flaticon-cradle:before { content: "\f11f"; }
+.flaticon-cupboard:before { content: "\f120"; }
+.flaticon-desk:before { content: "\f121"; }
+.flaticon-desk-1:before { content: "\f122"; }
+.flaticon-desk-chair:before { content: "\f123"; }
+.flaticon-dressing-table:before { content: "\f124"; }
+.flaticon-elegant:before { content: "\f125"; }
+.flaticon-elegant-1:before { content: "\f126"; }
+.flaticon-elegant-10:before { content: "\f127"; }
+.flaticon-elegant-2:before { content: "\f128"; }
+.flaticon-elegant-3:before { content: "\f129"; }
+.flaticon-elegant-4:before { content: "\f12a"; }
+.flaticon-elegant-5:before { content: "\f12b"; }
+.flaticon-elegant-6:before { content: "\f12c"; }
+.flaticon-elegant-7:before { content: "\f12d"; }
+.flaticon-elegant-8:before { content: "\f12e"; }
+.flaticon-elegant-9:before { content: "\f12f"; }
+.flaticon-fridge:before { content: "\f130"; }
+.flaticon-furniture:before { content: "\f131"; }
+.flaticon-furniture-1:before { content: "\f132"; }
+.flaticon-furniture-2:before { content: "\f133"; }
+.flaticon-hair-dryer:before { content: "\f134"; }
+.flaticon-hanger:before { content: "\f135"; }
+.flaticon-hanger-1:before { content: "\f136"; }
+.flaticon-home:before { content: "\f137"; }
+.flaticon-home-1:before { content: "\f138"; }
+.flaticon-iron-table:before { content: "\f139"; }
+.flaticon-juice:before { content: "\f13a"; }
+.flaticon-lamp:before { content: "\f13b"; }
+.flaticon-lamp-1:before { content: "\f13c"; }
+.flaticon-light:before { content: "\f13d"; }
+.flaticon-light-bulb:before { content: "\f13e"; }
+.flaticon-microwave:before { content: "\f13f"; }
+.flaticon-mirror:before { content: "\f140"; }
+.flaticon-mirror-1:before { content: "\f141"; }
+.flaticon-office:before { content: "\f142"; }
+.flaticon-office-cabinet:before { content: "\f143"; }
+.flaticon-oven:before { content: "\f144"; }
+.flaticon-picture:before { content: "\f145"; }
+.flaticon-refrigerator:before { content: "\f146"; }
+.flaticon-sofa:before { content: "\f147"; }
+.flaticon-sofa-1:before { content: "\f148"; }
+.flaticon-sofa-2:before { content: "\f149"; }
+.flaticon-sofa-3:before { content: "\f14a"; }
+.flaticon-sofa-4:before { content: "\f14b"; }
+.flaticon-sofa-5:before { content: "\f14c"; }
+.flaticon-sofa-6:before { content: "\f14d"; }
+.flaticon-sofa-7:before { content: "\f14e"; }
+.flaticon-sofa-8:before { content: "\f14f"; }
+.flaticon-stairs:before { content: "\f150"; }
+.flaticon-stove:before { content: "\f151"; }
+.flaticon-table:before { content: "\f152"; }
+.flaticon-table-1:before { content: "\f153"; }
+.flaticon-table-2:before { content: "\f154"; }
+.flaticon-table-3:before { content: "\f155"; }
+.flaticon-table-4:before { content: "\f156"; }
+.flaticon-table-5:before { content: "\f157"; }
+.flaticon-table-fan:before { content: "\f158"; }
+.flaticon-table-lamp:before { content: "\f159"; }
+.flaticon-table-lamp-1:before { content: "\f15a"; }
+.flaticon-table-lamp-2:before { content: "\f15b"; }
+.flaticon-technology:before { content: "\f15c"; }
+.flaticon-wardrobe:before { content: "\f15d"; }
+.flaticon-washing-machine:before { content: "\f15e"; }
+.flaticon-weight:before { content: "\f15f"; }
+.flaticon-window:before { content: "\f160"; }
+.flaticon-window-1:before { content: "\f161"; }
+.flaticon-window-2:before { content: "\f162"; }
+.flaticon-window-3:before { content: "\f163"; }
+    
+    $font-Flaticon-air-conditioner: "\f100";
+    $font-Flaticon-bath-tub: "\f101";
+    $font-Flaticon-bath-tub-1: "\f102";
+    $font-Flaticon-bed: "\f103";
+    $font-Flaticon-bed-1: "\f104";
+    $font-Flaticon-bed-2: "\f105";
+    $font-Flaticon-bed-3: "\f106";
+    $font-Flaticon-bed-4: "\f107";
+    $font-Flaticon-bookshelf: "\f108";
+    $font-Flaticon-bookshelf-1: "\f109";
+    $font-Flaticon-bookshelf-2: "\f10a";
+    $font-Flaticon-bookshelf-3: "\f10b";
+    $font-Flaticon-cabinet: "\f10c";
+    $font-Flaticon-cabinet-1: "\f10d";
+    $font-Flaticon-chair: "\f10e";
+    $font-Flaticon-chair-1: "\f10f";
+    $font-Flaticon-chair-2: "\f110";
+    $font-Flaticon-chair-3: "\f111";
+    $font-Flaticon-chair-4: "\f112";
+    $font-Flaticon-chest-of-drawers: "\f113";
+    $font-Flaticon-chest-of-drawers-1: "\f114";
+    $font-Flaticon-chest-of-drawers-2: "\f115";
+    $font-Flaticon-chest-of-drawers-3: "\f116";
+    $font-Flaticon-chest-of-drawers-4: "\f117";
+    $font-Flaticon-chest-of-drawers-5: "\f118";
+    $font-Flaticon-chest-of-drawers-6: "\f119";
+    $font-Flaticon-chest-of-drawers-7: "\f11a";
+    $font-Flaticon-clean: "\f11b";
+    $font-Flaticon-closet: "\f11c";
+    $font-Flaticon-cooking: "\f11d";
+    $font-Flaticon-couch: "\f11e";
+    $font-Flaticon-cradle: "\f11f";
+    $font-Flaticon-cupboard: "\f120";
+    $font-Flaticon-desk: "\f121";
+    $font-Flaticon-desk-1: "\f122";
+    $font-Flaticon-desk-chair: "\f123";
+    $font-Flaticon-dressing-table: "\f124";
+    $font-Flaticon-elegant: "\f125";
+    $font-Flaticon-elegant-1: "\f126";
+    $font-Flaticon-elegant-10: "\f127";
+    $font-Flaticon-elegant-2: "\f128";
+    $font-Flaticon-elegant-3: "\f129";
+    $font-Flaticon-elegant-4: "\f12a";
+    $font-Flaticon-elegant-5: "\f12b";
+    $font-Flaticon-elegant-6: "\f12c";
+    $font-Flaticon-elegant-7: "\f12d";
+    $font-Flaticon-elegant-8: "\f12e";
+    $font-Flaticon-elegant-9: "\f12f";
+    $font-Flaticon-fridge: "\f130";
+    $font-Flaticon-furniture: "\f131";
+    $font-Flaticon-furniture-1: "\f132";
+    $font-Flaticon-furniture-2: "\f133";
+    $font-Flaticon-hair-dryer: "\f134";
+    $font-Flaticon-hanger: "\f135";
+    $font-Flaticon-hanger-1: "\f136";
+    $font-Flaticon-home: "\f137";
+    $font-Flaticon-home-1: "\f138";
+    $font-Flaticon-iron-table: "\f139";
+    $font-Flaticon-juice: "\f13a";
+    $font-Flaticon-lamp: "\f13b";
+    $font-Flaticon-lamp-1: "\f13c";
+    $font-Flaticon-light: "\f13d";
+    $font-Flaticon-light-bulb: "\f13e";
+    $font-Flaticon-microwave: "\f13f";
+    $font-Flaticon-mirror: "\f140";
+    $font-Flaticon-mirror-1: "\f141";
+    $font-Flaticon-office: "\f142";
+    $font-Flaticon-office-cabinet: "\f143";
+    $font-Flaticon-oven: "\f144";
+    $font-Flaticon-picture: "\f145";
+    $font-Flaticon-refrigerator: "\f146";
+    $font-Flaticon-sofa: "\f147";
+    $font-Flaticon-sofa-1: "\f148";
+    $font-Flaticon-sofa-2: "\f149";
+    $font-Flaticon-sofa-3: "\f14a";
+    $font-Flaticon-sofa-4: "\f14b";
+    $font-Flaticon-sofa-5: "\f14c";
+    $font-Flaticon-sofa-6: "\f14d";
+    $font-Flaticon-sofa-7: "\f14e";
+    $font-Flaticon-sofa-8: "\f14f";
+    $font-Flaticon-stairs: "\f150";
+    $font-Flaticon-stove: "\f151";
+    $font-Flaticon-table: "\f152";
+    $font-Flaticon-table-1: "\f153";
+    $font-Flaticon-table-2: "\f154";
+    $font-Flaticon-table-3: "\f155";
+    $font-Flaticon-table-4: "\f156";
+    $font-Flaticon-table-5: "\f157";
+    $font-Flaticon-table-fan: "\f158";
+    $font-Flaticon-table-lamp: "\f159";
+    $font-Flaticon-table-lamp-1: "\f15a";
+    $font-Flaticon-table-lamp-2: "\f15b";
+    $font-Flaticon-technology: "\f15c";
+    $font-Flaticon-wardrobe: "\f15d";
+    $font-Flaticon-washing-machine: "\f15e";
+    $font-Flaticon-weight: "\f15f";
+    $font-Flaticon-window: "\f160";
+    $font-Flaticon-window-1: "\f161";
+    $font-Flaticon-window-2: "\f162";
+    $font-Flaticon-window-3: "\f163";
