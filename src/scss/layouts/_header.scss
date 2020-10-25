@@ -17,6 +17,7 @@ header {
         padding-right: $default-padding*3.5;
         padding-bottom: $default-padding*2.5;
         max-width: $default-unit*70;
+        height: $default-unit*40;
         // display: table;
         @include border-radius-tl-tr-br-bl(0, 0, 50px, 0);
         img {

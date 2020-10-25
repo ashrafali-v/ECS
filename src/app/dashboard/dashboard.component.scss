@@ -80,6 +80,10 @@
             .chart-progress {
                 @include vh-center();
                 @include ecs-typo($primary-font-regular, 200, 24px, 37px, $primary-dark-color);
+                h5{
+                    @include ecs-typo($primary-font-regular, 400, 16px, 20px, $primary-dark-color);
+                    text-align: center;
+                }
             }
         }
     }
@@ -236,7 +240,7 @@
             @include flexbox();
             @include flex(1 0 auto);
             @include flex-direction(row);
-            @include justify-content(center);
+            @include justify-content(space-between);
             width: calc(#{ $full} - 30px);
             span {
                 @include ecs-typo($primary-font-regular, 400, 14px, 20px, rgba($white, 1));

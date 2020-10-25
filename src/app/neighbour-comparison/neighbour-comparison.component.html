@@ -20,6 +20,7 @@
         <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
             <div class="neighbourhood-data">
                 <h3>Neighbourhood Comparison</h3>
+                
                 <div class="neighbourhood-chart day-usage-bar" *ngIf="amount">
                     <div class="neighbourhood-canvas-chart" *ngIf="lineChartData?.length > 0">
                         <canvas baseChart [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptionsAmount" [colors]="lineChartColors" [legend]="lineChartLegend" [chartType]="lineChartType" [plugins]="lineChartPlugins">
@@ -66,6 +67,7 @@
         <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
             <div class="neighbourhood-data">
                 <h3>Neighbourhood Comparison</h3>
+                <h4>You're using <b>12% more energy</b> than your neighbors.</h4>
                 <div class="neighbourhood-chart day-usage-bar" *ngIf="amount">
                     <div class="neighbourhood-ngx-chart">
                         <ngx-charts-bar-horizontal [view]="view" [roundDomains]=true [scheme]="colorScheme" [results]="multiAmountCurrent" [gradient]="false" [noBarWhenZero]=true [xAxis]="false" [yAxis]="true" [barPadding]=30 [roundEdges]=true>

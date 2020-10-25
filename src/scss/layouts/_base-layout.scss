@@ -36,8 +36,15 @@ app-root {
         @include align-items(center);
         height: calc(#{$fullVh} - #{$default-unit*77.5});
         overflow-y: auto;
+
         @include device(lg) {
             height: calc(#{$fullVh} - #{$default-unit*40});
+        }
+        &.usage-report-container{
+            height: calc(#{$fullVh} - #{$default-unit*92});
+            @include device(lg) {
+                height: calc(#{$fullVh} - #{$default-unit*40});
+            }
         }
         .max-hgt-container {
             max-height: $default-unit*308;
