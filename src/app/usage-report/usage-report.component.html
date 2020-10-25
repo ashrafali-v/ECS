@@ -2,13 +2,17 @@
     <div class="usage-report">
         <h3>Your home energy usage report</h3>
         <ngx-charts-pie-chart
-                [view]="[400, 300]"
-                [scheme]="{domain: ['#7033FF', '#d43abc', '#f43579','#fec367','#68d29d','#507df7']}"
+                [view]="view"
+                [scheme]="colorScheme"
                 [results]="series"
                 [labels]="true"
                 [doughnut]="true"
                 [legendPosition] = "'bottom'"
                 [legendTitle]="''">
+                <ng-template #tooltipTemplate let-model="model">
+                    <p class="ecs-tooltip">{{model.name}}</p><br>
+                    <p>{{model.value/totalValue}} %</p>
+                </ng-template>
         </ngx-charts-pie-chart>
     </div>
     

@@ -11,7 +11,9 @@ import { HostListener } from "@angular/core";
 export class UsageReportComponent implements OnInit {
   screenHeight: number;
   screenWidth: number;
+  colorValues:any = [];
   view: any[];
+  totalValue:any = 210;
     /*------------Donut Chart-------------*/
     series = [
       {
@@ -39,7 +41,7 @@ export class UsageReportComponent implements OnInit {
       }
     ];
      colorScheme = {
-    domain:['#5AA454', '#A10A28', '#C7B42C','grey','black','orange']
+      domain: ['#7033FF', '#d43abc', '#f43579','#fec367','#68d29d','#507df7']
   };
     /*-------------------------*/
   constructor() { }
@@ -49,7 +51,7 @@ export class UsageReportComponent implements OnInit {
     this.screenWidth = window.innerWidth;
     if (this.screenWidth > 992) {
       this.view = [640, 480];
-    } else if (this.screenWidth > 1368) {
+    } else{
       this.view = [420, 300];
     } 
   }
