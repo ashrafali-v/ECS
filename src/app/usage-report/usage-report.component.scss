@@ -4,6 +4,10 @@
 //     stroke-width: 1;
 // }
 ::ng-deep {
+    .usage-report-container{
+
+    
+
     .pie-label{
         @include ecs-typo($primary-font-regular, 700, 16px, 20px, $primary-dark-color);
         font-size: 16px !important;
@@ -167,4 +171,6 @@
             }
         }
     }
+    }
+
 }
