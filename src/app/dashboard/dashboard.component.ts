@@ -135,7 +135,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       this.day = day.getDate();
       this.daysInCurrentMonth = this.daysInMonth(currentMonth + 1, curreYear);
       this.percent = (currentDay / wholeDay) * 100;
-      this.percentProgressBarAmount = (this.amountValue / this.progressbarMaxValueAmount) * 100;
+      this.percentProgressBarAmount = Math.round((this.amountValue / this.progressbarMaxValueAmount) * 100);
       this.percentProgressBarAmountAlert = (this.amountAlertValue / this.progressbarMaxValueAmount) * 100;
       this.percentProgressBarAmountAlert = 100 - this.percentProgressBarAmountAlert;
       Object.assign(this, { multiAmount });
