@@ -29,7 +29,6 @@
                 </ng-template>
             </ngx-charts-bar-vertical-stacked>
         </div>
-        <span class="current-day">{{month}} {{day}}</span>
         <div class="usage-action" *ngIf="!webStatus">
             <button class="ecs-btn" type="button" [disabled]="!prevCountStatus" (click)="selectDailyUsageData('prev')"><i class="fas fa-chevron-left"></i></button>
             <button class="ecs-btn" type="button" [disabled]="!nextCountStatus" (click)="selectDailyUsageData('next')"><i class="fas fa-chevron-right"></i></button>

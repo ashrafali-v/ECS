@@ -37,6 +37,7 @@ export class DailyUsageComponent implements OnInit {
   monthNames = ["January", "February", "March", "April", "May", "June",
     "July", "August", "September", "October", "November", "December"
   ];
+  hourlyUsage:any=[];
   constructor(private sharedService: CommonAppService) {
   }
   @HostListener('window:resize', ['$event'])
@@ -65,12 +66,63 @@ export class DailyUsageComponent implements OnInit {
       this.chartDataAmountSection = this.chartDataAmount.slice(0, 10);
       this.chartDataKwhSection = this.chartDataKwh.slice(0, 10);
     }
-    // console.log(this.screenHeight, this.screenWidth);
   }
 
   ngOnInit(): void {
+    this.hourlyUsage =     {"6Hrs": [
+      {
+          "amount": 12,
+          "kwh": 180
+      },
+      {
+          "amount": 12,
+          "kwh": 180
+      },
+      {
+          "amount": 12,
+          "kwh": 180
+      },
+      {
+          "amount": 12,
+          "kwh": 180
+      },
+      {
+          "amount": 12,
+          "kwh": 180
+      },
+      {
+          "amount": 12,
+          "kwh": 180
+      }
+  ],
+  "12Hrs": [
+      {
+          "amount": 12,
+          "kwh": 180
+      },
+      {
+          "amount": 12,
+          "kwh": 180
+      },
+      {
+          "amount": 12,
+          "kwh": 180
+      },
+      {
+          "amount": 12,
+          "kwh": 180
+      },
+      {
+          "amount": 12,
+          "kwh": 180
+      },
+      {
+          "amount": 12,
+          "kwh": 180
+      }
+  ]
+}
     this.sharedService.getDailyUsage().subscribe(data => {
-      console.log(data);
       var day = new Date();
       this.month = this.monthNames[day.getMonth()];
       this.day = day.getDate();

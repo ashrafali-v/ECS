@@ -49,16 +49,30 @@
                 </div>
             </div>
         
-            <div class="status-indicator">
-                <div class="status" [ngClass]="{'active': amountValue < 120}">
+            <div class="status-indicator" *ngIf="amount">
+                <div class="status" [ngClass]="{'active': amountValue < greatAmountLimit}">
                     <div class="figure figure-great"></div>
                     <h4>Great</h4>
                 </div>
-                <div class="status" [ngClass]="{'active': amountValue > 120 && amountValue < 150}">
+                <div class="status" [ngClass]="{'active': amountValue > greatAmountLimit && amountValue < excessAmountLimit}">
                     <div class="figure figure-good"></div>
                     <h4>Good</h4>
                 </div>
-                <div class="status" [ngClass]="{'active': amountValue > 150}">
+                <div class="status" [ngClass]="{'active': amountValue > excessAmountLimit}">
+                    <div class="figure figure-negative"></div>
+                    <h4>Using more than average</h4>
+                </div>
+            </div>
+            <div class="status-indicator" *ngIf="kilowats">
+                <div class="status" [ngClass]="{'active': kilowatsValue < greatKWHLimit}">
+                    <div class="figure figure-great"></div>
+                    <h4>Great</h4>
+                </div>
+                <div class="status" [ngClass]="{'active': kilowatsValue > greatKWHLimit && kilowatsValue < excessKWHLimit}">
+                    <div class="figure figure-good"></div>
+                    <h4>Good</h4>
+                </div>
+                <div class="status" [ngClass]="{'active': kilowatsValue > excessKWHLimit}">
                     <div class="figure figure-negative"></div>
                     <h4>Using more than average</h4>
                 </div>

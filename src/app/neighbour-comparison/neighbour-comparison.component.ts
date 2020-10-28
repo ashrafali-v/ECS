@@ -19,6 +19,12 @@ export class NeighbourComparisonComponent implements OnInit {
   lineChartDataAmount: any[];
   lineChartDataKwh: any[];
   view: any[];
+  excessAmountLimit:any;
+  goodAmountLimit:any;
+  greatAmountLimit:any;
+  excessKWHLimit:any;
+  goodKWHLimit:any;
+  greatKWHLimit:any;
   /*-----------------Line chart config-----------------------------*/
   public lineChartData: ChartDataSets[];
   public lineChartLabels: Label[];
@@ -205,8 +211,6 @@ export class NeighbourComparisonComponent implements OnInit {
     ]
     /*-----------------Bar chart config End-----------------------------*/
     this.lineChartData = [];
-    this.amountValue = 128;
-    this.kilowatsValue = 185;
     // this.lineChartLabels = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'];
     // this.lineChartDataAmount = [{ data: [0, 200, 130, 210, 216, 250, 200], label: 'All Neighbours', fill: false },
     // { data: [0, 75, 125, 190, 200, 115, 130], label: 'Similar Homes', fill: false },
@@ -219,6 +223,14 @@ export class NeighbourComparisonComponent implements OnInit {
     this.sharedService.getNeighbourBarchart().subscribe(data=>{
       this.multiAmount = data.dataAmount;
       this.multiKwh = data.dataKwh;
+      this.amountValue = this.multiAmount[2].value;
+      this.kilowatsValue = this.multiKwh[2].value;
+      this.excessAmountLimit = data.excessAmount;
+      this.goodAmountLimit = data.goodAmount;
+      this.greatAmountLimit = data.greatAmount;
+      this.excessKWHLimit = data.excessKwh;
+      this.goodKWHLimit = data.goodKwh;
+      this.greatKWHLimit = data.greatKwh;
       Object.assign(this.multiAmount);
       Object.assign(this.multiKwh)
     });
