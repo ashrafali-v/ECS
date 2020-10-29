@@ -49,6 +49,7 @@
 
         <div class="center-conatainer">
             <h2>Hourly Usage</h2>
+            <h2>{{hourlyMonthName}} {{hourlyDay}}</h2>
             <div class="hour-divider">
                 <ul *ngFor="let data of sixHoursData">
                     <li class="hour-finished"><span class="hour-amount">{{data.amount}}</span><span class="hour-kWh">{{data.kwh}}</span></li>

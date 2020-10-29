@@ -42,6 +42,8 @@ export class DailyUsageComponent implements OnInit {
   twelveHoursData:any=[];
   eighteenHoursData:any=[];
   twentyfourHoursData:any=[];
+  hourlyMonthName:any;
+  hourlyDay:any;
   constructor(private sharedService: CommonAppService) {
   }
   @HostListener('window:resize', ['$event'])
@@ -78,6 +80,10 @@ export class DailyUsageComponent implements OnInit {
     var month = yesterday.getMonth()+1;
     var year = yesterday.getFullYear();
     var date = {day,month,year};
+    this.hourlyMonthName = this.monthNames[month-1];
+    this.hourlyDay = yesterday.getDate();
+    console.log(date);
+    
     this.sharedService.getHourlyUsage(date).subscribe(data => {
       this.hourlyUsage = data;
       this.sixHoursData = this.hourlyUsage.firstset;

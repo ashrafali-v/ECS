@@ -44,7 +44,8 @@ export class CommonAppService {
   }
   public getHourlyUsage(data:any){
     var url = this.ecsApiEndpoints['HourlyUsage'];
-    return this.httpClient.post(this.serviceBase+url,data,this.jsonHttpHeader).pipe(
+    url = url +"?day="+data.day+"&month="+data.month+"&year="+data.year;
+    return this.httpClient.get(this.serviceBase+url,this.jsonHttpHeader).pipe(
       map((res:any) => res)
     )
   }
