@@ -100,16 +100,30 @@
                         </ngx-charts-bar-horizontal>
                     </div>
                 </div>
-                <div class="status-indicator">
-                    <div class="status" [ngClass]="{'active': amountValue < 120}">
+                <div class="status-indicator" *ngIf="amount">
+                    <div class="status" [ngClass]="{'active': amountValueCurrent < greatAmountLimitCurrent}">
                         <div class="figure figure-great"></div>
                         <h4>Great</h4>
                     </div>
-                    <div class="status" [ngClass]="{'active': amountValue > 120 && amountValue < 150}">
+                    <div class="status" [ngClass]="{'active': amountValueCurrent > greatAmountLimitCurrent && amountValueCurrent < excessAmountLimitCurrent}">
                         <div class="figure figure-good"></div>
                         <h4>Good</h4>
                     </div>
-                    <div class="status" [ngClass]="{'active': amountValue > 150}">
+                    <div class="status" [ngClass]="{'active': amountValueCurrent > excessAmountLimitCurrent}">
+                        <div class="figure figure-negative"></div>
+                        <h4>Using more than average</h4>
+                    </div>
+                </div>
+                <div class="status-indicator" *ngIf="kilowats">
+                    <div class="status" [ngClass]="{'active': kilowatsValueCurrent < greatKWHLimitCurrent}">
+                        <div class="figure figure-great"></div>
+                        <h4>Great</h4>
+                    </div>
+                    <div class="status" [ngClass]="{'active': kilowatsValueCurrent > greatKWHLimitCurrent && kilowatsValueCurrent < excessKWHLimitCurrent}">
+                        <div class="figure figure-good"></div>
+                        <h4>Good</h4>
+                    </div>
+                    <div class="status" [ngClass]="{'active': kilowatsValueCurrent > excessKWHLimitCurrent}">
                         <div class="figure figure-negative"></div>
                         <h4>Using more than average</h4>
                     </div>

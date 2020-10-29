@@ -38,6 +38,10 @@ export class DailyUsageComponent implements OnInit {
     "July", "August", "September", "October", "November", "December"
   ];
   hourlyUsage:any=[];
+  sixHoursData:any=[];
+  twelveHoursData:any=[];
+  eighteenHoursData:any=[];
+  twentyfourHoursData:any=[];
   constructor(private sharedService: CommonAppService) {
   }
   @HostListener('window:resize', ['$event'])
@@ -69,59 +73,18 @@ export class DailyUsageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.hourlyUsage =     {"6Hrs": [
-      {
-          "amount": 12,
-          "kwh": 180
-      },
-      {
-          "amount": 12,
-          "kwh": 180
-      },
-      {
-          "amount": 12,
-          "kwh": 180
-      },
-      {
-          "amount": 12,
-          "kwh": 180
-      },
-      {
-          "amount": 12,
-          "kwh": 180
-      },
-      {
-          "amount": 12,
-          "kwh": 180
-      }
-  ],
-  "12Hrs": [
-      {
-          "amount": 12,
-          "kwh": 180
-      },
-      {
-          "amount": 12,
-          "kwh": 180
-      },
-      {
-          "amount": 12,
-          "kwh": 180
-      },
-      {
-          "amount": 12,
-          "kwh": 180
-      },
-      {
-          "amount": 12,
-          "kwh": 180
-      },
-      {
-          "amount": 12,
-          "kwh": 180
-      }
-  ]
-}
+    var yesterday = new Date(Date.now() - 864e5);
+    var day = yesterday.getDate();
+    var month = yesterday.getMonth()+1;
+    var year = yesterday.getFullYear();
+    var date = {day,month,year};
+    this.sharedService.getHourlyUsage(date).subscribe(data => {
+      this.hourlyUsage = data;
+      this.sixHoursData = this.hourlyUsage.firstset;
+      this.twelveHoursData = this.hourlyUsage.secondset;
+      this.eighteenHoursData = this.hourlyUsage.thirdset;
+      this.twentyfourHoursData = this.hourlyUsage.fourthset;
+    });
     this.sharedService.getDailyUsage().subscribe(data => {
       var day = new Date();
       this.month = this.monthNames[day.getMonth()];
