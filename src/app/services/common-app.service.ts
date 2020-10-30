@@ -17,7 +17,8 @@ export class CommonAppService {
     NeighbourBarchart:'milestone/energy/neighbourData',
     NeighbourLinechart:'milestone/energy/neighbourLineChart',
     NeighbourCurrentMonth:'milestone/energy/neighbourCurrentMonth',
-    UsageReport:'milestone/energy/getUsageReport'
+    UsageReport:'milestone/energy/getUsageReport',
+    AmountAlertValue:'milestone/energy/amountAlertValue'
   }
   private message = new BehaviorSubject('amount');
   sharedMessage = this.message.asObservable();
@@ -76,6 +77,13 @@ export class CommonAppService {
   }
   public getUsageReport(){
     var url = this.ecsApiEndpoints['UsageReport'];
+    return this.httpClient.get(this.serviceBase+url, this.jsonHttpHeader).pipe(
+      map((res:any) => res)
+    )
+  }
+  updateAlertValue(data:any){
+    var url = this.ecsApiEndpoints['AmountAlertValue'];
+    url = url +"?alertValue="+data;
     return this.httpClient.get(this.serviceBase+url, this.jsonHttpHeader).pipe(
       map((res:any) => res)
     )

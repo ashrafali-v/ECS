@@ -161,6 +161,9 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   }
   resetValue() {
     this.editStatus = false;
+    this.sharedService.updateAlertValue(this.amountAlertValue).subscribe(data =>{
+      console.log(data); 
+    });
     if (this.amountValue < this.amountAlertValue) {
       localStorage.removeItem('exceedLimit');
     }
