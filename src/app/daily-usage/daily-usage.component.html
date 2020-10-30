@@ -51,9 +51,9 @@
             <h2>Hourly Usage</h2>
 
             <div class="day-counter">
-                <button class="ecs-btn" [disabled]="hourlyDay == 1" (click)="prevDayData()" ><i class="fas fa-chevron-left"></i></button>
+                <button class="ecs-btn" [disabled]="dateIndex == chartDataAmount.length - 1" (click)="prevDayData()" ><i class="fas fa-chevron-left"></i></button>
                 <h3>{{hourlyMonthName}} {{hourlyDay}}</h3>
-                <button class="ecs-btn" [disabled]="hourlyDay == currentDay-1" (click)="nextDayData()"><i class="fas fa-chevron-right"></i></button>
+                <button class="ecs-btn" [disabled]="dateIndex == 0" (click)="nextDayData()"><i class="fas fa-chevron-right"></i></button>
             </div>
 
             <div class="hour-divider-group">
