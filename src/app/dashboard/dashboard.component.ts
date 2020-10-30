@@ -84,8 +84,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   }
   ngOnInit() {
     //Subscription Method
-    this.activatedRoute.paramMap.subscribe(params => {
-      var account = params.get('account');
+    this.activatedRoute.queryParams.subscribe(params => {
+      var account = params['account'];
       if(account){
         localStorage.accountKey = account;
         console.log(account);// OUTPUT 1534
