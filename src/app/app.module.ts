@@ -15,7 +15,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HeaderComponent } from './header/header.component';
 import { NgMonthPickerModule } from 'ng-month-picker';
 import { BsDatepickerModule, BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
-
+import { HttpInterceptorProviders } from '../app/httpInterceptors/interceptor.providers';
 
 @NgModule({
   declarations: [
@@ -37,7 +37,7 @@ import { BsDatepickerModule, BsDatepickerConfig } from 'ngx-bootstrap/datepicker
     BsDatepickerModule.forRoot(),
     HttpClientModule
   ],
-  providers: [],
+  providers: [HttpInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
