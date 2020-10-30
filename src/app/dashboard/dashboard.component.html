@@ -1,10 +1,10 @@
 <div class="ecs-content-box" *ngIf="loader">
     loading....
 </div>
-<div class="ecs-content-box" *ngIf="!loader">
+<div class="ecs-content-box projected-bill-container" *ngIf="!loader">
     <div id="tabs" class="ecs-tabs" #tabs *ngIf="!screeDesktopStatus">
 
-        <ul class="nav nav-pills">
+        <ul class="nav nav-tabs">
             <li class="nav-item">
                 <a class="nav-link active" href="#bill" [ngClass]="{ 'active':activeTab==='bill'}" (click)="search('bill')" data-toggle="tab">Current Usage</a>
             </li>

@@ -14,7 +14,7 @@ export class BillComparisonComponent implements OnInit {
   kilowats: boolean = false;
   amountValue: number;
   kilowatsValue: number;
-  view: any[] = [480, 420];
+  view: any[] = [480, 320];
   //Desktop width  view: any[] = [480, 420];
   multiAmount: any[];
   multikwh: any[];
