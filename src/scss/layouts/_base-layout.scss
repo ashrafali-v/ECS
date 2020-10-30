@@ -40,8 +40,37 @@ app-root {
         @include device(lg) {
             height: calc(#{$fullVh} - #{$default-unit*40});
         }
+        &.projected-bill-container{
+            height: calc(#{$fullVh} - #{$default-unit*115});
+            overflow-y: auto;
+            @include device(lg) {
+                height: calc(#{$fullVh} - #{$default-unit*40});
+            }
+        }
+        &.bill-comparison-container{
+            height: calc(#{$fullVh} - #{$default-unit*114});
+            overflow-y: auto;
+            @include device(lg) {
+                height: calc(#{$fullVh} - #{$default-unit*40});
+            }
+        }
         &.usage-report-container{
-            height: calc(#{$fullVh} - #{$default-unit*92});
+            height: calc(#{$fullVh} - #{$default-unit*120});
+            overflow-y: auto;
+            @include device(lg) {
+                height: calc(#{$fullVh} - #{$default-unit*40});
+            }
+        }
+        &.neighbor-container{
+            height: calc(#{$fullVh} - #{$default-unit*115});
+            overflow-y: auto;
+            @include device(lg) {
+                height: calc(#{$fullVh} - #{$default-unit*40});
+            }
+        }
+        &.dailyusage-container{
+            height: calc(#{$fullVh} - #{$default-unit*105});
+            overflow-y: auto;
             @include device(lg) {
                 height: calc(#{$fullVh} - #{$default-unit*40});
             }

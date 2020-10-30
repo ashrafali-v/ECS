@@ -1,4 +1,4 @@
-<div class="ecs-content-box">
+<div class="ecs-content-box dailyusage-container">
     <div class="daily-usage-data">
         <h3>Daily Usage</h3>
         <div class="data-guide">
@@ -46,10 +46,18 @@
 
 
     <div class="hourly-usage" *ngIf="this.hourlyUsage != ''">
-        <button class="btn btn-primary" [disabled]="hourlyDay == 1" (click)="prevDayData()" >Prev</button>
+        
         <div class="center-conatainer">
             <h2>Hourly Usage</h2>
-            <h2>{{hourlyMonthName}} {{hourlyDay}}</h2>
+
+            <div class="day-counter">
+                <button class="ecs-btn" [disabled]="hourlyDay == 1" (click)="prevDayData()" ><i class="fas fa-chevron-left"></i></button>
+                <h3>{{hourlyMonthName}} {{hourlyDay}}</h3>
+                <button class="ecs-btn" [disabled]="hourlyDay == currentDay-1" (click)="nextDayData()"><i class="fas fa-chevron-right"></i></button>
+            </div>
+
+            <div class="hour-divider-group">
+            
             <div class="hour-divider">
                 <ul *ngFor="let data of sixHoursData">
                     <li class="hour-finished"><span class="hour-amount">{{data.amount}}</span><span class="hour-kWh">{{data.kwh}}</span></li>
@@ -100,6 +108,7 @@
                 <h3>24Hrs</h3>
             </div>
         </div>
-        <button class="btn btn-primary" [disabled]="hourlyDay == currentDay-1" (click)="nextDayData()">Next</button>
+        </div>
+        
     </div>
 </div>
