@@ -44,6 +44,8 @@ export class DailyUsageComponent implements OnInit {
   twentyfourHoursData:any=[];
   hourlyMonthName:any;
   hourlyDay:any;
+  currentDay:any;
+  hourlyDate:any;
   constructor(private sharedService: CommonAppService) {
   }
   @HostListener('window:resize', ['$event'])
@@ -75,22 +77,17 @@ export class DailyUsageComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    var today = new Date();
+    this.currentDay = today.getDate();
     var yesterday = new Date(Date.now() - 864e5);
     var day = yesterday.getDate();
     var month = yesterday.getMonth()+1;
     var year = yesterday.getFullYear();
-    var date = {day,month,year};
+    this.hourlyDate = {day,month,year};
     this.hourlyMonthName = this.monthNames[month-1];
     this.hourlyDay = yesterday.getDate();
-    console.log(date);
-    
-    this.sharedService.getHourlyUsage(date).subscribe(data => {
-      this.hourlyUsage = data;
-      this.sixHoursData = this.hourlyUsage.firstset;
-      this.twelveHoursData = this.hourlyUsage.secondset;
-      this.eighteenHoursData = this.hourlyUsage.thirdset;
-      this.twentyfourHoursData = this.hourlyUsage.fourthset;
-    });
+    console.log(this.hourlyDate);
+    this.getHourlyUsageData(this.hourlyDate);
     this.sharedService.getDailyUsage().subscribe(data => {
       var day = new Date();
       this.month = this.monthNames[day.getMonth()];
@@ -950,5 +947,28 @@ export class DailyUsageComponent implements OnInit {
       }
       console.log('Next ->' + arrayStartPrev + ' ' + arrayEndPrev);
     }
+  }
+  prevDayData(){
+    console.log("prev");
+    this.hourlyDay = this.hourlyDay - 1;
+    this.hourlyDate.day = this.hourlyDay;
+    console.log(this.hourlyDate);
+    this.getHourlyUsageData(this.hourlyDate);
+  }
+  nextDayData(){
+    console.log("next");
+    this.hourlyDay = this.hourlyDay + 1;
+    this.hourlyDate.day = this.hourlyDay;
+    console.log(this.hourlyDate);
+    this.getHourlyUsageData(this.hourlyDate);
+  }
+  getHourlyUsageData(date:any){
+    this.sharedService.getHourlyUsage(date).subscribe(data => {
+      this.hourlyUsage = data;
+      this.sixHoursData = this.hourlyUsage.firstset;
+      this.twelveHoursData = this.hourlyUsage.secondset;
+      this.eighteenHoursData = this.hourlyUsage.thirdset;
+      this.twentyfourHoursData = this.hourlyUsage.fourthset;
+    });
   }
 }

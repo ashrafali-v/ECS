@@ -6,6 +6,7 @@
                 [scheme]="colorScheme"
                 [results]="series"
                 [labels]="true"
+                [trimLabels]="false"
                 [doughnut]="true"
                 [legendPosition] = "'bottom'"
                 [legendTitle]="''">
@@ -21,49 +22,49 @@
             <div class="month-box" style="border-color:#7033FF">
                 <div class="glyph-icon flaticon-office"></div>
                 <div class="month-amount">
-                    <h3>Computer</h3>
+                    <h3>{{devices[0]?.name}} </h3>
                     <P>Average cost per housaId</P>
-                    <h3>$130 PER YEAR</h3>
+                    <h3>${{devices[0]?.value}} PER YEAR</h3>
                 </div>
             </div>
             <div class="month-box" style="border-color:#d43abc">
                 <div class="glyph-icon flaticon-washing-machine"></div>
                 <div class="month-amount">
-                    <h3>Washer & Dryer</h3>
+                    <h3>{{devices[1]?.name}}</h3>
                     <P>Average cost per housaId</P>
-                    <h3>$90 PER YEAR</h3>
+                    <h3>${{devices[1]?.value}} PER YEAR</h3>
                 </div>
             </div>
             <div class="month-box" style="border-color:#f43579">
                 <div class="glyph-icon flaticon-fridge"></div>
                 <div class="month-amount">
-                    <h3>Dishwasher</h3>
+                    <h3>{{devices[2]?.name}}</h3>
                     <P>Average cost per housaId</P>
-                    <h3>$340 PER YEAR</h3>
+                    <h3>${{devices[2]?.value}} PER YEAR</h3>
                 </div>
             </div>
             <div class="month-box" style="border-color:#fec367">
                 <div class="glyph-icon flaticon-lamp"></div>
                 <div class="month-amount">
-                    <h3>Lighting</h3>
+                    <h3>{{devices[3]?.name}}</h3>
                     <P>Average cost per housaId</P>
-                    <h3>$120 PER YEAR</h3>
+                    <h3>${{devices[3]?.value}} PER YEAR</h3>
                 </div>
             </div>
             <div class="month-box" style="border-color:#68d29d">
                 <div class="glyph-icon flaticon-hair-dryer"></div>
                 <div class="month-amount">
-                    <h3>Electric Components</h3>
+                    <h3>{{devices[4]?.name}}</h3>
                     <P>Average cost per housaId</P>
-                    <h3>$60 PER YEAR</h3>
+                    <h3>${{devices[4]?.value}} PER YEAR</h3>
                 </div>
             </div>
             <div class="month-box " style="border-color:#507df7">
                 <div class="glyph-icon flaticon-air-conditioner"></div>
                 <div class="month-amount">
-                    <h3>Cooling</h3>
+                    <h3>{{devices[5]?.name}}</h3>
                     <P>Average cost per housaId</P>
-                    <h3>$560 PER YEAR</h3>
+                    <h3>${{devices[5]?.value}} PER YEAR</h3>
                 </div>
             </div>
         </div>

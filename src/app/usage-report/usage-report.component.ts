@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ChartDataSets, ChartOptions } from 'chart.js';
 import { Color, Label } from 'ng2-charts';
 import { HostListener } from "@angular/core";
-
+import { CommonAppService } from '../services/common-app.service';
 @Component({
   selector: 'app-usage-report',
   templateUrl: './usage-report.component.html',
@@ -15,38 +15,13 @@ export class UsageReportComponent implements OnInit {
   devices:any = [];
   colors:any = [];
   view: any[];
+  series:any = [];
   totalValue:any = 210;
     /*------------Donut Chart-------------*/
-    series = [
-      {
-        "name": "Computer",
-        "value": 130,
-      },
-      {
-        "name": "Washer & Dryer",
-        "value": 90,
-      },
-      {
-        "name": "Dishwasher",
-        "value": 340,
-      },
-      {
-        "name": "Lighting",
-        "value": 120,
-      },
-      {
-        "name": "Electric oven",
-        "value": 60,
-      },{
-        "name": "Cooling",
-        "value": 560,
-      }
-    ];
-     colorScheme = {
-      domain: ['#7033FF', '#d43abc', '#f43579','#fec367','#68d29d','#507df7']
-  };
+    //series = this.getUsagereport();
+    colorScheme = {domain: ['#7033FF', '#d43abc', '#f43579','#fec367','#68d29d','#507df7']};
     /*-------------------------*/
-  constructor() { }
+  constructor(private sharedService: CommonAppService) { }
   @HostListener('window:resize', ['$event'])
   getScreenSize(event?) {
     this.screenHeight = window.innerHeight;
@@ -58,31 +33,12 @@ export class UsageReportComponent implements OnInit {
     } 
   }
   ngOnInit(): void {
-    this.devices = [
-      {
-        "name": "Computer",
-        "value": 130,
-      },
-      {
-        "name": "Washer & Dryer",
-        "value": 90,
-      },
-      {
-        "name": "Dishwasher",
-        "value": 340,
-      },
-      {
-        "name": "Lighting",
-        "value": 120,
-      },
-      {
-        "name": "Electric oven",
-        "value": 60,
-      },{
-        "name": "Cooling",
-        "value": 560,
-      }
-    ];
+    this.sharedService.getUsageReport().subscribe(data => {
+      data.pop();
+      var series = data;
+      this.devices = data;
+      Object.assign(this, { series });
+    });
     this.colors = ['#7033FF', '#d43abc', '#f43579','#fec367','#68d29d','#507df7'];
   }
   percentageFormatting(c) {

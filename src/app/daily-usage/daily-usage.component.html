@@ -45,8 +45,8 @@
     </div>
 
 
-    <div class="hourly-usage">
-
+    <div class="hourly-usage" *ngIf="this.hourlyUsage != ''">
+        <button class="btn btn-primary" [disabled]="hourlyDay == 1" (click)="prevDayData()" >Prev</button>
         <div class="center-conatainer">
             <h2>Hourly Usage</h2>
             <h2>{{hourlyMonthName}} {{hourlyDay}}</h2>
@@ -100,6 +100,6 @@
                 <h3>24Hrs</h3>
             </div>
         </div>
-
+        <button class="btn btn-primary" [disabled]="hourlyDay == currentDay-1" (click)="nextDayData()">Next</button>
     </div>
 </div>
