@@ -38,7 +38,7 @@
                             <!-- <div class="ecs-date date-8">08</div>
                             <div class="ecs-date date-16">16</div>
                             <div class="ecs-date date-24">24</div> -->
-                            <div class="chart-progress">{{kilowatsValue}} kWh</div>
+                            <div class="chart-progress">{{kilowatsValue}} kWh <h6>As of today</h6></div>
                         </div>
 
                     </div>
@@ -57,7 +57,7 @@
                         </ng-template>
                     </ngx-charts-bar-vertical>
                     <div class="ecs-date month">{{month}} {{year}}</div>
-                    <h4 class="ecs-avarage">Best day average {{bestDayAverageAmount | currency}}</h4>
+                    <h4 class="ecs-avarage">Daily average {{bestDayAverageAmount | currency}}</h4>
                 </div>
                 <div class="container projected-bill-amount day-usage-bar" *ngIf="kilowats">
                     <ngx-charts-bar-vertical [view]="view" [scheme]="colorScheme" [roundDomains]=true [results]="multikwh" [gradient]="gradient" [roundDomains]=true [noBarWhenZero]=true [xAxis]="showXAxis" [yAxis]="showYAxis" [yAxisTickFormatting]="kwhTickFormatting" [barPadding]=35
@@ -67,7 +67,7 @@
                         </ng-template>
                     </ngx-charts-bar-vertical>
                     <div class="ecs-date month">{{month}} {{year}}</div>
-                    <h4 class="ecs-avarage">Best day average {{bestDayAveragekwh}}kWh</h4>
+                    <h4 class="ecs-avarage">Daily average {{bestDayAveragekwh}}kWh</h4>
                 </div>
             </div>
 
@@ -108,7 +108,7 @@
                                 <!-- <div class="ecs-date date-8">08</div>
                                 <div class="ecs-date date-16">16</div>
                                 <div class="ecs-date date-24">24</div> -->
-                                <div class="chart-progress">{{kilowatsValue}} kWh</div>
+                                <div class="chart-progress">{{kilowatsValue}} kWh <h6>As of today</h6></div>
                             </div>
 
                         </div>
@@ -129,7 +129,7 @@
                         </ng-template>
                     </ngx-charts-bar-vertical>
                     <div class="ecs-date month">{{month}} {{year}}</div>
-                    <h4 class="ecs-avarage">Best day average {{bestDayAverageAmount | currency}}</h4>
+                    <h4 class="ecs-avarage">Daily average {{bestDayAverageAmount | currency}}</h4>
                 </div>
                 <div class="container projected-bill-amount day-usage-bar" *ngIf="kilowats">
                     <h3>Recent Day Usage</h3>
@@ -140,7 +140,7 @@
                         </ng-template>
                     </ngx-charts-bar-vertical>
                     <div class="ecs-date month">{{month}} {{year}}</div>
-                    <h4 class="ecs-avarage">Best day average {{bestDayAveragekwh}}kWh</h4>
+                    <h4 class="ecs-avarage">Daily average {{bestDayAveragekwh}}kWh</h4>
                 </div>
             </div>
 

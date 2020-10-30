@@ -32,17 +32,17 @@
     <div class="month-selector align-item-bottom">
         <div class="center-conatainer">
             <h2>Select Month</h2>
-            <div class="month-box" [ngClass]="{'active': selectedDatePicker == 1}">
-                <h3>{{selectYearFirst}} {{selectMonthFirstName}}</h3>
+            <div class="month-box" [ngClass]="{'active': selectedDatePicker == 3}">
+                <h3>{{selectYearThird}} {{selectMonthThirdName}}</h3>
                 <button class="edit-month" type="button">
                     <i class="fas fa-edit"></i>
                 
                     <form>
-                        <input [(ngModel)]="modelDateFirst" [minDate]="minDate" [maxDate]="maxDate" class="edit-month-input" autocomplete="off" name="date" bsDatepicker [bsConfig]="{dateInputFormat: 'MM/YYYY'}" (onShown)="onOpenCalendar($event,1)">
+                        <input [(ngModel)]="modelDateThird" [minDate]="minDate" [maxDate]="maxDate" class="edit-month-input" autocomplete="off" name="date" bsDatepicker [bsConfig]="{dateInputFormat: 'MM/YYYY'}" (onShown)="onOpenCalendar($event,3)">
                     </form>
                 </button>
                 <div class="month-amount">
-                    $169.00
+                    ${{billComparisonData[0]?.value}}
                 </div>
             </div>
             <div class="month-box" [ngClass]="{'active': selectedDatePicker == 2}">
@@ -55,26 +55,26 @@
                     </form>
                 </button>
                 <div class="month-amount">
-                    $169.00
+                    ${{billComparisonData[1]?.value}}
                 </div>
             </div>
-            <div class="month-box" [ngClass]="{'active': selectedDatePicker == 3}">
-                <h3>{{selectYearThird}} {{selectMonthThirdName}}</h3>
+            <div class="month-box" [ngClass]="{'active': selectedDatePicker == 1}">
+                <h3>{{selectYearFirst}} {{selectMonthFirstName}}</h3>
                 <button class="edit-month" type="button">
                     <i class="fas fa-edit"></i>
                 
                     <form>
-                        <input [(ngModel)]="modelDateThird" [minDate]="minDate" [maxDate]="maxDate" class="edit-month-input" autocomplete="off" name="date" bsDatepicker [bsConfig]="{dateInputFormat: 'MM/YYYY'}" (onShown)="onOpenCalendar($event,3)">
+                        <input [(ngModel)]="modelDateFirst" [minDate]="minDate" [maxDate]="maxDate" class="edit-month-input" autocomplete="off" name="date" bsDatepicker [bsConfig]="{dateInputFormat: 'MM/YYYY'}" (onShown)="onOpenCalendar($event,1)">
                     </form>
                 </button>
                 <div class="month-amount">
-                    $169.00
+                    ${{billComparisonData[2]?.value}}
                 </div>
             </div>
             <div class="month-box current-month">
                 <h3>{{year}} {{currentMonthName}}</h3>
                 <div class="month-amount">
-                    $169.00
+                    ${{billComparisonData[3]?.value}}
                 </div>
             </div>
         </div>

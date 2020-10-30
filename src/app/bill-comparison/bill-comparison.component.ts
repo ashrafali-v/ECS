@@ -41,6 +41,7 @@ export class BillComparisonComponent implements OnInit {
   currentMonthName: any;
   calendarData: any;
   selectedDatePicker:any;
+  billComparisonData:any = [];
   monthNames = ["dummy", "Jan", "Feb", "March", "April", "May", "June",
     "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
   ];
@@ -82,16 +83,16 @@ export class BillComparisonComponent implements OnInit {
       this.selectYearFirst = this.selectYearSecond = this.selectYearThird = this.year;
     }
 
-    this.calendarData = [{ "month": this.selectMonthFirst, "year": this.selectYearFirst },
+    this.calendarData = [{ "month": this.selectMonthThird, "year": this.selectYearThird },
     { "month": this.selectMonthSecond, "year": this.selectYearSecond },
-    { "month": this.selectMonthThird, "year": this.selectYearThird }];
-    console.log(this.calendarData);
+    { "month": this.selectMonthFirst, "year": this.selectYearFirst },
+    {"month": this.month, "year": this.year }
+    ];
     this.getBillComparisonData(this.calendarData);
     this.selectMonthFirstName = this.monthNames[this.selectMonthFirst];
     this.selectMonthSecondName = this.monthNames[this.selectMonthSecond];
     this.selectMonthThirdName = this.monthNames[this.selectMonthThird];
     this.currentMonthName = this.monthNames[today.getMonth() + 1];
-    console.log(this.currentMonthName + "--" + this.selectMonthFirstName + "--" + this.selectMonthSecondName);
     this.sharedService.nextMessage("amount");
   }
   handleSelected($event) {
@@ -124,12 +125,10 @@ export class BillComparisonComponent implements OnInit {
   selectToday() {
     //this.model = this.calendar.getToday();
     this.datePickerStatus = false;
-    console.log(this.model);
   }
   onOpenCalendar(container, index) {
     container.monthSelectHandler = (event: any): void => {
       container._store.dispatch(container._actions.select(event.date));
-      console.log(index);
       switch (index) {
         case 1:
           this.selectedDatePicker = index;
@@ -139,8 +138,7 @@ export class BillComparisonComponent implements OnInit {
           this.selectYearFirst = d.getFullYear();
           this.selectMonthFirstName = this.getMonthName(month);
           var details = { "month": month, "year": this.selectYearFirst }
-          console.log("first");
-          this.calendarData.splice(0,1,details);
+          this.calendarData.splice(2,1,details);
           break;
         case 2:
           this.selectedDatePicker = index;
@@ -150,7 +148,6 @@ export class BillComparisonComponent implements OnInit {
           this.selectYearSecond = d.getFullYear();
           this.selectMonthSecondName = this.getMonthName(month);
           var details = { "month": month, "year": this.selectYearSecond }
-          console.log("sec");
           this.calendarData.splice(1,1,details);
           break;
         case 3:
@@ -161,11 +158,10 @@ export class BillComparisonComponent implements OnInit {
           this.selectYearThird = d.getFullYear();
           this.selectMonthThirdName = this.getMonthName(month);
           var details = { "month": month, "year": this.selectYearThird }
-          this.calendarData.splice(2,1,details);
+          this.calendarData.splice(0,1,details);
           break;
 
       }
-      console.log(this.calendarData);
       this.getBillComparisonData(this.calendarData);   
     };
     container.setViewMode('month');
@@ -179,9 +175,11 @@ export class BillComparisonComponent implements OnInit {
       let colorsKwh: any[];
       colorsAmount = [];
       colorsKwh = [];
+      this.billComparisonData = data;
       var multiAmount = data;
+      var maxValue = Math.max.apply(Math, multiAmount.map(function(o) { return o.value; }));
       multiAmount.forEach((element) => {
-        if (element.value > 18) {
+        if (element.value == maxValue) {
           colorsAmount.push("#F16F3F");
         } else {
           colorsAmount.push("#7033FF");
@@ -191,6 +189,22 @@ export class BillComparisonComponent implements OnInit {
       this.colorSchemeKwh.domain = colorsKwh;
       Object.assign(this, { multiAmount });
     });
+
+    // let colorsAmount: any[];
+    // let colorsKwh: any[];
+    // colorsAmount = [];
+    // colorsKwh = [];
+    // var multiAmount = [{name: "JUL 2020", value: 13},{name: "AUG 2020", value: 9},{month: "SEP 2020", value: 18},{name: "OCT 2020", value: 5}];
+    // multiAmount.forEach((element) => {
+    //   if (element.value > 18) {
+    //     colorsAmount.push("#F16F3F");
+    //   } else {
+    //     colorsAmount.push("#7033FF");
+    //   }
+    // })
+    // this.colorSchemeAmount.domain = colorsAmount;
+    // this.colorSchemeKwh.domain = colorsKwh;
+    // Object.assign(this, { multiAmount });
   }
 
 }

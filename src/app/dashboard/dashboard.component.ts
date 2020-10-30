@@ -1,7 +1,7 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { CommonAppService } from '../services/common-app.service';
 import { single } from '../data';
-//import { multiAmount } from '../../data';
+import { ActivatedRoute } from '@angular/router';
 import { multikwh } from '../data';
 import { ToastrService } from 'ngx-toastr';
 import { HostListener } from "@angular/core";
@@ -58,7 +58,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   monthNames = ["January", "February", "March", "April", "May", "June",
     "July", "August", "September", "October", "November", "December"
   ];
-  constructor(private toastr: ToastrService, private sharedService: CommonAppService) {
+  constructor(private toastr: ToastrService, private sharedService: CommonAppService,private activatedRoute: ActivatedRoute) {
   }
   @HostListener('window:resize', ['$event'])
   getScreenSize(event?) {
@@ -83,6 +83,14 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     }
   }
   ngOnInit() {
+    //Subscription Method
+    this.activatedRoute.queryParams.subscribe(params => {
+      var account = params['account'];
+      if(account){
+        localStorage.accountKey = account;
+        console.log(account);// OUTPUT 1534
+      }
+    });
     this.sharedService.getRecentDayUsage().subscribe(data => {
       this.loader = false;
       this.amountValue = data.totalUsageAmount;
@@ -92,36 +100,6 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       this.bestDayAverageAmount = data.bestDayAvgAmount;
       this.bestDayAveragekwh = data.bestDayAvgKwh;
       this.progressbarMaxValueAmount = data.limitAmount;
-      // var multiAmount = [
-      //   {
-      //     "name": "22",
-      //     "value": 12
-      //   },
-      //   {
-      //     "name": "23",
-      //     "value": 7
-      //   },
-      //   {
-      //     "name": "24",
-      //     "value": 13
-      //   },
-      //   {
-      //     "name": "25",
-      //     "value": 9
-      //   },
-      //   {
-      //     "name": "26",
-      //     "value": 13
-      //   },
-      //   {
-      //     "name": "27",
-      //     "value": 0
-      //   },
-      //   {
-      //     "name": "28",
-      //     "value": 0
-      //   }
-      // ]
       var multiAmount = data.usageAmount;
       var multikwh = data.usageKwh;
       const wholeDay = 32;
@@ -135,7 +113,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       this.day = day.getDate();
       this.daysInCurrentMonth = this.daysInMonth(currentMonth + 1, curreYear);
       this.percent = (currentDay / wholeDay) * 100;
-      this.percentProgressBarAmount = (this.amountValue / this.progressbarMaxValueAmount) * 100;
+      this.percentProgressBarAmount = Math.round((this.amountValue / this.progressbarMaxValueAmount) * 100);
       this.percentProgressBarAmountAlert = (this.amountAlertValue / this.progressbarMaxValueAmount) * 100;
       this.percentProgressBarAmountAlert = 100 - this.percentProgressBarAmountAlert;
       Object.assign(this, { multiAmount });
@@ -183,6 +161,9 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   }
   resetValue() {
     this.editStatus = false;
+    this.sharedService.updateAlertValue(this.amountAlertValue).subscribe(data =>{
+      console.log(data); 
+    });
     if (this.amountValue < this.amountAlertValue) {
       localStorage.removeItem('exceedLimit');
     }

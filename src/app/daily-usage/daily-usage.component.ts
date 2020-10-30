@@ -37,6 +37,15 @@ export class DailyUsageComponent implements OnInit {
   monthNames = ["January", "February", "March", "April", "May", "June",
     "July", "August", "September", "October", "November", "December"
   ];
+  hourlyUsage:any=[];
+  sixHoursData:any=[];
+  twelveHoursData:any=[];
+  eighteenHoursData:any=[];
+  twentyfourHoursData:any=[];
+  hourlyMonthName:any;
+  hourlyDay:any;
+  currentDay:any;
+  hourlyDate:any;
   constructor(private sharedService: CommonAppService) {
   }
   @HostListener('window:resize', ['$event'])
@@ -65,12 +74,21 @@ export class DailyUsageComponent implements OnInit {
       this.chartDataAmountSection = this.chartDataAmount.slice(0, 10);
       this.chartDataKwhSection = this.chartDataKwh.slice(0, 10);
     }
-    // console.log(this.screenHeight, this.screenWidth);
   }
 
   ngOnInit(): void {
+    var today = new Date();
+    this.currentDay = today.getDate();
+    var yesterday = new Date(Date.now() - 864e5);
+    var day = yesterday.getDate();
+    var month = yesterday.getMonth()+1;
+    var year = yesterday.getFullYear();
+    this.hourlyDate = {day,month,year};
+    this.hourlyMonthName = this.monthNames[month-1];
+    this.hourlyDay = yesterday.getDate();
+    console.log(this.hourlyDate);
+    this.getHourlyUsageData(this.hourlyDate);
     this.sharedService.getDailyUsage().subscribe(data => {
-      console.log(data);
       var day = new Date();
       this.month = this.monthNames[day.getMonth()];
       this.day = day.getDate();
@@ -929,5 +947,28 @@ export class DailyUsageComponent implements OnInit {
       }
       console.log('Next ->' + arrayStartPrev + ' ' + arrayEndPrev);
     }
+  }
+  prevDayData(){
+    console.log("prev");
+    this.hourlyDay = this.hourlyDay - 1;
+    this.hourlyDate.day = this.hourlyDay;
+    console.log(this.hourlyDate);
+    this.getHourlyUsageData(this.hourlyDate);
+  }
+  nextDayData(){
+    console.log("next");
+    this.hourlyDay = this.hourlyDay + 1;
+    this.hourlyDate.day = this.hourlyDay;
+    console.log(this.hourlyDate);
+    this.getHourlyUsageData(this.hourlyDate);
+  }
+  getHourlyUsageData(date:any){
+    this.sharedService.getHourlyUsage(date).subscribe(data => {
+      this.hourlyUsage = data;
+      this.sixHoursData = this.hourlyUsage.firstset;
+      this.twelveHoursData = this.hourlyUsage.secondset;
+      this.eighteenHoursData = this.hourlyUsage.thirdset;
+      this.twentyfourHoursData = this.hourlyUsage.fourthset;
+    });
   }
 }

@@ -12,9 +12,13 @@ export class CommonAppService {
   ecsApiEndpoints = {
     RecentDayUsage:'milestone/energy/getUsageData',
     DailyUsage:'milestone/energy/dailyUsage',
+    HourlyUsage:'milestone/energy/hourlyUsage',
     BillComparison:'milestone/energy/billComparision',
     NeighbourBarchart:'milestone/energy/neighbourData',
-    NeighbourLinechart:'milestone/energy/neighbourLineChart'
+    NeighbourLinechart:'milestone/energy/neighbourLineChart',
+    NeighbourCurrentMonth:'milestone/energy/neighbourCurrentMonth',
+    UsageReport:'milestone/energy/getUsageReport',
+    AmountAlertValue:'milestone/energy/amountAlertValue'
   }
   private message = new BehaviorSubject('amount');
   sharedMessage = this.message.asObservable();
@@ -40,6 +44,13 @@ export class CommonAppService {
       map((res:any) => res)
     )
   }
+  public getHourlyUsage(data:any){
+    var url = this.ecsApiEndpoints['HourlyUsage'];
+    url = url +"?day="+data.day+"&month="+data.month+"&year="+data.year;
+    return this.httpClient.get(this.serviceBase+url,this.jsonHttpHeader).pipe(
+      map((res:any) => res)
+    )
+  }
   public getBillComparison(data:any){
     var url = this.ecsApiEndpoints['BillComparison'];
     return this.httpClient.post(this.serviceBase+url,data,this.jsonHttpHeader).pipe(
@@ -54,6 +65,25 @@ export class CommonAppService {
   }
   public getNeighbourLinechart(){
     var url = this.ecsApiEndpoints['NeighbourLinechart'];
+    return this.httpClient.get(this.serviceBase+url, this.jsonHttpHeader).pipe(
+      map((res:any) => res)
+    )
+  }
+  public getNeighbourCurrentMonth(){
+    var url = this.ecsApiEndpoints['NeighbourCurrentMonth'];
+    return this.httpClient.get(this.serviceBase+url, this.jsonHttpHeader).pipe(
+      map((res:any) => res)
+    )
+  }
+  public getUsageReport(){
+    var url = this.ecsApiEndpoints['UsageReport'];
+    return this.httpClient.get(this.serviceBase+url, this.jsonHttpHeader).pipe(
+      map((res:any) => res)
+    )
+  }
+  updateAlertValue(data:any){
+    var url = this.ecsApiEndpoints['AmountAlertValue'];
+    url = url +"?alertValue="+data;
     return this.httpClient.get(this.serviceBase+url, this.jsonHttpHeader).pipe(
       map((res:any) => res)
     )

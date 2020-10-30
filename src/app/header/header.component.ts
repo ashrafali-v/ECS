@@ -13,8 +13,10 @@ export class HeaderComponent implements OnInit {
   constructor(private sharedService: CommonAppService) { }
   message:string;
   ngOnInit(): void {
-    this.amountValue = 128;
-    this.kilowatsValue = 185;
+    this.sharedService.getRecentDayUsage().subscribe(data => {
+      this.amountValue = data.predictedAmount;
+      this.kilowatsValue = data.predictedKwh;
+    });
     this.sharedService.sharedMessage.subscribe(message =>{
       this.message = message;
       if(message == 'kilowats'){
