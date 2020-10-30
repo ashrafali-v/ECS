@@ -102,7 +102,7 @@
     padding: $default-padding $null;
     .center-conatainer {
         @include flexbox();
-        @include flex-direction(row);
+        @include flex-direction(column);
         @include justify-content(space-around);
         @include flex-wrap(wrap);
         margin: $null auto;
@@ -120,71 +120,97 @@
         text-align: center;
         margin: $default-margin $null;
     }
-    .hour-divider {
-        @include flex(0 0 $full/4/2);
-        padding: $default-padding $default-padding/2;
+
+    .day-counter{
         @include flexbox();
-        @include flex(1 0 auto);
-        @include flex-direction(column);
-        @include justify-content(flex-end);
-        @include align-items(center);
-        ul {
-            li {
-                position: relative;
-                padding: $default-padding*1.2 $default-padding/3;
-                margin: $null;
-                @include device(lg) {
-                    padding: $default-padding/1.2 $default-padding;
-                }
-                // width: $full/2;
-                >span {
-                    @include v-center();
-                    @include ecs-typo($primary-font-regular, 600, 12px, 18px, $primary-color);
-                    padding: $null $default-padding/2.5;
-                    background-color: rgba($white, .1);
-                    @include border-radius($default-padding);
-                    &.hour-amount {
-                        right: $full;
-                    }
-                    &.hour-kWh {
-                        left: $full;
-                    }
-                }
-                &::before {
-                    content: '';
-                    width: $default-unit*5;
-                    height: $default-unit*2;
-                    background-color: $nutral-medium-color;
-                    display: table;
-                    margin: $null auto;
-                    @include border-radius($default-unit);
+        @include flex-direction(row);
+        @include justify-content(center);
+        h3 {
+            @include flex(0 0 auto);
+            width: inherit;
+            @include ecs-typo($primary-font-regular, bold, 16px, 18px, $white);
+            text-align: center;
+            margin: $default-margin $default-margin;
+        }
+
+        .ecs-btn {
+            @include fill-cta($primary-dark-color, $white);
+            padding: $default-padding/3 $default-padding;
+            margin: $null $default-margin/3;
+        }
+
+    }
+
+    .hour-divider-group{
+        @include flexbox();
+            @include flex(1 0 auto);
+            @include flex-direction(row);
+            @include justify-content(space-around);
+            @include align-items(center);
+        .hour-divider {
+            @include flex(0 0 $full/4/2);
+            padding: $default-padding $default-padding/2;
+            
+            ul {
+                li {
+                    position: relative;
+                    padding: $default-padding*1.2 $default-padding/3;
+                    margin: $null;
                     @include device(lg) {
-                        width: $default-unit*10;
+                        padding: $default-padding/1.2 $default-padding;
                     }
-                }
-                &.hour-finished {
+                    // width: $full/2;
                     >span {
-                        @include ecs-typo($primary-font-regular, 400, 12px, 18px, $white);
+                        @include v-center();
+                        @include ecs-typo($primary-font-regular, 600, 12px, 18px, $primary-color);
+                        padding: $null $default-padding/2.5;
+                        background-color: rgba($white, .1);
+                        @include border-radius($default-padding);
+                        &.hour-amount {
+                            right: $full;
+                        }
+                        &.hour-kWh {
+                            left: $full;
+                        }
                     }
                     &::before {
-                        background-color: $primary-color;
+                        content: '';
+                        width: $default-unit*5;
+                        height: $default-unit*2;
+                        background-color: $nutral-medium-color;
+                        display: table;
+                        margin: $null auto;
+                        @include border-radius($default-unit);
+                        @include device(lg) {
+                            width: $default-unit*10;
+                        }
                     }
-                }
-                &.above-avarage {
-                    >span {
-                        @include ecs-typo($primary-font-regular, 600, 12px, 18px, $secondary-color);
-                        background-color: rgba($secondary-color, .2);
+                    &.hour-finished {
+                        >span {
+                            @include ecs-typo($primary-font-regular, 400, 12px, 18px, $white);
+                        }
+                        &::before {
+                            background-color: $primary-color;
+                        }
                     }
-                    &::before {
-                        background-color: $secondary-color;
+                    &.above-avarage {
+                        >span {
+                            @include ecs-typo($primary-font-regular, 600, 12px, 18px, $secondary-color);
+                            background-color: rgba($secondary-color, .2);
+                        }
+                        &::before {
+                            background-color: $secondary-color;
+                        }
                     }
                 }
             }
-        }
-        h3 {
-            @include ecs-typo($primary-font-regular, bold, 16px, 18px, rgba($white, 8));
-            margin: $default-margin $null;
-            text-align: center;
+            h3 {
+                @include ecs-typo($primary-font-regular, bold, 16px, 18px, rgba($white, 8));
+                margin: $default-margin $null;
+                text-align: center;
+            }
         }
     }
+
+    
 }
