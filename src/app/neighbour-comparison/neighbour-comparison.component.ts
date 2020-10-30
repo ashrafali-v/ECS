@@ -33,6 +33,8 @@ export class NeighbourComparisonComponent implements OnInit {
   excessKWHLimitCurrent:any;
   goodKWHLimitCurrent:any;
   greatKWHLimitCurrent:any;
+  neighbourEmoji:any;
+  neighbourEmojiCurrent:any;
   /*-----------------Line chart config-----------------------------*/
   public lineChartData: ChartDataSets[];
   public lineChartLabels: Label[];
@@ -211,6 +213,7 @@ export class NeighbourComparisonComponent implements OnInit {
       this.excessKWHLimit = data.excessKwh;
       this.goodKWHLimit = data.goodKwh;
       this.greatKWHLimit = data.greatKwh;
+      this.neighbourEmoji = data.neighbourEmoji;
       Object.assign(this.multiAmount);
       Object.assign(this.multiKwh)
     });
@@ -232,6 +235,7 @@ export class NeighbourComparisonComponent implements OnInit {
       this.excessKWHLimitCurrent = data.excessKwh;
       this.goodKWHLimitCurrent = data.goodKwh;
       this.greatKWHLimitCurrent = data.greatKwh;
+      this.neighbourEmojiCurrent = data.neighbourEmoji;
     });
 
   }

@@ -46,6 +46,7 @@ export class DailyUsageComponent implements OnInit {
   hourlyDay:any;
   currentDay:any;
   hourlyDate:any;
+  dateIndex:any = 0;
   constructor(private sharedService: CommonAppService) {
   }
   @HostListener('window:resize', ['$event'])
@@ -87,7 +88,6 @@ export class DailyUsageComponent implements OnInit {
     this.hourlyMonthName = this.monthNames[month-1];
     this.hourlyDay = yesterday.getDate();
     console.log(this.hourlyDate);
-    this.getHourlyUsageData(this.hourlyDate);
     this.sharedService.getDailyUsage().subscribe(data => {
       var day = new Date();
       this.month = this.monthNames[day.getMonth()];
@@ -890,6 +890,7 @@ export class DailyUsageComponent implements OnInit {
       ];
       this.chartDataAmount = data.usageAmount;
       this.chartDataKwh = data.usageKwh;
+      this.getHourlyUsageData(this.chartDataAmount[0].name);
       this.getScreenSize();
     });
     this.sharedService.nextMessage("amount");
@@ -949,21 +950,23 @@ export class DailyUsageComponent implements OnInit {
     }
   }
   prevDayData(){
-    console.log("prev");
+    this.dateIndex += 1;
+    var date = this.chartDataAmount[this.dateIndex].name;
     this.hourlyDay = this.hourlyDay - 1;
     this.hourlyDate.day = this.hourlyDay;
-    console.log(this.hourlyDate);
-    this.getHourlyUsageData(this.hourlyDate);
+    this.getHourlyUsageData(date);
   }
   nextDayData(){
-    console.log("next");
+    this.dateIndex -= 1;
+    var date = this.chartDataAmount[this.dateIndex].name;
     this.hourlyDay = this.hourlyDay + 1;
     this.hourlyDate.day = this.hourlyDay;
-    console.log(this.hourlyDate);
-    this.getHourlyUsageData(this.hourlyDate);
+    this.getHourlyUsageData(date);
   }
   getHourlyUsageData(date:any){
-    this.sharedService.getHourlyUsage(date).subscribe(data => {
+    var c = date.split(" ");
+    var dateValue = {'day':c[1],'month':c[0]}
+    this.sharedService.getHourlyUsage(dateValue).subscribe(data => {
       this.hourlyUsage = data;
       this.sixHoursData = this.hourlyUsage.firstset;
       this.twelveHoursData = this.hourlyUsage.secondset;

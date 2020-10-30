@@ -50,15 +50,15 @@
             </div>
         
             <div class="status-indicator" *ngIf="amount">
-                <div class="status" [ngClass]="{'active': amountValue < greatAmountLimit}">
+                <div class="status" [ngClass]="{'active': neighbourEmoji =='GREAT'}">
                     <div class="figure figure-great"></div>
                     <h4>Great</h4>
                 </div>
-                <div class="status" [ngClass]="{'active': amountValue > greatAmountLimit && amountValue < excessAmountLimit}">
+                <div class="status" [ngClass]="{'active': neighbourEmoji =='GOOD'}">
                     <div class="figure figure-good"></div>
                     <h4>Good</h4>
                 </div>
-                <div class="status" [ngClass]="{'active': amountValue > excessAmountLimit}">
+                <div class="status" [ngClass]="{'active': neighbourEmoji =='BAD'}">
                     <div class="figure figure-negative"></div>
                     <h4>Using more than average</h4>
                 </div>
@@ -101,15 +101,15 @@
                     </div>
                 </div>
                 <div class="status-indicator" *ngIf="amount">
-                    <div class="status" [ngClass]="{'active': amountValueCurrent < greatAmountLimitCurrent}">
+                    <div class="status" [ngClass]="{'active': neighbourEmojiCurrent =='GREAT'}">
                         <div class="figure figure-great"></div>
                         <h4>Great</h4>
                     </div>
-                    <div class="status" [ngClass]="{'active': amountValueCurrent > greatAmountLimitCurrent && amountValueCurrent < excessAmountLimitCurrent}">
+                    <div class="status" [ngClass]="{'active': neighbourEmojiCurrent =='GOOD'}">
                         <div class="figure figure-good"></div>
                         <h4>Good</h4>
                     </div>
-                    <div class="status" [ngClass]="{'active': amountValueCurrent > excessAmountLimitCurrent}">
+                    <div class="status" [ngClass]="{'active': neighbourEmojiCurrent =='BAD'}">
                         <div class="figure figure-negative"></div>
                         <h4>Using more than average</h4>
                     </div>
