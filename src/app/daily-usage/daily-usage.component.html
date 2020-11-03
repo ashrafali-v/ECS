@@ -1,4 +1,7 @@
-<div class="ecs-content-box dailyusage-container">
+<div class="ecs-content-box" *ngIf="loader">
+    loading....
+</div>
+<div class="ecs-content-box dailyusage-container" *ngIf="!loader">
     <div class="daily-usage-data">
         <h3>Daily Usage</h3>
         <div class="data-guide">
@@ -51,16 +54,16 @@
             <h2>Hourly Usage</h2>
 
             <div class="day-counter">
-                <button class="ecs-btn" [disabled]="dateIndex == chartDataAmount.length - 1" (click)="prevDayData()" ><i class="fas fa-chevron-left"></i></button>
-                <h3>{{hourlyMonthName}} {{hourlyDay}}</h3>
-                <button class="ecs-btn" [disabled]="dateIndex == 0" (click)="nextDayData()"><i class="fas fa-chevron-right"></i></button>
+                <button class="ecs-btn" [ngClass]="{'status-disabled': dateIndex == chartDataAmount.length - 1}" [disabled]="dateIndex == chartDataAmount.length - 1" (click)="prevDayData()" ><i class="fas fa-chevron-left"></i></button>
+                <h3>{{hourlyDate}}</h3>
+                <button class="ecs-btn" [ngClass]="{'status-disabled': dateIndex == 0}" [disabled]="dateIndex == 0" (click)="nextDayData()"><i class="fas fa-chevron-right"></i></button>
             </div>
 
             <div class="hour-divider-group">
             
             <div class="hour-divider">
                 <ul *ngFor="let data of sixHoursData">
-                    <li class="hour-finished"><span class="hour-amount">{{data.amount}}</span><span class="hour-kWh">{{data.kwh}}</span></li>
+                    <li class="hour-finished"><span class="hour-amount">${{data.amount}}</span><span class="hour-kWh">{{data.kwh}}kWh</span></li>
                     <!-- <li class="hour-finished above-avarage"><span class="hour-amount">$10.00</span><span class="hour-kWh">5kWh</span></li>
                     <li class="hour-finished "><span class="hour-amount">$3.00</span><span class="hour-kWh">2kWh</span></li>
                     <li class="hour-finished "><span class="hour-amount">$10.00</span><span class="hour-kWh">8kWh</span></li>
@@ -72,7 +75,7 @@
             </div>
             <div class="hour-divider">
                 <ul *ngFor="let data of twelveHoursData">
-                    <li class="hour-finished"><span class="hour-amount">{{data.amount}}</span><span class="hour-kWh">{{data.kwh}}</span></li>
+                    <li class="hour-finished"><span class="hour-amount">${{data.amount}}</span><span class="hour-kWh">{{data.kwh}}kWh</span></li>
                     <!-- <li><span class="hour-amount"></span><span class="hour-kWh"></span></li>
                     <li><span class="hour-amount"></span><span class="hour-kWh"></span></li>
                     <li><span class="hour-amount"></span><span class="hour-kWh"></span></li>
@@ -85,7 +88,7 @@
             </div>
             <div class="hour-divider">
                 <ul *ngFor="let data of eighteenHoursData">
-                    <li class="hour-finished"><span class="hour-amount">{{data.amount}}</span><span class="hour-kWh">{{data.kwh}}</span></li>
+                    <li class="hour-finished"><span class="hour-amount">${{data.amount}}</span><span class="hour-kWh">{{data.kwh}}kWh</span></li>
                     <!-- <li><span class="hour-amount"></span><span class="hour-kWh"></span></li>
                     <li><span class="hour-amount"></span><span class="hour-kWh"></span></li>
                     <li><span class="hour-amount"></span><span class="hour-kWh"></span></li>
@@ -97,7 +100,7 @@
             </div>
             <div class="hour-divider">
                 <ul *ngFor="let data of twentyfourHoursData">
-                    <li class="hour-finished"><span class="hour-amount">{{data.amount}}</span><span class="hour-kWh">{{data.kwh}}</span></li>
+                    <li class="hour-finished"><span class="hour-amount">${{data.amount}}</span><span class="hour-kWh">{{data.kwh}}kWh</span></li>
                     <!-- <li><span class="hour-amount"></span><span class="hour-kWh"></span></li>
                     <li><span class="hour-amount"></span><span class="hour-kWh"></span></li>
                     <li><span class="hour-amount"></span><span class="hour-kWh"></span></li>

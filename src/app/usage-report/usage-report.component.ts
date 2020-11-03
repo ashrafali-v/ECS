@@ -16,7 +16,7 @@ export class UsageReportComponent implements OnInit {
   colors:any = [];
   view: any[];
   series:any = [];
-  totalValue:any = 210;
+  loader: boolean = true;
     /*------------Donut Chart-------------*/
     //series = this.getUsagereport();
     colorScheme = {domain: ['#7033FF', '#d43abc', '#f43579','#fec367','#68d29d','#507df7']};
@@ -34,7 +34,7 @@ export class UsageReportComponent implements OnInit {
   }
   ngOnInit(): void {
     this.sharedService.getUsageReport().subscribe(data => {
-      data.pop();
+      this.loader = false;
       var series = data;
       this.devices = data;
       Object.assign(this, { series });

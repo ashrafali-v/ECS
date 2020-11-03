@@ -42,6 +42,7 @@ export class BillComparisonComponent implements OnInit {
   calendarData: any;
   selectedDatePicker:any;
   billComparisonData:any = [];
+  loader: boolean = true;
   monthNames = ["dummy", "Jan", "Feb", "March", "April", "May", "June",
     "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
   ];
@@ -171,6 +172,7 @@ export class BillComparisonComponent implements OnInit {
   }
   getBillComparisonData(data){
     this.sharedService.getBillComparison(data).subscribe(data=>{
+      this.loader = false;
       let colorsAmount: any[];
       let colorsKwh: any[];
       colorsAmount = [];

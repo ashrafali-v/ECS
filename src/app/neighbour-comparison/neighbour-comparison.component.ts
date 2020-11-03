@@ -35,6 +35,7 @@ export class NeighbourComparisonComponent implements OnInit {
   greatKWHLimitCurrent:any;
   neighbourEmoji:any;
   neighbourEmojiCurrent:any;
+  loader: boolean = true;
   /*-----------------Line chart config-----------------------------*/
   public lineChartData: ChartDataSets[];
   public lineChartLabels: Label[];
@@ -218,6 +219,7 @@ export class NeighbourComparisonComponent implements OnInit {
       Object.assign(this.multiKwh)
     });
     this.sharedService.getNeighbourLinechart().subscribe(data=>{
+      this.loader = false;
       this.lineChartLabels = data.dataLabels;
       this.lineChartDataAmount = data.dataLineAmount;
       this.lineChartDataKwh = data.dataLineKwh;

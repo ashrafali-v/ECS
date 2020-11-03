@@ -149,7 +149,7 @@
             @include align-items(center);
         .hour-divider {
             @include flex(0 0 $full/4/2);
-            padding: $default-padding $default-padding/2;
+            padding: $default-padding $default-padding*0.7;
             
             ul {
                 li {

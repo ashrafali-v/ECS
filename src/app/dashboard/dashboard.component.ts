@@ -52,6 +52,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   screeDesktopStatus: boolean = true;
   barPadding: any;
   loader: boolean = true;
+  percentageValue:any;
   colorScheme = {
     domain: ['#f8bc8a', '#ab8ef0', '#f8bc8a', '#ab8ef0', '#f8bc8a']
   };
@@ -100,6 +101,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       this.bestDayAverageAmount = data.bestDayAvgAmount;
       this.bestDayAveragekwh = data.bestDayAvgKwh;
       this.progressbarMaxValueAmount = data.limitAmount;
+      this.percentageValue = data.alertPercentage;
       var multiAmount = data.usageAmount;
       var multikwh = data.usageKwh;
       const wholeDay = 32;
@@ -146,12 +148,9 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   }
   switchAction(chart) {
     if (chart == 'amount') {
-      console.log('amount');
-
       this.amount = true;
       this.kilowats = false;
     } else {
-      console.log('kilowats');
       this.amount = false;
       this.kilowats = true;
     }
@@ -166,7 +165,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     });
     if (this.amountValue < this.amountAlertValue) {
       localStorage.removeItem('exceedLimit');
-    }
+    } 
     this.percentProgressBarAmountAlert = (this.amountAlertValue / this.progressbarMaxValueAmount) * 100;
     this.percentProgressBarAmountAlert = 100 - this.percentProgressBarAmountAlert;
   }

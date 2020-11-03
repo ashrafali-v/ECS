@@ -1,4 +1,7 @@
-<div class="ecs-content-box neighbor-container ecs-tabs">
+<div class="ecs-content-box" *ngIf="loader">
+    loading....
+</div>
+<div class="ecs-content-box neighbor-container ecs-tabs" *ngIf="!loader">
     <!-- <ngx-charts-pie-chart
       [view]="[400, 300]"
       [scheme]="{domain: ['#5AA454', '#A10A28', '#C7B42C']}"

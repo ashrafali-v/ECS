@@ -47,6 +47,7 @@ export class DailyUsageComponent implements OnInit {
   currentDay:any;
   hourlyDate:any;
   dateIndex:any = 0;
+  loader: boolean = true;
   constructor(private sharedService: CommonAppService) {
   }
   @HostListener('window:resize', ['$event'])
@@ -80,15 +81,16 @@ export class DailyUsageComponent implements OnInit {
   ngOnInit(): void {
     var today = new Date();
     this.currentDay = today.getDate();
-    var yesterday = new Date(Date.now() - 864e5);
-    var day = yesterday.getDate();
-    var month = yesterday.getMonth()+1;
-    var year = yesterday.getFullYear();
-    this.hourlyDate = {day,month,year};
-    this.hourlyMonthName = this.monthNames[month-1];
-    this.hourlyDay = yesterday.getDate();
-    console.log(this.hourlyDate);
+    // var yesterday = new Date(Date.now() - 864e5);
+    // var day = yesterday.getDate();
+    // var month = yesterday.getMonth()+1;
+    // var year = yesterday.getFullYear();
+    // this.hourlyDate = {day,month,year};
+    // this.hourlyMonthName = this.monthNames[month-1];
+    // this.hourlyDay = yesterday.getDate();
+    // console.log(this.hourlyDate);
     this.sharedService.getDailyUsage().subscribe(data => {
+      this.loader = false;
       var day = new Date();
       this.month = this.monthNames[day.getMonth()];
       this.day = day.getDate();
@@ -97,7 +99,7 @@ export class DailyUsageComponent implements OnInit {
       this.kilowatsValue = data.totalUsageKwh;
       this.chartDataAmount = [
         {
-          'name': 1,
+          'name': "OCT 1",
           'series': [
             {
               'name': 'usage',
@@ -107,10 +109,11 @@ export class DailyUsageComponent implements OnInit {
               'name': 'exceed average',
               'value': 5
             }
-          ]
+          ],
+          date:"12 01 2020"
         },
         {
-          'name': 2,
+          'name': "OCT 2",
           'series': [
             {
               'name': 'usage',
@@ -120,376 +123,377 @@ export class DailyUsageComponent implements OnInit {
               'name': 'exceed average',
               'value': 3
             }
-          ]
+          ],
+          date:"12 02 2020"
         },
-        {
-          'name': 3,
-          'series': [
-            {
-              'name': 'usage',
-              'value': 8
-            },
-            {
-              'name': 'upto average',
-              'value': 2
-            }
-          ]
-        }, {
-          'name': 4,
-          'series': [
-            {
-              'name': 'usage',
-              'value': 10
-            },
-            {
-              'name': 'exceed average',
-              'value': 1
-            }
-          ]
-        }, {
-          'name': 5,
-          'series': [
-            {
-              'name': 'usage',
-              'value': 5
-            },
-            {
-              'name': 'upto average',
-              'value': 5
-            }
-          ]
-        }, {
-          'name': 6,
-          'series': [
-            {
-              'name': 'usage',
-              'value': 10
-            },
-            {
-              'name': 'exceed average',
-              'value': 4
-            }
-          ]
-        },
-        {
-          'name': 7,
-          'series': [
-            {
-              'name': 'usage',
-              'value': 0
-            },
-            {
-              'name': 'upto average',
-              'value': 10
-            }
-          ]
-        },
-        {
-          'name': 8,
-          'series': [
-            {
-              'name': 'usage',
-              'value': 0
-            },
-            {
-              'name': 'upto average',
-              'value': 10
-            }
-          ]
-        },
-        {
-          'name': 9,
-          'series': [
-            {
-              'name': 'usage',
-              'value': 0
-            },
-            {
-              'name': 'upto average',
-              'value': 10
-            }
-          ]
-        },
-        {
-          'name': 10,
-          'series': [
-            {
-              'name': 'usage',
-              'value': 10
-            },
-            {
-              'name': 'exceed average',
-              'value': 5
-            }
-          ]
-        },
-        {
-          'name': 11,
-          'series': [
-            {
-              'name': 'usage',
-              'value': 10
-            },
-            {
-              'name': 'exceed average',
-              'value': 5
-            }
-          ]
-        },
-        {
-          'name': 12,
-          'series': [
-            {
-              'name': 'usage',
-              'value': 10
-            },
-            {
-              'name': 'exceed average',
-              'value': 3
-            }
-          ]
-        },
-        {
-          'name': 13,
-          'series': [
-            {
-              'name': 'usage',
-              'value': 8
-            },
-            {
-              'name': 'upto average',
-              'value': 2
-            }
-          ]
-        }, {
-          'name': 14,
-          'series': [
-            {
-              'name': 'usage',
-              'value': 10
-            },
-            {
-              'name': 'exceed average',
-              'value': 1
-            }
-          ]
-        }, {
-          'name': 15,
-          'series': [
-            {
-              'name': 'usage',
-              'value': 5
-            },
-            {
-              'name': 'upto average',
-              'value': 5
-            }
-          ]
-        }, {
-          'name': 16,
-          'series': [
-            {
-              'name': 'usage',
-              'value': 10
-            },
-            {
-              'name': 'exceed average',
-              'value': 4
-            }
-          ]
-        },
-        {
-          'name': 17,
-          'series': [
-            {
-              'name': 'usage',
-              'value': 0
-            },
-            {
-              'name': 'upto average',
-              'value': 10
-            }
-          ]
-        },
-        {
-          'name': 18,
-          'series': [
-            {
-              'name': 'usage',
-              'value': 0
-            },
-            {
-              'name': 'upto average',
-              'value': 10
-            }
-          ]
-        },
-        {
-          'name': 19,
-          'series': [
-            {
-              'name': 'usage',
-              'value': 0
-            },
-            {
-              'name': 'upto average',
-              'value': 10
-            }
-          ]
-        },
-        {
-          'name': 20,
-          'series': [
-            {
-              'name': 'usage',
-              'value': 10
-            },
-            {
-              'name': 'exceed average',
-              'value': 5
-            }
-          ]
-        },
-        {
-          'name': 21,
-          'series': [
-            {
-              'name': 'usage',
-              'value': 10
-            },
-            {
-              'name': 'exceed average',
-              'value': 5
-            }
-          ]
-        },
-        {
-          'name': 22,
-          'series': [
-            {
-              'name': 'usage',
-              'value': 10
-            },
-            {
-              'name': 'exceed average',
-              'value': 3
-            }
-          ]
-        },
-        {
-          'name': 23,
-          'series': [
-            {
-              'name': 'usage',
-              'value': 8
-            },
-            {
-              'name': 'upto average',
-              'value': 2
-            }
-          ]
-        }, {
-          'name': 24,
-          'series': [
-            {
-              'name': 'usage',
-              'value': 10
-            },
-            {
-              'name': 'exceed average',
-              'value': 1
-            }
-          ]
-        }, {
-          'name': 25,
-          'series': [
-            {
-              'name': 'usage',
-              'value': 5
-            },
-            {
-              'name': 'upto average',
-              'value': 5
-            }
-          ]
-        }, {
-          'name': 26,
-          'series': [
-            {
-              'name': 'usage',
-              'value': 10
-            },
-            {
-              'name': 'exceed average',
-              'value': 4
-            }
-          ]
-        },
-        {
-          'name': 27,
-          'series': [
-            {
-              'name': 'usage',
-              'value': 0
-            },
-            {
-              'name': 'upto average',
-              'value': 10
-            }
-          ]
-        },
-        {
-          'name': 28,
-          'series': [
-            {
-              'name': 'usage',
-              'value': 0
-            },
-            {
-              'name': 'upto average',
-              'value': 10
-            }
-          ]
-        },
-        {
-          'name': 29,
-          'series': [
-            {
-              'name': 'usage',
-              'value': 0
-            },
-            {
-              'name': 'upto average',
-              'value': 10
-            }
-          ]
-        },
-        {
-          'name': 30,
-          'series': [
-            {
-              'name': 'usage',
-              'value': 0
-            },
-            {
-              'name': 'upto average',
-              'value': 10
-            }
-          ]
-        },
-        {
-          'name': 31,
-          'series': [
-            {
-              'name': 'usage',
-              'value': 10
-            },
-            {
-              'name': 'exceed average',
-              'value': 5
-            }
-          ]
-        }
+        // {
+        //   'name': 3,
+        //   'series': [
+        //     {
+        //       'name': 'usage',
+        //       'value': 8
+        //     },
+        //     {
+        //       'name': 'upto average',
+        //       'value': 2
+        //     }
+        //   ]
+        // }, {
+        //   'name': 4,
+        //   'series': [
+        //     {
+        //       'name': 'usage',
+        //       'value': 10
+        //     },
+        //     {
+        //       'name': 'exceed average',
+        //       'value': 1
+        //     }
+        //   ]
+        // }, {
+        //   'name': 5,
+        //   'series': [
+        //     {
+        //       'name': 'usage',
+        //       'value': 5
+        //     },
+        //     {
+        //       'name': 'upto average',
+        //       'value': 5
+        //     }
+        //   ]
+        // }, {
+        //   'name': 6,
+        //   'series': [
+        //     {
+        //       'name': 'usage',
+        //       'value': 10
+        //     },
+        //     {
+        //       'name': 'exceed average',
+        //       'value': 4
+        //     }
+        //   ]
+        // },
+        // {
+        //   'name': 7,
+        //   'series': [
+        //     {
+        //       'name': 'usage',
+        //       'value': 0
+        //     },
+        //     {
+        //       'name': 'upto average',
+        //       'value': 10
+        //     }
+        //   ]
+        // },
+        // {
+        //   'name': 8,
+        //   'series': [
+        //     {
+        //       'name': 'usage',
+        //       'value': 0
+        //     },
+        //     {
+        //       'name': 'upto average',
+        //       'value': 10
+        //     }
+        //   ]
+        // },
+        // {
+        //   'name': 9,
+        //   'series': [
+        //     {
+        //       'name': 'usage',
+        //       'value': 0
+        //     },
+        //     {
+        //       'name': 'upto average',
+        //       'value': 10
+        //     }
+        //   ]
+        // },
+        // {
+        //   'name': 10,
+        //   'series': [
+        //     {
+        //       'name': 'usage',
+        //       'value': 10
+        //     },
+        //     {
+        //       'name': 'exceed average',
+        //       'value': 5
+        //     }
+        //   ]
+        // },
+        // {
+        //   'name': 11,
+        //   'series': [
+        //     {
+        //       'name': 'usage',
+        //       'value': 10
+        //     },
+        //     {
+        //       'name': 'exceed average',
+        //       'value': 5
+        //     }
+        //   ]
+        // },
+        // {
+        //   'name': 12,
+        //   'series': [
+        //     {
+        //       'name': 'usage',
+        //       'value': 10
+        //     },
+        //     {
+        //       'name': 'exceed average',
+        //       'value': 3
+        //     }
+        //   ]
+        // },
+        // {
+        //   'name': 13,
+        //   'series': [
+        //     {
+        //       'name': 'usage',
+        //       'value': 8
+        //     },
+        //     {
+        //       'name': 'upto average',
+        //       'value': 2
+        //     }
+        //   ]
+        // }, {
+        //   'name': 14,
+        //   'series': [
+        //     {
+        //       'name': 'usage',
+        //       'value': 10
+        //     },
+        //     {
+        //       'name': 'exceed average',
+        //       'value': 1
+        //     }
+        //   ]
+        // }, {
+        //   'name': 15,
+        //   'series': [
+        //     {
+        //       'name': 'usage',
+        //       'value': 5
+        //     },
+        //     {
+        //       'name': 'upto average',
+        //       'value': 5
+        //     }
+        //   ]
+        // }, {
+        //   'name': 16,
+        //   'series': [
+        //     {
+        //       'name': 'usage',
+        //       'value': 10
+        //     },
+        //     {
+        //       'name': 'exceed average',
+        //       'value': 4
+        //     }
+        //   ]
+        // },
+        // {
+        //   'name': 17,
+        //   'series': [
+        //     {
+        //       'name': 'usage',
+        //       'value': 0
+        //     },
+        //     {
+        //       'name': 'upto average',
+        //       'value': 10
+        //     }
+        //   ]
+        // },
+        // {
+        //   'name': 18,
+        //   'series': [
+        //     {
+        //       'name': 'usage',
+        //       'value': 0
+        //     },
+        //     {
+        //       'name': 'upto average',
+        //       'value': 10
+        //     }
+        //   ]
+        // },
+        // {
+        //   'name': 19,
+        //   'series': [
+        //     {
+        //       'name': 'usage',
+        //       'value': 0
+        //     },
+        //     {
+        //       'name': 'upto average',
+        //       'value': 10
+        //     }
+        //   ]
+        // },
+        // {
+        //   'name': 20,
+        //   'series': [
+        //     {
+        //       'name': 'usage',
+        //       'value': 10
+        //     },
+        //     {
+        //       'name': 'exceed average',
+        //       'value': 5
+        //     }
+        //   ]
+        // },
+        // {
+        //   'name': 21,
+        //   'series': [
+        //     {
+        //       'name': 'usage',
+        //       'value': 10
+        //     },
+        //     {
+        //       'name': 'exceed average',
+        //       'value': 5
+        //     }
+        //   ]
+        // },
+        // {
+        //   'name': 22,
+        //   'series': [
+        //     {
+        //       'name': 'usage',
+        //       'value': 10
+        //     },
+        //     {
+        //       'name': 'exceed average',
+        //       'value': 3
+        //     }
+        //   ]
+        // },
+        // {
+        //   'name': 23,
+        //   'series': [
+        //     {
+        //       'name': 'usage',
+        //       'value': 8
+        //     },
+        //     {
+        //       'name': 'upto average',
+        //       'value': 2
+        //     }
+        //   ]
+        // }, {
+        //   'name': 24,
+        //   'series': [
+        //     {
+        //       'name': 'usage',
+        //       'value': 10
+        //     },
+        //     {
+        //       'name': 'exceed average',
+        //       'value': 1
+        //     }
+        //   ]
+        // }, {
+        //   'name': 25,
+        //   'series': [
+        //     {
+        //       'name': 'usage',
+        //       'value': 5
+        //     },
+        //     {
+        //       'name': 'upto average',
+        //       'value': 5
+        //     }
+        //   ]
+        // }, {
+        //   'name': 26,
+        //   'series': [
+        //     {
+        //       'name': 'usage',
+        //       'value': 10
+        //     },
+        //     {
+        //       'name': 'exceed average',
+        //       'value': 4
+        //     }
+        //   ]
+        // },
+        // {
+        //   'name': 27,
+        //   'series': [
+        //     {
+        //       'name': 'usage',
+        //       'value': 0
+        //     },
+        //     {
+        //       'name': 'upto average',
+        //       'value': 10
+        //     }
+        //   ]
+        // },
+        // {
+        //   'name': 28,
+        //   'series': [
+        //     {
+        //       'name': 'usage',
+        //       'value': 0
+        //     },
+        //     {
+        //       'name': 'upto average',
+        //       'value': 10
+        //     }
+        //   ]
+        // },
+        // {
+        //   'name': 29,
+        //   'series': [
+        //     {
+        //       'name': 'usage',
+        //       'value': 0
+        //     },
+        //     {
+        //       'name': 'upto average',
+        //       'value': 10
+        //     }
+        //   ]
+        // },
+        // {
+        //   'name': 30,
+        //   'series': [
+        //     {
+        //       'name': 'usage',
+        //       'value': 0
+        //     },
+        //     {
+        //       'name': 'upto average',
+        //       'value': 10
+        //     }
+        //   ]
+        // },
+        // {
+        //   'name': 31,
+        //   'series': [
+        //     {
+        //       'name': 'usage',
+        //       'value': 10
+        //     },
+        //     {
+        //       'name': 'exceed average',
+        //       'value': 5
+        //     }
+        //   ]
+        // }
       ];
       this.chartDataKwh = [
         {
@@ -890,7 +894,8 @@ export class DailyUsageComponent implements OnInit {
       ];
       this.chartDataAmount = data.usageAmount;
       this.chartDataKwh = data.usageKwh;
-      this.getHourlyUsageData(this.chartDataAmount[0].name);
+      this.hourlyDate = this.chartDataAmount[0].name;
+      this.getHourlyUsageData(this.chartDataAmount[0].date);
       this.getScreenSize();
     });
     this.sharedService.nextMessage("amount");
@@ -951,22 +956,20 @@ export class DailyUsageComponent implements OnInit {
   }
   prevDayData(){
     this.dateIndex += 1;
-    var date = this.chartDataAmount[this.dateIndex].name;
-    this.hourlyDay = this.hourlyDay - 1;
-    this.hourlyDate.day = this.hourlyDay;
-    this.getHourlyUsageData(date);
+    //this.hourlyDate = this.chartDataAmount[this.dateIndex].name;
+    this.hourlyDate = this.chartDataAmount[this.dateIndex].name;
+    this.getHourlyUsageData(this.chartDataAmount[this.dateIndex].date);
   }
   nextDayData(){
     this.dateIndex -= 1;
-    var date = this.chartDataAmount[this.dateIndex].name;
-    this.hourlyDay = this.hourlyDay + 1;
-    this.hourlyDate.day = this.hourlyDay;
-    this.getHourlyUsageData(date);
+    //this.hourlyDate = this.chartDataAmount[this.dateIndex].name;
+    this.hourlyDate = this.chartDataAmount[this.dateIndex].name;
+    this.getHourlyUsageData(this.chartDataAmount[this.dateIndex].date);
   }
   getHourlyUsageData(date:any){
-    var c = date.split(" ");
-    var dateValue = {'day':c[1],'month':c[0]}
-    this.sharedService.getHourlyUsage(dateValue).subscribe(data => {
+    // var c = date.split(" ");
+    // var dateValue = {'day':c[1],'month':c[0],'year':c[2]}
+    this.sharedService.getHourlyUsage(date).subscribe(data => {
       this.hourlyUsage = data;
       this.sixHoursData = this.hourlyUsage.firstset;
       this.twelveHoursData = this.hourlyUsage.secondset;

@@ -1,4 +1,7 @@
-<div class="ecs-content-box bill-comparison-container">
+<div class="ecs-content-box" *ngIf="loader">
+    loading....
+</div>
+<div class="ecs-content-box bill-comparison-container" *ngIf="!loader">
     <div class="bill-comparison-data">
         <h3>Bill Comparison</h3>
         <!-- <div style="display: block;">
