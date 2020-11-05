@@ -18,7 +18,7 @@ export class CommonAppService {
     NeighbourLinechart:'milestone/energy/neighbourLineChart',
     NeighbourCurrentMonth:'milestone/energy/neighbourCurrentMonth',
     UsageReport:'milestone/energy/getUsageReport',
-    AmountAlertValue:'milestone/energy/usageAlert'
+    AmountAlertValue:'milestone/energy/usageAlertChange'
   }
   private message = new BehaviorSubject('amount');
   sharedMessage = this.message.asObservable();

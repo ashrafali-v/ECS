@@ -37,7 +37,7 @@
                         </ngx-charts-bar-horizontal>
                     </div>
                 </div>
-                <div class="neighbourhood-chart day-usage-bar" *ngIf="kilowats">
+                <div class="neighbourhood-chart day-usage-bar" *ngIf="kilowats && accountType=='ELECTRIC'">
                     <div class="neighbourhood-canvas-chart">
                         <canvas baseChart [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptionsKwh" [colors]="lineChartColors" [legend]="lineChartLegend" [chartType]="lineChartType" [plugins]="lineChartPlugins">
                         </canvas>
@@ -45,14 +45,26 @@
                     <div class="neighbourhood-ngx-chart">
                         <ngx-charts-bar-horizontal [view]="view" [roundDomains]=true [scheme]="colorScheme" [results]="multiKwh" [gradient]="false" [noBarWhenZero]=true [xAxis]="false" [yAxis]="true" [barPadding]=30 [roundEdges]=true>
                             <ng-template #tooltipTemplate let-model="model">
-                                <p class="ecs-tooltip">{{model.name}} {{model.value | json}}kWh</p>
+                                <p class="ecs-tooltip">{{model.name}} {{model.value | json}} {{gasUnit}}</p>
                             </ng-template>
                         </ngx-charts-bar-horizontal>
                     </div>
                 </div>
-            </div>
-        
-            <div class="status-indicator" *ngIf="amount">
+                <div class="neighbourhood-chart day-usage-bar" *ngIf="kilowats && accountType=='GAS'">
+                    <div class="neighbourhood-canvas-chart">
+                        <canvas baseChart [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptionsKwhGas" [colors]="lineChartColors" [legend]="lineChartLegend" [chartType]="lineChartType" [plugins]="lineChartPlugins">
+                        </canvas>
+                    </div>
+                    <div class="neighbourhood-ngx-chart">
+                        <ngx-charts-bar-horizontal [view]="view" [roundDomains]=true [scheme]="colorScheme" [results]="multiKwh" [gradient]="false" [noBarWhenZero]=true [xAxis]="false" [yAxis]="true" [barPadding]=30 [roundEdges]=true>
+                            <ng-template #tooltipTemplate let-model="model">
+                                <p class="ecs-tooltip">{{model.name}} {{model.value | json}} {{gasUnit}}</p>
+                            </ng-template>
+                        </ngx-charts-bar-horizontal>
+                    </div>
+                </div>
+            </div>     
+            <div class="status-indicator">
                 <div class="status" [ngClass]="{'active': neighbourEmoji =='GREAT'}">
                     <div class="figure figure-great"></div>
                     <h4>Great</h4>
@@ -66,25 +78,11 @@
                     <h4>Using more than average</h4>
                 </div>
             </div>
-            <div class="status-indicator" *ngIf="kilowats">
-                <div class="status" [ngClass]="{'active': kilowatsValue < greatKWHLimit}">
-                    <div class="figure figure-great"></div>
-                    <h4>Great</h4>
-                </div>
-                <div class="status" [ngClass]="{'active': kilowatsValue > greatKWHLimit && kilowatsValue < excessKWHLimit}">
-                    <div class="figure figure-good"></div>
-                    <h4>Good</h4>
-                </div>
-                <div class="status" [ngClass]="{'active': kilowatsValue > excessKWHLimit}">
-                    <div class="figure figure-negative"></div>
-                    <h4>Using more than average</h4>
-                </div>
-            </div>
         </div>
         <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
             <div class="neighbourhood-data">
                 <h3>Neighbourhood Comparison</h3>
-                <h4>You're using <b>12% more energy</b> than your neighbors.</h4>
+                <h4>{{neighbourUsageText}}</h4>
                 <div class="neighbourhood-chart day-usage-bar" *ngIf="amount">
                     <div class="neighbourhood-ngx-chart">
                         <ngx-charts-bar-horizontal [view]="view" [roundDomains]=true [scheme]="colorScheme" [results]="multiAmountCurrent" [gradient]="false" [noBarWhenZero]=true [xAxis]="false" [yAxis]="true" [barPadding]=30 [roundEdges]=true>
@@ -98,12 +96,12 @@
                     <div class="neighbourhood-ngx-chart">
                         <ngx-charts-bar-horizontal [view]="view" [roundDomains]=true [scheme]="colorScheme" [results]="multiKWHCurrent" [gradient]="false" [noBarWhenZero]=true [xAxis]="false" [yAxis]="true" [barPadding]=30 [roundEdges]=true>
                             <ng-template #tooltipTemplate let-model="model">
-                                <p class="ecs-tooltip">{{model.name}} {{model.value | json}}kWh</p>
+                                <p class="ecs-tooltip">{{model.name}} {{model.value | json}} {{gasUnit}}</p>
                             </ng-template>
                         </ngx-charts-bar-horizontal>
                     </div>
                 </div>
-                <div class="status-indicator" *ngIf="amount">
+                <div class="status-indicator">
                     <div class="status" [ngClass]="{'active': neighbourEmojiCurrent =='GREAT'}">
                         <div class="figure figure-great"></div>
                         <h4>Great</h4>
@@ -117,20 +115,6 @@
                         <h4>Using more than average</h4>
                     </div>
                 </div>
-                <div class="status-indicator" *ngIf="kilowats">
-                    <div class="status" [ngClass]="{'active': kilowatsValueCurrent < greatKWHLimitCurrent}">
-                        <div class="figure figure-great"></div>
-                        <h4>Great</h4>
-                    </div>
-                    <div class="status" [ngClass]="{'active': kilowatsValueCurrent > greatKWHLimitCurrent && kilowatsValueCurrent < excessKWHLimitCurrent}">
-                        <div class="figure figure-good"></div>
-                        <h4>Good</h4>
-                    </div>
-                    <div class="status" [ngClass]="{'active': kilowatsValueCurrent > excessKWHLimitCurrent}">
-                        <div class="figure figure-negative"></div>
-                        <h4>Using more than average</h4>
-                    </div>
-                </div>
             </div>
         </div>
       </div>
@@ -140,6 +124,6 @@
             <input type="checkbox" (change)="handleSelected($event)">
             <span class="slider"></span>
         </label>
-        <span class="selector">Kilowatts</span>
+        <span class="selector">{{gasSwitchText}}</span>
     </div>
 </div>

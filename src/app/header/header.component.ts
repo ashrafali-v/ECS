@@ -10,12 +10,20 @@ export class HeaderComponent implements OnInit {
   kilowats: boolean = false;
   amountValue: number;
   kilowatsValue: number;
+  accountType:any;
+  gasUnit:any;
   constructor(private sharedService: CommonAppService) { }
   message:string;
   ngOnInit(): void {
     this.sharedService.getRecentDayUsage().subscribe(data => {
       this.amountValue = data.predictedAmount;
       this.kilowatsValue = data.predictedKwh;
+      this.accountType = data.accountType;
+      if(this.accountType == 'GAS'){
+        localStorage.gasUnit = 'lpg';
+        localStorage.gasSwitchText = 'LPG';
+      }
+      this.gasUnit = localStorage.gasUnit;
     });
     this.sharedService.sharedMessage.subscribe(message =>{
       this.message = message;

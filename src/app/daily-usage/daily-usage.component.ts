@@ -48,6 +48,10 @@ export class DailyUsageComponent implements OnInit {
   hourlyDate:any;
   dateIndex:any = 0;
   loader: boolean = true;
+  isHourlyUsageEmpty:boolean = false;
+  accountType:any;
+  gasUnit:any;
+  gasSwitchText:any;
   constructor(private sharedService: CommonAppService) {
   }
   @HostListener('window:resize', ['$event'])
@@ -79,6 +83,11 @@ export class DailyUsageComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.accountType = localStorage.accountType;
+    this.gasUnit = localStorage.gasUnit;
+    this.gasSwitchText = localStorage.gasSwitchText;
+    console.log(this.gasSwitchText);
+    
     var today = new Date();
     this.currentDay = today.getDate();
     // var yesterday = new Date(Date.now() - 864e5);
@@ -915,7 +924,10 @@ export class DailyUsageComponent implements OnInit {
     return '$' + val.toLocaleString();
   }
   kwhTickFormatting(val: any) {
-    return val.toLocaleString() + 'k';
+    return val.toLocaleString() + 'kWh';
+  }
+  kwhTickFormattingGas(val: any) {
+    return val.toLocaleString() + 'lpg';
   }
   selectDailyUsageData(key: any) {
     //Next and previuos button handling//
@@ -970,6 +982,10 @@ export class DailyUsageComponent implements OnInit {
     // var c = date.split(" ");
     // var dateValue = {'day':c[1],'month':c[0],'year':c[2]}
     this.sharedService.getHourlyUsage(date).subscribe(data => {
+      if(Object.keys(data).length === 0 && data.constructor === Object ){
+        this.isHourlyUsageEmpty = true;
+      }
+      
       this.hourlyUsage = data;
       this.sixHoursData = this.hourlyUsage.firstset;
       this.twelveHoursData = this.hourlyUsage.secondset;

@@ -53,6 +53,9 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   barPadding: any;
   loader: boolean = true;
   percentageValue:any;
+  accountType:any = 'ELECTRIC';
+  gasUnit:any;
+  gasSwitchText:any;
   colorScheme = {
     domain: ['#f8bc8a', '#ab8ef0', '#f8bc8a', '#ab8ef0', '#f8bc8a']
   };
@@ -85,6 +88,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   }
   ngOnInit() {
     //Subscription Method
+    localStorage.gasUnit = 'kWh';
+    localStorage.gasSwitchText = 'KILOWATTS';
     this.activatedRoute.queryParams.subscribe(params => {
       var account = params['account'];
       if(account){
@@ -94,6 +99,14 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     });
     this.sharedService.getRecentDayUsage().subscribe(data => {
       this.loader = false;
+      this.accountType = data.accountType;
+      localStorage.accountType = this.accountType;
+      if(this.accountType == 'GAS'){
+        localStorage.gasUnit = 'lpg';
+        localStorage.gasSwitchText = 'LPG';
+      }
+      this.gasUnit = localStorage.gasUnit;
+      this.gasSwitchText = localStorage.gasSwitchText;
       this.amountValue = data.totalUsageAmount;
       this.kilowatsValue = data.totalUsageKwh;
       this.limitValue = data.limitAmount;
@@ -162,6 +175,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     this.editStatus = false;
     this.sharedService.updateAlertValue(this.amountAlertValue).subscribe(data =>{
       console.log(data); 
+      this.percentageValue = data;
     });
     if (this.amountValue < this.amountAlertValue) {
       localStorage.removeItem('exceedLimit');
@@ -188,5 +202,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   }
   kwhTickFormatting(val: any) {
     return val.toLocaleString() + ' kWh';
+  }
+  kwhTickFormattingGas(val: any) {
+    return val.toLocaleString() + ' lpg';
   }
 }

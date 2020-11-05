@@ -35,7 +35,11 @@ export class NeighbourComparisonComponent implements OnInit {
   greatKWHLimitCurrent:any;
   neighbourEmoji:any;
   neighbourEmojiCurrent:any;
+  neighbourUsageText:any;
   loader: boolean = true;
+  accountType:any;
+  gasUnit:any;
+  gasSwitchText:any;
   /*-----------------Line chart config-----------------------------*/
   public lineChartData: ChartDataSets[];
   public lineChartLabels: Label[];
@@ -135,6 +139,54 @@ export class NeighbourComparisonComponent implements OnInit {
       }]
     }
   };
+  public lineChartOptionsKwhGas: ChartOptions = {
+    responsive: true,
+    legend: {
+      position: 'bottom',
+      display: false,
+      labels: {
+        fontSize: 12,
+        fontFamily: 'Karla',
+        //usePointStyle: true,
+        boxWidth: 30,
+
+      }
+    },
+    animation: {
+      duration: 2000
+    },
+    layout: {
+      padding: {
+        left: 0,
+        right: 0,
+        top: 0,
+        bottom: 0
+      }
+    },
+    scales: {
+      yAxes: [{
+        ticks: {
+          // Include a dollar sign in the ticks
+          callback: function (value, index, values) {
+            return value+'lpg';
+          },
+          fontSize: 16,
+          fontFamily: 'Karla',
+        },
+        gridLines: {
+          display: true,
+          borderDash: [8, 4]
+        }
+      }],
+      xAxes: [{
+        display: true,
+        gridLines: {
+          display: false,//this will remove all the x-axis grid lines
+          drawBorder: false,
+        }
+      }]
+    }
+  };
   public lineChartColors: Color[] = [
     {
       borderColor: '#F16F3F'
@@ -202,7 +254,9 @@ export class NeighbourComparisonComponent implements OnInit {
     // this.lineChartDataKwh = [{ data: [0, 100, 130, 250, 116, 150, 210], label: 'All Neighbours', fill: false },
     // { data: [0, 175, 145, 180, 250, 215, 170], label: 'Similar Homes', fill: false },
     // { data: [0, 130, 210, 170, 200, 225, 150], label: 'Your Usage', fill: false }];
-
+    this.accountType = localStorage.accountType;
+    this.gasUnit = localStorage.gasUnit;
+    this.gasSwitchText = localStorage.gasSwitchText;
     this.sharedService.getNeighbourBarchart().subscribe(data=>{
       this.multiAmount = data.dataAmount;
       this.multiKwh = data.dataKwh;
@@ -238,6 +292,7 @@ export class NeighbourComparisonComponent implements OnInit {
       this.goodKWHLimitCurrent = data.goodKwh;
       this.greatKWHLimitCurrent = data.greatKwh;
       this.neighbourEmojiCurrent = data.neighbourEmoji;
+      this.neighbourUsageText = data.neighbourText;
     });
 
   }

@@ -20,7 +20,7 @@
                 </ng-template>
             </ngx-charts-bar-vertical-stacked>
         </div>
-        <div *ngIf="kilowats">
+        <div *ngIf="kilowats && accountType=='ELECTRIC'">
 
             <ngx-charts-bar-vertical-stacked [view]="view" [results]="chartDataKwhSection" [xAxis]="true" [yAxis]="true" [barPadding]=barPadding [customColors]="myColors" [roundDomains]=true [yAxisTickFormatting]="kwhTickFormatting">
 
@@ -28,7 +28,19 @@
                     <p *ngIf="model.value < 30 && model.name == 'usage'">usage</p>
                     <p *ngIf="model.name == 'exceed average' ">Exceed average by</p>
                     <p *ngIf="model.name == 'upto average' ">Up to average</p>
-                    <p *ngIf="model.value < 30">{{model.value | json}}kWh</p>
+                    <p *ngIf="model.value < 30">{{model.value | json}} {{gasUnit}}</p>
+                </ng-template>
+            </ngx-charts-bar-vertical-stacked>
+        </div>
+        <div *ngIf="kilowats && accountType=='GAS'">
+
+            <ngx-charts-bar-vertical-stacked [view]="view" [results]="chartDataKwhSection" [xAxis]="true" [yAxis]="true" [barPadding]=barPadding [customColors]="myColors" [roundDomains]=true [yAxisTickFormatting]="kwhTickFormattingGas">
+
+                <ng-template #tooltipTemplate let-model="model">
+                    <p *ngIf="model.value < 30 && model.name == 'usage'">usage</p>
+                    <p *ngIf="model.name == 'exceed average' ">Exceed average by</p>
+                    <p *ngIf="model.name == 'upto average' ">Up to average</p>
+                    <p *ngIf="model.value < 30">{{model.value | json}} {{gasUnit}}</p>
                 </ng-template>
             </ngx-charts-bar-vertical-stacked>
         </div>
@@ -44,69 +56,44 @@
             <input type="checkbox" (change)="handleSelected($event)">
             <span class="slider"></span>
         </label>
-        <span class="selector">Kilowatts</span>
+        <span class="selector">{{gasSwitchText}}</span>
     </div>
 
 
-    <div class="hourly-usage" *ngIf="this.hourlyUsage != ''">
+    <div class="hourly-usage" *ngIf="!isHourlyUsageEmpty && accountType =='ELECTRIC'">
         
         <div class="center-conatainer">
             <h2>Hourly Usage</h2>
 
             <div class="day-counter">
-                <button class="ecs-btn" [ngClass]="{'status-disabled': dateIndex == chartDataAmount.length - 1}" [disabled]="dateIndex == chartDataAmount.length - 1" (click)="prevDayData()" ><i class="fas fa-chevron-left"></i></button>
+                <button class="ecs-btn" [ngClass]="{'status-disabled': dateIndex == chartDataAmount.length - 1}" *ngIf="dateIndex != chartDataAmount.length - 1" (click)="prevDayData()" ><i class="fas fa-chevron-left"></i></button>
                 <h3>{{hourlyDate}}</h3>
-                <button class="ecs-btn" [ngClass]="{'status-disabled': dateIndex == 0}" [disabled]="dateIndex == 0" (click)="nextDayData()"><i class="fas fa-chevron-right"></i></button>
+                <button class="ecs-btn" [ngClass]="{'status-disabled': dateIndex == 0}" *ngIf="dateIndex != 0" (click)="nextDayData()"><i class="fas fa-chevron-right"></i></button>
             </div>
 
             <div class="hour-divider-group">
             
             <div class="hour-divider">
                 <ul *ngFor="let data of sixHoursData">
-                    <li class="hour-finished"><span class="hour-amount">${{data.amount}}</span><span class="hour-kWh">{{data.kwh}}kWh</span></li>
-                    <!-- <li class="hour-finished above-avarage"><span class="hour-amount">$10.00</span><span class="hour-kWh">5kWh</span></li>
-                    <li class="hour-finished "><span class="hour-amount">$3.00</span><span class="hour-kWh">2kWh</span></li>
-                    <li class="hour-finished "><span class="hour-amount">$10.00</span><span class="hour-kWh">8kWh</span></li>
-                    <li class="hour-finished "><span class="hour-amount">$4.00</span><span class="hour-kWh">3kWh</span></li>
-                    <li class="hour-finished "><span class="hour-amount">$2.5</span><span class="hour-kWh">1kWh</span></li>
-                    <li class="hour-finished "><span class="hour-amount">$3.00</span><span class="hour-kWh">2kWh</span></li> -->
+                    <li class="hour-finished"><span class="hour-amount">${{data.amount}}</span><span class="hour-kWh">{{data.kwh}}{{gasUnit}}</span></li>
                 </ul>
                 <h3>6Hrs</h3>
             </div>
             <div class="hour-divider">
                 <ul *ngFor="let data of twelveHoursData">
-                    <li class="hour-finished"><span class="hour-amount">${{data.amount}}</span><span class="hour-kWh">{{data.kwh}}kWh</span></li>
-                    <!-- <li><span class="hour-amount"></span><span class="hour-kWh"></span></li>
-                    <li><span class="hour-amount"></span><span class="hour-kWh"></span></li>
-                    <li><span class="hour-amount"></span><span class="hour-kWh"></span></li>
-                    <li class="hour-finished above-avarage"><span class="hour-amount">$10.00</span><span class="hour-kWh">8kWh</span></li>
-                    <li class="hour-finished "><span class="hour-amount">$4.00</span><span class="hour-kWh">3kWh</span></li>
-                    <li class="hour-finished "><span class="hour-amount">$2.5</span><span class="hour-kWh">1kWh</span></li> -->
-
+                    <li class="hour-finished"><span class="hour-amount">${{data.amount}}</span><span class="hour-kWh">{{data.kwh}}{{gasUnit}}</span></li>
                 </ul>
                 <h3>12Hrs</h3>
             </div>
             <div class="hour-divider">
                 <ul *ngFor="let data of eighteenHoursData">
-                    <li class="hour-finished"><span class="hour-amount">${{data.amount}}</span><span class="hour-kWh">{{data.kwh}}kWh</span></li>
-                    <!-- <li><span class="hour-amount"></span><span class="hour-kWh"></span></li>
-                    <li><span class="hour-amount"></span><span class="hour-kWh"></span></li>
-                    <li><span class="hour-amount"></span><span class="hour-kWh"></span></li>
-                    <li><span class="hour-amount"></span><span class="hour-kWh"></span></li>
-                    <li><span class="hour-amount"></span><span class="hour-kWh"></span></li>
-                    <li><span class="hour-amount"></span><span class="hour-kWh"></span></li> -->
+                    <li class="hour-finished"><span class="hour-amount">${{data.amount}}</span><span class="hour-kWh">{{data.kwh}}{{gasUnit}}</span></li>
                 </ul>
                 <h3>18Hrs</h3>
             </div>
             <div class="hour-divider">
                 <ul *ngFor="let data of twentyfourHoursData">
-                    <li class="hour-finished"><span class="hour-amount">${{data.amount}}</span><span class="hour-kWh">{{data.kwh}}kWh</span></li>
-                    <!-- <li><span class="hour-amount"></span><span class="hour-kWh"></span></li>
-                    <li><span class="hour-amount"></span><span class="hour-kWh"></span></li>
-                    <li><span class="hour-amount"></span><span class="hour-kWh"></span></li>
-                    <li><span class="hour-amount"></span><span class="hour-kWh"></span></li>
-                    <li><span class="hour-amount"></span><span class="hour-kWh"></span></li>
-                    <li><span class="hour-amount"></span><span class="hour-kWh"></span></li> -->
+                    <li class="hour-finished"><span class="hour-amount">${{data.amount}}</span><span class="hour-kWh">{{data.kwh}}{{gasUnit}}</span></li>
                 </ul>
                 <h3>24Hrs</h3>
             </div>
