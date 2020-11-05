@@ -63,11 +63,11 @@
                     <ngx-charts-bar-vertical [view]="view" [scheme]="colorScheme" [roundDomains]=true [results]="multikwh" [gradient]="gradient" [roundDomains]=true [noBarWhenZero]=true [xAxis]="showXAxis" [yAxis]="showYAxis" [yAxisTickFormatting]="kwhTickFormatting" [barPadding]=35
                         [roundEdges]=true>
                         <ng-template #tooltipTemplate let-model="model">
-                            <p class="ecs-tooltip">{{model.value | json}}{{gasUnit}}</p>
+                            <p class="ecs-tooltip">{{model.value | json}} {{gasUnit}}</p>
                         </ng-template>
                     </ngx-charts-bar-vertical>
                     <div class="ecs-date month">{{month}} {{year}}</div>
-                    <h4 class="ecs-avarage">Daily average {{bestDayAveragekwh}}{{gasUnit}}</h4>
+                    <h4 class="ecs-avarage">Daily average {{bestDayAveragekwh}} {{gasUnit}}</h4>
                 </div>
             </div>
 
@@ -136,22 +136,22 @@
                     <ngx-charts-bar-vertical [view]="view" [scheme]="colorScheme" [roundDomains]=true [results]="multikwh" [gradient]="gradient" [roundDomains]=true [noBarWhenZero]=true [xAxis]="showXAxis" [yAxis]="showYAxis" [yAxisTickFormatting]="kwhTickFormatting" [barPadding]=barPadding
                         [roundEdges]=true>
                         <ng-template #tooltipTemplate let-model="model">
-                            <p class="ecs-tooltip">{{model.value | json}}{{gasUnit}}</p>
+                            <p class="ecs-tooltip">{{model.value | json}} {{gasUnit}}</p>
                         </ng-template>
                     </ngx-charts-bar-vertical>
                     <div class="ecs-date month">{{month}} {{year}}</div>
-                    <h4 class="ecs-avarage">Daily average {{bestDayAveragekwh}}{{gasUnit}}</h4>
+                    <h4 class="ecs-avarage">Daily average {{bestDayAveragekwh}} {{gasUnit}}</h4>
                 </div>
                 <div class="container projected-bill-amount day-usage-bar" *ngIf="kilowats && accountType=='GAS'">
                     <h3>Recent Day Usage</h3>
                     <ngx-charts-bar-vertical [view]="view" [scheme]="colorScheme" [roundDomains]=true [results]="multikwh" [gradient]="gradient" [roundDomains]=true [noBarWhenZero]=true [xAxis]="showXAxis" [yAxis]="showYAxis" [yAxisTickFormatting]="kwhTickFormattingGas" [barPadding]=barPadding
                         [roundEdges]=true>
                         <ng-template #tooltipTemplate let-model="model">
-                            <p class="ecs-tooltip">{{model.value | json}}{{gasUnit}}</p>
+                            <p class="ecs-tooltip">{{model.value | json}} {{gasUnit}}</p>
                         </ng-template>
                     </ngx-charts-bar-vertical>
                     <div class="ecs-date month">{{month}} {{year}}</div>
-                    <h4 class="ecs-avarage">Daily average {{bestDayAveragekwh}}{{gasUnit}}</h4>
+                    <h4 class="ecs-avarage">Daily average {{bestDayAveragekwh}} {{gasUnit}}</h4>
                 </div>
             </div>
 
