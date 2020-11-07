@@ -94,7 +94,6 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       var account = params['account'];
       if(account){
         localStorage.accountKey = account;
-        console.log(account);// OUTPUT 1534
       }
     });
     this.sharedService.getRecentDayUsage().subscribe(data => {
@@ -102,8 +101,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       this.accountType = data.accountType;
       localStorage.accountType = this.accountType;
       if(this.accountType == 'GAS'){
-        localStorage.gasUnit = 'lpg';
-        localStorage.gasSwitchText = 'LPG';
+        localStorage.gasUnit = 'ccf';
+        localStorage.gasSwitchText = 'CCF';
       }
       this.gasUnit = localStorage.gasUnit;
       this.gasSwitchText = localStorage.gasSwitchText;

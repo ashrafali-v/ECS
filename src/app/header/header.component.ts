@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {CommonAppService} from '../services/common-app.service';
+import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -12,16 +13,22 @@ export class HeaderComponent implements OnInit {
   kilowatsValue: number;
   accountType:any;
   gasUnit:any;
-  constructor(private sharedService: CommonAppService) { }
+  constructor(private sharedService: CommonAppService,private activatedRoute: ActivatedRoute) { }
   message:string;
   ngOnInit(): void {
+    this.activatedRoute.queryParams.subscribe(params => {
+      var account = params['account'];
+      if(account){
+        localStorage.accountKey = account;
+      }
+    });
     this.sharedService.getRecentDayUsage().subscribe(data => {
       this.amountValue = data.predictedAmount;
       this.kilowatsValue = data.predictedKwh;
       this.accountType = data.accountType;
       if(this.accountType == 'GAS'){
-        localStorage.gasUnit = 'lpg';
-        localStorage.gasSwitchText = 'LPG';
+        localStorage.gasUnit = 'ccf';
+        localStorage.gasSwitchText = 'CCF';
       }
       this.gasUnit = localStorage.gasUnit;
     });
