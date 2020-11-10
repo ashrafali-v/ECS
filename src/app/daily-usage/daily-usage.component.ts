@@ -927,7 +927,7 @@ export class DailyUsageComponent implements OnInit {
     return val.toLocaleString() + 'kWh';
   }
   kwhTickFormattingGas(val: any) {
-    return val.toLocaleString() + 'lpg';
+    return val.toLocaleString() + 'ccf';
   }
   selectDailyUsageData(key: any) {
     //Next and previuos button handling//

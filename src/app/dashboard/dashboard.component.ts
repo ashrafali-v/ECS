@@ -203,6 +203,6 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     return val.toLocaleString() + ' kWh';
   }
   kwhTickFormattingGas(val: any) {
-    return val.toLocaleString() + ' lpg';
+    return val.toLocaleString() + ' ccf';
   }
 }
