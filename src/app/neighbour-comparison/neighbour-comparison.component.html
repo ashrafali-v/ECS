@@ -30,7 +30,7 @@
                         </canvas>
                     </div>
                     <div class="neighbourhood-ngx-chart">
-                        <ngx-charts-bar-horizontal [view]="view" [roundDomains]=true [scheme]="colorScheme" [results]="multiAmount" [gradient]="false" [noBarWhenZero]=true [xAxis]="false" [yAxis]="true" [barPadding]=30 [roundEdges]=true>
+                        <ngx-charts-bar-horizontal [view]="view" [showDataLabel]=true [dataLabelFormatting] = "formatDataLabel" [roundDomains]=true [scheme]="colorScheme" [results]="multiAmount" [gradient]="false" [noBarWhenZero]=true [xAxis]="false" [yAxis]="true" [barPadding]=30 [roundEdges]=true>
                             <ng-template #tooltipTemplate let-model="model">
                                 <p class="ecs-tooltip">{{model.name}} ${{model.value | json}}</p>
                             </ng-template>
@@ -43,7 +43,7 @@
                         </canvas>
                     </div>
                     <div class="neighbourhood-ngx-chart">
-                        <ngx-charts-bar-horizontal [view]="view" [roundDomains]=true [scheme]="colorScheme" [results]="multiKwh" [gradient]="false" [noBarWhenZero]=true [xAxis]="false" [yAxis]="true" [barPadding]=30 [roundEdges]=true>
+                        <ngx-charts-bar-horizontal [view]="view" [showDataLabel]=true [dataLabelFormatting] = "formatDataLabel"  [roundDomains]=true [scheme]="colorScheme" [results]="multiKwh" [gradient]="false" [noBarWhenZero]=true [xAxis]="false" [yAxis]="true" [barPadding]=30 [roundEdges]=true>
                             <ng-template #tooltipTemplate let-model="model">
                                 <p class="ecs-tooltip">{{model.name}} {{model.value | json}} {{gasUnit}}</p>
                             </ng-template>
@@ -56,7 +56,7 @@
                         </canvas>
                     </div>
                     <div class="neighbourhood-ngx-chart">
-                        <ngx-charts-bar-horizontal [view]="view" [roundDomains]=true [scheme]="colorScheme" [results]="multiKwh" [gradient]="false" [noBarWhenZero]=true [xAxis]="false" [yAxis]="true" [barPadding]=30 [roundEdges]=true>
+                        <ngx-charts-bar-horizontal [view]="view" [showDataLabel]=true [dataLabelFormatting] = "formatDataLabel"  [roundDomains]=true [scheme]="colorScheme" [results]="multiKwh" [gradient]="false" [noBarWhenZero]=true [xAxis]="false" [yAxis]="true" [barPadding]=30 [roundEdges]=true>
                             <ng-template #tooltipTemplate let-model="model">
                                 <p class="ecs-tooltip">{{model.name}} {{model.value | json}} {{gasUnit}}</p>
                             </ng-template>
@@ -85,7 +85,7 @@
                 <h4>You're using <b>{{neighbourUsageText}}</b> than your neighbors.</h4>
                 <div class="neighbourhood-chart day-usage-bar" *ngIf="amount">
                     <div class="neighbourhood-ngx-chart">
-                        <ngx-charts-bar-horizontal [view]="view" [roundDomains]=true [scheme]="colorScheme" [results]="multiAmountCurrent" [gradient]="false" [noBarWhenZero]=true [xAxis]="false" [yAxis]="true" [barPadding]=30 [roundEdges]=true>
+                        <ngx-charts-bar-horizontal [view]="view" [showDataLabel]=true [dataLabelFormatting] = "formatDataLabel"  [roundDomains]=true [scheme]="colorScheme" [results]="multiAmountCurrent" [gradient]="false" [noBarWhenZero]=true [xAxis]="false" [yAxis]="true" [barPadding]=30 [roundEdges]=true>
                             <ng-template #tooltipTemplate let-model="model">
                                 <p class="ecs-tooltip">{{model.name}} ${{model.value | json}}</p>
                             </ng-template>
@@ -94,7 +94,7 @@
                 </div>
                 <div class="neighbourhood-chart day-usage-bar" *ngIf="kilowats">
                     <div class="neighbourhood-ngx-chart">
-                        <ngx-charts-bar-horizontal [view]="view" [roundDomains]=true [scheme]="colorScheme" [results]="multiKWHCurrent" [gradient]="false" [noBarWhenZero]=true [xAxis]="false" [yAxis]="true" [barPadding]=30 [roundEdges]=true>
+                        <ngx-charts-bar-horizontal [view]="view" [showDataLabel]=true [dataLabelFormatting] = "formatDataLabel"  [roundDomains]=true [scheme]="colorScheme" [results]="multiKWHCurrent" [gradient]="false" [noBarWhenZero]=true [xAxis]="false" [yAxis]="true" [barPadding]=30 [roundEdges]=true>
                             <ng-template #tooltipTemplate let-model="model">
                                 <p class="ecs-tooltip">{{model.name}} {{model.value | json}} {{gasUnit}}</p>
                             </ng-template>

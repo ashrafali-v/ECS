@@ -17,10 +17,15 @@ export class DailyUsageComponent implements OnInit {
   day: any;
   screenHeight: number;
   screenWidth: number;
+  // myColors: any = [
+  //   { name: 'upto average', value: 'rgba(48,45,52,.2)' },
+  //   { name: 'usage', value: '#7033FF' },
+  //   { name: 'exceed average', value: '#F16F3F' }
+  // ];
   myColors: any = [
-    { name: 'upto average', value: 'rgba(48,45,52,.2)' },
-    { name: 'usage', value: '#7033FF' },
-    { name: 'exceed average', value: '#F16F3F' }
+    { name: 'upto average', value: 'rgba(3,155,229,.2)' },
+    { name: 'usage', value: '#039be5' },
+    { name: 'exceed average', value: '#bbdefb' }
   ];
   width: any;
   barPadding: number = 20;

@@ -182,9 +182,9 @@ export class BillComparisonComponent implements OnInit {
       var maxValue = Math.max.apply(Math, multiAmount.map(function(o) { return o.value; }));
       multiAmount.forEach((element) => {
         if (element.value == maxValue) {
-          colorsAmount.push("#F16F3F");
+          colorsAmount.push("#BBDEFB");
         } else {
-          colorsAmount.push("#7033FF");
+          colorsAmount.push("#039BE5");
         }
       })
       this.colorSchemeAmount.domain = colorsAmount;

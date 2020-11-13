@@ -189,13 +189,13 @@ export class NeighbourComparisonComponent implements OnInit {
   };
   public lineChartColors: Color[] = [
     {
-      borderColor: '#F16F3F'
+      borderColor: '#BBDEFB'
     },
     {
-      borderColor: '#230C57'
+      borderColor: '#0A3D70'
     },
     {
-      borderColor: '#7033FF'
+      borderColor: '#039BE5'
     }
   ];
   public lineChartLegend = true;
@@ -206,7 +206,7 @@ export class NeighbourComparisonComponent implements OnInit {
   /*-----------------Bar chart config-----------------------------*/
 
   colorScheme = {
-    domain: ['#F16F3F', '#230C57', '#7033FF', '#7033FF']
+    domain: ['#BBDEFB', '#0A3D70', '#039BE5']
   };
 
   /*-----------------Bar chart config-----------------------------*/
@@ -310,6 +310,10 @@ export class NeighbourComparisonComponent implements OnInit {
       this.lineChartData = [];
       this.lineChartData = this.lineChartDataAmount;
     }
+  }
+  formatDataLabel(value )
+  {
+    return '$'+ value;
   }
 
 }

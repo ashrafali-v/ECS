@@ -56,8 +56,11 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   accountType:any = 'ELECTRIC';
   gasUnit:any;
   gasSwitchText:any;
+  // colorScheme = {
+  //   domain: ['#f8bc8a', '#ab8ef0', '#f8bc8a', '#ab8ef0', '#f8bc8a']
+  // };
   colorScheme = {
-    domain: ['#f8bc8a', '#ab8ef0', '#f8bc8a', '#ab8ef0', '#f8bc8a']
+    domain: ['#bbdefb', '#039be5', '#bbdefb', '#039be5', '#bbdefb']
   };
   monthNames = ["January", "February", "March", "April", "May", "June",
     "July", "August", "September", "October", "November", "December"
