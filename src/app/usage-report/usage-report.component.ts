@@ -46,7 +46,7 @@ export class UsageReportComponent implements OnInit {
   percentageFormatting(c) {
     return Math.round(c);
   }
-  viewUsageReport(){
+  viewUsageReport(index:any){
     console.log('Modal');
     const viewReportModal = this.modalService.open(ViewReportComponent, {
       ariaLabelledBy: "modal-basic-title",
@@ -55,5 +55,7 @@ export class UsageReportComponent implements OnInit {
       backdrop: 'static'
     });
     viewReportModal.componentInstance.modalTitle = "View Report";
+    viewReportModal.componentInstance.deviceName = this.devices[index].name;
+    viewReportModal.componentInstance.deviceCost = this.devices[index].value;
   }
 }
