@@ -25,7 +25,7 @@ export class DailyUsageComponent implements OnInit {
   myColors: any = [
     { name: 'upto average', value: 'rgba(3,155,229,.2)' },
     { name: 'usage', value: '#039be5' },
-    { name: 'exceed average', value: '#bbdefb' }
+    { name: 'exceed average', value: '#039be5' }
   ];
   width: any;
   barPadding: number = 20;
@@ -59,6 +59,7 @@ export class DailyUsageComponent implements OnInit {
   gasSwitchText:any;
   chartDataAmountMonthly:any = [];
   chartDataKwhMonthly:any = [];
+  multiAmount: any[];
   constructor(private sharedService: CommonAppService) {
   }
   @HostListener('window:resize', ['$event'])
@@ -94,17 +95,10 @@ export class DailyUsageComponent implements OnInit {
     this.gasUnit = localStorage.gasUnit;
     this.gasSwitchText = localStorage.gasSwitchText;
     console.log(this.gasSwitchText);
-    
+    this.multiAmount = [{name: "JUL", value: 13},{name: "AUG", value: 9},{month: "SEP", value: 18},{name: "OCT", value: 5}];
+    Object.assign(this.multiAmount);
     var today = new Date();
     this.currentDay = today.getDate();
-    // var yesterday = new Date(Date.now() - 864e5);
-    // var day = yesterday.getDate();
-    // var month = yesterday.getMonth()+1;
-    // var year = yesterday.getFullYear();
-    // this.hourlyDate = {day,month,year};
-    // this.hourlyMonthName = this.monthNames[month-1];
-    // this.hourlyDay = yesterday.getDate();
-    // console.log(this.hourlyDate);
     this.sharedService.getDailyUsage().subscribe(data => {
       this.loader = false;
       var day = new Date();
@@ -150,8 +144,8 @@ export class DailyUsageComponent implements OnInit {
               'value': 8
             },
             {
-              'name': 'upto average',
-              'value': 2
+              'name': 'exceed average',
+              'value': 0
             }
           ]
         }, {
@@ -163,7 +157,7 @@ export class DailyUsageComponent implements OnInit {
             },
             {
               'name': 'exceed average',
-              'value': 1
+              'value': 2
             }
           ]
         }, {
@@ -174,8 +168,8 @@ export class DailyUsageComponent implements OnInit {
               'value': 5
             },
             {
-              'name': 'upto average',
-              'value': 5
+              'name': 'exceed average',
+              'value': 0
             }
           ]
         }, {
@@ -187,7 +181,7 @@ export class DailyUsageComponent implements OnInit {
             },
             {
               'name': 'exceed average',
-              'value': 4
+              'value':  3
             }
           ]
         },
@@ -196,11 +190,11 @@ export class DailyUsageComponent implements OnInit {
           'series': [
             {
               'name': 'usage',
-              'value': 0
+              'value': 8
             },
             {
-              'name': 'upto average',
-              'value': 10
+              'name': 'exceed average',
+              'value': 0
             }
           ]
         },
@@ -209,11 +203,11 @@ export class DailyUsageComponent implements OnInit {
           'series': [
             {
               'name': 'usage',
-              'value': 0
+              'value': 7
             },
             {
-              'name': 'upto average',
-              'value': 10
+              'name': 'exceed average',
+              'value': 0
             }
           ]
         },
@@ -222,11 +216,11 @@ export class DailyUsageComponent implements OnInit {
           'series': [
             {
               'name': 'usage',
-              'value': 0
+              'value': 4
             },
             {
-              'name': 'upto average',
-              'value': 10
+              'name': 'exceed average',
+              'value': 0
             }
           ]
         },
@@ -239,7 +233,7 @@ export class DailyUsageComponent implements OnInit {
             },
             {
               'name': 'exceed average',
-              'value': 5
+              'value': 2
             }
           ]
         },
@@ -534,7 +528,7 @@ export class DailyUsageComponent implements OnInit {
             },
             {
               'name': 'exceed average',
-              'value': 5
+              'value': 1
             }
           ]
         },
@@ -543,10 +537,10 @@ export class DailyUsageComponent implements OnInit {
           'series': [
             {
               'name': 'usage',
-              'value': 25
+              'value': 30
             },
             {
-              'name': 'upto average',
+              'name': 'exceed average',
               'value': 5
             }
           ]
@@ -567,10 +561,10 @@ export class DailyUsageComponent implements OnInit {
           'series': [
             {
               'name': 'usage',
-              'value': 15
+              'value': 30
             },
             {
-              'name': 'upto average',
+              'name': 'exceed average',
               'value': 15
             }
           ]
@@ -592,11 +586,11 @@ export class DailyUsageComponent implements OnInit {
           'series': [
             {
               'name': 'usage',
-              'value': 0
+              'value': 7
             },
             {
-              'name': 'upto average',
-              'value': 30
+              'name': 'exceed average',
+              'value': 0
             }
           ]
         },
@@ -605,11 +599,11 @@ export class DailyUsageComponent implements OnInit {
           'series': [
             {
               'name': 'usage',
-              'value': 0
+              'value': 10
             },
             {
-              'name': 'upto average',
-              'value': 30
+              'name': 'exceed average',
+              'value': 0
             }
           ]
         },
@@ -618,11 +612,11 @@ export class DailyUsageComponent implements OnInit {
           'series': [
             {
               'name': 'usage',
-              'value': 0
+              'value': 9
             },
             {
-              'name': 'upto average',
-              'value': 30
+              'name': 'exceed average',
+              'value': 0
             }
           ]
         },
@@ -648,7 +642,7 @@ export class DailyUsageComponent implements OnInit {
             },
             {
               'name': 'exceed average',
-              'value': 5
+              'value': 7
             }
           ]
         },

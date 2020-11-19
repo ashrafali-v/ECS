@@ -66,8 +66,12 @@
                     <span class="excess-guide">Excess</span>
                 </div>
                 <div *ngIf="amount">
-        
-                    <ngx-charts-bar-vertical-stacked [view]="view" [attr.transform]="customTransform" [results]="chartDataAmountMonthly" [xAxis]="true" [yAxis]="true" [barPadding]=barPadding [customColors]="myColors" [roundDomains]=true [yAxisTickFormatting]="currencyTickFormatting">
+                    <!-- <ngx-charts-bar-vertical [view]="view" [roundDomains]=true [xAxis]="true" [yAxis]="true" [results]="multiAmount" [barPadding]=100 [roundEdges]=true>
+                        <ng-template #tooltipTemplate let-model="model">
+                            <div class="ecs-tooltip" style="color: white">${{model.value | json}}</div>
+                        </ng-template>
+                    </ngx-charts-bar-vertical> -->
+                    <ngx-charts-bar-vertical-stacked [view]="view" [noBarWhenZero]=true  [attr.transform]="customTransform" [results]="chartDataAmountMonthly" [xAxis]="true" [yAxis]="true" [barPadding]=barPadding [customColors]="myColors" [roundDomains]=true [yAxisTickFormatting]="currencyTickFormatting">
         
                         <ng-template #tooltipTemplate let-model="model">
                             <p *ngIf="model.value < 10 && model.name == 'usage'">usage</p>
