@@ -40,7 +40,8 @@
     }
     .month-selector {
         width: $full;
-        background-color: $primary-dark-color;
+        //background-color: $primary-dark-color;
+        background-color: #0069D9;
         margin-top: $default-margin;
         padding: $default-padding $null;
         .center-conatainer {
@@ -63,7 +64,8 @@
             margin: $default-margin $null;
         }
         .month-box {
-            background-color: $primary-color;
+            //background-color: $primary-color;
+            background-color: #0A3D70;
             @include border-radius($default-unit*3);
             @include flex(0 1 calc(#{$full/2} - 20px));
             @include flexbox();
@@ -109,7 +111,8 @@
                 padding: $default-padding $null;
             }
             &.current-month {
-                @include horizontal-gradient($primary-color, $secondary-color);
+                //@include horizontal-gradient($primary-color, $secondary-color);
+                @include horizontal-gradient(#0A3D70,#039BE5);
             }
         }
     }
