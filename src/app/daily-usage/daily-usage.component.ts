@@ -95,7 +95,16 @@ export class DailyUsageComponent implements OnInit {
     this.gasUnit = localStorage.gasUnit;
     this.gasSwitchText = localStorage.gasSwitchText;
     console.log(this.gasSwitchText);
-    this.multiAmount = [{name: "JUL", value: 13},{name: "AUG", value: 9},{month: "SEP", value: 18},{name: "OCT", value: 5}];
+    this.multiAmount = [{name: "NOV19", value: 70.19},{name: "DEC19", value: 76.46},{month: "JAN20", value: 70.75},{name: "FEB20", value: 67.86},
+    {name: "MAR20", value: 72.19},
+    {name: "APR20", value: 65.18},
+    {name: "MAY20", value: 75.13},
+    {name: "JUN20", value: 69.88},
+    {name: "JUL20", value: 76.21},
+    {name: "AUG20", value: 75.89},
+    {name: "SEP20", value: 70.94},
+    {name: "OCT20", value: 73.97},
+    {name: "NOV20", value: 71.29}];
     Object.assign(this.multiAmount);
     var today = new Date();
     this.currentDay = today.getDate();
@@ -109,173 +118,173 @@ export class DailyUsageComponent implements OnInit {
       this.kilowatsValue = data.totalUsageKwh;
       this.chartDataAmountMonthly = [
         {
-          'name': "JAN",
+          'name': "NOV19",
           'series': [
             {
               'name': 'usage',
-              'value': 10
+              'value': 65
             },
             {
               'name': 'exceed average',
-              'value': 5
+              'value': 5.19
             }
           ],
           date:"12 01 2020"
         },
         {
-          'name': "FEB",
+          'name': "DEC19",
           'series': [
             {
               'name': 'usage',
-              'value': 10
+              'value': 65
             },
             {
               'name': 'exceed average',
-              'value': 3
+              'value': 11.1
             }
           ],
           date:"12 02 2020"
         },
         {
-          'name': "MAR",
+          'name': "JAN20",
           'series': [
             {
               'name': 'usage',
-              'value': 8
+              'value': 65
             },
             {
               'name': 'exceed average',
-              'value': 0
+              'value': 5.75
             }
           ]
         }, {
-          'name': "APR",
+          'name': "FEB20",
           'series': [
             {
               'name': 'usage',
-              'value': 10
+              'value': 65
             },
             {
               'name': 'exceed average',
-              'value': 2
+              'value': 2.86
             }
           ]
         }, {
-          'name': "MAY",
+          'name': "MAR20",
           'series': [
             {
               'name': 'usage',
-              'value': 5
+              'value': 65
             },
             {
               'name': 'exceed average',
-              'value': 0
+              'value': 7.19
             }
           ]
         }, {
-          'name': "JUN",
+          'name': "APR20",
           'series': [
             {
               'name': 'usage',
-              'value': 10
+              'value': 65
             },
             {
               'name': 'exceed average',
-              'value':  3
+              'value': 0.18
             }
           ]
         },
         {
-          'name': "JUL",
+          'name': "MAY20",
           'series': [
             {
               'name': 'usage',
-              'value': 8
+              'value': 65
             },
             {
               'name': 'exceed average',
-              'value': 0
+              'value': 10.13
             }
           ]
         },
         {
-          'name': "AUG",
+          'name': "JUN20",
           'series': [
             {
               'name': 'usage',
-              'value': 7
+              'value': 65
             },
             {
               'name': 'exceed average',
-              'value': 0
+              'value': 4.88
             }
           ]
         },
         {
-          'name': "SEP",
+          'name': "JUL20",
           'series': [
             {
               'name': 'usage',
-              'value': 4
+              'value': 65
             },
             {
               'name': 'exceed average',
-              'value': 0
+              'value': 11.21
             }
           ]
         },
         {
-          'name': "OCT",
+          'name': "AUG20",
           'series': [
             {
               'name': 'usage',
-              'value': 10
+              'value': 65
             },
             {
               'name': 'exceed average',
-              'value': 2
+              'value': 10.89
             }
           ]
         },
         {
-          'name': "NOV",
+          'name': "SEP20",
           'series': [
             {
               'name': 'usage',
-              'value': 10
+              'value': 65
             },
             {
               'name': 'exceed average',
-              'value': 5
+              'value': 10.94
             }
           ]
         },
-        // {
-        //   'name': 12,
-        //   'series': [
-        //     {
-        //       'name': 'usage',
-        //       'value': 10
-        //     },
-        //     {
-        //       'name': 'exceed average',
-        //       'value': 3
-        //     }
-        //   ]
-        // },
-        // {
-        //   'name': 13,
-        //   'series': [
-        //     {
-        //       'name': 'usage',
-        //       'value': 8
-        //     },
-        //     {
-        //       'name': 'upto average',
-        //       'value': 2
-        //     }
-        //   ]
-        // }, {
+        {
+          'name': "OCT20",
+          'series': [
+            {
+              'name': 'usage',
+              'value': 65
+            },
+            {
+              'name': 'exceed average',
+              'value': 8.97
+            }
+          ]
+        },
+        {
+          'name': "NOV20",
+          'series': [
+            {
+              'name': 'usage',
+              'value': 65
+            },
+            {
+              'name': 'exceed average',
+              'value': 6.29
+            }
+          ]
+        } //{
         //   'name': 14,
         //   'series': [
         //     {
