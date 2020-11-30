@@ -60,7 +60,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   //   domain: ['#f8bc8a', '#ab8ef0', '#f8bc8a', '#ab8ef0', '#f8bc8a']
   // };
   colorScheme = {
-    domain: ['#bbdefb', '#039be5', '#bbdefb', '#039be5', '#bbdefb']
+    domain: ['#039be5', '#039be5', '#039be5', '#039be5', '#039be5']
   };
   monthNames = ["January", "February", "March", "April", "May", "June",
     "July", "August", "September", "October", "November", "December"
