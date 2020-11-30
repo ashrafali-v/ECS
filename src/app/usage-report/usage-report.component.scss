@@ -114,7 +114,7 @@
             .month-amount {
                 @include flex(0 0 auto);
                 padding: $null;
-                margin-left: $default-margin*2;
+                margin-left: $default-margin*1.5;
                 h2 {
                     @include ecs-typo($primary-font-regular, bold, 16px, 18px, $primary-dark-color);
                     text-align: left;
