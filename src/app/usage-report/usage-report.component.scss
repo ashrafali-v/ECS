@@ -115,10 +115,11 @@
                 @include flex(0 0 auto);
                 padding: $null;
                 margin-left: $default-margin*1.5;
-                h2 {
+                h3 {
                     @include ecs-typo($primary-font-regular, bold, 16px, 18px, $primary-dark-color);
                     text-align: left;
                     text-transform: uppercase;
+                    font-size: 14px !important;
                 }
                 p {
                     @include ecs-typo($primary-font-regular, normal, 16px, 18px, $primary-dark-color);
