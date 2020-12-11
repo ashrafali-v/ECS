@@ -28,7 +28,7 @@ export class HeaderComponent implements OnInit {
       var accountNumber = localStorage.getItem('accountKey');
 
       this.sharedService.getAccountType(accountNumber).subscribe(data=>{
-        this.accountTypes = ["ELECTRIC","GAS"];
+        this.accountTypes = data;
       });
       if(!localStorage.accountType){
         this.selectedAccountType = localStorage.accountType = "ELECTRIC";
