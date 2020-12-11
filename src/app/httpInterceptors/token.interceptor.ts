@@ -26,10 +26,15 @@ export class AuthHeaderInterceptor implements HttpInterceptor {
 
     addAuthHeader(request: HttpRequest<any>) {
         const token = localStorage.getItem('accountKey');
+        const accountType = localStorage.getItem('accountType');
         //const token = "test";
-        if (token) {
+        if (token && accountType) {
+            var headers = {
+                "account": token,
+                "account-type":accountType 
+            }
             request = request.clone({
-                setHeaders: { account: token}
+                setHeaders: headers
             });
         }
         return request;

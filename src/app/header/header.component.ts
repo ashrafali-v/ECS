@@ -16,7 +16,26 @@ export class HeaderComponent implements OnInit {
   kilowatsValue: number = 0;
   accountType:any = 'ELECTRIC';
   gasUnit:any = 'ccf';
-  constructor(private sharedService: CommonAppService,private activatedRoute: ActivatedRoute) { }
+  accountTypes:any = [];
+  selectedAccountType:any;
+  constructor(private sharedService: CommonAppService,private activatedRoute: ActivatedRoute) {
+      this.activatedRoute.queryParams.subscribe(params => {
+        var account = params['account'];
+        if(account){
+          localStorage.accountKey = account;
+        }
+      });
+      var accountNumber = localStorage.getItem('accountKey');
+
+      this.sharedService.getAccountType(accountNumber).subscribe(data=>{
+        this.accountTypes = ["ELECTRIC","GAS"];
+      });
+      if(!localStorage.accountType){
+        this.selectedAccountType = localStorage.accountType = "ELECTRIC";
+      }else{
+        this.selectedAccountType = localStorage.accountType;
+      }
+   }
   message:string;
   ngOnInit(): void {
     seconds.pipe(take(1))
@@ -25,7 +44,7 @@ export class HeaderComponent implements OnInit {
         this.sharedService.getRecentDayUsage().subscribe(data => {
           this.amountValue = data.predictedAmount;
           this.kilowatsValue = data.predictedKwh;
-          this.accountType = data.accountType;
+          this.accountType = localStorage.accountType;
           if(this.accountType == 'GAS'){
             localStorage.gasUnit = 'ccf';
             localStorage.gasSwitchText = 'CCF';
@@ -46,6 +65,19 @@ export class HeaderComponent implements OnInit {
       }
     });
     
+  }
+  setAccountType(accountType:any){
+    if(accountType == 0){
+      localStorage.accountType = "ELECTRIC";
+      localStorage.gasUnit = 'kWh';
+      localStorage.gasSwitchText = 'KILOWATTS';
+    }else{
+      localStorage.accountType = "GAS";
+      localStorage.gasUnit = 'ccf';
+      localStorage.gasSwitchText = 'CCF';
+    }
+    this.selectedAccountType = localStorage.accountType;
+    window.location.reload();
   }
 
 }

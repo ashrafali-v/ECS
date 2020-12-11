@@ -13,8 +13,8 @@
             <h2>{{kilowatsValue}} {{gasUnit}}</h2>
             <h4>Predicted Usage</h4>
         </div>
-        <select name="chose-method" id="method" class="ecs-select">
-            <option value="1">{{accountType}}</option>
+        <select name="chose-method" #selectedType id="method" class="ecs-select" (change)='setAccountType(selectedType.value)'>
+            <option value={{i}} [selected]="accountType === selectedAccountType" *ngFor="let accountType of accountTypes; let i=index;">{{accountType}}</option>
             <!-- <option value="2">GAS</option> -->
         </select>
         

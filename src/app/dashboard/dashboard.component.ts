@@ -91,8 +91,10 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   }
   ngOnInit() {
     //Subscription Method
-    localStorage.gasUnit = 'kWh';
-    localStorage.gasSwitchText = 'KILOWATTS';
+    if(!localStorage.gasUnit){
+      localStorage.gasUnit = 'kWh';
+      localStorage.gasSwitchText = 'KILOWATTS';
+    }
     this.activatedRoute.queryParams.subscribe(params => {
       var account = params['account'];
       if(account){
@@ -101,8 +103,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     });
     this.sharedService.getRecentDayUsage().subscribe(data => {
       this.loader = false;
-      this.accountType = data.accountType;
-      localStorage.accountType = this.accountType;
+      this.accountType = localStorage.accountType;
       if(this.accountType == 'GAS'){
         localStorage.gasUnit = 'ccf';
         localStorage.gasSwitchText = 'CCF';

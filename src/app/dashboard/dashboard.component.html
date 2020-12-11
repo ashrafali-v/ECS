@@ -169,11 +169,11 @@
 
     <div class="ecs-usage-alert align-item-bottom">
         <div class="progress-data">
-            <h2>Usage Alert</h2>
+            <h2>Monthly Usage Alert</h2>
             <div class="edit-values">
                 <div *ngIf="!editStatus">
                     <!-- <span>{{amountAlertValue | currency}}</span> -->
-                    <button (click)="editLimitValue()">Set Usage Alert <i class="fas fa-pen"></i></button>
+                    <button (click)="editLimitValue()">Set Monthly Usage Alert <i class="fas fa-pen"></i></button>
                 </div>
                 <div *ngIf="editStatus" class="setusagealert">
                     <i class="fas fa-dollar-sign"></i><input type="text" [(ngModel)]="amountAlertValue" value={{amountAlertValue}}>
