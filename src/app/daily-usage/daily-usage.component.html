@@ -128,9 +128,10 @@
             <h2>Hourly Usage</h2>
 
             <div class="day-counter">
-                <button class="ecs-btn" [ngClass]="{'status-disabled': dateIndex == chartDataAmount.length - 1}" *ngIf="dateIndex != chartDataAmount.length - 1" (click)="prevDayData()" ><i class="fas fa-chevron-left"></i></button>
+                <button class="ecs-btn" [ngClass]="{'status-disabled': dateIndex == 0}" *ngIf="dateIndex != 0" (click)="nextDayData()"><i class="fas fa-chevron-left"></i></button>
                 <h3>{{hourlyDate}}</h3>
-                <button class="ecs-btn" [ngClass]="{'status-disabled': dateIndex == 0}" *ngIf="dateIndex != 0" (click)="nextDayData()"><i class="fas fa-chevron-right"></i></button>
+                <button class="ecs-btn" [ngClass]="{'status-disabled': dateIndex == chartDataAmount.length - 1}" *ngIf="dateIndex != chartDataAmount.length - 1" (click)="prevDayData()" ><i class="fas fa-chevron-right"></i></button>
+                
             </div>
 
             <div class="hour-divider-group">
@@ -139,25 +140,25 @@
                 <ul *ngFor="let data of sixHoursData">
                     <li class="hour-finished"><span class="hour-amount">${{data.amount}}</span><span class="hour-kWh">{{data.kwh}}{{gasUnit}}</span></li>
                 </ul>
-                <h3>6Hrs</h3>
+                <h3>0-6 Hr</h3>
             </div>
             <div class="hour-divider">
                 <ul *ngFor="let data of twelveHoursData">
                     <li class="hour-finished"><span class="hour-amount">${{data.amount}}</span><span class="hour-kWh">{{data.kwh}}{{gasUnit}}</span></li>
                 </ul>
-                <h3>12Hrs</h3>
+                <h3>6-12 Hr</h3>
             </div>
             <div class="hour-divider">
                 <ul *ngFor="let data of eighteenHoursData">
                     <li class="hour-finished"><span class="hour-amount">${{data.amount}}</span><span class="hour-kWh">{{data.kwh}}{{gasUnit}}</span></li>
                 </ul>
-                <h3>18Hrs</h3>
+                <h3>12-18 Hr</h3>
             </div>
             <div class="hour-divider">
                 <ul *ngFor="let data of twentyfourHoursData">
                     <li class="hour-finished"><span class="hour-amount">${{data.amount}}</span><span class="hour-kWh">{{data.kwh}}{{gasUnit}}</span></li>
                 </ul>
-                <h3>24Hrs</h3>
+                <h3>18-24 Hr</h3>
             </div>
         </div>
         </div>

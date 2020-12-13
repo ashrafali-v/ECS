@@ -4,6 +4,8 @@
         h3 {
             @include ecs-typo($primary-font-regular, 700, 16px, 20px, $primary-dark-color);
             text-align: center;
+            display: inline;
+            margin-right: 10px;
         }
         h4 {
             @include ecs-typo($primary-font-regular, 400, 16px, 20px, $primary-dark-color);
@@ -13,6 +15,30 @@
                 font-weight: 700;
                 color: rgba( $secondary-color, 1);
             }
+        }
+        .neighbor-page-title{
+            text-align: center;
+        }
+        .neighbor-page-title .tooltip-inner{
+            background-color: grey;
+            width: 700px;
+            //font-size: 125%;
+           // width: 1000px;
+        }
+        .custom-tooltip-class .arrow::before {
+            border-top-color: grey;
+          }
+        .question-icon{
+            border-radius: 50%;
+            //color: black;
+            width: 3%;
+            background-color: rgba(0, 0, 0, 0.199);
+        }
+        .question-icon-monthly{
+            border-radius: 50%;
+            //color: black;
+            width: 6%;
+            background-color: rgba(0, 0, 0, 0.199);
         }
         .neighbourhood-chart {
             @include flexbox();

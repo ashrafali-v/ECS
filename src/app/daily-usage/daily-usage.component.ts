@@ -76,7 +76,7 @@ export class DailyUsageComponent implements OnInit {
       this.chartDataKwhSection = this.chartDataKwh;
     } else if (this.screenWidth > 993) {
       this.webStatus = true;
-      this.width = 960;
+      this.width = 860;
       this.barPadding = 20;
       this.view = [this.width, 180];
       this.chartDataAmountSection = this.chartDataAmount;

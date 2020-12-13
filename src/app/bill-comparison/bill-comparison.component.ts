@@ -208,5 +208,9 @@ export class BillComparisonComponent implements OnInit {
     // this.colorSchemeKwh.domain = colorsKwh;
     // Object.assign(this, { multiAmount });
   }
+  formatDataLabel(value )
+  {
+    return '$'+ value;
+  }
 
 }
