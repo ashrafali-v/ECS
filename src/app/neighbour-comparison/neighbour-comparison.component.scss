@@ -20,25 +20,25 @@
             text-align: center;
         }
         .neighbor-page-title .tooltip-inner{
-            background-color: grey;
+            background-color: #039BE5;
             width: 700px;
             //font-size: 125%;
            // width: 1000px;
         }
         .custom-tooltip-class .arrow::before {
-            border-top-color: grey;
+            border-top-color: #039BE5;
           }
         .question-icon{
             border-radius: 50%;
             //color: black;
             width: 3%;
-            background-color: rgba(0, 0, 0, 0.199);
+            background-color: #039BE5;
         }
         .question-icon-monthly{
             border-radius: 50%;
             //color: black;
             width: 6%;
-            background-color: rgba(0, 0, 0, 0.199);
+            background-color: #039BE5;
         }
         .neighbourhood-chart {
             @include flexbox();
