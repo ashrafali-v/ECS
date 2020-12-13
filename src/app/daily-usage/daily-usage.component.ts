@@ -78,7 +78,7 @@ export class DailyUsageComponent implements OnInit {
       this.webStatus = true;
       this.width = 800;
       this.barPadding = 20;
-      this.view = [this.width, 180];
+      this.view = [this.width, 250];
       this.chartDataAmountSection = this.chartDataAmount;
       this.chartDataKwhSection = this.chartDataKwh;
     } else {
