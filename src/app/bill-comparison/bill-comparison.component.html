@@ -10,7 +10,7 @@
         </canvas>
         </div> -->
         <div class="bill-comparison-chart" *ngIf="amount">
-            <ngx-charts-bar-vertical [view]="view" [tooltipDisabled]=true [showGridLines]=false [roundDomains]=true [showDataLabel]=true [dataLabelFormatting] = "formatDataLabel" [xAxis]="true"  [yAxis]="true" [rotateXAxisTicks]=false [scheme]="colorSchemeAmount" [yAxisTickFormatting]="currencyTickFormatting" [results]="multiAmount" [noBarWhenZero]=true [barPadding]=100 [roundEdges]=true>
+            <ngx-charts-bar-vertical [view]="view" [tooltipDisabled]=true [roundDomains]=true [showDataLabel]=true [dataLabelFormatting] = "formatDataLabel" [xAxis]="true"  [yAxis]="true" [rotateXAxisTicks]=false [scheme]="colorSchemeAmount" [yAxisTickFormatting]="currencyTickFormatting" [results]="multiAmount" [noBarWhenZero]=true [barPadding]=100 [roundEdges]=true>
                 <!-- <ng-template #tooltipTemplate let-model="model">
                     <div class="ecs-tooltip" style="color: white">${{model.value | json}}</div>
                 </ng-template> -->
