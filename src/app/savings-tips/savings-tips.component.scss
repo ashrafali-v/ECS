@@ -1,0 +1,48 @@
+.heading-section{
+    margin-left: 45%;
+    margin-top: 30px;
+    font-family: "karla";
+}
+.tip-container{
+    margin:1% 10%;
+    font-family: "karla";
+    font-size: 17px;
+}
+.card-container h2{
+    width: 77%;
+    float: right;
+    line-height: 70px;
+}
+.card-container {
+    background-color: #039BE5;
+    margin-bottom: 15px;
+    padding: 10px;
+    color: white;
+    width: 100%;
+    cursor: pointer;
+    display: inline-block;
+    -webkit-transition: all 200ms ease-in;
+    -webkit-transform: scale(1);
+    -ms-transition: all 200ms ease-in;
+    -ms-transform: scale(1);
+    -moz-transition: all 200ms ease-in;
+    -moz-transform: scale(1);
+    transition: all 200ms ease-in;
+    transform: scale(1);
+}
+.card-container:hover {
+    -webkit-transition: all 200ms ease-in;
+    -webkit-transform: scale(1.1);
+    -ms-transition: all 200ms ease-in;
+    -ms-transform: scale(1.1);
+    -moz-transition: all 200ms ease-in;
+    -moz-transform: scale(1.1);
+    transition: all 200ms ease-in;
+    transform: scale(1.1);
+}
+.glyph-icon{
+    &:before{
+        font-size: 50px;
+        //line-height: 2;
+    }
+}
