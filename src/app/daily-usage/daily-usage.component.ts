@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HostListener } from "@angular/core";
 import { CommonAppService } from '../services/common-app.service';
+import { ChartDataSets, ChartOptions,ChartType } from 'chart.js';
+import { Color } from 'ng2-charts';
 @Component({
   selector: 'app-daily-usage',
   templateUrl: './daily-usage.component.html',
@@ -61,6 +63,7 @@ export class DailyUsageComponent implements OnInit {
   chartDataAmountMonthly:any = [];
   chartDataKwhMonthly:any = [];
   multiAmount: any[];
+  
   constructor(private sharedService: CommonAppService) {
   }
   @HostListener('window:resize', ['$event'])
@@ -90,6 +93,67 @@ export class DailyUsageComponent implements OnInit {
       this.chartDataKwhSection = this.chartDataKwh.slice(0, 10);
     }
   }
+  public barChartOptions: ChartOptions = {
+    responsive: true,
+    legend: {
+      position: 'bottom',
+      display: false,
+      labels: {
+        fontSize: 12,
+        fontFamily: 'Karla',
+        //usePointStyle: true,
+        boxWidth: 30,
+
+      }
+    },
+    animation: {
+      duration: 2000
+    },
+    layout: {
+      padding: {
+        left: 0,
+        right: 0,
+        top: 0,
+        bottom: 0
+      }
+    },
+    scales: {
+      yAxes: [{
+        ticks: {
+          // Include a dollar sign in the ticks
+          callback: function (value, index, values) {
+            return '$'+value;
+          },
+          fontSize: 16,
+          fontFamily: 'Karla',
+        },
+        gridLines: {
+          display: true,
+          borderDash: [8, 4]
+        }
+      }],
+      xAxes: [{
+        display: true,
+        gridLines: {
+          display: false,//this will remove all the x-axis grid lines
+          drawBorder: false,
+        }
+      }]
+    }
+  };
+  public barChartType: ChartType = 'bar';
+  public barChartLegend = false;
+  public lineChartType = 'line';
+  public lineChartColors: Color[] = [
+    {
+      borderColor: '#039BE5'
+    }
+  ];
+  public barChartData: ChartDataSets[] = [
+    { data: [73,85,80,78,72,74], label: 'Temp in Fh', type: 'line',fill: false},
+    { data: [40,75,125,56,34,78], label: 'Usage' },
+  ];
+  public barChartLabels: string[] = ['Oct 20','Nov 20','Dec 20','jan 21','Feb 21','Mar 21'];
 
   ngOnInit(): void {
     this.accountType = localStorage.accountType;
@@ -125,6 +189,8 @@ export class DailyUsageComponent implements OnInit {
     });
     this.sharedService.getMonthlyUSage().subscribe(data => {
       this.chartDataAmountMonthly = data.usageAmount;
+      console.log(this.chartDataAmountMonthly);
+      
       this.chartDataKwhMonthly = data.usageKwh;
     });
     this.sharedService.nextMessage("amount");
