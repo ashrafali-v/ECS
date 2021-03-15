@@ -16,7 +16,7 @@
         <div class="tab-content">
             <div class="tab-pane" id="bill" [ngClass]="{ 'active':activeTab==='bill'}">
                 <div class="container projected-bill-amount" *ngIf="amount">
-                    <circle-progress [percent]=percent [radius]="80" [outerStrokeWidth]="5" [outerStrokeGradient]="true" [outerStrokeColor]="'#e63333'" [outerStrokeGradientStopColor]="'#5b1494'" [showInnerStroke]="false" [animation]="true" [animationDuration]="900" [responsive]=true
+                    <circle-progress [percent]=percent [radius]="80" [outerStrokeWidth]="5" [outerStrokeGradient]="true" [outerStrokeColor]="'#0069d9'" [outerStrokeGradientStopColor]="'#bbdefb'" [showInnerStroke]="false" [animation]="true" [animationDuration]="900" [responsive]=true
                         [showZeroOuterStroke]=true></circle-progress>
                     <div class="pb-default-rules">
                         <div class="shadow-circle days-30">
@@ -30,7 +30,7 @@
                     </div>
                 </div>
                 <div class="container  projected-bill-amount" *ngIf="kilowats">
-                    <circle-progress [percent]=percent [radius]="80" [outerStrokeWidth]="5" [outerStrokeGradient]="true" [outerStrokeColor]="'#e63333'" [outerStrokeGradientStopColor]="'#5b1494'" [showInnerStroke]="false" [animation]="true" [animationDuration]="900" [responsive]=true
+                    <circle-progress [percent]=percent [radius]="80" [outerStrokeWidth]="5" [outerStrokeGradient]="true" [outerStrokeColor]="'#0069d9'" [outerStrokeGradientStopColor]="'#bbdefb'" [showInnerStroke]="false" [animation]="true" [animationDuration]="900" [responsive]=true
                         [showZeroOuterStroke]=true></circle-progress>
                     <div class="pb-default-rules">
                         <div class="shadow-circle days-31">
@@ -38,7 +38,7 @@
                             <!-- <div class="ecs-date date-8">08</div>
                             <div class="ecs-date date-16">16</div>
                             <div class="ecs-date date-24">24</div> -->
-                            <div class="chart-progress">{{kilowatsValue}} kWh <h6>As of today</h6></div>
+                            <div class="chart-progress">{{kilowatsValue}} {{gasUnit}} <h6>As of today</h6></div>
                         </div>
 
                     </div>
@@ -63,11 +63,11 @@
                     <ngx-charts-bar-vertical [view]="view" [scheme]="colorScheme" [roundDomains]=true [results]="multikwh" [gradient]="gradient" [roundDomains]=true [noBarWhenZero]=true [xAxis]="showXAxis" [yAxis]="showYAxis" [yAxisTickFormatting]="kwhTickFormatting" [barPadding]=35
                         [roundEdges]=true>
                         <ng-template #tooltipTemplate let-model="model">
-                            <p class="ecs-tooltip">{{model.value | json}}kWh</p>
+                            <p class="ecs-tooltip">{{model.value | json}} {{gasUnit}}</p>
                         </ng-template>
                     </ngx-charts-bar-vertical>
                     <div class="ecs-date month">{{month}} {{year}}</div>
-                    <h4 class="ecs-avarage">Daily average {{bestDayAveragekwh}}kWh</h4>
+                    <h4 class="ecs-avarage">Daily average {{bestDayAveragekwh}} {{gasUnit}}</h4>
                 </div>
             </div>
 
@@ -83,7 +83,7 @@
                     <h3>Current Usage</h3>
                     <div class="bill-chart-conatin">
 
-                        <circle-progress [percent]=percent [radius]="80" [outerStrokeWidth]="5" [outerStrokeGradient]="true" [outerStrokeColor]="'#e63333'" [outerStrokeGradientStopColor]="'#5b1494'" [showInnerStroke]="false" [animation]="true" [animationDuration]="900" [responsive]=true
+                        <circle-progress [percent]=percent [radius]="80" [outerStrokeWidth]="5" [outerStrokeGradient]="true" [outerStrokeColor]="'#0069d9'" [outerStrokeGradientStopColor]="'#bbdefb'" [showInnerStroke]="false" [animation]="true" [animationDuration]="900" [responsive]=true
                             [showZeroOuterStroke]=true></circle-progress>
                         <div class="pb-default-rules">
                             <div class="shadow-circle days-30">
@@ -100,7 +100,7 @@
                 <div class="container  projected-bill-amount" *ngIf="kilowats">
                     <h3>Current Usage</h3>
                     <div class="bill-chart-conatin">
-                        <circle-progress [percent]=percent [radius]="80" [outerStrokeWidth]="5" [outerStrokeGradient]="true" [outerStrokeColor]="'#e63333'" [outerStrokeGradientStopColor]="'#5b1494'" [showInnerStroke]="false" [animation]="true" [animationDuration]="900" [responsive]=true
+                        <circle-progress [percent]=percent [radius]="80" [outerStrokeWidth]="5" [outerStrokeGradient]="true" [outerStrokeColor]="'#0069d9'" [outerStrokeGradientStopColor]="'#bbdefb'" [showInnerStroke]="false" [animation]="true" [animationDuration]="900" [responsive]=true
                         [showZeroOuterStroke]=true></circle-progress>
                         <div class="pb-default-rules">
                             <div class="shadow-circle days-31">
@@ -108,7 +108,7 @@
                                 <!-- <div class="ecs-date date-8">08</div>
                                 <div class="ecs-date date-16">16</div>
                                 <div class="ecs-date date-24">24</div> -->
-                                <div class="chart-progress">{{kilowatsValue}} kWh <h6>As of today</h6></div>
+                                <div class="chart-progress">{{kilowatsValue}} {{gasUnit}} <h6>As of today</h6></div>
                             </div>
 
                         </div>
@@ -131,16 +131,27 @@
                     <div class="ecs-date month">{{month}} {{year}}</div>
                     <h4 class="ecs-avarage">Daily average {{bestDayAverageAmount | currency}}</h4>
                 </div>
-                <div class="container projected-bill-amount day-usage-bar" *ngIf="kilowats">
+                <div class="container projected-bill-amount day-usage-bar" *ngIf="kilowats && accountType=='ELECTRIC'">
                     <h3>Recent Day Usage</h3>
                     <ngx-charts-bar-vertical [view]="view" [scheme]="colorScheme" [roundDomains]=true [results]="multikwh" [gradient]="gradient" [roundDomains]=true [noBarWhenZero]=true [xAxis]="showXAxis" [yAxis]="showYAxis" [yAxisTickFormatting]="kwhTickFormatting" [barPadding]=barPadding
                         [roundEdges]=true>
                         <ng-template #tooltipTemplate let-model="model">
-                            <p class="ecs-tooltip">{{model.value | json}}kWh</p>
+                            <p class="ecs-tooltip">{{model.value | json}} {{gasUnit}}</p>
                         </ng-template>
                     </ngx-charts-bar-vertical>
                     <div class="ecs-date month">{{month}} {{year}}</div>
-                    <h4 class="ecs-avarage">Daily average {{bestDayAveragekwh}}kWh</h4>
+                    <h4 class="ecs-avarage">Daily average {{bestDayAveragekwh}} {{gasUnit}}</h4>
+                </div>
+                <div class="container projected-bill-amount day-usage-bar" *ngIf="kilowats && accountType=='GAS'">
+                    <h3>Recent Day Usage</h3>
+                    <ngx-charts-bar-vertical [view]="view" [scheme]="colorScheme" [roundDomains]=true [results]="multikwh" [gradient]="gradient" [roundDomains]=true [noBarWhenZero]=true [xAxis]="showXAxis" [yAxis]="showYAxis" [yAxisTickFormatting]="kwhTickFormattingGas" [barPadding]=barPadding
+                        [roundEdges]=true>
+                        <ng-template #tooltipTemplate let-model="model">
+                            <p class="ecs-tooltip">{{model.value | json}} {{gasUnit}}</p>
+                        </ng-template>
+                    </ngx-charts-bar-vertical>
+                    <div class="ecs-date month">{{month}} {{year}}</div>
+                    <h4 class="ecs-avarage">Daily average {{bestDayAveragekwh}} {{gasUnit}}</h4>
                 </div>
             </div>
 
@@ -153,16 +164,16 @@
             <input type="checkbox" (change)="handleSelected($event)">
             <span class="slider"></span>
         </label>
-        <span class="selector">Kilowatts</span>
+        <span class="selector">{{gasSwitchText}}</span>
     </div>
 
     <div class="ecs-usage-alert align-item-bottom">
         <div class="progress-data">
-            <h2>Usage Alert</h2>
+            <h2>Monthly Usage Alert</h2>
             <div class="edit-values">
                 <div *ngIf="!editStatus">
                     <!-- <span>{{amountAlertValue | currency}}</span> -->
-                    <button (click)="editLimitValue()">Set Usage Alert <i class="fas fa-pen"></i></button>
+                    <button (click)="editLimitValue()">Set Monthly Usage Alert <i class="fas fa-pen"></i></button>
                 </div>
                 <div *ngIf="editStatus" class="setusagealert">
                     <i class="fas fa-dollar-sign"></i><input type="text" [(ngModel)]="amountAlertValue" value={{amountAlertValue}}>
@@ -176,8 +187,11 @@
 
             <div class="progress-bar">
                 <div class="progress-outer">
-                    <div class="progress-inner" [style.width.%]=percentProgressBarAmount style="background-image: linear-gradient(to right, rgb(81, 172, 45) , rgb(233, 153, 49));">
-                        {{percentProgressBarAmount}}%
+                    <!-- <div class="progress-inner" [style.width.%]=percentProgressBarAmount style="background-image: linear-gradient(to right, rgb(81, 172, 45) , rgb(233, 153, 49));">
+                        {{percentageValue}}%
+                    </div> -->
+                    <div class="progress-inner" [style.width.%]=percentProgressBarAmount style="background-image: linear-gradient(to right, rgb(10,61,112) , rgb(3,155,229));">
+                        {{percentageValue}}%
                     </div>
                     <div class="exceed-bar" [style.right.%]=percentProgressBarAmountAlert><span class="alert-amount">{{ amountAlertValue | currency : 'USD' : 'symbol' : '1.0-0' }}</span></div>
                 </div>

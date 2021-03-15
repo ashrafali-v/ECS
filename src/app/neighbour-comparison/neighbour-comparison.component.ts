@@ -33,6 +33,13 @@ export class NeighbourComparisonComponent implements OnInit {
   excessKWHLimitCurrent:any;
   goodKWHLimitCurrent:any;
   greatKWHLimitCurrent:any;
+  neighbourEmoji:any;
+  neighbourEmojiCurrent:any;
+  neighbourUsageText:any;
+  loader: boolean = true;
+  accountType:any;
+  gasUnit:any;
+  gasSwitchText:any;
   /*-----------------Line chart config-----------------------------*/
   public lineChartData: ChartDataSets[];
   public lineChartLabels: Label[];
@@ -132,15 +139,63 @@ export class NeighbourComparisonComponent implements OnInit {
       }]
     }
   };
+  public lineChartOptionsKwhGas: ChartOptions = {
+    responsive: true,
+    legend: {
+      position: 'bottom',
+      display: false,
+      labels: {
+        fontSize: 12,
+        fontFamily: 'Karla',
+        //usePointStyle: true,
+        boxWidth: 30,
+
+      }
+    },
+    animation: {
+      duration: 2000
+    },
+    layout: {
+      padding: {
+        left: 0,
+        right: 0,
+        top: 0,
+        bottom: 0
+      }
+    },
+    scales: {
+      yAxes: [{
+        ticks: {
+          // Include a dollar sign in the ticks
+          callback: function (value, index, values) {
+            return value+'ccf';
+          },
+          fontSize: 16,
+          fontFamily: 'Karla',
+        },
+        gridLines: {
+          display: true,
+          borderDash: [8, 4]
+        }
+      }],
+      xAxes: [{
+        display: true,
+        gridLines: {
+          display: false,//this will remove all the x-axis grid lines
+          drawBorder: false,
+        }
+      }]
+    }
+  };
   public lineChartColors: Color[] = [
     {
-      borderColor: '#F16F3F'
+      borderColor: '#BBDEFB'
     },
     {
-      borderColor: '#230C57'
+      borderColor: '#0A3D70'
     },
     {
-      borderColor: '#7033FF'
+      borderColor: '#039BE5'
     }
   ];
   public lineChartLegend = true;
@@ -151,7 +206,7 @@ export class NeighbourComparisonComponent implements OnInit {
   /*-----------------Bar chart config-----------------------------*/
 
   colorScheme = {
-    domain: ['#F16F3F', '#230C57', '#7033FF', '#7033FF']
+    domain: ['#BBDEFB', '#0A3D70', '#039BE5']
   };
 
   /*-----------------Bar chart config-----------------------------*/
@@ -199,7 +254,9 @@ export class NeighbourComparisonComponent implements OnInit {
     // this.lineChartDataKwh = [{ data: [0, 100, 130, 250, 116, 150, 210], label: 'All Neighbours', fill: false },
     // { data: [0, 175, 145, 180, 250, 215, 170], label: 'Similar Homes', fill: false },
     // { data: [0, 130, 210, 170, 200, 225, 150], label: 'Your Usage', fill: false }];
-
+    this.accountType = localStorage.accountType;
+    this.gasUnit = localStorage.gasUnit;
+    this.gasSwitchText = localStorage.gasSwitchText;
     this.sharedService.getNeighbourBarchart().subscribe(data=>{
       this.multiAmount = data.dataAmount;
       this.multiKwh = data.dataKwh;
@@ -211,10 +268,12 @@ export class NeighbourComparisonComponent implements OnInit {
       this.excessKWHLimit = data.excessKwh;
       this.goodKWHLimit = data.goodKwh;
       this.greatKWHLimit = data.greatKwh;
+      this.neighbourEmoji = data.neighbourEmoji;
       Object.assign(this.multiAmount);
       Object.assign(this.multiKwh)
     });
     this.sharedService.getNeighbourLinechart().subscribe(data=>{
+      this.loader = false;
       this.lineChartLabels = data.dataLabels;
       this.lineChartDataAmount = data.dataLineAmount;
       this.lineChartDataKwh = data.dataLineKwh;
@@ -232,6 +291,8 @@ export class NeighbourComparisonComponent implements OnInit {
       this.excessKWHLimitCurrent = data.excessKwh;
       this.goodKWHLimitCurrent = data.goodKwh;
       this.greatKWHLimitCurrent = data.greatKwh;
+      this.neighbourEmojiCurrent = data.neighbourEmoji;
+      this.neighbourUsageText = data.neighbourText;
     });
 
   }
@@ -249,6 +310,10 @@ export class NeighbourComparisonComponent implements OnInit {
       this.lineChartData = [];
       this.lineChartData = this.lineChartDataAmount;
     }
+  }
+  formatDataLabel(value )
+  {
+    return '$'+ value;
   }
 
 }

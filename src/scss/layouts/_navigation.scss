@@ -2,12 +2,14 @@
     position: fixed;
     bottom: $null;
     width: $full;
-    background-color: darken($white, 5%);
+    //background-color: darken($white, 5%);
+    background-color: #0069D9;
     z-index: 9999;
     @include device(lg) {
         position: initial;
         width: $full/4;
-        background-color: darken($primary-dark-color, 5%);
+        //background-color: darken($primary-dark-color, 5%);
+        background-color: #0069D9;
         // height: $full;
     }
     nav {

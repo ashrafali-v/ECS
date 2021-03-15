@@ -61,7 +61,7 @@
     }
     .month-selector {
         width: $full;
-        background-color: $primary-dark-color;
+        background-color: #0069D9;
         margin-top: $default-margin;
         padding: $default-padding $null;
         .center-conatainer {
@@ -95,7 +95,6 @@
             margin: $default-margin $null;
             width: calc(#{$full} - 20px);
             border-left: 10px solid transparent;
-            
             @include device(lg) {
                 width: calc(#{$full/3} - 20px);
                 @include flex(0 1 calc(#{$full/3} - 20px));
@@ -115,16 +114,17 @@
             .month-amount {
                 @include flex(0 0 auto);
                 padding: $null;
-                margin-left: $default-margin*2;
+                margin-left: $default-margin*1.5;
                 h3 {
                     @include ecs-typo($primary-font-regular, bold, 16px, 18px, $primary-dark-color);
                     text-align: left;
                     text-transform: uppercase;
+                    font-size: 14px !important;
                 }
                 p {
                     @include ecs-typo($primary-font-regular, normal, 16px, 18px, $primary-dark-color);
                     text-align: left;
-                    
+                    font-size: 13px;
                 }
             }
             &.current-month {

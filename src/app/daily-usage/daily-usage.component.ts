@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HostListener } from "@angular/core";
 import { CommonAppService } from '../services/common-app.service';
+import { ChartDataSets, ChartOptions,ChartType } from 'chart.js';
+import { Color } from 'ng2-charts';
 @Component({
   selector: 'app-daily-usage',
   templateUrl: './daily-usage.component.html',
@@ -17,10 +19,15 @@ export class DailyUsageComponent implements OnInit {
   day: any;
   screenHeight: number;
   screenWidth: number;
+  // myColors: any = [
+  //   { name: 'upto average', value: 'rgba(48,45,52,.2)' },
+  //   { name: 'usage', value: '#7033FF' },
+  //   { name: 'exceed average', value: '#F16F3F' }
+  // ];
   myColors: any = [
-    { name: 'upto average', value: 'rgba(48,45,52,.2)' },
-    { name: 'usage', value: '#7033FF' },
-    { name: 'exceed average', value: '#F16F3F' }
+    { name: 'upto average', value: 'rgba(3,155,229,.2)' },
+    { name: 'usage', value: '#039be5' },
+    { name: 'exceed average', value: '#039be5' }
   ];
   width: any;
   barPadding: number = 20;
@@ -46,6 +53,17 @@ export class DailyUsageComponent implements OnInit {
   hourlyDay:any;
   currentDay:any;
   hourlyDate:any;
+  dateIndex:any = 0;
+  loader: boolean = true;
+  monthlyDataLoader: boolean = true;
+  isHourlyUsageEmpty:boolean = false;
+  accountType:any;
+  gasUnit:any;
+  gasSwitchText:any;
+  chartDataAmountMonthly:any = [];
+  chartDataKwhMonthly:any = [];
+  multiAmount: any[];
+  
   constructor(private sharedService: CommonAppService) {
   }
   @HostListener('window:resize', ['$event'])
@@ -61,9 +79,9 @@ export class DailyUsageComponent implements OnInit {
       this.chartDataKwhSection = this.chartDataKwh;
     } else if (this.screenWidth > 993) {
       this.webStatus = true;
-      this.width = 960;
+      this.width = 700;
       this.barPadding = 20;
-      this.view = [this.width, 180];
+      this.view = [this.width, 250];
       this.chartDataAmountSection = this.chartDataAmount;
       this.chartDataKwhSection = this.chartDataKwh;
     } else {
@@ -75,822 +93,105 @@ export class DailyUsageComponent implements OnInit {
       this.chartDataKwhSection = this.chartDataKwh.slice(0, 10);
     }
   }
+  public barChartOptions: ChartOptions = {
+    responsive: true,
+    legend: {
+      position: 'bottom',
+      display: false,
+      labels: {
+        fontSize: 12,
+        fontFamily: 'Karla',
+        //usePointStyle: true,
+        boxWidth: 30,
+
+      }
+    },
+    animation: {
+      duration: 2000
+    },
+    layout: {
+      padding: {
+        left: 0,
+        right: 0,
+        top: 0,
+        bottom: 0
+      }
+    },
+    scales: {
+      yAxes: [{
+        ticks: {
+          // Include a dollar sign in the ticks
+          callback: function (value, index, values) {
+            return '$'+value;
+          },
+          fontSize: 16,
+          fontFamily: 'Karla',
+        },
+        gridLines: {
+          display: true,
+          borderDash: [8, 4]
+        }
+      }],
+      xAxes: [{
+        display: true,
+        gridLines: {
+          display: false,//this will remove all the x-axis grid lines
+          drawBorder: false,
+        }
+      }]
+    }
+  };
+  public barChartType: ChartType = 'bar';
+  public barChartLegend = false;
+  public lineChartType = 'line';
+  public lineChartColors: Color[] = [
+    {
+      borderColor: '#039BE5'
+    }
+  ];
+  public barChartData: ChartDataSets[] = [
+    { data: [73,85,80,78,72,74], label: 'Temp in Fh', type: 'line',fill: false},
+    { data: [40,75,125,56,34,78], label: 'Usage' },
+  ];
+  public barChartLabels: string[] = ['Oct 20','Nov 20','Dec 20','jan 21','Feb 21','Mar 21'];
 
   ngOnInit(): void {
+    this.accountType = localStorage.accountType;
+    this.gasUnit = localStorage.gasUnit;
+    this.gasSwitchText = localStorage.gasSwitchText;
+    console.log(this.gasSwitchText);
+    this.multiAmount = [{name: "NOV19", value: 70.19},{name: "DEC19", value: 76.46},{month: "JAN20", value: 70.75},{name: "FEB20", value: 67.86},
+    {name: "MAR20", value: 72.19},
+    {name: "APR20", value: 65.18},
+    {name: "MAY20", value: 75.13},
+    {name: "JUN20", value: 69.88},
+    {name: "JUL20", value: 76.21},
+    {name: "AUG20", value: 75.89},
+    {name: "SEP20", value: 70.94},
+    {name: "OCT20", value: 73.97},
+    {name: "NOV20", value: 71.29}];
+    Object.assign(this.multiAmount);
     var today = new Date();
     this.currentDay = today.getDate();
-    var yesterday = new Date(Date.now() - 864e5);
-    var day = yesterday.getDate();
-    var month = yesterday.getMonth()+1;
-    var year = yesterday.getFullYear();
-    this.hourlyDate = {day,month,year};
-    this.hourlyMonthName = this.monthNames[month-1];
-    this.hourlyDay = yesterday.getDate();
-    console.log(this.hourlyDate);
-    this.getHourlyUsageData(this.hourlyDate);
     this.sharedService.getDailyUsage().subscribe(data => {
+      this.loader = false;
       var day = new Date();
       this.month = this.monthNames[day.getMonth()];
       this.day = day.getDate();
       this.customTransform = `translate(-35 , 0)`;
       this.amountValue = data.totalUsageAmount;
       this.kilowatsValue = data.totalUsageKwh;
-      this.chartDataAmount = [
-        {
-          'name': 1,
-          'series': [
-            {
-              'name': 'usage',
-              'value': 10
-            },
-            {
-              'name': 'exceed average',
-              'value': 5
-            }
-          ]
-        },
-        {
-          'name': 2,
-          'series': [
-            {
-              'name': 'usage',
-              'value': 10
-            },
-            {
-              'name': 'exceed average',
-              'value': 3
-            }
-          ]
-        },
-        {
-          'name': 3,
-          'series': [
-            {
-              'name': 'usage',
-              'value': 8
-            },
-            {
-              'name': 'upto average',
-              'value': 2
-            }
-          ]
-        }, {
-          'name': 4,
-          'series': [
-            {
-              'name': 'usage',
-              'value': 10
-            },
-            {
-              'name': 'exceed average',
-              'value': 1
-            }
-          ]
-        }, {
-          'name': 5,
-          'series': [
-            {
-              'name': 'usage',
-              'value': 5
-            },
-            {
-              'name': 'upto average',
-              'value': 5
-            }
-          ]
-        }, {
-          'name': 6,
-          'series': [
-            {
-              'name': 'usage',
-              'value': 10
-            },
-            {
-              'name': 'exceed average',
-              'value': 4
-            }
-          ]
-        },
-        {
-          'name': 7,
-          'series': [
-            {
-              'name': 'usage',
-              'value': 0
-            },
-            {
-              'name': 'upto average',
-              'value': 10
-            }
-          ]
-        },
-        {
-          'name': 8,
-          'series': [
-            {
-              'name': 'usage',
-              'value': 0
-            },
-            {
-              'name': 'upto average',
-              'value': 10
-            }
-          ]
-        },
-        {
-          'name': 9,
-          'series': [
-            {
-              'name': 'usage',
-              'value': 0
-            },
-            {
-              'name': 'upto average',
-              'value': 10
-            }
-          ]
-        },
-        {
-          'name': 10,
-          'series': [
-            {
-              'name': 'usage',
-              'value': 10
-            },
-            {
-              'name': 'exceed average',
-              'value': 5
-            }
-          ]
-        },
-        {
-          'name': 11,
-          'series': [
-            {
-              'name': 'usage',
-              'value': 10
-            },
-            {
-              'name': 'exceed average',
-              'value': 5
-            }
-          ]
-        },
-        {
-          'name': 12,
-          'series': [
-            {
-              'name': 'usage',
-              'value': 10
-            },
-            {
-              'name': 'exceed average',
-              'value': 3
-            }
-          ]
-        },
-        {
-          'name': 13,
-          'series': [
-            {
-              'name': 'usage',
-              'value': 8
-            },
-            {
-              'name': 'upto average',
-              'value': 2
-            }
-          ]
-        }, {
-          'name': 14,
-          'series': [
-            {
-              'name': 'usage',
-              'value': 10
-            },
-            {
-              'name': 'exceed average',
-              'value': 1
-            }
-          ]
-        }, {
-          'name': 15,
-          'series': [
-            {
-              'name': 'usage',
-              'value': 5
-            },
-            {
-              'name': 'upto average',
-              'value': 5
-            }
-          ]
-        }, {
-          'name': 16,
-          'series': [
-            {
-              'name': 'usage',
-              'value': 10
-            },
-            {
-              'name': 'exceed average',
-              'value': 4
-            }
-          ]
-        },
-        {
-          'name': 17,
-          'series': [
-            {
-              'name': 'usage',
-              'value': 0
-            },
-            {
-              'name': 'upto average',
-              'value': 10
-            }
-          ]
-        },
-        {
-          'name': 18,
-          'series': [
-            {
-              'name': 'usage',
-              'value': 0
-            },
-            {
-              'name': 'upto average',
-              'value': 10
-            }
-          ]
-        },
-        {
-          'name': 19,
-          'series': [
-            {
-              'name': 'usage',
-              'value': 0
-            },
-            {
-              'name': 'upto average',
-              'value': 10
-            }
-          ]
-        },
-        {
-          'name': 20,
-          'series': [
-            {
-              'name': 'usage',
-              'value': 10
-            },
-            {
-              'name': 'exceed average',
-              'value': 5
-            }
-          ]
-        },
-        {
-          'name': 21,
-          'series': [
-            {
-              'name': 'usage',
-              'value': 10
-            },
-            {
-              'name': 'exceed average',
-              'value': 5
-            }
-          ]
-        },
-        {
-          'name': 22,
-          'series': [
-            {
-              'name': 'usage',
-              'value': 10
-            },
-            {
-              'name': 'exceed average',
-              'value': 3
-            }
-          ]
-        },
-        {
-          'name': 23,
-          'series': [
-            {
-              'name': 'usage',
-              'value': 8
-            },
-            {
-              'name': 'upto average',
-              'value': 2
-            }
-          ]
-        }, {
-          'name': 24,
-          'series': [
-            {
-              'name': 'usage',
-              'value': 10
-            },
-            {
-              'name': 'exceed average',
-              'value': 1
-            }
-          ]
-        }, {
-          'name': 25,
-          'series': [
-            {
-              'name': 'usage',
-              'value': 5
-            },
-            {
-              'name': 'upto average',
-              'value': 5
-            }
-          ]
-        }, {
-          'name': 26,
-          'series': [
-            {
-              'name': 'usage',
-              'value': 10
-            },
-            {
-              'name': 'exceed average',
-              'value': 4
-            }
-          ]
-        },
-        {
-          'name': 27,
-          'series': [
-            {
-              'name': 'usage',
-              'value': 0
-            },
-            {
-              'name': 'upto average',
-              'value': 10
-            }
-          ]
-        },
-        {
-          'name': 28,
-          'series': [
-            {
-              'name': 'usage',
-              'value': 0
-            },
-            {
-              'name': 'upto average',
-              'value': 10
-            }
-          ]
-        },
-        {
-          'name': 29,
-          'series': [
-            {
-              'name': 'usage',
-              'value': 0
-            },
-            {
-              'name': 'upto average',
-              'value': 10
-            }
-          ]
-        },
-        {
-          'name': 30,
-          'series': [
-            {
-              'name': 'usage',
-              'value': 0
-            },
-            {
-              'name': 'upto average',
-              'value': 10
-            }
-          ]
-        },
-        {
-          'name': 31,
-          'series': [
-            {
-              'name': 'usage',
-              'value': 10
-            },
-            {
-              'name': 'exceed average',
-              'value': 5
-            }
-          ]
-        }
-      ];
-      this.chartDataKwh = [
-        {
-          'name': 1,
-          'series': [
-            {
-              'name': 'usage',
-              'value': 30
-            },
-            {
-              'name': 'exceed average',
-              'value': 10
-            }
-          ]
-        },
-        {
-          'name': 2,
-          'series': [
-            {
-              'name': 'usage',
-              'value': 30
-            },
-            {
-              'name': 'exceed average',
-              'value': 5
-            }
-          ]
-        },
-        {
-          'name': 3,
-          'series': [
-            {
-              'name': 'usage',
-              'value': 25
-            },
-            {
-              'name': 'upto average',
-              'value': 5
-            }
-          ]
-        }, {
-          'name': 4,
-          'series': [
-            {
-              'name': 'usage',
-              'value': 30
-            },
-            {
-              'name': 'exceed average',
-              'value': 15
-            }
-          ]
-        }, {
-          'name': 5,
-          'series': [
-            {
-              'name': 'usage',
-              'value': 15
-            },
-            {
-              'name': 'upto average',
-              'value': 15
-            }
-          ]
-        }, {
-          'name': 6,
-          'series': [
-            {
-              'name': 'usage',
-              'value': 30
-            },
-            {
-              'name': 'exceed average',
-              'value': 4
-            }
-          ]
-        },
-        {
-          'name': 7,
-          'series': [
-            {
-              'name': 'usage',
-              'value': 0
-            },
-            {
-              'name': 'upto average',
-              'value': 30
-            }
-          ]
-        },
-        {
-          'name': 8,
-          'series': [
-            {
-              'name': 'usage',
-              'value': 0
-            },
-            {
-              'name': 'upto average',
-              'value': 30
-            }
-          ]
-        },
-        {
-          'name': 9,
-          'series': [
-            {
-              'name': 'usage',
-              'value': 0
-            },
-            {
-              'name': 'upto average',
-              'value': 30
-            }
-          ]
-        },
-        {
-          'name': 10,
-          'series': [
-            {
-              'name': 'usage',
-              'value': 30
-            },
-            {
-              'name': 'exceed average',
-              'value': 10
-            }
-          ]
-        },
-        {
-          'name': 11,
-          'series': [
-            {
-              'name': 'usage',
-              'value': 30
-            },
-            {
-              'name': 'exceed average',
-              'value': 5
-            }
-          ]
-        },
-        {
-          'name': 12,
-          'series': [
-            {
-              'name': 'usage',
-              'value': 25
-            },
-            {
-              'name': 'upto average',
-              'value': 5
-            }
-          ]
-        }, {
-          'name': 13,
-          'series': [
-            {
-              'name': 'usage',
-              'value': 30
-            },
-            {
-              'name': 'exceed average',
-              'value': 15
-            }
-          ]
-        }, {
-          'name': 14,
-          'series': [
-            {
-              'name': 'usage',
-              'value': 15
-            },
-            {
-              'name': 'upto average',
-              'value': 15
-            }
-          ]
-        }, {
-          'name': 15,
-          'series': [
-            {
-              'name': 'usage',
-              'value': 30
-            },
-            {
-              'name': 'exceed average',
-              'value': 4
-            }
-          ]
-        },
-        {
-          'name': 16,
-          'series': [
-            {
-              'name': 'usage',
-              'value': 0
-            },
-            {
-              'name': 'upto average',
-              'value': 30
-            }
-          ]
-        },
-        {
-          'name': 17,
-          'series': [
-            {
-              'name': 'usage',
-              'value': 0
-            },
-            {
-              'name': 'upto average',
-              'value': 30
-            }
-          ]
-        },
-        {
-          'name': 18,
-          'series': [
-            {
-              'name': 'usage',
-              'value': 0
-            },
-            {
-              'name': 'upto average',
-              'value': 30
-            }
-          ]
-        },
-        {
-          'name': 19,
-          'series': [
-            {
-              'name': 'usage',
-              'value': 30
-            },
-            {
-              'name': 'exceed average',
-              'value': 10
-            }
-          ]
-        },
-        {
-          'name': 20,
-          'series': [
-            {
-              'name': 'usage',
-              'value': 30
-            },
-            {
-              'name': 'exceed average',
-              'value': 5
-            }
-          ]
-        },
-        {
-          'name': 21,
-          'series': [
-            {
-              'name': 'usage',
-              'value': 30
-            },
-            {
-              'name': 'exceed average',
-              'value': 5
-            }
-          ]
-        },
-        {
-          'name': 22,
-          'series': [
-            {
-              'name': 'usage',
-              'value': 30
-            },
-            {
-              'name': 'exceed average',
-              'value': 5
-            }
-          ]
-        },
-        {
-          'name': 23,
-          'series': [
-            {
-              'name': 'usage',
-              'value': 25
-            },
-            {
-              'name': 'upto average',
-              'value': 5
-            }
-          ]
-        }, {
-          'name': 24,
-          'series': [
-            {
-              'name': 'usage',
-              'value': 30
-            },
-            {
-              'name': 'exceed average',
-              'value': 15
-            }
-          ]
-        }, {
-          'name': 25,
-          'series': [
-            {
-              'name': 'usage',
-              'value': 15
-            },
-            {
-              'name': 'upto average',
-              'value': 15
-            }
-          ]
-        }, {
-          'name': 26,
-          'series': [
-            {
-              'name': 'usage',
-              'value': 30
-            },
-            {
-              'name': 'exceed average',
-              'value': 4
-            }
-          ]
-        },
-        {
-          'name': 27,
-          'series': [
-            {
-              'name': 'usage',
-              'value': 0
-            },
-            {
-              'name': 'upto average',
-              'value': 30
-            }
-          ]
-        },
-        {
-          'name': 28,
-          'series': [
-            {
-              'name': 'usage',
-              'value': 0
-            },
-            {
-              'name': 'upto average',
-              'value': 30
-            }
-          ]
-        },
-        {
-          'name': 29,
-          'series': [
-            {
-              'name': 'usage',
-              'value': 0
-            },
-            {
-              'name': 'upto average',
-              'value': 30
-            }
-          ]
-        },
-        {
-          'name': 30,
-          'series': [
-            {
-              'name': 'usage',
-              'value': 0
-            },
-            {
-              'name': 'upto average',
-              'value': 30
-            }
-          ]
-        },
-        {
-          'name': 31,
-          'series': [
-            {
-              'name': 'usage',
-              'value': 0
-            },
-            {
-              'name': 'upto average',
-              'value': 30
-            }
-          ]
-        }
-
-      ];
       this.chartDataAmount = data.usageAmount;
       this.chartDataKwh = data.usageKwh;
+      this.hourlyDate = this.chartDataAmount[0].name;
+      this.getHourlyUsageData(this.chartDataAmount[0].date);
       this.getScreenSize();
+    });
+    this.sharedService.getMonthlyUSage().subscribe(data => {
+      this.chartDataAmountMonthly = data.usageAmount;
+      console.log(this.chartDataAmountMonthly);
+      
+      this.chartDataKwhMonthly = data.usageKwh;
     });
     this.sharedService.nextMessage("amount");
   }
@@ -909,7 +210,10 @@ export class DailyUsageComponent implements OnInit {
     return '$' + val.toLocaleString();
   }
   kwhTickFormatting(val: any) {
-    return val.toLocaleString() + 'k';
+    return val.toLocaleString() + 'kWh';
+  }
+  kwhTickFormattingGas(val: any) {
+    return val.toLocaleString() + 'ccf';
   }
   selectDailyUsageData(key: any) {
     //Next and previuos button handling//
@@ -949,21 +253,25 @@ export class DailyUsageComponent implements OnInit {
     }
   }
   prevDayData(){
-    console.log("prev");
-    this.hourlyDay = this.hourlyDay - 1;
-    this.hourlyDate.day = this.hourlyDay;
-    console.log(this.hourlyDate);
-    this.getHourlyUsageData(this.hourlyDate);
+    this.dateIndex += 1;
+    //this.hourlyDate = this.chartDataAmount[this.dateIndex].name;
+    this.hourlyDate = this.chartDataAmount[this.dateIndex].name;
+    this.getHourlyUsageData(this.chartDataAmount[this.dateIndex].date);
   }
   nextDayData(){
-    console.log("next");
-    this.hourlyDay = this.hourlyDay + 1;
-    this.hourlyDate.day = this.hourlyDay;
-    console.log(this.hourlyDate);
-    this.getHourlyUsageData(this.hourlyDate);
+    this.dateIndex -= 1;
+    //this.hourlyDate = this.chartDataAmount[this.dateIndex].name;
+    this.hourlyDate = this.chartDataAmount[this.dateIndex].name;
+    this.getHourlyUsageData(this.chartDataAmount[this.dateIndex].date);
   }
   getHourlyUsageData(date:any){
+    // var c = date.split(" ");
+    // var dateValue = {'day':c[1],'month':c[0],'year':c[2]}
     this.sharedService.getHourlyUsage(date).subscribe(data => {
+      if(Object.keys(data).length === 0 && data.constructor === Object ){
+        this.isHourlyUsageEmpty = true;
+      }
+      
       this.hourlyUsage = data;
       this.sixHoursData = this.hourlyUsage.firstset;
       this.twelveHoursData = this.hourlyUsage.secondset;

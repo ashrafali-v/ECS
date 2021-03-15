@@ -145,7 +145,8 @@
         @include justify-content(space-between);
         padding: $default-padding/2 $default-padding*1.5;
         h2 {
-            @include ecs-typo($primary-font-regular, 700, 16px, 37px, $white);
+            //@include ecs-typo($primary-font-regular, 700, 16px, 37px, $white);
+            @include ecs-typo($primary-font-regular, 700, 16px, 37px, black);
         }
         .edit-values {
             span {
@@ -157,14 +158,15 @@
             button {
                 background-color: $transition-bg;
                 border: none;
-                @include ecs-typo($primary-font-regular, 100, 16px, 37px, rgba($white, 1));
-                // width: $default-unit*30;
+                //@include ecs-typo($primary-font-regular, 100, 16px, 37px, rgba($white, 1));
+                @include ecs-typo($primary-font-regular, 100, 16px, 37px, black);
                 svg {
                     margin-left: $default-margin/2;
                 }
             }
             input {
-                @include ecs-typo($primary-font-regular, 700, 18px, 27px, rgba($white, 1));
+               // @include ecs-typo($primary-font-regular, 700, 18px, 27px, rgba($white, 1));
+               @include ecs-typo($primary-font-regular, 700, 18px, 27px, black);
                 text-align: center;
                 background-color: $transition-bg;
                 border: none;
@@ -179,7 +181,8 @@
                     }
                 }
                 button {
-                    @include ecs-typo($primary-font-regular, 100, 16px, 37px, rgba($white, 1));
+                    //@include ecs-typo($primary-font-regular, 100, 16px, 37px, rgba($white, 1));
+                    @include ecs-typo($primary-font-regular, 100, 16px, 37px, black);
                 }
             }
         }

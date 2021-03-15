@@ -18,7 +18,9 @@ export class CommonAppService {
     NeighbourLinechart:'milestone/energy/neighbourLineChart',
     NeighbourCurrentMonth:'milestone/energy/neighbourCurrentMonth',
     UsageReport:'milestone/energy/getUsageReport',
-    AmountAlertValue:'milestone/energy/amountAlertValue'
+    AmountAlertValue:'milestone/energy/usageAlertChange',
+    MonthlyUSage:'milestone/energy/dailyUsageMonthly',
+    AccountType:'milestone/energy/accountType'
   }
   private message = new BehaviorSubject('amount');
   sharedMessage = this.message.asObservable();
@@ -46,7 +48,7 @@ export class CommonAppService {
   }
   public getHourlyUsage(data:any){
     var url = this.ecsApiEndpoints['HourlyUsage'];
-    url = url +"?day="+data.day+"&month="+data.month+"&year="+data.year;
+    url = url +"?date="+data;
     return this.httpClient.get(this.serviceBase+url,this.jsonHttpHeader).pipe(
       map((res:any) => res)
     )
@@ -85,6 +87,18 @@ export class CommonAppService {
     var url = this.ecsApiEndpoints['AmountAlertValue'];
     url = url +"?alertValue="+data;
     return this.httpClient.get(this.serviceBase+url, this.jsonHttpHeader).pipe(
+      map((res:any) => res)
+    )
+  }
+  getMonthlyUSage(){
+    var url = this.ecsApiEndpoints['MonthlyUSage'];
+    return this.httpClient.get(this.serviceBase+url, this.jsonHttpHeader).pipe(
+      map((res:any) => res)
+    )
+  }
+  getAccountType(data:any){
+    var url = this.ecsApiEndpoints['AccountType'];
+    return this.httpClient.post(this.serviceBase+url,data, this.jsonHttpHeader).pipe(
       map((res:any) => res)
     )
   }

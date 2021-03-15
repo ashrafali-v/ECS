@@ -4,6 +4,8 @@
         h3 {
             @include ecs-typo($primary-font-regular, 700, 16px, 20px, $primary-dark-color);
             text-align: center;
+            display: inline;
+            margin-right: 10px;
         }
         h4 {
             @include ecs-typo($primary-font-regular, 400, 16px, 20px, $primary-dark-color);
@@ -13,6 +15,49 @@
                 font-weight: 700;
                 color: rgba( $secondary-color, 1);
             }
+        }
+        .neighbor-page-title{
+            text-align: center;
+        }
+        .custom-tooltip-class{
+            color: white !important;
+        }
+        .tick-icon{
+            color: lawngreen;
+        }
+        .tooltip-tip-div{
+            margin-bottom: 10px;
+        }
+        .large-font{
+            font-size: 20px;
+        }
+        .tooltip-title-class{
+            margin-top: 10px;
+            margin-bottom: 20px;
+        }
+        .custom-tooltip-class .tooltip-inner{
+            background-color: #039BE5;
+            min-width: 500px;
+            min-height: 200px;
+            //font-size: 125%;
+           //width: 350%;
+        }
+        .custom-tooltip-class .arrow::before {
+            border-top-color: #039BE5;
+          }
+        .question-icon{
+            border-radius: 50%;
+            //color: black;
+            width: 3%;
+            background-color: #039BE5;
+            color: white !important;
+        }
+        .question-icon-monthly{
+            border-radius: 50%;
+            //color: black;
+            width: 6%;
+            background-color: #039BE5;
+            color: white !important;
         }
         .neighbourhood-chart {
             @include flexbox();

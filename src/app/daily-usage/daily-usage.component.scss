@@ -17,6 +17,9 @@
         @include ecs-typo($primary-font-regular, 700, 16px, 20px, $primary-dark-color);
         text-align: center;
     }
+    .monthly-usage-chart{
+        width:700px !important;
+    }
     .data-guide {
         @include flexbox();
         @include flex(0 0 auto);
@@ -73,7 +76,7 @@
         .ngx-charts {
             text {
                 @include ecs-typo($primary-font-regular, 200, 24px, 37px, $primary-dark-color);
-                font-size: 16px !important;
+                font-size: 14px !important;
             }
         }
         .ecs-date {
@@ -97,7 +100,8 @@
 
 .hourly-usage {
     width: $full;
-    background-color: $primary-dark-color;
+    //background-color: $primary-dark-color;
+    background-color: #0069D9;
     margin-top: $default-margin;
     padding: $default-padding $null;
     .center-conatainer {
@@ -149,7 +153,7 @@
             @include align-items(center);
         .hour-divider {
             @include flex(0 0 $full/4/2);
-            padding: $default-padding $default-padding/2;
+            padding: $default-padding $default-padding*0.7;
             
             ul {
                 li {

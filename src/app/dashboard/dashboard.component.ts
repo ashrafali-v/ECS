@@ -52,8 +52,15 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   screeDesktopStatus: boolean = true;
   barPadding: any;
   loader: boolean = true;
+  percentageValue:any;
+  accountType:any = 'ELECTRIC';
+  gasUnit:any;
+  gasSwitchText:any;
+  // colorScheme = {
+  //   domain: ['#f8bc8a', '#ab8ef0', '#f8bc8a', '#ab8ef0', '#f8bc8a']
+  // };
   colorScheme = {
-    domain: ['#f8bc8a', '#ab8ef0', '#f8bc8a', '#ab8ef0', '#f8bc8a']
+    domain: ['#039be5', '#039be5', '#039be5', '#039be5', '#039be5']
   };
   monthNames = ["January", "February", "March", "April", "May", "June",
     "July", "August", "September", "October", "November", "December"
@@ -84,15 +91,25 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   }
   ngOnInit() {
     //Subscription Method
+    if(!localStorage.gasUnit){
+      localStorage.gasUnit = 'kWh';
+      localStorage.gasSwitchText = 'KILOWATTS';
+    }
     this.activatedRoute.queryParams.subscribe(params => {
       var account = params['account'];
       if(account){
         localStorage.accountKey = account;
-        console.log(account);// OUTPUT 1534
       }
     });
     this.sharedService.getRecentDayUsage().subscribe(data => {
       this.loader = false;
+      this.accountType = localStorage.accountType;
+      if(this.accountType == 'GAS'){
+        localStorage.gasUnit = 'ccf';
+        localStorage.gasSwitchText = 'CCF';
+      }
+      this.gasUnit = localStorage.gasUnit;
+      this.gasSwitchText = localStorage.gasSwitchText;
       this.amountValue = data.totalUsageAmount;
       this.kilowatsValue = data.totalUsageKwh;
       this.limitValue = data.limitAmount;
@@ -100,6 +117,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       this.bestDayAverageAmount = data.bestDayAvgAmount;
       this.bestDayAveragekwh = data.bestDayAvgKwh;
       this.progressbarMaxValueAmount = data.limitAmount;
+      this.percentageValue = data.alertPercentage;
       var multiAmount = data.usageAmount;
       var multikwh = data.usageKwh;
       const wholeDay = 32;
@@ -146,12 +164,9 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   }
   switchAction(chart) {
     if (chart == 'amount') {
-      console.log('amount');
-
       this.amount = true;
       this.kilowats = false;
     } else {
-      console.log('kilowats');
       this.amount = false;
       this.kilowats = true;
     }
@@ -163,10 +178,11 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     this.editStatus = false;
     this.sharedService.updateAlertValue(this.amountAlertValue).subscribe(data =>{
       console.log(data); 
+      this.percentageValue = data;
     });
     if (this.amountValue < this.amountAlertValue) {
       localStorage.removeItem('exceedLimit');
-    }
+    } 
     this.percentProgressBarAmountAlert = (this.amountAlertValue / this.progressbarMaxValueAmount) * 100;
     this.percentProgressBarAmountAlert = 100 - this.percentProgressBarAmountAlert;
   }
@@ -189,5 +205,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   }
   kwhTickFormatting(val: any) {
     return val.toLocaleString() + ' kWh';
+  }
+  kwhTickFormattingGas(val: any) {
+    return val.toLocaleString() + ' ccf';
   }
 }

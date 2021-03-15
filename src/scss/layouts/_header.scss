@@ -16,7 +16,7 @@ header {
         padding: $default-padding*1.5;
         padding-right: $default-padding*3.5;
         padding-bottom: $default-padding*2.5;
-        max-width: $default-unit*70;
+        max-width: $default-unit*75;
         height: $default-unit*40;
         // display: table;
         @include border-radius-tl-tr-br-bl(0, 0, 50px, 0);
@@ -32,6 +32,7 @@ header {
             @include ecs-typo($primary-font-regular, 700, 18px, 37px, $white);
             display: inline-block;
             margin-left: $default-margin;
+            width: 70px;
         }
     }
 }

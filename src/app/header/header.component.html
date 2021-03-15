@@ -1,7 +1,7 @@
 <header>
     <div class="logo">
         <svg _ngcontent-ftg-c19="" xmlns="http://www.w3.org/2000/svg" width="18.985" height="36" viewBox="0 0 18.985 36"><defs _ngcontent-ftg-c19=""><style _ngcontent-ftg-c19="">.a{fill:#230c57;}</style></defs><g _ngcontent-ftg-c19="" transform="translate(27)"><path _ngcontent-ftg-c19="" d="M139.845.535A1.054,1.054,0,0,0,138.927,0H126.271a1.054,1.054,0,0,0-1.023.8l-4.219,16.945a1.054,1.054,0,0,0,1.023,1.31h4.806l-5.794,15.52a1.055,1.055,0,0,0,1.841.991L139.78,12.292a1.054,1.054,0,0,0-.853-1.675h-4.465l5.369-9.02a1.055,1.055,0,0,0,.013-1.063Z" transform="translate(-147.997 0)" class="a"></path></g></svg>
-        <h1>ECS</h1>
+        <h1>eNeighbor</h1>
     </div>
     <div class="projected-biil-details" [ngClass]="(kilowats==true)?'ecs-kilowatt-active':''">
         
@@ -10,12 +10,12 @@
             <h4>Predicted Amount</h4>
         </div>
         <div class="ecs-kilowatt">
-            <h2>{{kilowatsValue}} kWh</h2>
+            <h2>{{kilowatsValue}} {{gasUnit}}</h2>
             <h4>Predicted Usage</h4>
         </div>
-        <select name="chose-method" id="method" class="ecs-select">
-            <option value="1">ELECTRIC</option>
-            <option value="2">GAS</option>
+        <select name="chose-method" #selectedType id="method" class="ecs-select" (change)='setAccountType(selectedType.value)'>
+            <option value={{i}} [selected]="accountType === selectedAccountType" *ngFor="let accountType of accountTypes; let i=index;">{{accountType}}</option>
+            <!-- <option value="2">GAS</option> -->
         </select>
         
     </div>

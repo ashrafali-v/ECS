@@ -1,4 +1,7 @@
-<div class="ecs-content-box bill-comparison-container">
+<div class="ecs-content-box" *ngIf="loader">
+    loading....
+</div>
+<div class="ecs-content-box bill-comparison-container" *ngIf="!loader">
     <div class="bill-comparison-data">
         <h3>Bill Comparison</h3>
         <!-- <div style="display: block;">
@@ -7,17 +10,17 @@
         </canvas>
         </div> -->
         <div class="bill-comparison-chart" *ngIf="amount">
-            <ngx-charts-bar-vertical [view]="view" [roundDomains]=true [xAxis]="true" [rotateXAxisTicks]=false [scheme]="colorSchemeAmount" [yAxisTickFormatting]="currencyTickFormatting" [results]="multiAmount" [noBarWhenZero]=true [barPadding]=100 [roundEdges]=true>
-                <ng-template #tooltipTemplate let-model="model">
+            <ngx-charts-bar-vertical [view]="view" [tooltipDisabled]=true [roundDomains]=true [showDataLabel]=true [dataLabelFormatting] = "formatDataLabel" [xAxis]="true"  [yAxis]="true" [rotateXAxisTicks]=false [scheme]="colorSchemeAmount" [yAxisTickFormatting]="currencyTickFormatting" [results]="multiAmount" [noBarWhenZero]=true [barPadding]=100 [roundEdges]=true>
+                <!-- <ng-template #tooltipTemplate let-model="model">
                     <div class="ecs-tooltip" style="color: white">${{model.value | json}}</div>
-                </ng-template>
+                </ng-template> -->
             </ngx-charts-bar-vertical>
         </div>
         <div class="bill-comparison-chart" *ngIf="kilowats">
-            <ngx-charts-bar-vertical [view]="view" [roundDomains]=true [xAxis]="true" [rotateXAxisTicks]=false [scheme]="colorSchemeKwh" [yAxisTickFormatting]="kwhTickFormatting" [results]="multikwh" [noBarWhenZero]=true [barPadding]=100 [roundEdges]=true>
-                <ng-template #tooltipTemplate let-model="model">
+            <ngx-charts-bar-vertical [view]="view" [tooltipDisabled]=true [roundDomains]=true [xAxis]="true" [yAxis]="true" [rotateXAxisTicks]=false [scheme]="colorSchemeKwh" [yAxisTickFormatting]="kwhTickFormatting" [results]="multikwh" [noBarWhenZero]=true [barPadding]=100 [roundEdges]=true>
+                <!-- <ng-template #tooltipTemplate let-model="model">
                     <div class="ecs-tooltip" style="color: white">{{model.value | json}} kWh</div>
-                </ng-template>
+                </ng-template> -->
             </ngx-charts-bar-vertical>
         </div>
     </div>

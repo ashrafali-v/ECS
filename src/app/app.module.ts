@@ -16,11 +16,13 @@ import { HeaderComponent } from './header/header.component';
 import { NgMonthPickerModule } from 'ng-month-picker';
 import { BsDatepickerModule, BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
 import { HttpInterceptorProviders } from '../app/httpInterceptors/interceptor.providers';
+import { ViewReportComponent } from './modals/view-report/view-report.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent
+    HeaderComponent,
+    ViewReportComponent
   ],
   imports: [
     BrowserModule,

@@ -42,6 +42,7 @@ export class BillComparisonComponent implements OnInit {
   calendarData: any;
   selectedDatePicker:any;
   billComparisonData:any = [];
+  loader: boolean = true;
   monthNames = ["dummy", "Jan", "Feb", "March", "April", "May", "June",
     "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
   ];
@@ -171,6 +172,7 @@ export class BillComparisonComponent implements OnInit {
   }
   getBillComparisonData(data){
     this.sharedService.getBillComparison(data).subscribe(data=>{
+      this.loader = false;
       let colorsAmount: any[];
       let colorsKwh: any[];
       colorsAmount = [];
@@ -180,9 +182,9 @@ export class BillComparisonComponent implements OnInit {
       var maxValue = Math.max.apply(Math, multiAmount.map(function(o) { return o.value; }));
       multiAmount.forEach((element) => {
         if (element.value == maxValue) {
-          colorsAmount.push("#F16F3F");
+          colorsAmount.push("#BBDEFB");
         } else {
-          colorsAmount.push("#7033FF");
+          colorsAmount.push("#039BE5");
         }
       })
       this.colorSchemeAmount.domain = colorsAmount;
@@ -205,6 +207,10 @@ export class BillComparisonComponent implements OnInit {
     // this.colorSchemeAmount.domain = colorsAmount;
     // this.colorSchemeKwh.domain = colorsKwh;
     // Object.assign(this, { multiAmount });
+  }
+  formatDataLabel(value )
+  {
+    return '$'+ value;
   }
 
 }
